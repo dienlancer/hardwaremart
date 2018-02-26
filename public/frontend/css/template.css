@@ -460,7 +460,8 @@ ul.list-style-none{
 footer{
  color: #ffffff;
  padding-bottom: 15px;
- background: #114a82
+ background: #114a82;
+     margin-top: 15px;
 }
 
 .brabel{
@@ -955,7 +956,7 @@ div.ducati  h2{
     margin-left: 0
 }
 .bg-social{
-    background: #b20c0c;   
+    background:#bf1e2d;   
 }
 .slogan-left{
     float: left;
@@ -1359,7 +1360,7 @@ div.ducati  h2{
 }
 form[name='frm-search']{
     position: relative;
-    width: 66%;
+  
 }
 .bg-menu{
     background: #1F3B73;
@@ -1557,12 +1558,7 @@ form[name='frm-search']{
     border-bottom:1px solid #dedede;
     padding: 5px 5px
 }
-.cate-product-horizontal-right{
-    border-top: 2px solid #f14976;
-    border-left:1px solid #dedede;
-    border-right:1px solid #dedede;    
-    background: #ffffff
-}
+
 .breadcrumb-bg{
         background-color: #f3f1f2;
 }
@@ -1656,6 +1652,88 @@ ul.bankList {
     top: 0;
     left: 0;
     width: 100%;
+}
+.cate-product-horizontal-right ul ul{
+    margin-left: -10px;
+}
+.line{
+    float: left;
+    border: 1px solid #ffffff;
+    border-radius: 1px;
+    padding: 4px 7px 7px 7px
+}
+.line span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+        background-color: #ffffff;
+            margin-top: 3px;
+}
+.dmsanpham{
+        padding: 0px 0px 0px 0px;
+    color: #ffffff;
+    margin: 0px 30px;
+  
+}
+.edra .cate-product-horizontal-right{
+        display: none;
+    position: absolute;
+    top: 48px;
+    left: 14px;
+    width: 264px;
+    z-index: 1;
+    border-top: 2px solid #f14976;
+    border-left:1px solid #dedede;
+    border-right:1px solid #dedede;    
+    background: #ffffff;
+
+}
+.hera{
+        background: #114a82;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+
+}
+.edra:hover .cate-product-horizontal-right{
+    display: block;
+}
+.nippet{
+    height: 100%;
+}
+.vienchan{
+    display: flex;
+    align-items: center;
+}
+form[name='frm-search'] a{
+    padding: 6px 10px 6px 0px;
+    font-size: 17px;
+    color: #333333;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+form[name='frm-search'] input[name='q']{
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+    width: 100%;
+    border-radius: 20px;
+}
+.rimex{
+    display: flex;
+  flex-direction: row;
+}
+.nimme{
+        margin-top: 10px;
+    margin-right: 15px;
+}
+.phone-ramen{
+    float: left;
+}
+.hotline-ramen{
+    float: right;
 }
 @media (max-width: 767px){    
     div.mobilemenu{

@@ -14,7 +14,7 @@ div.cate-product-horizontal-right ul {
 		    text-decoration: none;
     color: #000;
     line-height: 25px;
-    padding: 5px 0px 5px 30px;
+    padding: 5px 0px 5px 10px;
     display: block;
     font-family: 'baomoi';
 
@@ -38,6 +38,7 @@ div.cate-product-horizontal-right ul {
 	div.cate-product-horizontal-right ul ul {
 		display: none;
 		    background: #ffffff;
+		    
 	}
 	
 	div.cate-product-horizontal-right ul li:hover > ul{

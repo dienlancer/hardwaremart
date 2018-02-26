@@ -171,6 +171,7 @@ if(count($arrCart) > 0){
     <script language="javascript" type="text/javascript" src="{{asset('public/frontend/ckfinder/ckfinder.js')}}"                 ></script>
     <!-- end ckeditor-->
 	<!-- begin custom -->
+	<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right.css') }}" />
 	<script language="javascript" type="text/javascript" src="{{asset('public/frontend/js/spinner.js')}}"                 ></script>
 	<script src="{{ asset('public/frontend/js/custom.js') }}"></script>    
 	<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />
@@ -190,7 +191,7 @@ if(count($arrCart) > 0){
 				else {					
 					
 				}
-			});
+			});			
 		});  
 		var spinner = new Spinner();  
 	</script>	
@@ -208,125 +209,78 @@ if(count($arrCart) > 0){
 	<!-- end fanpage -->
 	<header class="header">	
 		<div class="bg-social">
-			<div class="container">
-				<div class="col-lg-12">								
-					<div class="social-right">
-						<ul class="inline-block top-menu">
-							<?php                                                              
-							if( count($arrUser) == 0 ){
-								?>
-								<li ><a href="<?php echo $register_member_link; ?>" ><i class="fa fa-unlock" aria-hidden="true"></i>&nbsp;Đăng ký</a></li>
-								<li ><a href="<?php echo $account_link; ?>" ><i class="fas fa-user" aria-hidden="true"></i>&nbsp;Đăng nhập</a></li>
-								<?php
-							}else{ 								
-								$dataGroupMember=\DB::table('group_member')
-												->join('user_group_member','group_member.id','=','user_group_member.group_member_id')
-												->where('user_group_member.user_id',(int)@$arrUser['id'])
-												->select('group_member.alias')
-												->groupBy('group_member.alias')
-												->get()
-												->toArray();
-								$dataGroupMember=convertToArray($dataGroupMember);	
-								$newData= get_field_data_array($dataGroupMember,'alias');								
-								if(array_key_exists('thanh-vien-vip', $newData)){									
-									?>
-									<li><a href="<?php echo route('frontend.product.getList'); ?>"><i class="fab fa-product-hunt" aria-hidden="true"></i>&nbsp;Đăng sản phẩm</a></li>
-									<?php 
-								}
-								?>
-								<li ><a  href="<?php echo $account_link; ?>"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;<?php echo $arrUser["username"]; ?></a></li>
-								<li ><a  href="<?php echo $security_link; ?>"><i class="fa fa-key" aria-hidden="true"></i>&nbsp;Đổi mật khẩu</a></li>                                                
-								<li ><a  href="<?php echo $logout_link; ?>"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Logout</a></li>
-								<?php                                     
-							}
-							if((int)@$quantity > 0){
-								?>
-								<li>
-									<a href="<?php echo $cart_link; ?>" >
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Giỏ hàng
-                <span class="cart-total"><?php echo $quantity; ?></span>
-              </a>  
-								</li>								
-								<?php
-							}
-							?>     
-						</ul>
-						<div class="clr"></div>   
-					</div>
-					<div class="clr"></div>
+			<div class="container vienchan">
+				<div class="col-lg-3">
+					<div class="edra">
+						<div class="hera">
+							<div class="line">
+								<span></span>
+								<span></span>
+								<span></span>
+							</div>
+							<span class="dmsanpham">Danh mục sản phẩm</span>
+							<span><font color="#ffffff"><i class="fa fa-caret-down pull-right" aria-hidden="true"></i></font></span>
+							<div class="clr"></div>
+						</div>
+						<div class="cate-product-horizontal-right" >
+							<?php     
+							$args = array(                         
+								'menu_class'            => 'cateprodhorizontalright', 					                     
+								'before_wrapper'        => '',
+								'before_title'          => '',
+								'after_title'           => '',
+								'before_wrapper_ul'     =>  '',
+								'after_wrapper_ul'      =>  '',
+								'after_wrapper'         => ''     ,
+								'link_before'       	=> '<i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;', 
+								'link_after'        	=> '<i class="fa fa-caret-down pull-right" aria-hidden="true"></i>',                                        
+								'theme_location'        => 'main-menu' ,
+								'menu_li_actived'       => 'current-menu-item',
+								'menu_item_has_children'=> 'menu-item-has-children',
+								'alias'                 => $seo_alias
+							);                    
+							wp_nav_menu($args);
+							?>                 
+							<div class="clr"></div>
+						</div>
+					</div>					
 				</div>
-				<div class="clr"></div>
-			</div>
-		</div>
-		<div class="bg-home">
-			<div class="container">
 				<div class="col-lg-2">
-					<center>
+					<div class="nippet">
+						<center>
 						<a href="<?php echo url('/'); ?>">                
 							<img src="<?php echo $seo_logo_frontend;?>" />
 						</a>
-					</center>				
-				</div> 
-				<div class="col-lg-6">
-					<div class="searching">
-						<form action="<?php echo route('frontend.index.searchProduct'); ?>" method="post" name="frm-search">
+						</center>	
+					</div>					
+				</div>
+				<div class="col-lg-3">
+					<form action="<?php echo route('frontend.index.searchProduct'); ?>" method="post" name="frm-search">
 							{{ csrf_field() }}
 							<input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm" value="">
-							<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();">Tìm kiếm</a>
-						</form>
-						<div class="margin-top-5"><font color="#ffffff">Free delivery on orders over £30  •   We are based in the UK</font></div>
-					</div>     
-				</div>
-				<div class="col-lg-4">
-					<div class="top-info">						
-						<?php 
-						$data=getPage('top-info');
-						if(count($data)){
-							$content=$data['content'];
-							echo $content;
-						}
-						?>
-					</div>
-				</div>
-				<div class="clr"></div>
-			</div>			
-		</div>
-		<div class="bg-menu">
-			<div class="container">				
-				<div class="col-lg-12">					
-					<div class="menu-plone">
+							<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>
+					</form>
+				</div>	
+				<div class="col-lg-2">
+					<div class="rimex">
+						<div><div class="nimme"><font color="#ffffff"><i class="fas fa-phone"></i></font></div></div>
 						<div>
-							<div class="col-lg-9 no-padding">
-								<?php     
-								$args = array(                         
-									'menu_class'            => 'main-menu',                               
-									'before_wrapper'        => '<div id="smoothmainmenu" class="ddsmoothmenu">',
-									'before_title'          => '',
-									'after_title'           => '',
-									'before_wrapper_ul'     =>  '',
-									'after_wrapper_ul'      =>  '',
-									'after_wrapper'         => '</div>'     ,
-									'link_before'           => '', 
-									'link_after'            => '',                                                                    
-									'theme_location'        => 'main-menu' ,
-									'menu_li_actived'       => 'current-menu-item',
-									'menu_item_has_children'=> 'menu-item-has-children',
-									'alias'                 => $seo_alias,
-								);                    
-								wp_nav_menu($args);
-								?>        
-								<div class="clr"></div>    
-							</div>
-							<div class="col-lg-3 no-padding">
-
-							</div>
-							<div class="clr"></div>
-						</div>						
-					</div>
+							<div><font color="#ffffff"><?php echo $telephone; ?></font></div>
+							<div><font color="#ffffff">7:00 - 22:30</font></div>
+						</div>
+					</div>					
 				</div>
-				<div class="clr"></div>
-			</div>
-		</div>
+				<div class="col-lg-2">
+					<div class="rimex">
+						<div><div class="nimme"><font color="#ffffff"><i class="fas fa-map-marker-alt"></i></font></div></div>
+						<div>
+							<div><a href="javascript:void(0);"><font color="#ffffff">Xem 10 cửa hàng</font></a></div>
+							<div><font color="#ffffff">7:00 - 22:30</font></div>
+						</div>
+					</div>	
+				</div>
+			</div>				
+		</div>						
 		<div class="mobilemenu padding-top-15">
 			<div class="container">
 				<div>
