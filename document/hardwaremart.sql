@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 26, 2018 lúc 12:13 PM
+-- Thời gian đã tạo: Th2 27, 2018 lúc 11:53 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -170,8 +170,8 @@ CREATE TABLE `banner` (
 --
 
 INSERT INTO `banner` (`id`, `category_id`, `caption`, `alt`, `image`, `page_url`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Bé đón giáng sinh', 'bé đón giáng sinh 1', 's1.jpg', 'https://www.hdwallpapers.in', 1, 1, '2017-12-16 05:03:34', '2018-01-18 07:22:24'),
-(2, 1, 'Khi trẻ cười', 'khi trẻ cười 2', 's2.jpg', 'cloudbeauty.vn', 2, 1, '2017-12-16 05:04:04', '2018-01-18 07:22:30'),
+(1, 1, 'Bé đón giáng sinh', 'bé đón giáng sinh 1', 'slider_1.jpg', 'https://www.hdwallpapers.in', 1, 1, '2017-12-16 05:03:34', '2018-02-27 02:07:45'),
+(2, 1, 'Khi trẻ cười', 'khi trẻ cười 2', 'slider_2.jpg', 'cloudbeauty.vn', 2, 1, '2017-12-16 05:04:04', '2018-02-27 02:07:51'),
 (3, 2, '', '', 'member-1.png', '', 1, 1, '2017-12-28 02:38:24', '2017-12-28 02:40:03'),
 (4, 2, '', '', 'member-2.png', '', 2, 1, '2017-12-28 02:38:40', '2017-12-28 02:40:03'),
 (5, 2, '', '', 'member-3.png', '', 3, 1, '2017-12-28 02:38:51', '2017-12-28 02:40:07'),
@@ -179,7 +179,7 @@ INSERT INTO `banner` (`id`, `category_id`, `caption`, `alt`, `image`, `page_url`
 (7, 2, '', '', 'member-5.png', '', 5, 1, '2017-12-28 02:39:08', '2017-12-28 02:40:03'),
 (8, 2, '', '', 'member-6.png', '', 6, 1, '2017-12-28 02:39:19', '2017-12-28 02:40:03'),
 (9, 2, '', '', 'member-7.png', '', 7, 1, '2017-12-28 02:39:28', '2017-12-28 02:40:03'),
-(14, 1, 'test 1', 'test 1', 's3.jpg', 'http://magiwan.vn/', 3, 1, '2018-01-18 07:23:11', '2018-01-18 07:23:11'),
+(14, 1, 'test 1', 'test 1', 'slider_3.jpg', 'http://magiwan.vn/', 3, 1, '2018-01-18 07:23:11', '2018-02-27 02:07:58'),
 (15, 2, '', '', 'partner-1.png', '', 8, 1, '2018-01-20 04:26:00', '2018-01-20 04:26:00'),
 (16, 2, '', '', 'partner-2.png', '', 9, 1, '2018-01-20 04:26:06', '2018-01-20 04:26:06'),
 (17, 2, '', '', 'partner-3.png', '', 10, 1, '2018-01-20 04:26:14', '2018-01-20 04:26:14'),
@@ -351,7 +351,10 @@ INSERT INTO `category_param` (`id`, `fullname`, `alias`, `parent_id`, `param_val
 (48, 'Thun', 'thun', 47, '', 2, 1, '2018-02-03 11:34:43', '2018-02-03 11:35:29'),
 (49, 'Vải', 'vai', 47, '', 1, 1, '2018-02-03 11:34:53', '2018-02-03 11:35:29'),
 (50, 'Nhà thiết kế', 'nha-thiet-ke', 0, '', 7, 1, '2018-02-03 11:36:34', '2018-02-03 11:36:34'),
-(51, 'Clara Fashion', 'clara-fashion', 50, '', 1, 1, '2018-02-03 11:36:54', '2018-02-03 11:36:54');
+(51, 'Clara Fashion', 'clara-fashion', 50, '', 1, 1, '2018-02-03 11:36:54', '2018-02-03 11:36:54'),
+(52, 'Tình trạng', 'tinh-trang', 0, '', 7, 1, '2018-02-27 03:33:32', '2018-02-27 03:33:46'),
+(53, 'Mới', 'moi', 52, '1', 1, 1, '2018-02-27 03:34:09', '2018-02-27 03:34:09'),
+(54, 'Cũ', 'cu', 52, '0', 2, 1, '2018-02-27 03:34:29', '2018-02-27 03:34:29');
 
 -- --------------------------------------------------------
 
@@ -1379,7 +1382,13 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (629, 1, 'LhH0SVTSzMCqaqPf4QX0aotZP9v3taog', '2018-02-26 00:25:42', '2018-02-26 00:25:42'),
 (630, 1, 'hjLZjKjEArW8ZQelh5p7QqG0vhApKwAo', '2018-02-26 00:25:42', '2018-02-26 00:25:42'),
 (631, 1, 'jaftrpAl7wTji0W4Vyb16pkxzoapWsfy', '2018-02-26 01:00:44', '2018-02-26 01:00:44'),
-(632, 1, '4XZRRoTxUao1PGjjCxGWXllfR5ruKWfi', '2018-02-26 01:00:44', '2018-02-26 01:00:44');
+(632, 1, '4XZRRoTxUao1PGjjCxGWXllfR5ruKWfi', '2018-02-26 01:00:44', '2018-02-26 01:00:44'),
+(633, 1, 'z20ZCP6ZoaRUfjoiYXYl0VfUDtJpkV7I', '2018-02-26 18:21:19', '2018-02-26 18:21:19'),
+(634, 1, 'fYkysaSFydtYce4V0Kqu66HMH98mhsZA', '2018-02-26 18:21:19', '2018-02-26 18:21:19'),
+(635, 1, 'NVO6Qedfm9ioOmGBaG0UsueQmLLaMVAC', '2018-02-26 18:26:11', '2018-02-26 18:26:11'),
+(636, 1, '3EHuVytNqQxcUc5Xuq08CC1n51YzNSiD', '2018-02-26 18:26:11', '2018-02-26 18:26:11'),
+(637, 1, 'c4iIxDaA2K6OiJr0XAW6Tu47VBukfcQf', '2018-02-26 20:13:38', '2018-02-26 20:13:38'),
+(638, 1, 'vqXjvCqJe3X1op4zgUqUCudbHjpy28gg', '2018-02-26 20:13:38', '2018-02-26 20:13:38');
 
 -- --------------------------------------------------------
 
@@ -1523,12 +1532,26 @@ CREATE TABLE `product` (
   `detail` text CHARACTER SET utf8,
   `count_view` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `size_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`id`, `code`, `fullname`, `meta_keyword`, `meta_description`, `alias`, `image`, `status`, `child_image`, `price`, `sale_price`, `intro`, `detail`, `count_view`, `category_id`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, '128746935', 'Lenovo IdeaPad 120S 11IAP N3350 (81A40072VN)', 'metakeyword Lenovo IdeaPad', 'metadescription Lenovo IdeaPad', 'lenovo-ideapad-120s-11iap-n3350-81a40072vn', 'laptop-1.png', 1, '[\"laptop-2.png\",\"laptop-3.png\",\"laptop-4.png\"]', '5190000.00', '4600000.00', 'giới thiệu Lenovo IdeaPad', '<p>chi tiết&nbsp;Lenovo IdeaPad</p>', NULL, 1, 1, '2018-02-27 03:25:36', '2018-02-27 04:12:06'),
+(2, '781234596', 'Acer Aspire ES1 432 N3350', 'metakeyword Acer Aspire ES1 432 N3350', 'metadescription Acer Aspire ES1 432 N3350', 'acer-aspire-es1-432-n3350', 'laptop-2.png', 1, '[\"laptop-1.png\",\"laptop-3.png\",\"laptop-4.png\"]', '6290000.00', '0.00', 'giới thiệu Acer Aspire ES1 432 N3350', '<p>chi tiết&nbsp;Acer Aspire ES1 432 N3350</p>', NULL, 1, 2, '2018-02-27 04:11:33', '2018-02-27 04:23:25'),
+(3, '138796452', 'Asus X441NA N4200 (GA070T)', 'metakeyword Asus X441NA N4200 (GA070T)', 'metadescription Asus X441NA N4200 (GA070T)', 'asus-x441na-n4200-ga070t', 'laptop-3.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-4.png\"]', '7490000.00', '0.00', 'giới thiệu Asus X441NA N4200 (GA070T)', '<p>chi tiết&nbsp;Asus X441NA N4200 (GA070T)</p>', NULL, 1, 3, '2018-02-27 04:13:15', '2018-02-27 04:13:15'),
+(4, '476285319', 'Acer ES1 533 N4200 (NX.GFTSV.003)', 'metakeyword Acer ES1 533 N4200 (NX.GFTSV.003)', 'metadescription Acer ES1 533 N4200 (NX.GFTSV.003)', 'acer-es1-533-n4200-nxgftsv003', 'laptop-4.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '7490000.00', '0.00', 'giới thiệu Acer ES1 533 N4200 (NX.GFTSV.003)', '<p>chi tiết&nbsp;Acer ES1 533 N4200 (NX.GFTSV.003)</p>', NULL, 1, 4, '2018-02-27 04:14:16', '2018-02-27 04:14:16'),
+(5, '719853246', 'Acer ES1 533 P6L2 N4200 (NX.GFTSV.008)', 'metakeyword Acer ES1 533 P6L2 N4200 (NX.GFTSV.008)', 'metadescription Acer ES1 533 P6L2 N4200 (NX.GFTSV.008)', 'acer-es1-533-p6l2-n4200-nxgftsv008', 'laptop-5.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '7490000.00', '0.00', 'giới thiệu Acer ES1 533 P6L2 N4200 (NX.GFTSV.008)', '<p>chi tiết&nbsp;Acer ES1 533 P6L2 N4200 (NX.GFTSV.008)</p>', NULL, 1, 5, '2018-02-27 04:16:35', '2018-02-27 04:16:35'),
+(6, '415723689', 'HP 15 bs578TU N3710 (2LR89PA)', 'metakeyword HP 15 bs578TU N3710 (2LR89PA)', 'metadescription HP 15 bs578TU N3710 (2LR89PA)', 'hp-15-bs578tu-n3710-2lr89pa', 'laptop-6.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '7690000.00', '0.00', 'giới thiệu HP 15 bs578TU N3710 (2LR89PA)', '<p>chi tiết&nbsp;HP 15 bs578TU N3710 (2LR89PA)</p>', NULL, 1, 6, '2018-02-27 04:17:44', '2018-02-27 04:17:44'),
+(7, '419327658', 'Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', 'metakeyword Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', 'metadescription Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', 'lenovo-ideapad-320-14isk-i3-6006-80xg0083vn', 'laptop-7.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '8990000.00', '0.00', 'giới thiệu Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', '<p>chi tiết&nbsp;Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)</p>', NULL, 1, 7, '2018-02-27 04:18:58', '2018-02-27 04:18:58'),
+(8, '924175638', 'Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', 'metakeyword Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', 'metadescription Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', 'lenovo-ideapad-110-15isk-i3-6006u-80ud018kvn', 'laptop-8.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '9290000.00', '0.00', 'giới thiệu Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', '<p>chi tiết&nbsp;Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)</p>', NULL, 1, 8, '2018-02-27 04:20:39', '2018-02-27 04:47:42'),
+(9, '352461897', 'Asus TP203NAH N4200 (BP052T)', 'metakeyword Asus TP203NAH N4200 (BP052T)', 'metadescription Asus TP203NAH N4200 (BP052T)', 'asus-tp203nah-n4200-bp052t', 'laptop-9.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '9890000.00', '0.00', 'giới thiệu Asus TP203NAH N4200 (BP052T)', '<p>chi tiết&nbsp;Asus TP203NAH N4200 (BP052T)</p>', 1, 1, 9, '2018-02-27 05:02:45', '2018-02-27 10:20:34'),
+(10, '328519647', 'HP 15 bs571TU i3 6006U (2JQ68PA)', 'metakeyword HP 15 bs571TU i3 6006U (2JQ68PA)', 'metadescription HP 15 bs571TU i3 6006U (2JQ68PA)', 'hp-15-bs571tu-i3-6006u-2jq68pa', 'laptop-10.png', 1, '[\"laptop-4.png\",\"laptop-5.png\",\"laptop-6.png\"]', '10490000.00', '0.00', 'giới thiệu HP 15 bs571TU i3 6006U (2JQ68PA)', '<p>chi tiết&nbsp;HP 15 bs571TU i3 6006U (2JQ68PA)</p>', NULL, 1, 10, '2018-02-27 05:03:46', '2018-02-27 05:03:46');
 
 -- --------------------------------------------------------
 
@@ -1550,49 +1573,28 @@ CREATE TABLE `product_param` (
 --
 
 INSERT INTO `product_param` (`id`, `product_id`, `param_id`, `created_at`, `updated_at`) VALUES
-(19, 5, 10, '2018-02-02 03:51:55', '2018-02-02 03:51:55'),
-(20, 5, 14, '2018-02-02 03:51:55', '2018-02-02 03:51:55'),
-(21, 5, 24, '2018-02-02 03:51:55', '2018-02-02 03:51:55'),
-(22, 5, 31, '2018-02-02 03:51:55', '2018-02-02 03:51:55'),
-(58, 12, 35, '2018-02-02 06:56:02', '2018-02-02 06:56:02'),
-(59, 12, 36, '2018-02-02 06:56:02', '2018-02-02 06:56:02'),
-(60, 12, 37, '2018-02-02 06:56:02', '2018-02-02 06:56:02'),
-(61, 12, 38, '2018-02-02 06:56:02', '2018-02-02 06:56:02'),
-(62, 12, 39, '2018-02-02 06:56:02', '2018-02-02 06:56:02'),
-(86, 11, 19, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(87, 11, 28, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(88, 11, 31, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(89, 11, 35, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(90, 11, 36, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(91, 11, 37, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(92, 11, 38, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(93, 11, 39, '2018-02-02 17:22:42', '2018-02-02 17:22:42'),
-(94, 13, 28, '2018-02-02 17:22:57', '2018-02-02 17:22:57'),
-(95, 13, 30, '2018-02-02 17:22:57', '2018-02-02 17:22:57'),
-(96, 13, 35, '2018-02-02 17:22:57', '2018-02-02 17:22:57'),
-(97, 13, 36, '2018-02-02 17:22:57', '2018-02-02 17:22:57'),
-(98, 13, 37, '2018-02-02 17:22:57', '2018-02-02 17:22:57'),
-(99, 13, 38, '2018-02-02 17:22:57', '2018-02-02 17:22:57'),
-(100, 13, 39, '2018-02-02 17:22:57', '2018-02-02 17:22:57'),
-(284, 4, 10, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(285, 4, 23, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(286, 4, 28, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(287, 4, 29, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(288, 4, 30, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(289, 4, 31, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(290, 4, 32, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(291, 4, 33, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(292, 4, 35, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(293, 4, 36, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(294, 4, 37, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(295, 4, 38, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(296, 4, 39, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(297, 4, 45, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(298, 4, 48, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(299, 4, 51, '2018-02-03 11:43:17', '2018-02-03 11:43:17'),
-(302, 27, 5, '2018-02-05 04:32:34', '2018-02-05 04:32:34'),
-(303, 14, 10, '2018-02-07 02:28:19', '2018-02-07 02:28:19'),
-(304, 15, 5, '2018-02-07 02:28:44', '2018-02-07 02:28:44');
+(4, 1, 10, '2018-02-27 04:02:28', '2018-02-27 04:02:28'),
+(5, 1, 24, '2018-02-27 04:02:28', '2018-02-27 04:02:28'),
+(6, 1, 29, '2018-02-27 04:02:28', '2018-02-27 04:02:28'),
+(7, 1, 42, '2018-02-27 04:02:28', '2018-02-27 04:02:28'),
+(8, 1, 54, '2018-02-27 04:02:28', '2018-02-27 04:02:28'),
+(9, 2, 10, '2018-02-27 04:11:33', '2018-02-27 04:11:33'),
+(10, 2, 53, '2018-02-27 04:11:33', '2018-02-27 04:11:33'),
+(11, 3, 10, '2018-02-27 04:13:15', '2018-02-27 04:13:15'),
+(12, 3, 53, '2018-02-27 04:13:15', '2018-02-27 04:13:15'),
+(13, 4, 10, '2018-02-27 04:14:16', '2018-02-27 04:14:16'),
+(14, 4, 54, '2018-02-27 04:14:16', '2018-02-27 04:14:16'),
+(15, 5, 10, '2018-02-27 04:16:35', '2018-02-27 04:16:35'),
+(16, 5, 53, '2018-02-27 04:16:35', '2018-02-27 04:16:35'),
+(17, 6, 10, '2018-02-27 04:17:44', '2018-02-27 04:17:44'),
+(18, 6, 54, '2018-02-27 04:17:44', '2018-02-27 04:17:44'),
+(19, 7, 54, '2018-02-27 04:18:58', '2018-02-27 04:18:58'),
+(20, 8, 10, '2018-02-27 04:20:39', '2018-02-27 04:20:39'),
+(21, 8, 54, '2018-02-27 04:20:39', '2018-02-27 04:20:39'),
+(22, 9, 10, '2018-02-27 05:02:45', '2018-02-27 05:02:45'),
+(23, 9, 54, '2018-02-27 05:02:45', '2018-02-27 05:02:45'),
+(24, 10, 10, '2018-02-27 05:03:46', '2018-02-27 05:03:46'),
+(25, 10, 54, '2018-02-27 05:03:46', '2018-02-27 05:03:46');
 
 -- --------------------------------------------------------
 
@@ -1837,7 +1839,7 @@ CREATE TABLE `setting_system` (
 --
 
 INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `title`, `meta_keyword`, `meta_description`, `author`, `copyright`, `google_site_verification`, `google_analytics`, `logo_frontend`, `favicon`, `setting`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'settingsystem', 'setting-system', 'DC Mobile Chuyên kinh doanh điện thoại, máy tính laptop mới cũ', 'máy tính,  laptop cũ,  điện thoại thông minh', 'Bán lẻ máy tính, laptop, điện thoại mới cũ trên toàn quốc. DC Mobile một trong những thương hiệu có tiếng lâu đời về các sản phẩm công nghệ', 'DC Mobile Chuyên kinh doanh điện thoại, máy tính laptop mới cũ', 'DC Mobile Chuyên kinh doanh điện thoại, máy tính laptop mới cũ [seodekiemtien@gmail.com]', 'KqqAiIZhyvjETFMGGAwT_GliP8lOHb4-lIpwli3Fua8', '444111222', 'logo.png', 'favicon.ico', '[{\"field_name\":\"Số bài viết trên 1 trang\",\"field_code\":\"article_perpage\",\"field_value\":\"10\"},{\"field_name\":\"Độ rộng hình bài viết\",\"field_code\":\"article_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình bài viết\",\"field_code\":\"article_height\",\"field_value\":\"250\"},{\"field_name\":\"Số sản phẩm trên 1 trang\",\"field_code\":\"product_perpage\",\"field_value\":\"32\"},{\"field_name\":\"Độ rộng hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Đơn vị tiền tệ\",\"field_code\":\"currency_unit\",\"field_value\":\"vi_VN\"},{\"field_name\":\"MERCHANT_ID\",\"field_code\":\"merchant_id\",\"field_value\":\"36680\"},{\"field_name\":\"MERCHANT_PASS\",\"field_code\":\"merchant_pass\",\"field_value\":\"matkhauketnoi\"},{\"field_name\":\"RECEIVER\",\"field_code\":\"receiver\",\"field_value\":\"demo@nganluong.vn\"},{\"field_name\":\"Smtp host\",\"field_code\":\"smtp_host\",\"field_value\":\"smtp.gmail.com\"},{\"field_name\":\"Smtp port\",\"field_code\":\"smtp_port\",\"field_value\":\"465\"},{\"field_name\":\"Smtp authication\",\"field_code\":\"authentication\",\"field_value\":\"1\"},{\"field_name\":\"Encription\",\"field_code\":\"encription\",\"field_value\":\"ssl\"},{\"field_name\":\"Smtp username\",\"field_code\":\"smtp_username\",\"field_value\":\"dien.toannang@gmail.com\"},{\"field_name\":\"Smtp password\",\"field_code\":\"smtp_password\",\"field_value\":\"bjsdgetadsutdono\"},{\"field_name\":\"Email to\",\"field_code\":\"email_to\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Contact person\",\"field_code\":\"contacted_person\",\"field_value\":\"Công Ty TNHH GreenEcoLife\"},{\"field_name\":\"Trụ sở\",\"field_code\":\"address\",\"field_value\":\"50/2/59 Dương Quảng Hàm, Phường 5, Quận Gò Vấp\"},{\"field_name\":\"Hotline\",\"field_code\":\"telephone\",\"field_value\":\"0902.90.74.75\"},{\"field_name\":\"Facebook\",\"field_code\":\"facebook_url\",\"field_value\":\"https://www.facebook.com/nguyenvan.laptrinh\"},{\"field_name\":\"Twitter\",\"field_code\":\"twitter_url\",\"field_value\":\"https://twitter.com/\"},{\"field_name\":\"Google Plus\",\"field_code\":\"google_plus\",\"field_value\":\"https://plus.google.com/u/0/?hl=vi\"},{\"field_name\":\"Youtube\",\"field_code\":\"youtube_url\",\"field_value\":\"https://www.youtube.com/watch?v=kAcV7S3sySU\"},{\"field_name\":\"Instagram\",\"field_code\":\"instagram_url\",\"field_value\":\"http://flickr.com\"},{\"field_name\":\"Pinterest\",\"field_code\":\"pinterest_url\",\"field_value\":\"http://daidung.vn/\"},{\"field_name\":\"Map\",\"field_code\":\"map_url\",\"field_value\":\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.7765505259867!2d106.68751671435092!3d10.828404792286284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528f0d3be7c47%3A0x3f95e11384c4817f!2zNTAgRMawxqFuZyBRdeG6o25nIEjDoG0sIHBoxrDhu51uZyA1LCBHw7IgVuG6pXAsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1515998374369\"},{\"field_name\":\"Văn phòng giao dịch\",\"field_code\":\"office\",\"field_value\":\"27/13/8 Đường số 27, P.Hiệp Bình Chánh, Q.Thủ Đức\"},{\"field_name\":\"Skype NVKD 1\",\"field_code\":\"skype_nvkd_1\",\"field_value\":\"quocquy2010\"},{\"field_name\":\"Skype NVKD 2\",\"field_code\":\"skype_nvkd_2\",\"field_value\":\"greenecolife.vn\"},{\"field_name\":\"Skype NVKD 3\",\"field_code\":\"skype_nvkd_3\",\"field_value\":\"hiiamduc\"},{\"field_name\":\"Skype NVKD 4\",\"field_code\":\"skype_nvkd_4\",\"field_value\":\"phong.nguyen1984\"},{\"field_name\":\"Email NVKD 1\",\"field_code\":\"email_nvkd_1\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Email NVKD 2\",\"field_code\":\"email_nvkd_2\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Email NVKD 3\",\"field_code\":\"email_nvkd_3\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Email NVKD 4\",\"field_code\":\"email_nvkd_4\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Tel NVKD 1\",\"field_code\":\"tel_nvkd_1\",\"field_value\":\"0918.17.88.96\"},{\"field_name\":\"Tel NVKD 2\",\"field_code\":\"tel_nvkd_2\",\"field_value\":\"0902.90.74.75\"},{\"field_name\":\"Tel NVKD 3\",\"field_code\":\"tel_nvkd_3\",\"field_value\":\"0918.17.88.96\"},{\"field_name\":\"Tel NVKD 4\",\"field_code\":\"tel_nvkd_4\",\"field_value\":\"0918.17.88.96\"},{\"field_name\":\"NVKD1\",\"field_code\":\"name_nvkd_1\",\"field_value\":\"Mr Cooc Cui\"},{\"field_name\":\"NVKD2\",\"field_code\":\"name_nvkd_2\",\"field_value\":\"Mr Anh Lạc\"},{\"field_name\":\"NVKD3\",\"field_code\":\"name_nvkd_3\",\"field_value\":\"Nguyễn Tấn Phát\"},{\"field_name\":\"NVKD4\",\"field_code\":\"name_nvkd_4\",\"field_value\":\"Nguyễn Hùng Phương\"}]', 1, 1, '2017-12-03 07:45:35', '2018-02-26 08:19:48');
+(1, 'settingsystem', 'setting-system', 'DC Mobile Chuyên kinh doanh điện thoại, máy tính laptop mới cũ', 'máy tính,  laptop cũ,  điện thoại thông minh', 'Bán lẻ máy tính, laptop, điện thoại mới cũ trên toàn quốc. DC Mobile một trong những thương hiệu có tiếng lâu đời về các sản phẩm công nghệ', 'DC Mobile Chuyên kinh doanh điện thoại, máy tính laptop mới cũ', 'DC Mobile Chuyên kinh doanh điện thoại, máy tính laptop mới cũ [seodekiemtien@gmail.com]', 'KqqAiIZhyvjETFMGGAwT_GliP8lOHb4-lIpwli3Fua8', '444111222', 'logo.png', 'favicon.ico', '[{\"field_name\":\"Số bài viết trên 1 trang\",\"field_code\":\"article_perpage\",\"field_value\":\"10\"},{\"field_name\":\"Độ rộng hình bài viết\",\"field_code\":\"article_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình bài viết\",\"field_code\":\"article_height\",\"field_value\":\"250\"},{\"field_name\":\"Số sản phẩm trên 1 trang\",\"field_code\":\"product_perpage\",\"field_value\":\"32\"},{\"field_name\":\"Độ rộng hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Đơn vị tiền tệ\",\"field_code\":\"currency_unit\",\"field_value\":\"vi_VN\"},{\"field_name\":\"MERCHANT_ID\",\"field_code\":\"merchant_id\",\"field_value\":\"36680\"},{\"field_name\":\"MERCHANT_PASS\",\"field_code\":\"merchant_pass\",\"field_value\":\"matkhauketnoi\"},{\"field_name\":\"RECEIVER\",\"field_code\":\"receiver\",\"field_value\":\"demo@nganluong.vn\"},{\"field_name\":\"Smtp host\",\"field_code\":\"smtp_host\",\"field_value\":\"smtp.gmail.com\"},{\"field_name\":\"Smtp port\",\"field_code\":\"smtp_port\",\"field_value\":\"465\"},{\"field_name\":\"Smtp authication\",\"field_code\":\"authentication\",\"field_value\":\"1\"},{\"field_name\":\"Encription\",\"field_code\":\"encription\",\"field_value\":\"ssl\"},{\"field_name\":\"Smtp username\",\"field_code\":\"smtp_username\",\"field_value\":\"dien.toannang@gmail.com\"},{\"field_name\":\"Smtp password\",\"field_code\":\"smtp_password\",\"field_value\":\"bjsdgetadsutdono\"},{\"field_name\":\"Email to\",\"field_code\":\"email_to\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Contact person\",\"field_code\":\"contacted_person\",\"field_value\":\"Công Ty TNHH GreenEcoLife\"},{\"field_name\":\"Trụ sở\",\"field_code\":\"address\",\"field_value\":\"50/2/59 Dương Quảng Hàm, Phường 5, Quận Gò Vấp\"},{\"field_name\":\"Hotline\",\"field_code\":\"telephone\",\"field_value\":\"0902.90.74.75\"},{\"field_name\":\"Facebook\",\"field_code\":\"facebook_url\",\"field_value\":\"https://www.facebook.com/nguyenvan.laptrinh\"},{\"field_name\":\"Twitter\",\"field_code\":\"twitter_url\",\"field_value\":\"https://twitter.com/\"},{\"field_name\":\"Google Plus\",\"field_code\":\"google_plus\",\"field_value\":\"https://plus.google.com/u/0/?hl=vi\"},{\"field_name\":\"Youtube\",\"field_code\":\"youtube_url\",\"field_value\":\"https://www.youtube.com/watch?v=kAcV7S3sySU\"},{\"field_name\":\"Instagram\",\"field_code\":\"instagram_url\",\"field_value\":\"http://flickr.com\"},{\"field_name\":\"Pinterest\",\"field_code\":\"pinterest_url\",\"field_value\":\"http://daidung.vn/\"},{\"field_name\":\"Map\",\"field_code\":\"map_url\",\"field_value\":\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.7765505259867!2d106.68751671435092!3d10.828404792286284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528f0d3be7c47%3A0x3f95e11384c4817f!2zNTAgRMawxqFuZyBRdeG6o25nIEjDoG0sIHBoxrDhu51uZyA1LCBHw7IgVuG6pXAsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1515998374369\"},{\"field_name\":\"Giờ giao dịch\",\"field_code\":\"opened_time\",\"field_value\":\"7:00 - 22:30\"}]', 1, 1, '2017-12-03 07:45:35', '2018-02-27 02:38:35');
 
 -- --------------------------------------------------------
 
@@ -2431,7 +2433,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `address`, `phone`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-02-26 01:00:44', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-02-26 01:00:44'),
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-02-26 20:13:38', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-02-26 20:13:38'),
 (6, 'helenangochong', 'helenangoc@dienkim.com', '$2y$10$/cSr2zKOI5RUAo9XD2K5DuVwB554IWn3k16RwF37pFSxYFouMOmbi', NULL, '2018-01-26 04:32:49', 'Hồ Thị Ngọc Hồng', '12 Tân Canh', '0988162755', NULL, 3, 0, '2018-01-26 01:57:35', '2018-02-04 08:08:20'),
 (7, 'langong', 'thaithuonglangong@dienkim.com', '$2y$10$W38P0cEq8qVYSiXYAKQVCOKb7ZkN4t7uN1trgm38V2wSKjtacybxe', NULL, '2018-01-28 09:54:51', 'Thái Thượng Lãng Ông', '13 Tân Canh', '0988162774', NULL, 4, 0, '2018-01-28 09:40:59', '2018-02-04 08:08:20'),
 (8, 'tiennv', 'tiennv@dienkim.com', '$2y$10$9sq3u.mDu/Bk1vvpv4sU7.Ior67wjHR5n1slgsv/sz63zBQxAfZ4K', NULL, '2018-02-23 01:16:10', 'Nguyễn Văn Tiến', '14 Tân Canh', '0988152782', NULL, 5, 0, '2018-02-05 20:06:26', '2018-02-23 01:16:10'),
@@ -2805,7 +2807,7 @@ ALTER TABLE `category_banner`
 -- AUTO_INCREMENT cho bảng `category_param`
 --
 ALTER TABLE `category_param`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT cho bảng `category_product`
@@ -2865,7 +2867,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT cho bảng `menu_type`
 --
 ALTER TABLE `menu_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -2895,7 +2897,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=633;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=639;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`
@@ -2913,13 +2915,13 @@ ALTER TABLE `privilege`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `product_param`
 --
 ALTER TABLE `product_param`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `project`

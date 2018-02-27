@@ -406,26 +406,168 @@ ul.list-style-none{
     padding: 5px 10px 5px 10px;
     width:50%;
 }
-.san-pham-moi .owl-prev, .san-pham-moi .owl-next{
+.laptop-cu .owl-prev, .laptop-cu .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
 }
-.san-pham-moi .owl-prev{
+.laptop-cu .owl-prev{
   position: absolute;
   right: 35px;
-  top: -39px;
+  top:-42px;
 
 }
-.san-pham-moi .owl-next{
+.laptop-cu .owl-next{
     position: absolute;
     right: 0;
-    top: -39px;
+    top:-42px;
+}
+.may-tinh-cu .owl-prev, .may-tinh-cu .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.may-tinh-cu .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-42px;
+
+}
+.may-tinh-cu .owl-next{
+    position: absolute;
+    right: 0;
+    top:-42px;
+}
+.tablet-cu .owl-prev, .tablet-cu .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.tablet-cu .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-42px;
+
+}
+.tablet-cu .owl-next{
+    position: absolute;
+    right: 0;
+    top:-42px;
+}
+.dien-thoai-cu .owl-prev, .dien-thoai-cu .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.dien-thoai-cu .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-42px;
+
+}
+.dien-thoai-cu .owl-next{
+    position: absolute;
+    right: 0;
+    top:-42px;
+}
+.phu-kien-dien-thoai .owl-prev, .phu-kien-dien-thoai .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.phu-kien-dien-thoai .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-42px;
+
+}
+.phu-kien-dien-thoai .owl-next{
+    position: absolute;
+    right: 0;
+    top:-42px;
+}
+.phu-kien-may-tinh .owl-prev, .phu-kien-may-tinh .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.phu-kien-may-tinh .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-42px;
+
+}
+.phu-kien-may-tinh .owl-next{
+    position: absolute;
+    right: 0;
+    top:-42px;
+}
+.linh-kien-may-tinh .owl-prev, .linh-kien-may-tinh .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.linh-kien-may-tinh .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-42px;
+
+}
+.linh-kien-may-tinh .owl-next{
+    position: absolute;
+    right: 0;
+    top:-42px;
+}
+.qua-tang-doanh-nghiep .owl-prev, .qua-tang-doanh-nghiep .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.qua-tang-doanh-nghiep .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-42px;
+
+}
+.qua-tang-doanh-nghiep .owl-next{
+    position: absolute;
+    right: 0;
+    top:-42px;
 }
 .related-products .owl-prev, .related-products .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
+}
+.zuna-home{
+    border-bottom: solid 2px #273896;
+        background: -webkit-linear-gradient(left, #eceeed , #ffffff);
+    background: -o-linear-gradient(right, #eceeed, #ffffff);
+    background: -moz-linear-gradient(right, #eceeed, #ffffff);
+    background: linear-gradient(to right, #eceeed , #ffffff);
+}
+
+.cot-1{
+        float: left;
+    background: url(../images/gochome.png) #273896 no-repeat top right;
+    height: 32px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.cot-1 h2{
+    line-height: 32px
+}
+.cot-1 a{
+        color: #ffffff;
+    font-size: 18px;
+
+}
+.cot-2{
+    float: left;
+    width: 100%;
+
 }
 .related-products .owl-prev{
   position: absolute;
@@ -771,8 +913,8 @@ div.liverpool:hover div.youtube-img{
 }
 .box-wrapper{
     background: #ffffff;
-    padding: 0px 15px 15px 15px;
 }
+
 div.ducati  h2{
     color: #e80000;
     padding: 0px 0px;
@@ -884,16 +1026,22 @@ div.ducati  h2{
     margin-left: 0;
     margin-top: 5px;
 }
+.box-product-intro-title{
+    margin: 5px 15px 0px 15px;
+    text-align: center;
+        height: 45px;
+}
 .box-product-intro-title a{
-    background: rgba(0, 0, 0, 0.56);
-    color: #ffffff;
-    padding: 5px 15px;
-    display: block;
+        color: #004A8F;
+        font-size: 13px
 }
 .box-product{
-    padding: 5px;
-    border: 1px #ddd solid
+    border-right: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
+
 .hotline{
     font-size: 30px;
     color: #0c62ad;
@@ -1345,10 +1493,7 @@ div.ducati  h2{
     display: block;
     font-size: 12px;
 }
-.bg-home{
-    background: #bf1e2d;
-    padding: 10px 0px;
-}
+
 .top-info{
     color: #ffffff;
     font-weight: bold;
@@ -1439,7 +1584,7 @@ form[name='frm-search']{
 .price-on{
     color: #F00;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
 }
 .price-off{
     color: #505050;
@@ -1448,7 +1593,7 @@ form[name='frm-search']{
 .price-detail-on{
     color: #F00;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
 }
 .price-detail-off{
     color: #505050;
@@ -1734,6 +1879,19 @@ form[name='frm-search'] input[name='q']{
 }
 .hotline-ramen{
     float: right;
+}
+.box-category{
+    background: #ffffff
+}
+.box-product-img{
+    margin: 15px 15px 0px 15px;
+    border:1px solid #eee;
+}
+.box-product-price{
+    border-top: 1px solid #eee;
+    background: linear-gradient(to bottom, #f8f8f8 0%, #ffffff 100%);
+    margin: 0px 1px 0px 1px;
+    padding: 5px 15px 5px 15px;
 }
 @media (max-width: 767px){    
     div.mobilemenu{
