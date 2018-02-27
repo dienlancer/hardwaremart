@@ -107,8 +107,7 @@ class ProductController extends Controller {
             $child_image          =   trim($request->child_image);                    
             $sort_order           =   trim($request->sort_order);          
             $category_id	        =		trim($request->category_id); 
-            $category_param_id    =   ($request->category_param_id);
-            $size_type            =   trim($request->size_type);
+            $category_param_id    =   ($request->category_param_id);            
             $data 		            =   array();
             $info 		            =   array();
             $error 		            =   array();
@@ -178,16 +177,7 @@ class ProductController extends Controller {
                 if(!empty($image)){
                   $item->image    =   trim($image) ;  
                 }   
-                /* begin user_id */
-                $arrUser =array();   
-                $user = Sentinel::forceCheck(); 
-                if(!empty($user)){                
-                  $arrUser = $user->toArray();    
-                } 
-                if(count($arrUser) > 0){
-                  $item->user_id=(int)@$arrUser['id'];
-                }
-                /* end user_id */      
+                
                 $item->created_at 	=	date("Y-m-d H:i:s",time());                        		
           } else{
                 $item				=	ProductModel::find((int)@$id);   
@@ -208,8 +198,7 @@ class ProductController extends Controller {
           $item->sale_price       = (int)(str_replace('.', '',@$sale_price)) ;                                 
           $item->detail           = $detail;       
           $item->intro            = $intro;  
-          $item->category_id      = (int)@$category_id;                            
-          $item->size_type        = $size_type;  
+          $item->category_id      = (int)@$category_id;                                      
           $item->sort_order 	    =	(int)@$sort_order;                
           $item->updated_at 	    =	date("Y-m-d H:i:s",time());  
           // begin upload product child image  
@@ -311,7 +300,8 @@ class ProductController extends Controller {
             }                 
             if($checked == 1){
               $item = ProductModel::find((int)@$id);
-                $item->delete();                
+                $item->delete();     
+                ProductParamModel::whereRaw("product_id = ?",[(int)@$id])->delete();           
             }        
             $data                   =   $this->loadData($request);
             $info = array(
@@ -375,7 +365,8 @@ class ProductController extends Controller {
               $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
             }  
             if($checked == 1){                
-                  DB::table('product')->whereIn('id',@$arrID)->delete();                                              
+                  DB::table('product')->whereIn('id',@$arrID)->delete(); 
+                  DB::table('product_param')->whereIn('product_id',@$arrID)->delete();                                              
             }
             $data                   =   $this->loadData($request);
             $info = array(

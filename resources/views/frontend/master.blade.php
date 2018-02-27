@@ -10,7 +10,7 @@ $youtube_url=$setting['youtube_url']['field_value'];
 $instagram_url=$setting['instagram_url']['field_value'];
 $pinterest_url=$setting['pinterest_url']['field_value'];   
 $company=$setting['contacted_person']['field_value'];
-
+$opened_time=$setting['opened_time']['field_value'];
 $seo_title="";
 if(isset($title) && !empty($title)){
 	$seo_title=$title;
@@ -266,7 +266,7 @@ if(count($arrCart) > 0){
 						<div><div class="nimme"><font color="#ffffff"><i class="fas fa-phone"></i></font></div></div>
 						<div>
 							<div><font color="#ffffff"><?php echo $telephone; ?></font></div>
-							<div><font color="#ffffff">7:00 - 22:30</font></div>
+							<div><font color="#ffffff"><?php echo $opened_time; ?></font></div>
 						</div>
 					</div>					
 				</div>
@@ -275,7 +275,7 @@ if(count($arrCart) > 0){
 						<div><div class="nimme"><font color="#ffffff"><i class="fas fa-map-marker-alt"></i></font></div></div>
 						<div>
 							<div><a href="javascript:void(0);"><font color="#ffffff">Xem 10 cửa hàng</font></a></div>
-							<div><font color="#ffffff">7:00 - 22:30</font></div>
+							<div><font color="#ffffff"><?php echo $opened_time; ?></font></div>
 						</div>
 					</div>	
 				</div>

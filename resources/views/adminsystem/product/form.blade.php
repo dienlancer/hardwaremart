@@ -16,15 +16,15 @@ $inputSalePrice             =   '<input type="text" class="form-control" name="s
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
-$inputIntro            =   '<textarea id="intro" name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputDetail            =   '<textarea id="detail" name="detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['detail'].'</textarea>'; 
+$inputIntro            =   '<textarea  name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
+$inputDetail            =   '<textarea name="detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['detail'].'</textarea>'; 
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
-$inputSizeType         =   '<input type="text" class="form-control" name="size_type"     value="'.@$arrRowData['size_type'].'">';
+
 $ddlCategoryProduct      =   cmsSelectboxCategory("category_id","category_id","form-control",$arrCategoryProductRecursive,@$arrRowData['category_id'],"");
 $ddlCategoryParam        =cmsSelectboxCategoryParamMultiple("category_param_id","category_param_id[]", 'form-control', @$arrCategoryParamRecursive, @$arrProductParam,"");
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
-$inputID                =   '<input type="hidden" name="id" id="id" value="'.@$id.'" />'; 
-$inputAliasMenu       =   '<input type="hidden" name="alias_menu" id="alias_menu" value="'.@$arrRowData['alias'].'" />'; 
+$inputID                =   '<input type="hidden" name="id" value="'.@$id.'" />'; 
+$inputAliasMenu       =   '<input type="hidden" name="alias_menu" id=value="'.@$arrRowData['alias'].'" />'; 
 $picture                =   "";
 $strImage               =   "";
 $setting= getSettingSystem();
@@ -174,16 +174,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
                             </table>    
                         </div>
                     </div>     
-                </div>  
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Kích thước</b></label>
-                        <div class="col-md-10">
-                            <?php echo $inputSizeType; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>   
-                </div>     
+                </div>                  
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Sắp xếp</b></label>
@@ -334,8 +325,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         var price=$('input[name="price"]').val();
         var sale_price=$('input[name="sale_price"]').val();       
         var intro=$('textarea[name="intro"]').val(); 
-        var detail=CKEDITOR.instances['detail'].getData();        
-        var size_type=$('input[name="size_type"]').val();
+        var detail=CKEDITOR.instances['detail'].getData();                
         var sort_order=$('input[name="sort_order"]').val();        
         var token = $('input[name="_token"]').val();   
         resetErrorStatus();
@@ -350,8 +340,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             "image_hidden":image_hidden,
             "status":status,                     
             "price":price,
-            "sale_price":sale_price,
-            "size_type":size_type,
+            "sale_price":sale_price,            
             "intro":intro,
             "detail":detail,
             "category_id":category_id,    
