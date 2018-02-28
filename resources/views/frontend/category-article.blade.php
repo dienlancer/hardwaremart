@@ -1,9 +1,9 @@
 <form method="post" class="frm margin-top-15" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}		
-	<h2 class="tieu-de">
+	<h1 class="tieu-de">
 			<?php echo $title; ?>		
-		</h2>
+		</h1>
 	<div class="row">
 		<?php 	
 		if(count($items) > 0){
@@ -21,7 +21,7 @@
 				<div class="box-row margin-top-10">
 					<div class="col-sm-4 no-padding-left"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></center></div></div>
 					<div class="col-sm-8 no-padding-left">
-						<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
+						<h2 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h2>
 						<div class="margin-top-5">
 							<div class="view-post-count">
 								<i class="fa fa-eye" aria-hidden="true"></i><span class="margin-left-5"><?php echo $count_view_text; ?>&nbsp;lượt xem	</span>

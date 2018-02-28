@@ -422,6 +422,9 @@ ul.list-style-none{
     right: 0;
     top:-42px;
 }
+
+
+
 .may-tinh .owl-prev, .may-tinh .owl-next{
  background:#0c62ad;
  color: #ffffff;
@@ -453,6 +456,22 @@ ul.list-style-none{
     position: absolute;
     right: 0;
     top:-42px;
+}
+.prodetail .owl-prev, .prodetail .owl-next{
+ background:#0c62ad;
+ color: #ffffff;
+ padding: 5px 11px;
+}
+.prodetail .owl-prev{
+  position: absolute;
+  right: 35px;
+  top:-50px;
+
+}
+.prodetail .owl-next{
+    position: absolute;
+    right: 0;
+    top:-50px;
 }
 .dien-thoai .owl-prev, .dien-thoai .owl-next{
  background:#0c62ad;
@@ -686,7 +705,8 @@ footer{
 }
 .article-excerpt{
     color: #000000;
-    font-weight: bold;
+    
+    font-size: 13px;
 }
 
 .box-title a{
@@ -1599,7 +1619,7 @@ form[name='frm-search']{
     margin-right: 5px;
     padding: 10px;
 }
-.product-thumbnail .owl-nav {
+.product-thumbnail2 .owl-nav {
     position: absolute;
     bottom: 0px;
     text-align: center;
@@ -1609,13 +1629,13 @@ form[name='frm-search']{
     margin: 0 auto;
     color: #1F3B73
 }
-.product-thumbnail .owl-nav .owl-prev {
+.product-thumbnail2 .owl-nav .owl-prev {
     position: absolute;
     left: 0;
     padding: 3px;
     text-align: center;
 }
-.product-thumbnail .owl-nav .owl-next {
+.product-thumbnail2 .owl-nav .owl-next {
     position: absolute;
     right: 0;    
     padding: 3px;
@@ -1882,6 +1902,10 @@ form[name='frm-search'] input[name='q']{
 }
 .danhmucspfooter li a{
     color: #ffffff
+}
+.box-product-rian{
+        margin-right: 2px;
+    margin-top: 10px;
 }
 @media (max-width: 767px){    
     div.mobilemenu{

@@ -1,38 +1,42 @@
 <form method="post" class="frm margin-top-15" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}	
-	<?php 		
-	if(empty($breadcrumb)){
-		?>
-		<h1 class="tieu-de">
-			<?php echo $title; ?>		
-		</h1>
-		<?php
-	}else{
-		?>
-		<h1 class="breadcrumb-title">
-			<?php echo $breadcrumb; ?>
-		</h1>
-		<?php
-	}	
+	<?php 			
+	$breadcrumb= getBreadCrumbCategoryProduct($category);		
 	?>
+	<div class="breadcrumb-title">
+		<?php echo $breadcrumb; ?>
+	</div>
 	<div class="row">
 		<?php 			
-		if(count($items) > 0){
+		if(count($items) > 0){			
 			$k=1;			
 			foreach ($items as $key => $value) {
-				$id=$value['id'];
-				$alias=$value['alias'];
-				$fullname=$value['fullname'];
-				$permalink=route('frontend.index.index',[$alias]) ;
-				$featuredImg =get_product_thumbnail($value['image']) ;						
+				$product_id=$value['id'];
+				$product_alias=$value['alias'];
+				$product_fullname=$value['fullname'];
+				$product_permalink=route('frontend.index.index',[$product_alias]) ;
+				$product_img =get_product_thumbnail($value['image']) ;		
+				$product_price=$value['price'];
+				$product_sale_price=$value['sale_price'];
+				$html_price='';                     
+				if((int)@$product_sale_price > 0){              
+					$price_on_html ='<span class="price-on">'.fnPrice($product_sale_price).'</span>';
+					$price_off_html='<span class="price-off">'.fnPrice($product_price).'</span>' ;                 
+					$html_price='<div class="sale-price">'.$price_on_html.'</div><div class="old-price">'.$price_off_html.'</div><div class="clr"></div>' ;              
+				}else{
+					$html_price='<span class="price-on">'.fnPrice($product_price).'</span>' ;                  
+				}   					
 				?>
-				<div class="col-sm-3 no-padding-left">
-					<div class="margin-top-15">
-						<div>
-							<center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>" /></a></figure></center>
+				<div class="col-sm-3 no-padding">
+					<div class="box-product box-product-rian">
+						<div class="box-product-img">
+							<center><figure><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>"></a></figure></center>
 						</div>
-						<div class="box-product-title margin-top-5"><a href="<?php echo $permalink; ?>"><b><?php echo $fullname; ?></b></a></div>						
+						<div class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_fullname; ?></b></a></div>
+						<div class="box-product-price">
+							<div><center><?php echo $html_price; ?></center></div>
+						</div>
 					</div>
 				</div>
 				<?php			

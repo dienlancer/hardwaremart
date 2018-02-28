@@ -26,7 +26,7 @@ if(count($item) > 0){
 	$email_to=$setting['email_to']['field_value'];
 	$contacted_person=$setting['contacted_person']['field_value'];
 	$telephone=$setting['telephone']['field_value'];
-	$office=$setting['office']['field_value'];
+	
 	$product_width = $setting['product_width']['field_value'];
 	$product_height = $setting['product_height']['field_value'];
 	/* end setting */    	
@@ -51,7 +51,7 @@ if(count($item) > 0){
                 	<div class="margin-top-5">
                 		<script type="text/javascript" language="javascript">
                 			$(document).ready(function(){
-                				$(".product-thumbnail").owlCarousel({
+                				$(".prodetail").owlCarousel({
                 					autoplay:true,                    
                 					loop:true,
                 					margin:5,                        
@@ -73,11 +73,11 @@ if(count($item) > 0){
                 				});
                 				var chevron_left='<i class="fa fa-chevron-left"></i>';
                 				var chevron_right='<i class="fa fa-chevron-right"></i>';
-                				$("div.product-thumbnail div.owl-prev").html(chevron_left);
-                				$("div.product-thumbnail div.owl-next").html(chevron_right);
+                				$("div.prodetail div.owl-prev").html(chevron_left);
+                				$("div.prodetail div.owl-next").html(chevron_right);
                 			});                
                 		</script>
-                		<div class="owl-carousel product-thumbnail owl-theme">
+                		<div class="owl-carousel prodetail owl-theme">
                 			<?php 
                 			for($i=0;$i<count($arrPicture);$i++){                                            
                 				$small_thumbnail=asset('/upload/'.$product_width.'x'.$product_height.'-'.$arrPicture[$i]);    
@@ -443,7 +443,7 @@ if(count($item) > 0){
         	<div class="margin-top-15">
         		<script type="text/javascript" language="javascript">
         			$(document).ready(function(){
-        				$(".product-thumbnail").owlCarousel({
+        				$(".prodetail").owlCarousel({
         					autoplay:false,                    
         					loop:true,
         					margin:25,                        
@@ -465,43 +465,39 @@ if(count($item) > 0){
         				});
         				var chevron_left='<i class="fa fa-chevron-left"></i>';
         				var chevron_right='<i class="fa fa-chevron-right"></i>';
-        				$("div.product-thumbnail div.owl-prev").html(chevron_left);
-        				$("div.product-thumbnail div.owl-next").html(chevron_right);
+        				$("div.prodetail div.owl-prev").html(chevron_left);
+        				$("div.prodetail div.owl-next").html(chevron_right);
         			});                
         		</script>
-        		<div class="owl-carousel product-thumbnail owl-theme">
+        		<div class="owl-carousel prodetail owl-theme">
         			<?php 
         			foreach($dataProduct as $key => $value){
-        				$id=$value['id'];
-        				$alias=$value['alias'];
-        				$fullname=$value['fullname'];
-        				$fullname_excerpt=substr($fullname, 0,100);
-        				$permalink=route('frontend.index.index',[$alias]) ;
-        				$featuredImg =get_product_thumbnail($value['image']) ;	
-        				$price=$value['price'];
-        				$sale_price=$value['sale_price'];
+        				$pdetail_id=$value['id'];
+        				$pdetail_alias=$value['alias'];
+        				$pdetail_fullname=$value['fullname'];
+        				$fullname_excerpt=substr($pdetail_fullname, 0,100);
+        				$pdetail_permalink=route('frontend.index.index',[$pdetail_alias]) ;
+        				$pdetail_img =get_product_thumbnail($value['image']) ;	
+        				$pdetail_price=$value['price'];
+        				$pdetail_sale_price=$value['sale_price'];
         				$html_price='';                     
-        				if((int)@$sale_price > 0){              
-        					$price_on_html ='<span class="price-on">'.fnPrice($sale_price).'</span>';
-        					$price_off_html='<span class="price-off">'.fnPrice($price).'</span>' ;                 
+        				if((int)@$pdetail_sale_price > 0){              
+        					$price_on_html ='<span class="price-on">'.fnPrice($pdetail_sale_price).'</span>';
+        					$price_off_html='<span class="price-off">'.fnPrice($pdetail_price).'</span>' ;                 
         					$html_price='<div class="sale-price">'.$price_on_html.'</div><div class="old-price">'.$price_off_html.'</div><div class="clr"></div>' ;              
         				}else{
-        					$html_price='<span class="price-on">'.fnPrice($price).'</span>' ;                  
+        					$html_price='<span class="price-on">'.fnPrice($pdetail_price).'</span>' ;                  
         				}   	
         				?>
-        				<div>
-        					<div class="margin-top-15 box-product">
-        						<div>
-        							<center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>" /></a></figure></center>
-        						</div>		
-        						<div class="margin-top-5">
-        							<?php echo $html_price; ?>
-        						</div>							
-        						<div class="margin-top-5 box-product-title">
-        							<a href="<?php echo $permalink; ?>" title="<?php echo $fullname; ?>"  ><?php echo $fullname_excerpt; ?></a>
-        						</div>
-        					</div>					
-        				</div>
+        				<div class="box-product">
+                                            <div class="box-product-img">
+                                                <center><figure><a href="<?php echo $pdetail_permalink; ?>"><img src="<?php echo $pdetail_img; ?>"></a></figure></center>
+                                            </div>
+                                            <div class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_fullname; ?></b></a></div>
+                                            <div class="box-product-price">
+                                                <div><center><?php echo $html_price; ?></center></div>
+                                            </div>
+                                        </div>
         				<?php
         			}
         			?>

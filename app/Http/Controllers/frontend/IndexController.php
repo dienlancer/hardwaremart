@@ -319,16 +319,11 @@ class IndexController extends Controller {
     }    
     if(count($lstCategoryVideo) > 0){
       $component='category-video';
-    }        
-    switch (trim(mb_strtolower($alias,'UTF-8'))) {
-      case 'tin-tuc':      
-      $component='articles';
-      break;                   
-    }        
+    }             
     switch ($component) {
       case 'category-article':      
       $category_id=0;
-      $category=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower(@$alias,'UTF-8'))])->get()->toArray();      
+      $category=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower(@$alias,'UTF-8'))])->get()->toArray();         
       if(count($category) > 0){
         $category     = $category[0];
         $category_id    = $category['id'];        
@@ -422,12 +417,14 @@ class IndexController extends Controller {
       break; 
       case 'category-product':
       $category_id=0;
-      $category=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();      
+      $category=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();       
       if(count($category) > 0){
         $category     = $category[0];
         $category_id    = $category['id'];        
         $arr_category_id[]=(int)@$category_id;        
+
         getStringCategoryID($category_id,$arr_category_id,'category_product');    
+
         $data=DB::table('product')                      
                 ->select('product.id')
                 ->whereIn('product.category_id', $arr_category_id)
@@ -435,6 +432,7 @@ class IndexController extends Controller {
                 ->groupBy('product.id')                
                 ->get()->toArray();
         $data=convertToArray($data);
+
         $totalItems=count($data);
         $totalItemsPerPage=(int)$setting['product_perpage']['field_value']; 
         $pageRange=$this->_pageRange;
@@ -459,7 +457,8 @@ class IndexController extends Controller {
                 ->take($totalItemsPerPage)
                 ->get()->toArray();   
         $items=convertToArray($data);                  
-      }       
+      }    
+      
       $layout="two-column";             
       break; 
       case 'product':
@@ -523,11 +522,9 @@ class IndexController extends Controller {
       if(!empty($category['meta_description'])){
         $meta_description=$category['meta_description'];
       }
-    }
-    $breadcrumb='';              
-    $breadcrumb= getBreadcrumb($alias);
+    }    
     \Artisan::call('sitemap:auto');
-    return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","breadcrumb"));   
+    return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","category"));   
                                
   }
       function addCart(){          
