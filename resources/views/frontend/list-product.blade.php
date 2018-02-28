@@ -8,9 +8,9 @@ $linkTrash			=	route('frontend.'.$controller.'.trash');
 $ddlCategoryProduct     =   cmsSelectboxCategory('category_id','category_id', 'form-control', $arrCategoryProductRecursive, 0,"");
 $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_search"          value="">';
 ?>
-<h2 class="tieu-de margin-top-15">
+<h1 class="tieu-de margin-top-15">
 	Danh sách sản phẩm
-</h2>		
+</h1>		
 <form method="post" name="frm" class="margin-top-5 box-article frm-vip padding-top-5" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<div class="alert alert-success" id="alert" style="display: none">

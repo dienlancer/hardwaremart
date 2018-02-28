@@ -23,7 +23,7 @@ if(count($item) > 0){
     $email_to=$setting['email_to']['field_value'];
     $contacted_person=$setting['contacted_person']['field_value'];
     $telephone=$setting['telephone']['field_value'];
-    $office=$setting['office']['field_value'];
+    
     
     /* end setting */    
 	$dataArticleCategory=DB::table('article_category')
@@ -46,9 +46,9 @@ if(count($item) > 0){
 		$category_name=implode(' / ', $arr_category_name);		
 	}		
 	?>
-	<div class="breadcrumb-title margin-top-15">
+	<h1 class="breadcrumb-title margin-top-15">
 			<?php echo $category_name; ?>
-		</div>
+		</h1>
 	<div class="margin-top-10 box-article">		
 		<div>
             <div class="col-lg-4 no-padding-left">
@@ -63,19 +63,7 @@ if(count($item) > 0){
                 <div class="margin-top-5">
                     <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
                 </div>
-                <div class="margin-top-5 product-price">
-                    <b>Giá:</b>&nbsp;Liên hệ
-                </div>                
-                <div class="margin-top-5">
-                    <img src="<?php echo asset('upload/tru-so.png'); ?>">&nbsp;Vp giao dịch:&nbsp;<?php echo $office; ?>
-                </div>
-                <div class="margin-top-5">
-                    <img src="<?php echo asset('upload/sendmail.png'); ?>">&nbsp;Email: <?php echo $email_to; ?>
-                </div>
-                <div class="margin-top-5">
-                    <img src="<?php echo asset('upload/earth-web.png'); ?>">&nbsp;Website: <?php echo url('/'); ?>
-                </div>
-                <hr class="product-ngang">
+                               
             </div>
             <div class="clr"></div>
         </div>		

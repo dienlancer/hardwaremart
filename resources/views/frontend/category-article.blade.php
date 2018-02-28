@@ -4,15 +4,15 @@
 	<?php 		
 	if(empty($breadcrumb)){
 		?>
-		<div class="tieu-de">
+		<h1 class="tieu-de">
 			<?php echo $title; ?>		
-		</div>
+		</h1>
 		<?php
 	}else{
 		?>
-		<div class="breadcrumb-title">
+		<h1 class="breadcrumb-title">
 			<?php echo $breadcrumb; ?>
-		</div>
+		</h1>
 		<?php
 	}	
 	?>
@@ -25,7 +25,7 @@
 				$alias=$value['alias'];
 				$fullname=$value['fullname'];
 				$permalink=route('frontend.index.index',[$alias]) ;
-				$image=asset('upload/'.$value['image']);
+				$image=get_article_thumbnail($value['image']) ;
 				$intro=substr($value['intro'],0,200).'...' ;
 				$count_view=(int)@$value['count_view'];
 				$count_view_text=number_format($count_view,0,",",".");				

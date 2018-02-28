@@ -27,7 +27,7 @@ if(count($item) > 0){
 		<?php echo $project_name; ?>
 	</div>
 	<div class="margin-top-5 box-article">		
-		<h2 class="tieu-de-bai-viet"><?php echo $title; ?></h2>
+		<h1 class="tieu-de-bai-viet"><?php echo $title; ?></h1>
 		<hr class="duong-ngang-2" />	
 		<div class="margin-top-10 article-excerpt justify">
 			<?php echo $intro; ?>

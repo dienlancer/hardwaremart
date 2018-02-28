@@ -2,7 +2,7 @@
 ?>
 <footer class="footer margin-top-15">
 	<div class="container azweb">
-		<div class="col-lg-3">			
+		<div class="col-lg-3">				
 			<?php 
 			$module=getPage("intro-footer");
 			if(count($module) > 0){
@@ -11,8 +11,15 @@
 				$permalink=route('frontend.index.index',[$module['alias']]);	
 				$content=$module["content"];					
 				?>		
-				<div class="margin-top-40">
-					<h1 class="brabel"><?php echo $fullname; ?></h1>
+				<div class="margin-top-25">
+					<div>
+
+							<a href="<?php echo url('/'); ?>">                
+								<img src="<?php echo $seo_logo_frontend;?>" />
+							</a>
+						
+					</div>	
+					<div ><?php echo $fullname; ?></div>
 					<div class="tialia margin-top-15">
 						<?php echo $content; ?>
 					</div>
@@ -22,24 +29,45 @@
 			}
 			?>			
 		</div>
-		<div class="col-lg-3">
-			<?php 
-			$module=getPage("about-us-footer");
-			if(count($module) > 0){
-				$fullname=substr($module["fullname"],0,50);
-				$featuredImg=asset('upload/'.$module['image']);
-				$permalink=route('frontend.index.index',[$module['alias']]);	
-				$content=$module["content"];					
-				?>		
-				<div class="margin-top-40">
-					<h1 class="brabel"><?php echo $fullname; ?></h1>
-					<div class="tialia margin-top-15">
-						<?php echo $content; ?>
-					</div>		
-				</div>										
-				<?php				
-			}
-			?>			
+		<div class="col-lg-2">
+			<?php     
+			$args = array(                         
+				'menu_class'            => 'danhmucspfooter', 					                     
+				'before_wrapper'        => '<div class="margin-top-40">',
+				'before_title'          => '<div class="brabel">',
+				'after_title'           => '</div>',
+				'before_wrapper_ul'     =>  '<div class="margin-top-10">',
+				'after_wrapper_ul'      =>  '</div>',
+				'after_wrapper'         => '</div>'     ,
+				'link_before'       	=> '', 
+				'link_after'        	=> '',                                        
+				'theme_location'        => 'danhmucspfooter' ,
+				'menu_li_actived'       => 'current-menu-item',
+				'menu_item_has_children'=> 'menu-item-has-children',
+				'alias'                 => $seo_alias
+			);                    
+			wp_nav_menu($args);
+			?>         
+		</div>
+		<div class="col-lg-2">
+			<?php     
+			$args = array(                         
+				'menu_class'            => 'danhmucspfooter', 					                     
+				'before_wrapper'        => '<div class="margin-top-40">',
+				'before_title'          => '<div class="brabel">',
+				'after_title'           => '</div>',
+				'before_wrapper_ul'     =>  '<div class="margin-top-10">',
+				'after_wrapper_ul'      =>  '</div>',
+				'after_wrapper'         => '</div>'     ,
+				'link_before'       	=> '', 
+				'link_after'        	=> '',                                        
+				'theme_location'        => 'htkh' ,
+				'menu_li_actived'       => 'current-menu-item',
+				'menu_item_has_children'=> 'menu-item-has-children',
+				'alias'                 => $seo_alias
+			);                    
+			wp_nav_menu($args);
+			?>         
 		</div>
 		<div class="col-lg-3">
 			<?php 
@@ -49,7 +77,7 @@
 				$intro=$module["intro"];					
 				?>		
 				<div class="margin-top-40">
-					<h1 class="brabel"><?php echo $fullname; ?></h1>
+					<div class="brabel"><?php echo $fullname; ?></div>
 					<div class="tialia margin-top-15">
 						<?php echo $intro; ?>
 					</div>		
@@ -58,9 +86,9 @@
 			}
 			?>							
 		</div>
-		<div class="col-lg-3">
+		<div class="col-lg-2">
 			<div class="margin-top-40">
-				<h1 class="brabel">Kết nối mạng xã hội</h1>
+				<div class="brabel">Kết nối mạng xã hội</div>
 				<div class="tialia margin-top-15">
 					<?php 
 					$setting=getSettingSystem();

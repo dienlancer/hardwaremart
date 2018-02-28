@@ -50,7 +50,7 @@ class IndexController extends Controller {
         $error=array();
         $data=array();
         $success=array();           
-        $layout="full-width";     
+        $layout="two-column";     
         $component='contact';
         $alias="lien-he-voi-chung-toi";   
         if($request->isMethod('post'))     {  
@@ -206,7 +206,7 @@ class IndexController extends Controller {
   }
   public function searchProduct(Request $request){
     /* begin standard */    
-    $layout="full-width";                                                           
+    $layout="two-column";                                                           
     $totalItems=0;
     $totalItemsPerPage=0;
     $pageRange=0;      
@@ -470,7 +470,7 @@ class IndexController extends Controller {
       if(count($row) > 0){
         $item=$row[0];
       }    
-      $layout="full-width";       
+      $layout="two-column";       
       break;     
       case 'products':              
       $data=DB::table('product')                                  
@@ -502,7 +502,7 @@ class IndexController extends Controller {
                 ->take($totalItemsPerPage)
                 ->get()->toArray();            
         $items=convertToArray($data);           
-      $layout="full-width";        
+      $layout="two-column";        
       break;            
     }  
     if(count($menu) > 0){
@@ -530,15 +530,7 @@ class IndexController extends Controller {
     $breadcrumb='';              
     $breadcrumb= getBreadcrumb($alias);
     \Artisan::call('sitemap:auto');
-    switch ($component) {
-        case 'category-product':
-          return view("frontend.category-product",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","breadcrumb",'category')); 
-          break;
-        
-        default:
-          return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","breadcrumb")); 
-          break;
-      }  
+    return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","breadcrumb"));   
                                
   }
       function addCart(){          
@@ -579,7 +571,7 @@ class IndexController extends Controller {
           }    
       }
       public function viewCart(Request $request){   
-          $layout="full-width";     
+          $layout="two-column";     
           $component='cart';                 
         if($request->isMethod('post')){
             $arrQTY=$request->quantity;                 
@@ -1019,7 +1011,7 @@ class IndexController extends Controller {
       	$success=array();  
       	$data=array();        
       	$component="xac-nhan-thanh-toan";    
-      	$layout="full-width";   
+      	$layout="two-column";   
       	$id=0;         
       	$arrUser=array();              
       	$user = Sentinel::forceCheck(); 
@@ -1279,7 +1271,7 @@ class IndexController extends Controller {
       		Session::forget($this->_ssNameInvoice);
       	}   
       	$component="hoan-tat-thanh-toan";    
-        $layout="full-width";   
+        $layout="two-column";   
         return view("frontend.index",compact("component","layout"));                     
       }
       public function cancelInvoice(){
@@ -1306,7 +1298,7 @@ class IndexController extends Controller {
       		return redirect()->route("frontend.index.viewCart");   
       	}    
         $component="cancel-invoice";    
-        $layout="full-width";   
+        $layout="two-column";   
         return view("frontend.index",compact("component","layout"));       
       }
       public function finishCheckout(){
@@ -1333,7 +1325,7 @@ class IndexController extends Controller {
       		return redirect()->route("frontend.index.viewCart");   
       	}    
       	$component="hoan-tat-thanh-toan";    
-        $layout="full-width";   
+        $layout="two-column";   
         return view("frontend.index",compact("component","layout"));                  
       }  
       public function loginCheckout(Request $request){          
@@ -1342,7 +1334,7 @@ class IndexController extends Controller {
         $success=array();  
         $data=array();        
         $component="dang-nhap-thanh-toan";    
-        $layout="full-width";
+        $layout="two-column";
         $customer=array();                            
         $arrCart=array();
         if(Session::has($this->_ssNameCart)){
@@ -1445,7 +1437,7 @@ class IndexController extends Controller {
       }
       public function getInvoice(){              
         $component="hoa-don";                
-        $layout="full-width";      
+        $layout="two-column";      
         $id=0;    
         $arrUser=array();              
         $user = Sentinel::forceCheck();         

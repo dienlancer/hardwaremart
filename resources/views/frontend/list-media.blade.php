@@ -6,9 +6,9 @@ $linkLoadData		=	route('frontend.'.$controller.'.loadData');
 $linkDelete			=	route('frontend.'.$controller.'.deleteItem');
 $linkTrash			=	route('frontend.'.$controller.'.trash');
 ?>
-<h2 class="tieu-de margin-top-15">
+<h1 class="tieu-de margin-top-15">
 	Media
-</h2>		
+</h1>		
 <form method="post" name="frm" class="margin-top-5 box-article frm-vip padding-top-5" enctype="multipart/form-data">
 	{{ csrf_field() }}	
 	<div class="alert alert-success" id="alert" style="display: none">
