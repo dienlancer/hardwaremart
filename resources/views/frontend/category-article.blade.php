@@ -1,21 +1,9 @@
 <form method="post" class="frm margin-top-15" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
-	{{ csrf_field() }}	
-	<?php 		
-	if(empty($breadcrumb)){
-		?>
-		<h1 class="tieu-de">
+	{{ csrf_field() }}		
+	<h2 class="tieu-de">
 			<?php echo $title; ?>		
-		</h1>
-		<?php
-	}else{
-		?>
-		<h1 class="breadcrumb-title">
-			<?php echo $breadcrumb; ?>
-		</h1>
-		<?php
-	}	
-	?>
+		</h2>
 	<div class="row">
 		<?php 	
 		if(count($items) > 0){
@@ -39,14 +27,16 @@
 								<i class="fa fa-eye" aria-hidden="true"></i><span class="margin-left-5"><?php echo $count_view_text; ?>&nbsp;lượt xem	</span>
 							</div>							
 						</div>
-						<!--<div class="margin-top-5 box-intro"><?php echo $intro; ?></div>-->
+						<div class="margin-top-5 box-intro"><?php echo $intro; ?></div>
 						<div class="box-readmore margin-top-10"><a href="<?php echo $permalink; ?>">Xem chi tiết</a></div>
 					</div>
 					<div class="clr"></div>
 				</div>
 				<?php			
 			}
-		}	
+		}else{
+			echo '<div class="margin-top-15"><center>Đang cập nhật...</center></div>';
+		}
 		?>
 	</div>
 	<div class="margin-top-15">

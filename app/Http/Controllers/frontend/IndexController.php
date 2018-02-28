@@ -323,10 +323,7 @@ class IndexController extends Controller {
     switch (trim(mb_strtolower($alias,'UTF-8'))) {
       case 'tin-tuc':      
       $component='articles';
-      break;    
-      case 'san-pham':
-      $component='products';
-      break;                          
+      break;                   
     }        
     switch ($component) {
       case 'category-article':      
@@ -367,7 +364,7 @@ class IndexController extends Controller {
                 ->whereIn('article_category.category_id', $arr_category_id)
                 ->where('article.status',1)     
                 ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->orderBy('article.sort_order', 'asc')
+                ->orderBy('article.created_at', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()
@@ -409,7 +406,7 @@ class IndexController extends Controller {
                 ->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')                
                 ->where('article.status',1)     
                 ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->orderBy('article.sort_order', 'asc')
+                ->orderBy('article.created_at', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()->toArray();            

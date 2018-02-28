@@ -123,9 +123,7 @@ function wp_nav_menu($args){
             case 'thu-vien':   
            
            
-            case 'san-pham':      
-            $site_link='javascript:void(0);';
-            break;
+            
             case 'trang-chu':
             $site_link=url('/');
             break;

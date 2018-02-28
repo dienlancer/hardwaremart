@@ -2,14 +2,11 @@
 use App\ArticleCategoryModel;
 use App\ArticleModel;
 use Illuminate\Support\Facades\DB;
-$setting=getSettingSystem();
 if(count($item) > 0){		
 	$id=$item["id"];
 	$fullname = $item["fullname"];
 	$intro=$item["intro"];
 	$content=$item['content'];	
-	$small_img=get_article_thumbnail($item['image']);
-    $large_img=asset('upload/'.$item['image']) ;
 	/* begin cập nhật count view */
 	$count_view=(int)@$item['count_view'];
 	$count_view++;
@@ -18,14 +15,6 @@ if(count($item) > 0){
 	$row->save();
 	$count_view_text=number_format($count_view,0,",",".");
 	/* end cập nhật count view */
-	/* begin setting */
-    $address=$setting['address']['field_value'];
-    $email_to=$setting['email_to']['field_value'];
-    $contacted_person=$setting['contacted_person']['field_value'];
-    $telephone=$setting['telephone']['field_value'];
-    
-    
-    /* end setting */    
 	$dataArticleCategory=DB::table('article_category')
 	->join('category_article','article_category.category_id','=','category_article.id')		
 	->select('category_article.id','category_article.fullname','category_article.alias')
@@ -45,28 +34,21 @@ if(count($item) > 0){
 		}		
 		$category_name=implode(' / ', $arr_category_name);		
 	}		
-	?>
-	<h1 class="breadcrumb-title margin-top-15">
-			<?php echo $category_name; ?>
-		</h1>
-	<div class="margin-top-10 box-article">		
-		<div>
-            <div class="col-lg-4 no-padding-left">
-                <div class="margin-top-15">
-                    <img class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" />
-                </div>
-            </div>
-            <div class="col-lg-8 no-padding-left">
-                <div class="margin-top-15 product-detail-title">
-                    <?php echo $title; ?>
-                </div>
-                <div class="margin-top-5">
-                    <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
-                </div>
-                               
-            </div>
-            <div class="clr"></div>
-        </div>		
+	?>	
+	<div class="margin-top-15 box-article">
+		<h2 class="tieu-de-bai-viet">
+			<?php echo $title; ?>		
+		</h2>
+		<div class="margin-top-15">
+			<span class="box-article-category">
+				<i class="fa fa-folder" aria-hidden="true"></i>
+				<?php echo $category_name; ?>
+			</span>
+			<span class="post-view margin-left-15">
+				<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text ?>&nbsp;Lượt xem
+			</span>
+		</div>	
+		<hr class="duong-ngang" />	
 		<div class="margin-top-10 article-excerpt justify">
 			<?php echo $intro; ?>
 		</div>		
@@ -115,11 +97,4 @@ if(count($item) > 0){
 	<?php
 }
 ?>	
-<script language="javascript" type="text/javascript">
-    jQuery('.zoom_img').elevateZoom({
-        zoomType: "inner",
-        cursor: "crosshair",
-        zoomWindowFadeIn: 500,
-        zoomWindowFadeOut: 750
-    });
-</script> 
+

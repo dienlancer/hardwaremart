@@ -40,7 +40,9 @@
 					echo '<div class="clr"></div>';
 				}
 			}
-		}	
+		}else{
+			echo '<div class="margin-top-15"><center>Đang cập nhật...</center></div>';
+		}
 		?>
 	</div>
 	<div class="margin-top-15">
