@@ -1907,6 +1907,7 @@ form[name='frm-search'] input[name='q']{
         margin-right: 2px;
     margin-top: 10px;
 }
+
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;
