@@ -406,66 +406,66 @@ ul.list-style-none{
     padding: 5px 10px 5px 10px;
     width:50%;
 }
-.laptop-cu .owl-prev, .laptop-cu .owl-next{
+.laptop .owl-prev, .laptop .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
 }
-.laptop-cu .owl-prev{
+.laptop .owl-prev{
   position: absolute;
   right: 35px;
   top:-42px;
 
 }
-.laptop-cu .owl-next{
+.laptop .owl-next{
     position: absolute;
     right: 0;
     top:-42px;
 }
-.may-tinh-cu .owl-prev, .may-tinh-cu .owl-next{
+.may-tinh .owl-prev, .may-tinh .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
 }
-.may-tinh-cu .owl-prev{
+.may-tinh .owl-prev{
   position: absolute;
   right: 35px;
   top:-42px;
 
 }
-.may-tinh-cu .owl-next{
+.may-tinh .owl-next{
     position: absolute;
     right: 0;
     top:-42px;
 }
-.tablet-cu .owl-prev, .tablet-cu .owl-next{
+.tablet .owl-prev, .tablet .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
 }
-.tablet-cu .owl-prev{
+.tablet .owl-prev{
   position: absolute;
   right: 35px;
   top:-42px;
 
 }
-.tablet-cu .owl-next{
+.tablet .owl-next{
     position: absolute;
     right: 0;
     top:-42px;
 }
-.dien-thoai-cu .owl-prev, .dien-thoai-cu .owl-next{
+.dien-thoai .owl-prev, .dien-thoai .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
 }
-.dien-thoai-cu .owl-prev{
+.dien-thoai .owl-prev{
   position: absolute;
   right: 35px;
   top:-42px;
 
 }
-.dien-thoai-cu .owl-next{
+.dien-thoai .owl-next{
     position: absolute;
     right: 0;
     top:-42px;
@@ -502,38 +502,23 @@ ul.list-style-none{
     right: 0;
     top:-42px;
 }
-.linh-kien-may-tinh .owl-prev, .linh-kien-may-tinh .owl-next{
+.loa-am-thanh .owl-prev, .loa-am-thanh .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
 }
-.linh-kien-may-tinh .owl-prev{
+.loa-am-thanh .owl-prev{
   position: absolute;
   right: 35px;
   top:-42px;
 
 }
-.linh-kien-may-tinh .owl-next{
+.loa-am-thanh .owl-next{
     position: absolute;
     right: 0;
     top:-42px;
 }
-.qua-tang-doanh-nghiep .owl-prev, .qua-tang-doanh-nghiep .owl-next{
- background:#0c62ad;
- color: #ffffff;
- padding: 5px 11px;
-}
-.qua-tang-doanh-nghiep .owl-prev{
-  position: absolute;
-  right: 35px;
-  top:-42px;
 
-}
-.qua-tang-doanh-nghiep .owl-next{
-    position: absolute;
-    right: 0;
-    top:-42px;
-}
 .related-products .owl-prev, .related-products .owl-next{
  background:#0c62ad;
  color: #ffffff;
@@ -1029,7 +1014,7 @@ div.ducati  h2{
 .box-product-intro-title{
     margin: 5px 15px 0px 15px;
     text-align: center;
-        height: 45px;
+        height: 65px;
 }
 .box-product-intro-title a{
         color: #004A8F;

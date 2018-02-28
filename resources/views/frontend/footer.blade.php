@@ -1,6 +1,6 @@
 <?php 
 ?>
-<footer class="footer">
+<footer class="footer margin-top-15">
 	<div class="container azweb">
 		<div class="col-lg-3">			
 			<?php 

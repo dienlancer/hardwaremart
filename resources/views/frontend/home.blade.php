@@ -55,14 +55,14 @@ $company=$setting['contacted_person']['field_value'];
 	</div>	
 	<?php 
 	$arr_alias=array(
-		'laptop-cu',
-		'may-tinh-cu',
-		'tablet-cu',
-		'dien-thoai-cu',
+		'laptop',
+		'may-tinh',
+		'tablet',
+		'dien-thoai',
 		'phu-kien-dien-thoai',
 		'phu-kien-may-tinh',
-		'linh-kien-may-tinh',
-		'qua-tang-doanh-nghiep',		
+		'loa-am-thanh',
+		
 	);
 	foreach ($arr_alias as $key => $value_alias) {
 		$alias1=$value_alias;
