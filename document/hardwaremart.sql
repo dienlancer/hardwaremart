@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 27, 2018 lúc 11:53 AM
+-- Thời gian đã tạo: Th2 28, 2018 lúc 05:55 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -382,14 +382,13 @@ CREATE TABLE `category_product` (
 --
 
 INSERT INTO `category_product` (`id`, `fullname`, `meta_keyword`, `meta_description`, `alias`, `image`, `status`, `parent_id`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 'Laptop cũ', 'metakeyword Gỗ óc chó', 'metadescription Gỗ óc chó', 'laptop-cu', 'laptop-sinh-vien.png', 1, 0, 1, '2018-01-02 05:00:16', '2018-02-26 07:25:53'),
-(12, 'Máy tính cũ', 'metakeyword Điện thoại mới', 'metadescription Điện thoại mới', 'may-tinh-cu', NULL, 1, 0, 2, '2018-02-01 03:00:35', '2018-02-26 07:36:09'),
-(13, 'Tablet cũ', 'metakeyword Điện thoại cũ', 'metadescription Điện thoại cũ', 'tablet-cu', NULL, 1, 0, 3, '2018-02-01 03:04:34', '2018-02-26 07:36:09'),
-(14, 'Điện thoại cũ', 'metakeyword laptop', 'metadescription laptop', 'dien-thoai-cu', NULL, 1, 0, 4, '2018-02-01 03:05:37', '2018-02-26 07:36:09'),
+(1, 'Laptop', 'metakeyword Gỗ óc chó', 'metadescription Gỗ óc chó', 'laptop', 'laptop-sinh-vien.png', 1, 0, 1, '2018-01-02 05:00:16', '2018-02-28 01:58:22'),
+(12, 'Máy tính', 'metakeyword Điện thoại mới', 'metadescription Điện thoại mới', 'may-tinh', NULL, 1, 0, 2, '2018-02-01 03:00:35', '2018-02-28 01:58:26'),
+(13, 'Tablet', 'metakeyword Điện thoại cũ', 'metadescription Điện thoại cũ', 'tablet', NULL, 1, 0, 3, '2018-02-01 03:04:34', '2018-02-28 01:58:31'),
+(14, 'Điện thoại', 'metakeyword laptop', 'metadescription laptop', 'dien-thoai', NULL, 1, 0, 4, '2018-02-01 03:05:37', '2018-02-28 01:58:36'),
 (15, 'Phụ kiện điện thoại', 'metakeyword Máy tính bảng', 'metadescription Máy tính bảng', 'phu-kien-dien-thoai', NULL, 1, 0, 5, '2018-02-01 03:06:32', '2018-02-26 07:36:09'),
 (16, 'Phụ kiện máy tính', 'metakeyword Máy tính để bàn', 'metadescription Máy tính để bàn', 'phu-kien-may-tinh', NULL, 1, 0, 6, '2018-02-01 03:07:07', '2018-02-26 07:36:09'),
-(17, 'Linh kiện máy tính', 'metakeyword Máy in và phụ kiện', 'metadescription Máy in và phụ kiện', 'linh-kien-may-tinh', NULL, 1, 0, 7, '2018-02-01 03:07:37', '2018-02-26 07:36:09'),
-(18, 'Quà tặng doanh nghiệp', 'metakeyword Chuột bàn phím', 'metadescription Chuột bàn phím', 'qua-tang-doanh-nghiep', NULL, 1, 0, 8, '2018-02-01 03:08:45', '2018-02-26 07:36:09'),
+(17, 'Loa âm thanh', 'metakeyword Máy in và phụ kiện', 'metadescription Máy in và phụ kiện', 'loa-am-thanh', NULL, 1, 0, 7, '2018-02-01 03:07:37', '2018-02-28 04:01:59'),
 (185, 'Iphone', '', '', 'iphone', NULL, 1, 14, 1, '2018-02-26 07:44:10', '2018-02-26 07:52:44'),
 (186, 'Samsung', '', '', 'samsung', NULL, 1, 14, 2, '2018-02-26 07:44:23', '2018-02-26 07:52:44'),
 (187, 'Sony', '', '', 'sony', NULL, 1, 14, 3, '2018-02-26 07:44:32', '2018-02-26 07:52:44'),
@@ -400,9 +399,7 @@ INSERT INTO `category_product` (`id`, `fullname`, `meta_keyword`, `meta_descript
 (192, 'HTC', '', '', 'htc', NULL, 1, 14, 8, '2018-02-26 07:45:29', '2018-02-26 07:52:44'),
 (193, 'Blackberry', '', '', 'blackberry', NULL, 1, 14, 9, '2018-02-26 07:45:59', '2018-02-26 07:52:44'),
 (194, 'Ginonee', '', '', 'ginonee', NULL, 1, 14, 10, '2018-02-26 07:46:12', '2018-02-26 07:52:44'),
-(195, 'Q-mobile', '', '', 'q-mobile', NULL, 1, 14, 11, '2018-02-26 07:46:26', '2018-02-26 07:52:44'),
-(196, 'Hộp đựng namecard', '', '', 'hop-dung-namecard', NULL, 1, 18, 1, '2018-02-26 07:49:58', '2018-02-26 07:49:58'),
-(197, 'Bút gỗ', '', '', 'but-go', NULL, 1, 18, 2, '2018-02-26 07:50:08', '2018-02-26 07:50:08');
+(195, 'Q-mobile', '', '', 'q-mobile', NULL, 1, 14, 11, '2018-02-26 07:46:26', '2018-02-26 07:52:44');
 
 -- --------------------------------------------------------
 
@@ -431,39 +428,6 @@ CREATE TABLE `category_video` (
 
 INSERT INTO `category_video` (`id`, `fullname`, `meta_keyword`, `meta_description`, `alias`, `parent_id`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Video', 'metakeyword video', 'metadescription video', 'video', NULL, 'thuvienhinh-1.png', 1, 1, '2018-01-09 10:03:48', '2018-01-09 11:08:05');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `customer`
---
-
-DROP TABLE IF EXISTS `customer`;
-CREATE TABLE `customer` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `fullname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `mobilephone` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `fax` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `sort_order` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
-
---
--- Đang đổ dữ liệu cho bảng `customer`
---
-
-INSERT INTO `customer` (`id`, `username`, `password`, `email`, `fullname`, `address`, `phone`, `mobilephone`, `fax`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 'diemnguyen', '4d6b91520256cc8b073806b667fca04c', 'diemnguyen@dienkim.com', 'Nguyễn Thị Hồng Diễm', '14 Trần Huy Liệu', '0988152334', '9932283992', '5437739787', 1, 1, '2018-01-05 15:31:29', '2018-01-09 04:42:14'),
-(2, 'khoatran', 'e10adc3949ba59abbe56e057f20f883e', 'khoatran@dienkim.com', 'Trần Đăng Khoa', '14 Huỳnh Văn Bánh', '0988152335', '9932283997', '5437739782', 1, 1, '2018-01-05 15:36:39', '2018-01-05 15:36:39'),
-(3, 'vunh', 'e10adc3949ba59abbe56e057f20f883e', 'vunguyenhoang@dienkim.com', 'Nguyễn Hoàng Vũ', '16 Trường Sơn', '0988152331', '0874783779', '7675787833', 1, 1, '2018-01-05 15:44:56', '2018-01-05 15:44:56'),
-(4, 'hanhlt', 'e10adc3949ba59abbe56e057f20f883e', 'hanhlt@dienkim.com', 'Lê Thị Hạnh', '18 Nguyễn Diệu', '0988123458', '7928492298', '7773573334', 1, 1, '2018-01-06 10:26:55', '2018-01-06 10:26:55');
 
 -- --------------------------------------------------------
 
@@ -792,14 +756,13 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (153, 'Hình thức thanh toán và vận chuyển', 'hinh-thuc-thanh-toan-va-van-chuyen', 0, 7, 0, NULL, 6, 1, '2018-01-25 02:35:41', '2018-01-25 06:57:38'),
 (154, 'User guides', 'user-guides', 0, 7, 0, NULL, 7, 1, '2018-01-25 02:36:14', '2018-01-25 02:36:14'),
 (155, 'NHS Trade', 'nhs-trade', 0, 7, 0, NULL, 8, 1, '2018-01-25 02:36:37', '2018-01-25 02:36:37'),
-(340, 'Laptop cũ', 'laptop-cu', 0, 1, 0, '', 1, 1, '2018-02-26 07:47:48', '2018-02-26 07:47:48'),
-(341, 'Máy tính cũ', 'may-tinh-cu', 0, 1, 0, '', 2, 1, '2018-02-26 07:47:58', '2018-02-26 07:47:58'),
-(342, 'Tablet cũ', 'tablet-cu', 0, 1, 0, '', 3, 1, '2018-02-26 07:48:06', '2018-02-26 07:48:06'),
-(343, 'Điện thoại cũ', 'dien-thoai-cu', 0, 1, 0, '', 4, 1, '2018-02-26 07:48:22', '2018-02-26 07:48:22'),
+(340, 'Laptop', 'laptop', 0, 1, 0, '', 1, 1, '2018-02-26 07:47:48', '2018-02-28 02:00:27'),
+(341, 'Máy tính', 'may-tinh', 0, 1, 0, '', 2, 1, '2018-02-26 07:47:58', '2018-02-28 02:00:31'),
+(342, 'Tablet', 'tablet', 0, 1, 0, '', 3, 1, '2018-02-26 07:48:06', '2018-02-28 02:00:39'),
+(343, 'Điện thoại', 'dien-thoai', 0, 1, 0, '', 4, 1, '2018-02-26 07:48:22', '2018-02-28 02:00:43'),
 (344, 'Phụ kiện điện thoại', 'phu-kien-dien-thoai', 0, 1, 0, '', 5, 1, '2018-02-26 07:48:34', '2018-02-26 07:48:34'),
 (345, 'Phụ kiện máy tính', 'phu-kien-may-tinh', 0, 1, 0, '', 6, 1, '2018-02-26 07:48:46', '2018-02-26 07:48:46'),
-(346, 'Linh kiện máy tính', 'linh-kien-may-tinh', 0, 1, 0, '', 7, 1, '2018-02-26 07:48:59', '2018-02-26 07:48:59'),
-(347, 'Quà tặng doanh nghiệp', 'qua-tang-doanh-nghiep', 0, 1, 0, '', 8, 1, '2018-02-26 07:49:36', '2018-02-26 07:49:39'),
+(346, 'Loa âm thanh', 'loa-am-thanh', 0, 1, 0, '', 7, 1, '2018-02-26 07:48:59', '2018-02-28 04:02:28'),
 (348, 'Iphone', 'iphone', 343, 1, 1, '', 1, 1, '2018-02-26 07:53:22', '2018-02-26 07:53:22'),
 (349, 'Samsung', 'samsung', 343, 1, 1, '', 2, 1, '2018-02-26 07:53:40', '2018-02-26 07:53:40'),
 (350, 'Sony', 'sony', 343, 1, 1, '', 3, 1, '2018-02-26 07:53:55', '2018-02-26 07:53:55'),
@@ -810,9 +773,7 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (355, 'HTC', 'htc', 343, 1, 1, '', 8, 1, '2018-02-26 07:55:44', '2018-02-26 07:57:30'),
 (356, 'Blackberry', 'blackberry', 343, 1, 1, '', 9, 1, '2018-02-26 07:56:04', '2018-02-26 07:56:04'),
 (357, 'Ginonee', 'ginonee', 343, 1, 1, '', 10, 1, '2018-02-26 07:56:34', '2018-02-26 07:56:34'),
-(358, 'Q-mobile', 'q-mobile', 343, 1, 1, '', 11, 1, '2018-02-26 07:56:47', '2018-02-26 07:56:47'),
-(359, 'Hộp đựng namecard', 'hop-dung-namecard', 347, 1, 1, '', 1, 1, '2018-02-26 07:57:02', '2018-02-26 07:57:02'),
-(360, 'Bút gỗ', 'but-go', 347, 1, 1, '', 2, 1, '2018-02-26 07:57:11', '2018-02-26 07:57:11');
+(358, 'Q-mobile', 'q-mobile', 343, 1, 1, '', 11, 1, '2018-02-26 07:56:47', '2018-02-26 07:56:47');
 
 -- --------------------------------------------------------
 
@@ -1388,7 +1349,11 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (635, 1, 'NVO6Qedfm9ioOmGBaG0UsueQmLLaMVAC', '2018-02-26 18:26:11', '2018-02-26 18:26:11'),
 (636, 1, '3EHuVytNqQxcUc5Xuq08CC1n51YzNSiD', '2018-02-26 18:26:11', '2018-02-26 18:26:11'),
 (637, 1, 'c4iIxDaA2K6OiJr0XAW6Tu47VBukfcQf', '2018-02-26 20:13:38', '2018-02-26 20:13:38'),
-(638, 1, 'vqXjvCqJe3X1op4zgUqUCudbHjpy28gg', '2018-02-26 20:13:38', '2018-02-26 20:13:38');
+(638, 1, 'vqXjvCqJe3X1op4zgUqUCudbHjpy28gg', '2018-02-26 20:13:38', '2018-02-26 20:13:38'),
+(639, 1, 'NpDrfo1E8XvDjE0mShe5FB97WcO94rn4', '2018-02-27 10:23:41', '2018-02-27 10:23:41'),
+(640, 1, 'j587qEvVqx0IehstgvOJTJjUoA8k6N8X', '2018-02-27 10:23:41', '2018-02-27 10:23:41'),
+(641, 1, 'PfZXqgOR1v7gA6WrxyxpyWzyrPlgvS0a', '2018-02-27 17:47:18', '2018-02-27 17:47:18'),
+(642, 1, 'L5CmFhHsSk6eCz6Cozc8uR4Dpn7umBqd', '2018-02-27 17:47:18', '2018-02-27 17:47:18');
 
 -- --------------------------------------------------------
 
@@ -1551,7 +1516,43 @@ INSERT INTO `product` (`id`, `code`, `fullname`, `meta_keyword`, `meta_descripti
 (7, '419327658', 'Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', 'metakeyword Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', 'metadescription Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', 'lenovo-ideapad-320-14isk-i3-6006-80xg0083vn', 'laptop-7.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '8990000.00', '0.00', 'giới thiệu Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)', '<p>chi tiết&nbsp;Lenovo Ideapad 320 14ISK i3 6006 (80XG0083VN)</p>', NULL, 1, 7, '2018-02-27 04:18:58', '2018-02-27 04:18:58'),
 (8, '924175638', 'Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', 'metakeyword Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', 'metadescription Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', 'lenovo-ideapad-110-15isk-i3-6006u-80ud018kvn', 'laptop-8.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '9290000.00', '0.00', 'giới thiệu Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)', '<p>chi tiết&nbsp;Lenovo IdeaPad 110 15ISK i3 6006U (80UD018KVN)</p>', NULL, 1, 8, '2018-02-27 04:20:39', '2018-02-27 04:47:42'),
 (9, '352461897', 'Asus TP203NAH N4200 (BP052T)', 'metakeyword Asus TP203NAH N4200 (BP052T)', 'metadescription Asus TP203NAH N4200 (BP052T)', 'asus-tp203nah-n4200-bp052t', 'laptop-9.png', 1, '[\"laptop-1.png\",\"laptop-2.png\",\"laptop-3.png\"]', '9890000.00', '0.00', 'giới thiệu Asus TP203NAH N4200 (BP052T)', '<p>chi tiết&nbsp;Asus TP203NAH N4200 (BP052T)</p>', 1, 1, 9, '2018-02-27 05:02:45', '2018-02-27 10:20:34'),
-(10, '328519647', 'HP 15 bs571TU i3 6006U (2JQ68PA)', 'metakeyword HP 15 bs571TU i3 6006U (2JQ68PA)', 'metadescription HP 15 bs571TU i3 6006U (2JQ68PA)', 'hp-15-bs571tu-i3-6006u-2jq68pa', 'laptop-10.png', 1, '[\"laptop-4.png\",\"laptop-5.png\",\"laptop-6.png\"]', '10490000.00', '0.00', 'giới thiệu HP 15 bs571TU i3 6006U (2JQ68PA)', '<p>chi tiết&nbsp;HP 15 bs571TU i3 6006U (2JQ68PA)</p>', NULL, 1, 10, '2018-02-27 05:03:46', '2018-02-27 05:03:46');
+(10, '328519647', 'HP 15 bs571TU i3 6006U (2JQ68PA)', 'metakeyword HP 15 bs571TU i3 6006U (2JQ68PA)', 'metadescription HP 15 bs571TU i3 6006U (2JQ68PA)', 'hp-15-bs571tu-i3-6006u-2jq68pa', 'laptop-10.png', 1, '[\"laptop-4.png\",\"laptop-5.png\",\"laptop-6.png\"]', '10490000.00', '0.00', 'giới thiệu HP 15 bs571TU i3 6006U (2JQ68PA)', '<p>chi tiết&nbsp;HP 15 bs571TU i3 6006U (2JQ68PA)</p>', NULL, 1, 10, '2018-02-27 05:03:46', '2018-02-27 05:03:46'),
+(11, '971358246', 'Máy tính để bàn ACER ASPIRE ATC-780 DT.B59SV.002', 'metakeyword Máy tính để bàn ACER ASPIRE ATC-780 DT.B59SV.002', 'metadescription Máy tính để bàn ACER ASPIRE ATC-780 DT.B59SV.002', 'may-tinh-de-ban-acer-aspire-atc-780-dtb59sv002', 'may-bo-1.png', 1, '[\"may-bo-2.png\",\"may-bo-3.png\",\"may-bo-4.png\"]', '8490000.00', '0.00', 'giới thiệu Máy tính để bàn ACER ASPIRE ATC-780 DT.B59SV.002', '<p>chi tiết&nbsp;M&aacute;y t&iacute;nh để b&agrave;n ACER ASPIRE ATC-780 DT.B59SV.002</p>', NULL, 12, 11, '2018-02-27 17:49:34', '2018-02-27 17:53:55'),
+(12, '849162357', 'Máy tính để bàn ACER ASPIRE TC-780 (DT.B89SV.008)', 'metakeyword ACER ASPIRE TC-780 (DT.B89SV.008)', 'metadescription ACER ASPIRE TC-780 (DT.B89SV.008)', 'may-tinh-de-ban-acer-aspire-tc-780-dtb89sv008', 'may-bo-2.png', 1, '[\"may-bo-1.png\",\"may-bo-3.png\",\"may-bo-4.png\",\"may-bo-5.png\"]', '8690000.00', '0.00', 'giới thiệu ACER ASPIRE TC-780 (DT.B89SV.008)', '<p>chi tiết&nbsp;ACER ASPIRE TC-780 (DT.B89SV.008)</p>', NULL, 12, 12, '2018-02-27 17:51:40', '2018-02-27 17:52:23'),
+(13, '179526348', 'Máy tính để bàn DELL VOSTRO 3268 (CORE I5)', 'metakeyword DELL VOSTRO 3268 (CORE I5)', 'metadescription DELL VOSTRO 3268 (CORE I5)', 'may-tinh-de-ban-dell-vostro-3268-core-i5', 'may-bo-3.png', 1, '[\"may-bo-4.png\",\"may-bo-5.png\",\"may-bo-6.png\"]', '11490000.00', '0.00', 'giới thiệu DELL VOSTRO 3268 (CORE I5)', '<p>chi tiết&nbsp;DELL VOSTRO 3268 (CORE I5)</p>', NULL, 12, 13, '2018-02-27 17:56:08', '2018-02-27 17:56:39'),
+(14, '329156847', 'Máy tính để bàn ACER ASPIRE TC-780', 'metakeyword ACER ASPIRE TC-780 (COREi3/RAM4GB/HDD1TB)', 'metadescription ACER ASPIRE TC-780 (COREi3/RAM4GB/HDD1TB)', 'may-tinh-de-ban-acer-aspire-tc-780', 'may-bo-4.png', 1, '[\"may-bo-1.png\",\"may-bo-2.png\",\"may-bo-3.png\"]', '8490000.00', '0.00', 'giới thiệu ACER ASPIRE TC-780 (COREi3/RAM4GB/HDD1TB)', '<p>chi tiết&nbsp;ACER ASPIRE TC-780 (COREi3/RAM4GB/HDD1TB)</p>', NULL, 12, 14, '2018-02-27 17:57:52', '2018-02-27 18:08:32'),
+(15, '489257361', 'Máy tính để bàn ACER ASPIRE TC-780 (DT.B89SV.005)', '', '', 'may-tinh-de-ban-acer-aspire-tc-780-dtb89sv005', 'may-bo-5.png', 1, NULL, '8590000.00', '0.00', '', '', NULL, 12, 15, '2018-02-27 18:06:27', '2018-02-27 18:06:27'),
+(16, '657428319', 'Máy tính để bàn FPT ELEAD NK930 6811', 'metakeyword FPT ELEAD NK930 6811', 'metadescription FPT ELEAD NK930 6811', 'may-tinh-de-ban-fpt-elead-nk930-6811', 'may-bo-6.png', 1, '[\"may-bo-1.png\",\"may-bo-2.png\",\"may-bo-3.png\"]', '7290000.00', '0.00', 'giới thiệu FPT ELEAD NK930 6811', '<p>chi tiết&nbsp;ACER ASPIRE TC-780 (DT.B89SV.005)</p>', NULL, 12, 16, '2018-02-27 18:08:03', '2018-02-27 18:08:03'),
+(17, '853917624', 'Samsung Galaxy Tab A SM-T285', 'metakeyword Tab A SM-T285', 'metadescription Tab A SM-T285', 'samsung-galaxy-tab-a-sm-t285', 'tablet-1.png', 1, '[\"tablet-2.png\",\"tablet-3.png\",\"tablet-4.png\"]', '3590000.00', '0.00', 'giới thiệu Tab A SM-T285', '<p>chi tiết&nbsp;Tab A SM-T285</p>', NULL, 13, 17, '2018-02-28 01:19:43', '2018-02-28 01:27:07'),
+(18, '423589176', 'Samsung Galaxy Tab E', 'metakeyword Samsung Galaxy Tab E', 'metadescription Samsung Galaxy Tab E', 'samsung-galaxy-tab-e', 'tablet-2.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-4.png\"]', '4490000.00', '0.00', 'giới thiệu Samsung Galaxy Tab E', '<p>chi tiết&nbsp;Samsung Galaxy Tab E</p>', NULL, 13, 18, '2018-02-28 01:24:19', '2018-02-28 01:27:14'),
+(19, '162954873', 'Samsung Galaxy Tab A 8.0 (2017) SM-T385', 'metakeyword Samsung Galaxy Tab A 8.0 (2017) SM-T385', 'metadescription Samsung Galaxy Tab A 8.0 (2017) SM-T385', 'samsung-galaxy-tab-a-80-2017-sm-t385', 'tablet-3.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-3.png\"]', '6490000.00', '0.00', 'giới thiệu Samsung Galaxy Tab A 8.0 (2017) SM-T385', '<p>chi tiết&nbsp;Samsung Galaxy Tab A 8.0 (2017) SM-T385</p>', NULL, 13, 19, '2018-02-28 01:26:12', '2018-02-28 01:27:23'),
+(20, '361459872', 'Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'metakeyword  Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'metadescription Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'samsung-galaxy-tab-a-2016-101-kem-but-spen', 'tablet-4.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-3.png\"]', '7990000.00', '0.00', 'giới thiệu Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', '<p>chi tiết&nbsp;Samsung Galaxy Tab A 2016 10.1 k&egrave;m b&uacute;t Spen</p>', NULL, 13, 20, '2018-02-28 01:29:15', '2018-02-28 01:29:15'),
+(21, '786354129', 'Ipad WI-FI 32GB Gold 2017', 'metakeyword Ipad WI-FI 32GB Gold 2017', 'metadescription Ipad WI-FI 32GB Gold 2017', 'ipad-wi-fi-32gb-gold-2017', 'tablet-5.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-4.png\"]', '8490000.00', '0.00', 'giới thiệu Ipad WI-FI 32GB Gold 2017', '<p>chi tiết&nbsp;Ipad WI-FI 32GB Gold 2017</p>', NULL, 13, 21, '2018-02-28 01:30:58', '2018-02-28 01:30:58'),
+(22, '971642538', 'Ipad WI-FI CELLULAR 32GB SILVER 2017', 'metakeyword Ipad WI-FI CELLULAR 32GB SILVER 2017', 'metadescription Ipad WI-FI CELLULAR 32GB SILVER 2017', 'ipad-wi-fi-cellular-32gb-silver-2017', 'tablet-6.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-5.png\"]', '12490000.00', '0.00', 'giới thiệu Ipad WI-FI CELLULAR 32GB SILVER 2017', '<p>chi tiết&nbsp;Ipad WI-FI CELLULAR 32GB SILVER 2017</p>', NULL, 13, 22, '2018-02-28 01:33:06', '2018-02-28 01:33:06'),
+(23, '129845673', 'Samsung Galaxy A8 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-a8-2018-vang', 'dien-thoai-1.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '0.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<p>chi tiết&nbsp;Samsung Galaxy A8 2018 V&agrave;ng</p>', NULL, 186, 23, '2018-02-28 01:47:16', '2018-02-28 01:47:16'),
+(24, '615342798', 'Samsung Galaxy A8 2018 Tím', 'metakeyword SAMSUNG GALAXY A8 2018 TÍM', 'metadescription SAMSUNG GALAXY A8 2018 TÍM', 'samsung-galaxy-a8-2018-tim', 'dien-thoai-2.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8 2018 TÍM', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8 2018 T&Iacute;M</p>', NULL, 186, 24, '2018-02-28 02:09:35', '2018-02-28 02:09:45'),
+(25, '932546187', 'Samsung Galaxy A8 2018 Đen', 'metakeyword SAMSUNG GALAXY A8+ 2018 ĐEN', 'metadescription SAMSUNG GALAXY A8+ 2018 ĐEN', 'samsung-galaxy-a8-2018-den', 'dien-thoai-3.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '13490000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8+ 2018 ĐEN', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8+ 2018 ĐEN</p>', NULL, 186, 25, '2018-02-28 02:11:23', '2018-02-28 02:11:23'),
+(26, '792483615', 'Samsung Galaxy S8 PLUS 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-s8-plus-2018-vang', 'dien-thoai-4.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-3.png\"]', '13490000.00', '0.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<p>chi tiết&nbsp;Samsung Galaxy A8 2018 V&agrave;ng</p>', NULL, 186, 26, '2018-02-28 02:13:36', '2018-02-28 02:13:36'),
+(27, '673518942', 'Samsung Galaxy S8 Đen', 'metakeyword Samsung Galaxy S8 Đen', 'metadescription Samsung Galaxy S8 Đen', 'samsung-galaxy-s8-den', 'dien-thoai-5.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '16490000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Đen', '<p>chi tiết&nbsp;Samsung Galaxy S8 Đen</p>', NULL, 186, 27, '2018-02-28 02:15:11', '2018-02-28 02:15:11'),
+(28, '532497168', 'Samsung Galaxy S8 Tím', 'metakeyword Samsung Galaxy S8 Tím', 'metadescription Samsung Galaxy S8 Tím', 'samsung-galaxy-s8-tim', 'dien-thoai-6.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '17990000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Tím', '<p>chi tiết&nbsp;Samsung Galaxy S8 T&iacute;m</p>', NULL, 186, 28, '2018-02-28 02:16:27', '2018-02-28 02:16:27'),
+(29, '814275639', 'Loa BLUETOOTH ROMAN Y15', 'metakeyword Loa BLUETOOTH ROMAN Y15', 'metadescription Loa BLUETOOTH ROMAN Y15', 'loa-bluetooth-roman-y15', 'phu-kien-1.png', 1, '[\"phu-kien-2.png\",\"phu-kien-3.png\",\"phu-kien-4.png\"]', '100000.00', '0.00', 'giới thiệu Loa BLUETOOTH ROMAN Y15', '<p>chi tiết&nbsp;Loa BLUETOOTH ROMAN Y15</p>', NULL, 15, 29, '2018-02-28 02:31:08', '2018-02-28 02:31:23'),
+(30, '742396185', 'Gậy Chụp Hình MONOPOD MINI', 'metakeyword Gậy Chụp Hình MONOPOD MINI', 'metadescription Gậy Chụp Hình MONOPOD MINI', 'gay-chup-hinh-monopod-mini', 'phu-kien-2.png', 1, '[\"phu-kien-1.png\",\"phu-kien-2.png\",\"phu-kien-3.png\"]', '20000.00', '0.00', 'giới thiệu Gậy Chụp Hình MONOPOD MINI', '<p>Chi tiết&nbsp;Gậy Chụp H&igrave;nh MONOPOD MINI</p>', NULL, 15, 30, '2018-02-28 02:33:36', '2018-02-28 02:33:36'),
+(31, '643592718', 'Pin Sạc Dự Phòng MICROTEK MT -502', 'metakeyword PIN SẠC DỰ PHÒNG MICROTEK MT -502', 'metadescription PIN SẠC DỰ PHÒNG MICROTEK MT -502', 'pin-sac-du-phong-microtek-mt-502', 'phu-kien-3.png', 1, '[\"phu-kien-1.png\",\"phu-kien-2.png\",\"phu-kien-4.png\"]', '100000.00', '0.00', 'giới thiệu PIN SẠC DỰ PHÒNG MICROTEK MT -502', '<p>chi tiết&nbsp;PIN SẠC DỰ PH&Ograve;NG MICROTEK MT -502</p>', NULL, 15, 31, '2018-02-28 02:35:42', '2018-02-28 02:35:58'),
+(32, '749632518', 'Cáp Màu MICRO REMAX', 'metakeyword CÁP MÀU MICRO REMAX', 'metadescription CÁP MÀU MICRO REMAX', 'cap-mau-micro-remax', 'phu-kien-4.png', 1, '[\"phu-kien-1.png\",\"phu-kien-2.png\",\"phu-kien-3.png\"]', '80000.00', '0.00', 'giới thiệu CÁP MÀU MICRO REMAX', '<p>chi tiết&nbsp;C&Aacute;P M&Agrave;U MICRO REMAX</p>', NULL, 15, 32, '2018-02-28 02:37:54', '2018-02-28 02:37:54'),
+(33, '671483925', 'Gậy Chụp Hình MACARON M2', 'metakeyword GẬY CHỤP HÌNH MACARON M2', 'metadescription GẬY CHỤP HÌNH MACARON M2', 'gay-chup-hinh-macaron-m2', 'phu-kien-5.png', 1, '[\"phu-kien-4.png\",\"phu-kien-3.png\",\"phu-kien-2.png\"]', '20000.00', '0.00', 'giới thiệu GẬY CHỤP HÌNH MACARON M2', '<p>chi tiết&nbsp;GẬY CHỤP HÌNH MACARON M2</p>', NULL, 15, 33, '2018-02-28 02:39:16', '2018-02-28 02:39:16'),
+(34, '613725498', 'Pin Sạc SUZUMI S-511', 'metakeyword SUZUMI S-511', 'metadescription SUZUMI S-511', 'pin-sac-suzumi-s-511', 'phu-kien-6.png', 1, '[\"phu-kien-2.png\",\"phu-kien-3.png\",\"phu-kien-4.png\"]', '139000.00', '0.00', 'giới thiệu SUZUMI S-511', '<p>chi tiết&nbsp;SUZUMI S-511</p>', NULL, 15, 34, '2018-02-28 02:41:21', '2018-02-28 02:42:59'),
+(35, '163597842', 'Tai Nghe PHILIPS SHE1350', 'metakeyword Miếng Dán Màn Hình Laptop 15.5\"', 'metadescription Miếng Dán Màn Hình Laptop 15.5\"', 'tai-nghe-philips-she1350', 'pk-may-tinh-1.png', 1, '[\"pk-may-tinh-2.png\",\"pk-may-tinh-3.png\",\"pk-may-tinh-4.png\"]', '49000.00', '0.00', 'giới thiệu Miếng Dán Màn Hình Laptop 15.5\"', '<p>chi tiết&nbsp;Miếng D&aacute;n M&agrave;n H&igrave;nh Laptop 15.5&quot;</p>', NULL, 16, 35, '2018-02-28 03:40:45', '2018-02-28 03:48:55'),
+(36, '324759816', 'Chuột KD KONIG KN915', 'metakeyword CHUỘT KD KONIG KN915', 'metadescription CHUỘT KD KONIG KN915', 'chuot-kd-konig-kn915', 'pk-may-tinh-2.png', 1, '[\"pk-may-tinh-1.png\",\"pk-may-tinh-3.png\",\"pk-may-tinh-4.png\"]', '89000.00', '0.00', 'giới thiệu CHUỘT KD KONIG KN915', '<p>chi tiết&nbsp;CHUỘT KD KONIG KN915</p>', NULL, 16, 36, '2018-02-28 03:44:03', '2018-02-28 03:44:03'),
+(37, '315294876', 'USB SANDISK 8GB CZ50 CRUZER GLIDE', 'metakeyword USB SANDISK 8GB CZ50 CRUZER GLIDE', 'metadescription USB SANDISK 8GB CZ50 CRUZER GLIDE', 'usb-sandisk-8gb-cz50-cruzer-glide', 'pk-may-tinh-3.png', 1, '[\"pk-may-tinh-1.png\",\"pk-may-tinh-2.png\",\"pk-may-tinh-4.png\"]', '89000.00', '0.00', 'giới thiệu USB SANDISK 8GB CZ50 CRUZER GLIDE', '<p>chi tiết&nbsp;USB SANDISK 8GB CZ50 CRUZER GLIDE</p>', NULL, 16, 37, '2018-02-28 03:45:18', '2018-02-28 03:45:27'),
+(38, '589643127', 'Ổ Cứng Di Động 8GB CZ50 CRUZER BLADE USB 2.0 SANDISK', 'metakeyword Ổ CỨNG DI ĐỘNG 8GB CZ50 CRUZER BLADE USB 2.0 SANDISK', 'metadescription Ổ CỨNG DI ĐỘNG 8GB CZ50 CRUZER BLADE USB 2.0 SANDISK', 'o-cung-di-dong-8gb-cz50-cruzer-blade-usb-20-sandisk', 'pk-may-tinh-4.png', 1, '[\"pk-may-tinh-1.png\",\"pk-may-tinh-2.png\",\"pk-may-tinh-3.png\"]', '89000.00', '0.00', 'giới thiệu Ổ CỨNG DI ĐỘNG 8GB CZ50 CRUZER BLADE USB 2.0 SANDISK', '<p>chi tiết&nbsp;Ổ CỨNG DI ĐỘNG 8GB CZ50 CRUZER BLADE USB 2.0 SANDISK</p>', NULL, 16, 38, '2018-02-28 03:47:44', '2018-02-28 03:47:57'),
+(39, '967324158', 'Miếng Dán Màn Hình LAPTOP 15.5\"', 'metakeyword Tai Nghe PHILIPS SHE1350', 'metadescription Tai Nghe PHILIPS SHE1350', 'mieng-dan-man-hinh-laptop-155', 'pk-may-tinh-5.png', 1, '[\"pk-may-tinh-2.png\",\"pk-may-tinh-3.png\",\"pk-may-tinh-4.png\"]', '49000.00', '0.00', 'giới thiệu Tai Nghe PHILIPS SHE1350', '<p>chi tiết&nbsp;Tai Nghe PHILIPS SHE1350</p>', NULL, 16, 39, '2018-02-28 03:50:58', '2018-02-28 03:50:58'),
+(40, '183954762', 'Headphone A4 TECH HS - 12', 'metakeyword HEADPHONE A4 TECH HS - 12', 'metadescription HEADPHONE A4 TECH HS - 12', 'headphone-a4-tech-hs-12', 'pk-may-tinh-6.png', 1, '[\"pk-may-tinh-3.png\",\"pk-may-tinh-4.png\",\"pk-may-tinh-5.png\"]', '50000.00', '0.00', 'giới thiệu HEADPHONE A4 TECH HS - 12', '<p>chi tiết&nbsp;HEADPHONE A4 TECH HS - 12</p>', NULL, 16, 40, '2018-02-28 03:52:21', '2018-02-28 04:00:40'),
+(41, '134682795', 'Loa ARIRANG JANT I', 'metakeyword Loa ARIRANG JANT I', 'metadescription Loa ARIRANG JANT I', 'loa-arirang-jant-i', 'loa-1.png', 1, '[\"loa-2.png\",\"loa-3.png\",\"loa-4.png\"]', '1990000.00', '0.00', 'giới thiệu Loa ARIRANG JANT I', '<p>chi tiết&nbsp;Loa ARIRANG JANT I</p>', NULL, 17, 41, '2018-02-28 04:30:37', '2018-02-28 04:30:37'),
+(42, '827963415', 'Loa RINTON RT-705', 'metakeyword Loa RINTON RT-705', 'metadescription Loa RINTON RT-705', 'loa-rinton-rt-705', 'loa-2.png', 1, '[\"loa-1.png\",\"loa-2.png\",\"loa-4.png\"]', '2490000.00', '0.00', 'giới thiệu Loa RINTON RT-705', '<p>chi tiết&nbsp;Loa RINTON RT-705</p>', NULL, 17, 42, '2018-02-28 04:32:19', '2018-02-28 04:32:49'),
+(43, '831425769', 'Máy Tăng Âm RINTON PA-7600', 'metakeyword MÁY TĂNG ÂM RINTON PA-7600', 'metadescription MÁY TĂNG ÂM RINTON PA-7600', 'may-tang-am-rinton-pa-7600', 'loa-3.png', 1, '[\"loa-1.png\",\"loa-2.png\",\"loa-4.png\"]', '2690000.00', '0.00', 'giới thiệu MÁY TĂNG ÂM RINTON PA-7600', '<p>chi tiết&nbsp;M&Aacute;Y TĂNG &Acirc;M RINTON PA-7600</p>', NULL, 17, 43, '2018-02-28 04:36:15', '2018-02-28 04:36:24'),
+(44, '928475136', 'Máy Tăng Âm ARIRANG SPA 203 III', 'metakeyword MÁY TĂNG ÂM ARIRANG SPA 203 III', 'metadescription MÁY TĂNG ÂM ARIRANG SPA 203 III', 'may-tang-am-arirang-spa-203-iii', 'loa-4.png', 1, '[\"loa-1.png\",\"loa-2.png\",\"loa-3.png\"]', '2490000.00', '0.00', 'giới thiệu MÁY TĂNG ÂM ARIRANG SPA 203 III', '<p>chi tiết&nbsp;M&Aacute;Y TĂNG &Acirc;M ARIRANG SPA 203 III</p>', NULL, 17, 44, '2018-02-28 04:37:28', '2018-02-28 04:37:28'),
+(45, '519438267', 'Loa Kéo RINTON PL-1', 'metakeyword Loa Kéo RINTON PL-1', 'metadescription Loa Kéo RINTON PL-1', 'loa-keo-rinton-pl-1', 'loa-5.png', 1, '[\"loa-2.png\",\"loa-3.png\",\"loa-4.png\"]', '4790000.00', '0.00', 'giới thiệu Loa Kéo RINTON PL-1', '<p>chi tiết&nbsp;Loa K&eacute;o RINTON PL-1</p>', NULL, 17, 45, '2018-02-28 04:42:31', '2018-02-28 04:43:07'),
+(46, '387621594', 'Loa BOSE ACOUSTIMASS 6 SERIES V', 'metakeyword LOA BOSE ACOUSTIMASS 6 SERIES V', 'metadescription LOA BOSE ACOUSTIMASS 6 SERIES V', 'loa-bose-acoustimass-6-series-v', 'loa-6.png', 1, '[\"loa-1.png\",\"loa-2.png\",\"loa-3.png\"]', '18760000.00', '0.00', 'giới thiệu LOA BOSE ACOUSTIMASS 6 SERIES V', '<p>chi tiết&nbsp;LOA BOSE ACOUSTIMASS 6 SERIES V</p>', NULL, 17, 46, '2018-02-28 04:44:11', '2018-02-28 04:45:43');
 
 -- --------------------------------------------------------
 
@@ -1594,7 +1595,78 @@ INSERT INTO `product_param` (`id`, `product_id`, `param_id`, `created_at`, `upda
 (22, 9, 10, '2018-02-27 05:02:45', '2018-02-27 05:02:45'),
 (23, 9, 54, '2018-02-27 05:02:45', '2018-02-27 05:02:45'),
 (24, 10, 10, '2018-02-27 05:03:46', '2018-02-27 05:03:46'),
-(25, 10, 54, '2018-02-27 05:03:46', '2018-02-27 05:03:46');
+(25, 10, 54, '2018-02-27 05:03:46', '2018-02-27 05:03:46'),
+(26, 11, 10, '2018-02-27 17:49:34', '2018-02-27 17:49:34'),
+(27, 11, 53, '2018-02-27 17:49:34', '2018-02-27 17:49:34'),
+(30, 12, 10, '2018-02-27 17:52:23', '2018-02-27 17:52:23'),
+(31, 12, 54, '2018-02-27 17:52:23', '2018-02-27 17:52:23'),
+(32, 13, 10, '2018-02-27 17:56:08', '2018-02-27 17:56:08'),
+(33, 13, 53, '2018-02-27 17:56:08', '2018-02-27 17:56:08'),
+(34, 14, 10, '2018-02-27 17:57:52', '2018-02-27 17:57:52'),
+(35, 14, 54, '2018-02-27 17:57:52', '2018-02-27 17:57:52'),
+(36, 15, 10, '2018-02-27 18:06:27', '2018-02-27 18:06:27'),
+(37, 15, 53, '2018-02-27 18:06:27', '2018-02-27 18:06:27'),
+(38, 16, 10, '2018-02-27 18:08:03', '2018-02-27 18:08:03'),
+(39, 16, 53, '2018-02-27 18:08:03', '2018-02-27 18:08:03'),
+(40, 17, 11, '2018-02-28 01:19:43', '2018-02-28 01:19:43'),
+(41, 17, 53, '2018-02-28 01:19:43', '2018-02-28 01:19:43'),
+(42, 18, 11, '2018-02-28 01:24:19', '2018-02-28 01:24:19'),
+(43, 18, 53, '2018-02-28 01:24:19', '2018-02-28 01:24:19'),
+(44, 19, 11, '2018-02-28 01:26:12', '2018-02-28 01:26:12'),
+(45, 19, 53, '2018-02-28 01:26:12', '2018-02-28 01:26:12'),
+(46, 20, 11, '2018-02-28 01:29:15', '2018-02-28 01:29:15'),
+(47, 20, 53, '2018-02-28 01:29:15', '2018-02-28 01:29:15'),
+(48, 21, 10, '2018-02-28 01:30:58', '2018-02-28 01:30:58'),
+(49, 21, 53, '2018-02-28 01:30:58', '2018-02-28 01:30:58'),
+(50, 22, 10, '2018-02-28 01:33:06', '2018-02-28 01:33:06'),
+(51, 22, 53, '2018-02-28 01:33:06', '2018-02-28 01:33:06'),
+(52, 23, 11, '2018-02-28 01:47:16', '2018-02-28 01:47:16'),
+(53, 23, 53, '2018-02-28 01:47:16', '2018-02-28 01:47:16'),
+(54, 24, 11, '2018-02-28 02:09:35', '2018-02-28 02:09:35'),
+(55, 24, 53, '2018-02-28 02:09:35', '2018-02-28 02:09:35'),
+(56, 25, 11, '2018-02-28 02:11:23', '2018-02-28 02:11:23'),
+(57, 25, 53, '2018-02-28 02:11:23', '2018-02-28 02:11:23'),
+(58, 26, 11, '2018-02-28 02:13:36', '2018-02-28 02:13:36'),
+(59, 26, 53, '2018-02-28 02:13:36', '2018-02-28 02:13:36'),
+(60, 27, 11, '2018-02-28 02:15:11', '2018-02-28 02:15:11'),
+(61, 27, 53, '2018-02-28 02:15:11', '2018-02-28 02:15:11'),
+(62, 28, 11, '2018-02-28 02:16:27', '2018-02-28 02:16:27'),
+(63, 28, 53, '2018-02-28 02:16:27', '2018-02-28 02:16:27'),
+(64, 29, 12, '2018-02-28 02:31:08', '2018-02-28 02:31:08'),
+(65, 29, 53, '2018-02-28 02:31:08', '2018-02-28 02:31:08'),
+(66, 30, 12, '2018-02-28 02:33:36', '2018-02-28 02:33:36'),
+(67, 30, 53, '2018-02-28 02:33:36', '2018-02-28 02:33:36'),
+(68, 31, 12, '2018-02-28 02:35:42', '2018-02-28 02:35:42'),
+(69, 31, 53, '2018-02-28 02:35:42', '2018-02-28 02:35:42'),
+(70, 32, 12, '2018-02-28 02:37:54', '2018-02-28 02:37:54'),
+(71, 32, 53, '2018-02-28 02:37:54', '2018-02-28 02:37:54'),
+(72, 33, 12, '2018-02-28 02:39:16', '2018-02-28 02:39:16'),
+(73, 33, 53, '2018-02-28 02:39:16', '2018-02-28 02:39:16'),
+(74, 34, 12, '2018-02-28 02:41:21', '2018-02-28 02:41:21'),
+(75, 34, 53, '2018-02-28 02:41:21', '2018-02-28 02:41:21'),
+(76, 35, 12, '2018-02-28 03:40:45', '2018-02-28 03:40:45'),
+(77, 35, 54, '2018-02-28 03:40:45', '2018-02-28 03:40:45'),
+(78, 36, 12, '2018-02-28 03:44:03', '2018-02-28 03:44:03'),
+(79, 36, 53, '2018-02-28 03:44:03', '2018-02-28 03:44:03'),
+(80, 37, 53, '2018-02-28 03:45:18', '2018-02-28 03:45:18'),
+(81, 38, 12, '2018-02-28 03:47:44', '2018-02-28 03:47:44'),
+(82, 38, 53, '2018-02-28 03:47:44', '2018-02-28 03:47:44'),
+(83, 39, 12, '2018-02-28 03:50:58', '2018-02-28 03:50:58'),
+(84, 39, 53, '2018-02-28 03:50:58', '2018-02-28 03:50:58'),
+(85, 40, 12, '2018-02-28 03:52:21', '2018-02-28 03:52:21'),
+(86, 40, 53, '2018-02-28 03:52:21', '2018-02-28 03:52:21'),
+(87, 41, 10, '2018-02-28 04:30:37', '2018-02-28 04:30:37'),
+(88, 41, 53, '2018-02-28 04:30:37', '2018-02-28 04:30:37'),
+(89, 42, 10, '2018-02-28 04:32:19', '2018-02-28 04:32:19'),
+(90, 42, 53, '2018-02-28 04:32:19', '2018-02-28 04:32:19'),
+(91, 43, 10, '2018-02-28 04:36:15', '2018-02-28 04:36:15'),
+(92, 43, 53, '2018-02-28 04:36:15', '2018-02-28 04:36:15'),
+(93, 44, 10, '2018-02-28 04:37:28', '2018-02-28 04:37:28'),
+(94, 44, 53, '2018-02-28 04:37:28', '2018-02-28 04:37:28'),
+(95, 45, 10, '2018-02-28 04:42:31', '2018-02-28 04:42:31'),
+(96, 45, 53, '2018-02-28 04:42:31', '2018-02-28 04:42:31'),
+(102, 46, 10, '2018-02-28 04:45:43', '2018-02-28 04:45:43'),
+(103, 46, 53, '2018-02-28 04:45:43', '2018-02-28 04:45:43');
 
 -- --------------------------------------------------------
 
@@ -2402,7 +2474,19 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 (509, 11, 'user', NULL, '2018-02-07 21:17:30', '2018-02-07 21:17:30'),
 (510, NULL, 'global', NULL, '2018-02-08 01:52:59', '2018-02-08 01:52:59'),
 (511, NULL, 'ip', '127.0.0.1', '2018-02-08 01:52:59', '2018-02-08 01:52:59'),
-(512, 1, 'user', NULL, '2018-02-08 01:52:59', '2018-02-08 01:52:59');
+(512, 1, 'user', NULL, '2018-02-08 01:52:59', '2018-02-08 01:52:59'),
+(513, NULL, 'global', NULL, '2018-02-27 10:23:13', '2018-02-27 10:23:13'),
+(514, NULL, 'ip', '127.0.0.1', '2018-02-27 10:23:13', '2018-02-27 10:23:13'),
+(515, 1, 'user', NULL, '2018-02-27 10:23:13', '2018-02-27 10:23:13'),
+(516, NULL, 'global', NULL, '2018-02-27 10:23:20', '2018-02-27 10:23:20'),
+(517, NULL, 'ip', '127.0.0.1', '2018-02-27 10:23:20', '2018-02-27 10:23:20'),
+(518, 1, 'user', NULL, '2018-02-27 10:23:20', '2018-02-27 10:23:20'),
+(519, NULL, 'global', NULL, '2018-02-27 10:23:27', '2018-02-27 10:23:27'),
+(520, NULL, 'ip', '127.0.0.1', '2018-02-27 10:23:27', '2018-02-27 10:23:27'),
+(521, 1, 'user', NULL, '2018-02-27 10:23:27', '2018-02-27 10:23:27'),
+(522, NULL, 'global', NULL, '2018-02-27 10:23:35', '2018-02-27 10:23:35'),
+(523, NULL, 'ip', '127.0.0.1', '2018-02-27 10:23:35', '2018-02-27 10:23:35'),
+(524, 1, 'user', NULL, '2018-02-27 10:23:35', '2018-02-27 10:23:35');
 
 -- --------------------------------------------------------
 
@@ -2433,7 +2517,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `address`, `phone`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-02-26 20:13:38', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-02-26 20:13:38'),
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-02-27 17:47:18', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-02-27 17:47:18'),
 (6, 'helenangochong', 'helenangoc@dienkim.com', '$2y$10$/cSr2zKOI5RUAo9XD2K5DuVwB554IWn3k16RwF37pFSxYFouMOmbi', NULL, '2018-01-26 04:32:49', 'Hồ Thị Ngọc Hồng', '12 Tân Canh', '0988162755', NULL, 3, 0, '2018-01-26 01:57:35', '2018-02-04 08:08:20'),
 (7, 'langong', 'thaithuonglangong@dienkim.com', '$2y$10$W38P0cEq8qVYSiXYAKQVCOKb7ZkN4t7uN1trgm38V2wSKjtacybxe', NULL, '2018-01-28 09:54:51', 'Thái Thượng Lãng Ông', '13 Tân Canh', '0988162774', NULL, 4, 0, '2018-01-28 09:40:59', '2018-02-04 08:08:20'),
 (8, 'tiennv', 'tiennv@dienkim.com', '$2y$10$9sq3u.mDu/Bk1vvpv4sU7.Ior67wjHR5n1slgsv/sz63zBQxAfZ4K', NULL, '2018-02-23 01:16:10', 'Nguyễn Văn Tiến', '14 Tân Canh', '0988152782', NULL, 5, 0, '2018-02-05 20:06:26', '2018-02-23 01:16:10'),
@@ -2564,12 +2648,6 @@ ALTER TABLE `category_product`
 -- Chỉ mục cho bảng `category_video`
 --
 ALTER TABLE `category_video`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `customer`
---
-ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2822,12 +2900,6 @@ ALTER TABLE `category_video`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `customer`
---
-ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT cho bảng `district`
 --
 ALTER TABLE `district`
@@ -2897,7 +2969,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=639;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=643;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`
@@ -2915,13 +2987,13 @@ ALTER TABLE `privilege`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT cho bảng `product_param`
 --
 ALTER TABLE `product_param`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT cho bảng `project`
@@ -2975,7 +3047,7 @@ ALTER TABLE `supporter`
 -- AUTO_INCREMENT cho bảng `throttle`
 --
 ALTER TABLE `throttle`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=513;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=525;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
