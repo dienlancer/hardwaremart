@@ -1957,6 +1957,35 @@ form[name='frm-search'] input[name='q']{
     -moz-osx-font-smoothing: grayscale;
     
 }
+.kh-checkout{
+   display: inline-block;
+    background: #d54d4d;
+    text-align: center;
+    color: #ffffff;
+    padding: 7px 96px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;
+}
+.kh-mua-them{
+        display: inline-block;
+    background: #03a9c0;
+    text-align: center;
+    color: #ffffff;
+    padding: 7px 95px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;
+}
+.kh-checkout:hover,.kh-mua-them:hover{
+    background: #333;
+    color: #ffffff;
+}
+.pdetail-price-on{
+        color: #F00;
+    font-weight: bold;
+    font-size: 25px;
+}
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;

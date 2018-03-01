@@ -41,7 +41,7 @@ if(count($item) > 0){
         <div class="breadcrumb-title margin-top-15">
             <?php echo $breadcrumb; ?>
         </div>
-        <form name="frm-product-detail" method="POST" enctype="multipart/form-data">
+        
         	{{ csrf_field() }}            
             <div class="col-lg-4 no-padding-left">
                 <div class="margin-top-15">
@@ -117,7 +117,7 @@ if(count($item) > 0){
                 		$price_off_html='<span class="price-detail-off">Giá cũ: '.fnPrice($price).'</span>' ;                 
                 		$html_price='<div class="col-lg-4 no-padding-left">'.$price_on_html.'</div><div class="col-lg-8">'.$price_off_html.'</div><div class="clr"></div>'  ;              
                 	}else{
-                		$html_price='<span class="price-on">'.fnPrice($price).'</span>' ;                  
+                		$html_price='<span class="pdetail-price-on">'.fnPrice($price).'</span>' ;                  
                 	}   	
                 	echo $html_price;
                 	?>
@@ -221,24 +221,30 @@ if(count($item) > 0){
                     }                     
                     ?>                
                 </div>    
-                <div class="margin-top-15">
-                    <div class="ttkh">Thông tin khách hàng</div>
+                <form name="frm-product-detail" method="POST" enctype="multipart/form-data">
                     <div class="margin-top-15">
-                        <input type="text" class="ttkh-text" name="customer_name" value="" placeholder="Tên người nhận">
-                    </div>
-                    <div class="margin-top-15">
-                        <input type="text" class="ttkh-text" name="customer_telephone" value="" placeholder="Số điện thoại">
-                    </div>
-                    <div class="margin-top-15">
-                        <input type="text" class="ttkh-text" name="customer_address" value="" placeholder="Địa chỉ">
-                    </div>
-                    <div class="margin-top-15">
-                        <input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
-                    </div>
-                </div>                                               
+                        <div class="ttkh">Thông tin khách hàng</div>
+                        <div class="margin-top-15">
+                            <input type="text" class="ttkh-text" name="customer_name" value="" placeholder="Tên người nhận">
+                        </div>
+                        <div class="margin-top-15">
+                            <input type="text" class="ttkh-text" name="customer_telephone" value="" placeholder="Số điện thoại">
+                        </div>
+                        <div class="margin-top-15">
+                            <input type="text" class="ttkh-text" name="customer_address" value="" placeholder="Địa chỉ">
+                        </div>
+                        <div class="margin-top-15">
+                            <input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
+                        </div>
+                        <div class="margin-top-15">
+                            <a href="javascript:void(0);" class="kh-checkout">Thanh toán</a>
+                            <a href="javascript:void(0);" class="kh-mua-them">Mua thêm</a>
+                        </div>
+                    </div>                                               
+                </form>                
     </div>
     <div class="clr"></div>
-</form>        
+
         <div class="margin-top-15">
             <script type="text/javascript" language="javascript">
                 function openCity(evt, cityName) {    
