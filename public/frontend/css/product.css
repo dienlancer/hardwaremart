@@ -177,7 +177,7 @@ font-family: "JosefinSlab-BoldItalic";
     .com_product15:hover{
         background: #efefef
     }
-    .com_product16 > thead > tr > th{
+    .com_product16 > thead > tr > th,.com_product16 > thead > tr > td{
         background: #F4F4F4;
 
     }
@@ -185,7 +185,7 @@ font-family: "JosefinSlab-BoldItalic";
         background: #FFFFFF;
 
     }
-    .com_product16 > thead > tr >  th , .com_product16 > tbody > tr  > td {
+    .com_product16 > thead > tr >  th,.com_product16 > thead > tr >  td , .com_product16 > tbody > tr  > td {
         border-right : solid 1px rgb(223, 223, 223) ;
         border-bottom : solid 1px rgb(223, 223, 223);
         padding: 4px 10px;

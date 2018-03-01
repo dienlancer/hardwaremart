@@ -168,70 +168,66 @@ if(count($item) > 0){
                             }
                         }                        
                     }   
-                	?>                
-                	<!-- end xuất xứ -->                    	
+                    ?>                
+                    <!-- end xuất xứ -->                    	
                 </div>   
                 <div class="margin-top-15">
-                    <a href="javascript:void(0);"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
                     </a>                    
-                </div>   
-                <div class="margin-top-15">
-                    <div>
-                        <div class="col-xs-2">
-                            <div><img src="<?php echo asset('upload/dien-thoai-1.png'); ?>"></div>
-                        </div>
-                        <div class="col-xs-8">
-                            <div>Beats Solo 2 Wireless (Nobox mới 100%)</div>
-                            <div class="input-group pdetail-quantity">
-                              <span class="input-group-btn">
-                                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                      <span class="glyphicon glyphicon-minus"></span>
-                                  </button>
-                              </span>
-                              <input type="text" name="quant[1]" class="form-control  input-number" value="1" min="1" max="20">
-                              <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                                  <span class="glyphicon glyphicon-plus"></span>
-                              </button>
-                          </span>
-                            </div>
-                      </div>
-                      <div class="col-xs-2">
-                        <div>2.999.000</div>
-                        <div><a href="javascript:void(0);"><i class="far fa-trash-alt"></i><span class="margin-left-5">Xóa</span></a></div>
-                      </div>
-                      <div class="clr"></div>
-                </div>
-                <div>
-                        <div class="col-xs-2">
-                            <div><img src="<?php echo asset('upload/dien-thoai-1.png'); ?>"></div>
-                        </div>
-                        <div class="col-xs-8">
-                            <div>Beats Solo 2 Wireless (Nobox mới 100%)</div>
-                            <div class="input-group pdetail-quantity">
-                              <span class="input-group-btn">
-                                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                      <span class="glyphicon glyphicon-minus"></span>
-                                  </button>
-                              </span>
-                              <input type="text" name="quant[1]" class="form-control  input-number" value="1" min="1" max="20">
-                              <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                                  <span class="glyphicon glyphicon-plus"></span>
-                              </button>
-                          </span>
-                            </div>
-                      </div>
-                      <div class="col-xs-2">
-                        <div>2.999.000</div>
-                        <div><a href="javascript:void(0);"><i class="far fa-trash-alt"></i><span class="margin-left-5">Xóa</span></a></div>
-                      </div>
-                      <div class="clr"></div>
-                </div>
-            </div>                             
-            </div>
-            <div class="clr"></div>
-        </form>        
+                </div>  
+                <div class="margin-top-5 x-table-cart">
+                    <?php 
+                    $ssName="vmart";
+                    $arrCart=array();
+                    if(Session::has($ssName)){
+                        $arrCart=Session::get($ssName);    
+                        if(count($arrCart)){    
+                            ?>
+                            <table  class="com_product16" cellpadding="0" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>    
+                                        <th width="50%">Sản phẩm</th>
+
+                                        <th><center>SL</center></th>
+                                        <th width="20%"><center>Tổng giá</center></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    foreach ($arrCart as $cart_key => $cart_value) {
+                                        $cart_product_id=$cart_value['product_id'];
+                                        $cart_product_code=$cart_value['product_code'];
+                                        $cart_product_name=$cart_value['product_name'];
+                                        $cart_product_alias=$cart_value['product_alias'];
+                                        $cart_product_link               =   route('frontend.index.index',[$cart_product_alias]);    
+                                        $cart_product_image=$cart_value['product_image'];
+                                        $cart_product_price_text         =   fnPrice($cart_value["product_price"]);
+                                        $cart_product_total_price_text   =   fnPrice($cart_value["product_total_price"]);
+                                        $cart_product_quantity           =   $cart_value["product_quantity"];
+                                        $cart_img=get_product_thumbnail($cart_product_image);                                        
+                                        ?>      
+                                        <tr>            
+                                            <td class="com_product20"><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></td>
+
+                                            <td align="center" class="com_product22"><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">        
+                                            </td>
+                                            <td align="right" class="com_product23"><?php echo $cart_product_total_price_text; ?></td>
+                                            <td align="center" class="com_product24"><a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>                          
+                                        <?php
+                                    }         
+                                    ?>
+                                </tbody>
+                            </table>           
+                            <?php                                                                   
+                        }
+                    }                     
+                    ?>                
+                </div>                                                   
+    </div>
+    <div class="clr"></div>
+</form>        
         <div class="margin-top-15">
             <script type="text/javascript" language="javascript">
                 function openCity(evt, cityName) {    
@@ -428,7 +424,47 @@ if(count($item) > 0){
             data: dataItem,
             async: false,
             success: function (data) {
-                console.log(data);
+                var data_cart=data.cart;
+                var xtable = document.createElement("TABLE");
+                var xheader = xtable.createTHead();
+                var xrow=xheader.insertRow(0);
+                var xcell_product_name=xrow.insertCell(0);
+                var xcell_product_quantity=xrow.insertCell(1);
+                var xcell_product_total_price=xrow.insertCell(2);
+                var xcell_product_delete=xrow.insertCell(3);
+                xcell_product_name.innerHTML='Sản phẩm';
+                xcell_product_quantity.innerHTML='<center>SL</center>';
+                xcell_product_total_price.innerHTML='<center>Tổng giá</center';
+                var xtbody=xtable.createTBody();                
+                var i=0;
+                $.each( data_cart, function( key, value ) {
+                    var cart_product_id=value.product_id;
+                    var cart_product_code=value.product_code;
+                    var cart_product_name=value.product_name;
+                    var cart_product_quantity=value.product_quantity;
+                    var cart_product_total_price=value.product_total_price;  
+                    var cart_product_total_price_text=    accounting.formatMoney(cart_product_total_price, "", 0, ".",",") + ' đ';
+                    var xNewRow   = xtbody.insertRow(i);    
+                    var cell_product_name=xNewRow.insertCell(0);
+                    var cell_product_quantity=xNewRow.insertCell(1);
+                    var cell_product_total_price=xNewRow.insertCell(2);
+                    $(cell_product_total_price).attr('align','right');
+                    var cell_product_delete=xNewRow.insertCell(3);
+                    cell_product_name.innerHTML=cart_product_name;
+                    cell_product_quantity.innerHTML='<input type="text" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">' ;
+                    cell_product_total_price.innerHTML= cart_product_total_price_text;
+                    cell_product_delete.innerHTML='<a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                    i++;
+                });
+                $(xtable).addClass('com_product16');
+                $(xtable).attr('cellpadding','0');
+                $(xtable).attr('cellspacing','0');
+                $(xtable).attr("width","100%");
+                $('.x-table-cart').empty();
+                $('.x-table-cart').append(xtable);
+                var thong_bao='Sản phẩm đã được thêm vào trong <a href="'+data.permalink+'" class="comproduct49" >giỏ hàng</a> ';                       
+                $(".modal-body").empty();              
+                $(".modal-body").append(thong_bao);
             },
             error : function (data){
                 
@@ -438,7 +474,7 @@ if(count($item) > 0){
             },
         });
     }
-    $( document ).ready(function() {
+    /*$( document ).ready(function() {
         $('.input-group-btn .btn-number').click(function(e){
             e.preventDefault();
 
@@ -514,5 +550,5 @@ if(count($item) > 0){
                 e.preventDefault();
             }
         });
-    });
+    });*/
 </script> 
