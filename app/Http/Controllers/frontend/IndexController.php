@@ -523,7 +523,7 @@ class IndexController extends Controller {
         $meta_description=$category['meta_description'];
       }
     }    
-    \Artisan::call('sitemap:auto');
+    \Artisan::call('sitemap:auto');    
     return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","category"));   
                                
   }
@@ -1475,10 +1475,10 @@ class IndexController extends Controller {
               }                  
       }
       public function addToCart(Request $request){
-          $id=$request->id;
-          $quantity=$request->quantity;   
-          $data=ProductModel::find((int)$id);          
-          $product_id=(int)($data['id']);
+          $id=@$request->id;
+          $quantity=@$request->quantity;   
+          $data=ProductModel::find((int)@$id);          
+          $product_id=(int)(@$data['id']);
           $product_code=$data["code"];
           $product_name=$data["fullname"];
           $product_alias=$data["alias"];
@@ -1529,7 +1529,7 @@ class IndexController extends Controller {
           }    
           $dataReturn=array(
                             'quantity'=>$total_quantity,
-                            'permalink'=>route('frontend.index.viewCart')
+                            'cart'=>$arrCart
                           );
         return $dataReturn;
       }       

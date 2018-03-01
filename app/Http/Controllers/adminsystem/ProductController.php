@@ -102,6 +102,8 @@ class ProductController extends Controller {
             $price                =   trim($request->price);   
             $sale_price           =   trim($request->sale_price);                    
             $detail               =   trim($request->detail);
+            $technical_detail               =   trim($request->technical_detail);
+            $video_id = trim($request->video_id);
             $intro                =   trim($request->intro);
             $image_hidden         =   trim($request->image_hidden);  
             $child_image          =   trim($request->child_image);                    
@@ -196,7 +198,9 @@ class ProductController extends Controller {
           $item->status           = (int)@$status; 
           $item->price            = (int)(str_replace('.', '',@$price)) ;
           $item->sale_price       = (int)(str_replace('.', '',@$sale_price)) ;                                 
-          $item->detail           = $detail;       
+          $item->detail           = $detail;  
+          $item->technical_detail           = $technical_detail;    
+          $item->video_id = $video_id;   
           $item->intro            = $intro;  
           $item->category_id      = (int)@$category_id;                                      
           $item->sort_order 	    =	(int)@$sort_order;                

@@ -6,8 +6,8 @@ $linkSave               =   route('adminsystem.'.$controller.'.save');
 $linkUploadFile         =   route('adminsystem.'.$controller.'.uploadFile');
 $linkCreateAlias        =   route('adminsystem.'.$controller.'.createAlias');
 
-$inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"  onblur="createAlias()"     value="'.@$arrRowData['fullname'].'">';
-$inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"    disabled      value="'.@$arrRowData['alias'].'">'; 
+$inputFullName          =   '<input type="text" class="form-control" name="fullname"    onblur="createAlias()"     value="'.@$arrRowData['fullname'].'">';
+$inputAlias             =   '<input type="text" class="form-control" name="alias"     disabled      value="'.@$arrRowData['alias'].'">'; 
  
 $inputMetakeyword             =   '<textarea id="meta_keyword" name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
 $inputMetadescription             =   '<textarea id="meta_description" name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
@@ -18,6 +18,8 @@ $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 =
 $ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
 $inputIntro            =   '<textarea  name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
 $inputDetail            =   '<textarea name="detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['detail'].'</textarea>'; 
+$inputTechnicalDetail            =   '<textarea name="technical_detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['technical_detail'].'</textarea>'; 
+$inputVideoId          =   '<input type="text" class="form-control" name="video_id"       value="'.@$arrRowData['video_id'].'">';
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
 
 $ddlCategoryProduct      =   cmsSelectboxCategory("category_id","category_id","form-control",$arrCategoryProductRecursive,@$arrRowData['category_id'],"");
@@ -222,6 +224,30 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
                 </div> 
                 <div class="row">
                     <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>VideoID</b></label>
+                        <div class="col-md-10">                            
+                            <?php echo $inputVideoId; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>     
+                </div> 
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Chi tiết kỹ thuật</b></label>
+                        <div class="col-md-10">                            
+                            <?php echo $inputTechnicalDetail; ?>
+                            <span class="help-block"></span>
+                            <script type="text/javascript" language="javascript">
+                                CKEDITOR.replace('technical_detail',{
+                                   height:300
+                               });
+                           </script>
+                           <span class="help-block"></span>
+                       </div>
+                   </div>                       
+                </div> 
+                <div class="row">
+                    <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Chi tiết</b></label>
                         <div class="col-md-10">                            
                             <?php echo $inputDetail; ?>
@@ -325,7 +351,9 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         var price=$('input[name="price"]').val();
         var sale_price=$('input[name="sale_price"]').val();       
         var intro=$('textarea[name="intro"]').val(); 
-        var detail=CKEDITOR.instances['detail'].getData();                
+        var detail=CKEDITOR.instances['detail'].getData(); 
+        var technical_detail=CKEDITOR.instances['technical_detail'].getData();                
+        var video_id=$('input[name="video_id"]').val();
         var sort_order=$('input[name="sort_order"]').val();        
         var token = $('input[name="_token"]').val();   
         resetErrorStatus();
@@ -343,6 +371,8 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             "sale_price":sale_price,            
             "intro":intro,
             "detail":detail,
+            "technical_detail":technical_detail,
+            "video_id":video_id,
             "category_id":category_id,    
             "category_param_id":category_param_id,                      
             "child_image":child_image,            

@@ -6,11 +6,13 @@ use App\CategoryProductModel;
 use App\GroupMemberModel;
 use Illuminate\Support\Facades\DB;
 $setting=getSettingSystem();
-if(count($item) > 0){
+if(count($item) > 0){        
 	$id=$item["id"];
 	$fullname = $item["fullname"];
 	$intro=$item["intro"];
-	$detail=$item['detail'];  
+	$detail=$item['detail'];
+    $technical_detail=$item['technical_detail'];  
+    $video_id=$item['video_id'];
 	$small_img=get_product_thumbnail($item['image']);
 	$large_img=asset('upload/'.$item['image']) ;
 	/* begin cập nhật count view */
@@ -43,7 +45,9 @@ if(count($item) > 0){
         	{{ csrf_field() }}            
             <div class="col-lg-4 no-padding-left">
                 <div class="margin-top-15">
-                    <div class="image-detail"><img class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" /></div>
+                    <div class="pdetail-chipu">
+                        <div class="image-detail"><img class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" /></div>
+                    </div>                    
                 </div>
                 <?php 
                 if(count($arrPicture) > 0){
@@ -54,7 +58,7 @@ if(count($item) > 0){
                 				$(".prodetail").owlCarousel({
                 					autoplay:true,                    
                 					loop:true,
-                					margin:5,                        
+                					margin:2,                        
                 					nav:true,            
                 					mouseDrag: true,
                 					touchDrag: true,                                
@@ -83,7 +87,7 @@ if(count($item) > 0){
                 				$small_thumbnail=asset('/upload/'.$product_width.'x'.$product_height.'-'.$arrPicture[$i]);    
                 				$large_thumbnail=asset('/upload/'.$arrPicture[$i]);                            
                 				?>
-                				<div>									
+                				<div class="pdetail-chipu">									
                 					<a href="javascript:void(0)" onclick="changeImage('<?php echo $small_thumbnail; ?>','<?php echo $large_thumbnail; ?>');"><img  src="<?php echo $small_thumbnail; ?>" width="<?php echo (int)$product_width/5; ?>" /></a>									                                        
                 				</div>
                 				<?php                                    
@@ -109,319 +113,187 @@ if(count($item) > 0){
                 	$sale_price=$item['sale_price'];
                 	$html_price='';                     
                 	if((int)@$sale_price > 0){              
-                		$price_on_html ='<span class="price-detail-on">'.fnPrice($sale_price).'</span>';
+                		$price_on_html ='<span class="pdetail-price-detail-on">'.fnPrice($sale_price).'</span>';
                 		$price_off_html='<span class="price-detail-off">Giá cũ: '.fnPrice($price).'</span>' ;                 
-                		$html_price='<div class="col-lg-2 no-padding-left">'.$price_on_html.'</div><div class="col-lg-10">'.$price_off_html.'</div><div class="clr"></div>'  ;              
+                		$html_price='<div class="col-lg-4 no-padding-left">'.$price_on_html.'</div><div class="col-lg-8">'.$price_off_html.'</div><div class="clr"></div>'  ;              
                 	}else{
                 		$html_price='<span class="price-on">'.fnPrice($price).'</span>' ;                  
                 	}   	
                 	echo $html_price;
                 	?>
-                </div>
+                </div>                
                 <div class="box-product-param">
-                	{{ csrf_field() }}
                 	<!-- begin xuất xứ -->
                 	<?php 
-                	$dataParamFather=CategoryParamModel::whereRaw('alias = ?',['xuat-xu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                	if(count($dataParamFather) > 0){
-                		$dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                		$arr_id=array();
-                		if(count($dataParamChildren) > 0){
-                			foreach ($dataParamChildren as $key => $value){
-                				$arr_id[]=(int)@$value['id'];
-                			}
-                			$dataParam=DB::table('product_param')
-                			->whereIn('product_param.param_id',$arr_id)
-                			->where('product_param.product_id',(int)@$id)
-                			->select('id')
-                			->get()
-                			->toArray();
-                			if(count($dataParam) > 0){
-                				?>
-                				<div >
-                					<div class="col-lg-2 no-padding-left"><b>Xuất xứ</b></div>
-                					<div class="col-lg-10">
-                						<?php 
-                						foreach ($dataParamChildren as $key => $value) {
-                							$dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
-                							if(count($dataParam) > 0){
-                								?><div class="block-text"><?php echo $value['fullname']; ?></div><?php
-                							}
-                						}
-                						?>
-                					</div> 
-                					<div class="clr"></div>               	
-                				</div>
-                				<?php
-                			}
-                		}
-                		?>                	
-                		<?php
-                	}
+                    $data_pram=CategoryParamModel::whereRaw('parent_id = 0')->select('id','fullname','alias')->orderBy('sort_order','asc')->get()->toArray();
+                    if(count($data_pram) > 0){
+                        foreach ($data_pram as $prm_key => $parm_value) {
+                            $parm_alias=$parm_value['alias'];
+                            $parm_fullname=$parm_value['fullname'];
+                            $dataParamFather=CategoryParamModel::whereRaw('alias = ?',[$parm_alias])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+                            if(count($dataParamFather) > 0){
+                                $dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                                $arr_id=array();
+                                if(count($dataParamChildren) > 0){
+                                    foreach ($dataParamChildren as $prm_child_key => $prm_value){
+                                        $arr_id[]=(int)@$prm_value['id'];
+                                    }
+                                    $dataParam=DB::table('product_param')
+                                    ->whereIn('product_param.param_id',$arr_id)
+                                    ->where('product_param.product_id',(int)@$id)
+                                    ->select('id')
+                                    ->get()
+                                    ->toArray();
+                                    if(count($dataParam) > 0){
+                                        ?>
+                                        <div class="padding-top-10">
+                                            <div class="col-lg-3 no-padding-left"><b><?php echo $parm_fullname; ?></b></div>
+                                            <div class="col-lg-9">
+                                                <?php 
+                                                foreach ($dataParamChildren as $key => $value) {
+                                                    $dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
+                                                    if(count($dataParam) > 0){
+                                                        ?><div class="block-text"><?php echo $value['fullname']; ?></div><?php
+                                                    }
+                                                }
+                                                ?>
+                                            </div> 
+                                            <div class="clr"></div>                 
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>                  
+                                <?php
+                            }
+                        }                        
+                    }   
                 	?>                
-                	<!-- end xuất xứ -->    
-                	<!-- begin thương hiệu -->
-                	<?php 
-                	$dataParamFather=CategoryParamModel::whereRaw('alias = ?',['thuong-hieu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                	if(count($dataParamFather) > 0){
-                		$dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                		$arr_id=array();
-                		if(count($dataParamChildren) > 0){
-                			foreach ($dataParamChildren as $key => $value){
-                				$arr_id[]=(int)@$value['id'];
-                			}
-                			$dataParam=DB::table('product_param')
-                			->whereIn('product_param.param_id',$arr_id)
-                			->where('product_param.product_id',(int)@$id)
-                			->select('id')
-                			->get()
-                			->toArray();
-                			if(count($dataParam) > 0){
-                				?>
-                				<div class="margin-top-10">
-                					<div class="col-lg-2 no-padding-left"><b>Thương hiệu</b></div>
-                					<div class="col-lg-10">
-                						<?php 
-                						foreach ($dataParamChildren as $key => $value) {
-                							$dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
-                							if(count($dataParam) > 0){
-                								?><div class="block-text"><?php echo $value['fullname']; ?></div><?php
-                							}
-                						}
-                						?>
-                					</div> 
-                					<div class="clr"></div>               	
-                				</div>
-                				<?php
-                			}
-                		}
-                		?>                	
-                		<?php
-                	}
-                	?>                
-                	<!-- end thương hiệu --> 
-                	<!-- begin chất liệu -->
-                	<?php 
-                	$dataParamFather=CategoryParamModel::whereRaw('alias = ?',['chat-lieu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                	if(count($dataParamFather) > 0){
-                		$dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                		$arr_id=array();
-                		if(count($dataParamChildren) > 0){
-                			foreach ($dataParamChildren as $key => $value){
-                				$arr_id[]=(int)@$value['id'];
-                			}
-                			$dataParam=DB::table('product_param')
-                			->whereIn('product_param.param_id',$arr_id)
-                			->where('product_param.product_id',(int)@$id)
-                			->select('id')
-                			->get()
-                			->toArray();
-                			if(count($dataParam) > 0){
-                				?>
-                				<div class="margin-top-10">
-                					<div class="col-lg-2 no-padding-left"><b>Chất liệu</b></div>
-                					<div class="col-lg-10">
-                						<?php 
-                						foreach ($dataParamChildren as $key => $value) {
-                							$dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
-                							if(count($dataParam) > 0){
-                								?><div class="block-text"><?php echo $value['fullname']; ?></div><?php
-                							}
-                						}
-                						?>
-                					</div> 
-                					<div class="clr"></div>               	
-                				</div>
-                				<?php
-                			}
-                		}
-                		?>                	
-                		<?php
-                	}
-                	?>                
-                	<!-- end chất liệu --> 
-                	<!-- begin Nhà thiết kế -->
-                	<?php 
-                	$dataParamFather=CategoryParamModel::whereRaw('alias = ?',['nha-thiet-ke'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                	if(count($dataParamFather) > 0){
-                		$dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                		$arr_id=array();
-                		if(count($dataParamChildren) > 0){
-                			foreach ($dataParamChildren as $key => $value){
-                				$arr_id[]=(int)@$value['id'];
-                			}
-                			$dataParam=DB::table('product_param')
-                			->whereIn('product_param.param_id',$arr_id)
-                			->where('product_param.product_id',(int)@$id)
-                			->select('id')
-                			->get()
-                			->toArray();
-                			if(count($dataParam) > 0){
-                				?>
-                				<div class="margin-top-10">
-                					<div class="col-lg-2 no-padding-left"><b>Nhà thiết kế</b></div>
-                					<div class="col-lg-10">
-                						<?php 
-                						foreach ($dataParamChildren as $key => $value) {
-                							$dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
-                							if(count($dataParam) > 0){
-                								?><div class="block-text"><?php echo $value['fullname']; ?></div><?php
-                							}
-                						}
-                						?>
-                					</div> 
-                					<div class="clr"></div>               	
-                				</div>
-                				<?php
-                			}
-                		}
-                		?>                	
-                		<?php
-                	}
-                	?>                
-                	<!-- end Nhà thiết kế --> 
-                	<!-- begin đơn vị -->
-                	<?php 
-                	$dataParamFather=CategoryParamModel::whereRaw('alias = ?',['don-vi'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                	if(count($dataParamFather) > 0){
-                		$dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                		$arr_id=array();
-                		if(count($dataParamChildren) > 0){
-                			foreach ($dataParamChildren as $key => $value){
-                				$arr_id[]=(int)@$value['id'];
-                			}
-                			$dataParam=DB::table('product_param')
-                			->whereIn('product_param.param_id',$arr_id)
-                			->where('product_param.product_id',(int)@$id)
-                			->select('id')
-                			->get()
-                			->toArray();
-                			if(count($dataParam) > 0){
-                				?>
-                				<div class="margin-top-10">
-                					<div class="col-lg-2 no-padding-left"><b>Đơn vị</b></div>
-                					<div class="col-lg-10">
-                						<?php 
-                						foreach ($dataParamChildren as $key => $value) {
-                							$dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
-                							if(count($dataParam) > 0){
-                								?><div class="block-text"><?php echo $value['fullname']; ?></div><?php
-                							}
-                						}
-                						?>
-                					</div> 
-                					<div class="clr"></div>               	
-                				</div>
-                				<?php
-                			}
-                		}
-                		?>                	
-                		<?php
-                	}
-                	?>                
-                	<!-- end đơn vị -->   
-                	<!-- begin màu -->
-                	<?php 
-                	$dataParamFather=CategoryParamModel::whereRaw('alias = ?',['mau'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                	if(count($dataParamFather) > 0){
-                		$dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                		$arr_id=array();
-                		if(count($dataParamChildren) > 0){
-                			foreach ($dataParamChildren as $key => $value){
-                				$arr_id[]=(int)@$value['id'];
-                			}
-                			$dataParam=DB::table('product_param')
-                			->whereIn('product_param.param_id',$arr_id)
-                			->where('product_param.product_id',(int)@$id)
-                			->select('id')
-                			->get()
-                			->toArray();
-                			if(count($dataParam) > 0){
-                				?>
-                				<div class="margin-top-10">
-                					<div class="col-lg-2 no-padding-left"><b>Màu</b></div>
-                					<div class="col-lg-10">
-                						<?php 
-                						foreach ($dataParamChildren as $key => $value) {
-                							$dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
-                							if(count($dataParam) > 0){
-                								?><div class="block-color" style="background: <?php echo $value['param_value']; ?>"></div><?php
-                							}
-                						}
-                						?>
-                					</div> 
-                					<div class="clr"></div>               	
-                				</div>
-                				<?php
-                			}
-                		}
-                		?>                	
-                		<?php
-                	}
-                	?>                
-                	<!-- end màu -->  
-                	<!-- begin kích thước -->
-                	<?php 
-                	$dataParamFather=CategoryParamModel::whereRaw('alias = ?',['kich-thuoc'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                	if(count($dataParamFather) > 0){
-                		$dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                		$arr_id=array();
-                		if(count($dataParamChildren) > 0){
-                			foreach ($dataParamChildren as $key => $value){
-                				$arr_id[]=(int)@$value['id'];
-                			}
-                			$dataParam=DB::table('product_param')
-                			->whereIn('product_param.param_id',$arr_id)
-                			->where('product_param.product_id',(int)@$id)
-                			->select('id')
-                			->get()
-                			->toArray();
-                			if(count($dataParam) > 0){
-                				?>
-                				<div class="margin-top-10">
-                					<div class="col-lg-2 no-padding-left"><b>Kích thước</b></div>
-                					<div class="col-lg-10">
-                						<?php 
-                						foreach ($dataParamChildren as $key => $value) {
-                							$dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
-                							if(count($dataParam) > 0){
-                								?><div class="block-size"><?php echo $value['fullname']; ?></div><?php
-                							}
-                						}
-                						?>
-                					</div> 
-                					<div class="clr"></div>               	
-                				</div>
-                				<?php
-                			}
-                		}
-                		?>                	
-                		<?php
-                	}
-                	?>                
-                	<!-- end kích thước -->  
-                	<div class="margin-top-10">
-                		<div class="col-lg-2 no-padding-left"><div class="padding-top-10"><b>Số lượng</b></div></div>
-                		<div class="col-lg-10">
-                			<input name="qty" autocomplete="off" type="number" min="1" max="9999" class="inpt-qty" required="" value="1">
-                			<span class="add-qty" title="Thêm" 	onclick="eventQty('add');">+</span>
-                			<span class="sub-qty" title="Bớt" 	onclick="eventQty('sub');">-</span>
-                		</div>
-                		<div class="clr"></div>
-                	</div>      
+                	<!-- end xuất xứ -->                    	
                 </div>   
                 <div class="margin-top-15">
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Thêm vào giỏ hàng</span>
+                    <a href="javascript:void(0);"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
                     </a>                    
-                </div>                                
+                </div>   
+                <div class="margin-top-15">
+                    <div>
+                        <div class="col-xs-2">
+                            <div><img src="<?php echo asset('upload/dien-thoai-1.png'); ?>"></div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div>Beats Solo 2 Wireless (Nobox mới 100%)</div>
+                            <div class="input-group pdetail-quantity">
+                              <span class="input-group-btn">
+                                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                      <span class="glyphicon glyphicon-minus"></span>
+                                  </button>
+                              </span>
+                              <input type="text" name="quant[1]" class="form-control  input-number" value="1" min="1" max="20">
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                  <span class="glyphicon glyphicon-plus"></span>
+                              </button>
+                          </span>
+                            </div>
+                      </div>
+                      <div class="col-xs-2">
+                        <div>2.999.000</div>
+                        <div><a href="javascript:void(0);"><i class="far fa-trash-alt"></i><span class="margin-left-5">Xóa</span></a></div>
+                      </div>
+                      <div class="clr"></div>
+                </div>
+                <div>
+                        <div class="col-xs-2">
+                            <div><img src="<?php echo asset('upload/dien-thoai-1.png'); ?>"></div>
+                        </div>
+                        <div class="col-xs-8">
+                            <div>Beats Solo 2 Wireless (Nobox mới 100%)</div>
+                            <div class="input-group pdetail-quantity">
+                              <span class="input-group-btn">
+                                  <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                      <span class="glyphicon glyphicon-minus"></span>
+                                  </button>
+                              </span>
+                              <input type="text" name="quant[1]" class="form-control  input-number" value="1" min="1" max="20">
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                  <span class="glyphicon glyphicon-plus"></span>
+                              </button>
+                          </span>
+                            </div>
+                      </div>
+                      <div class="col-xs-2">
+                        <div>2.999.000</div>
+                        <div><a href="javascript:void(0);"><i class="far fa-trash-alt"></i><span class="margin-left-5">Xóa</span></a></div>
+                      </div>
+                      <div class="clr"></div>
+                </div>
+            </div>                             
             </div>
             <div class="clr"></div>
-        </form>
-        <div class="margin-top-25 product-detail-content">
-            Chi tiết sản phẩm
-        </div>
+        </form>        
         <div class="margin-top-15">
-            <?php echo $detail; ?>
+            <script type="text/javascript" language="javascript">
+                function openCity(evt, cityName) {    
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }   
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }   
+                    document.getElementById(cityName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                }
+                jQuery(document).ready(function(){
+                    jQuery("#thong-tin").show();
+                    jQuery("div.tab > button.tablinks:first-child").addClass('active');
+                });
+            </script>       
+            <div class="tab">
+                <button class="tablinks h-title" onclick="openCity(event, 'thong-tin')">Thông tin</button>
+                <button class="tablinks h-title" onclick="openCity(event, 'technical')">Thông số kỹ thuật</button>               
+                <button class="tablinks h-title" onclick="openCity(event, 'video')">Video</button>
+                              
+                <button class="tablinks h-title" onclick="openCity(event, 'comments')">Bình luận</button>                                 
+                <div class="clr"></div>           
+            </div>
+            <div id="thong-tin" class="tabcontent">
+               <div class="margin-top-15">
+                <?php
+                if(!empty($detail)){
+                    echo $detail; 
+                }                
+                ?>                   
+               </div>
+            </div>
+            <div id="technical" class="tabcontent">
+                <div class="margin-top-15">
+                    <?php
+                    if(!empty($technical_detail)){
+                        echo $technical_detail; 
+                    }                 
+                    ?>
+                        
+                    </div>
+            </div>          
+            <div id="video" class="tabcontent">
+                <div class="margin-top-15">
+                    <?php 
+                    if(!empty($video_id)){
+                        ?>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <?php 
+                    }
+                    ?>
+                    
+                </div> 
+            </div>                
+            <div id="comments" class="tabcontent">
+                <div class="margin-top-15">Bình luận</div>
+            </div>           
         </div>        
         <?php              
         $category_id=$item['category_id'];               
@@ -544,7 +416,7 @@ if(count($item) > 0){
     }    
     function addToCart(){
         var token = $('input[name="_token"]').val();
-        var quantity = $('input[name="qty"]').val();
+        var quantity = 1;
         var dataItem={
             "id":<?php echo @$item['id']; ?>,            
             "quantity":quantity,
@@ -556,11 +428,7 @@ if(count($item) > 0){
             data: dataItem,
             async: false,
             success: function (data) {
-                var thong_bao='Sản phẩm đã được thêm vào trong <a href="'+data.permalink+'" class="comproduct49" >giỏ hàng</a> ';               
-                $(".cart-total").empty();           
-                $(".modal-body").empty();       
-                $(".cart-total").text(data.quantity);           
-                $(".modal-body").append(thong_bao);         
+                console.log(data);
             },
             error : function (data){
                 
@@ -570,4 +438,81 @@ if(count($item) > 0){
             },
         });
     }
+    $( document ).ready(function() {
+        $('.input-group-btn .btn-number').click(function(e){
+            e.preventDefault();
+
+            var fieldName = $(this).attr('data-field');
+            var type      = $(this).attr('data-type');
+            var input = $("input[name='"+fieldName+"']");
+            var currentVal = parseInt(input.val());
+            if (!isNaN(currentVal)) {
+                if(type == 'minus') {
+                    var minValue = parseInt(input.attr('min')); 
+                    if(!minValue) minValue = 1;
+                    if(currentVal > minValue) {
+                        input.val(currentVal - 1).change();
+                    } 
+                    if(parseInt(input.val()) == minValue) {
+                        $(this).attr('disabled', true);
+                    }
+
+                } else if(type == 'plus') {
+                    var maxValue = parseInt(input.attr('max'));
+                    if(!maxValue) maxValue = 9999999999999;
+                    if(currentVal < maxValue) {
+                        input.val(currentVal + 1).change();
+                    }
+                    if(parseInt(input.val()) == maxValue) {
+                        $(this).attr('disabled', true);
+                    }
+
+                }
+            } else {
+                input.val(0);
+            }
+        });
+        $('.input-number').focusin(function(){
+         $(this).data('oldValue', $(this).val());
+     });
+        $('.input-number').change(function() {
+
+            var minValue =  parseInt($(this).attr('min'));
+            var maxValue =  parseInt($(this).attr('max'));
+            if(!minValue) minValue = 1;
+            if(!maxValue) maxValue = 9999999999999;
+            var valueCurrent = parseInt($(this).val());
+
+            var name = $(this).attr('name');
+            if(valueCurrent >= minValue) {
+                $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the minimum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+            if(valueCurrent <= maxValue) {
+                $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the maximum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+
+
+        });
+        $(".input-number").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                 // Allow: Ctrl+A
+                 (e.keyCode == 65 && e.ctrlKey === true) || 
+                 // Allow: home, end, left, right
+                 (e.keyCode >= 35 && e.keyCode <= 39)) {
+                     // let it happen, don't do anything
+                 return;
+             }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    });
 </script> 

@@ -6,177 +6,178 @@ if(isset($alias)){
 ?>
 @extends("frontend.master")
 @section("content")
-<div class="container box-inner-content">    
-    <?php             
-    switch ($layout){
-        case 'two-column':  
-        ?>
-        <div class="col-lg-3">
-            <?php                                      
-            $argsTinTucSuKien = array(                         
-                'menu_class'            => 'categoryarticle',                            
-                'before_wrapper'        => '<div class="box-category margin-top-15">',
-                'before_title'          => '<h2 class="menu-right-title">',
-                'after_title'           => '</h2>',
-                'before_wrapper_ul'     =>  '<div>',
-                'after_wrapper_ul'      =>  '</div>',
-                'after_wrapper'         => '</div>'     ,
-                'link_before'           => '', 
-                'link_after'            => '',                                                                    
-                'theme_location'        => 'ttsk' ,
-                'menu_li_actived'       => 'current-menu-item',
-                'menu_item_has_children'=> 'menu-item-has-children',
-                'alias'                 => $seo_alias,
-            );    
-            $argsDanhMucSanPham = array(                         
-                'menu_class'            => 'categoryproduct',                            
-                'before_wrapper'        => '<div class="box-category margin-top-15">',
-                'before_title'          => '<h2 class="menu-right-title">',
-                'after_title'           => '</h2>',
-                'before_wrapper_ul'     =>  '<div class="category-product-wrapper">',
-                'after_wrapper_ul'      =>  '</div>',
-                'after_wrapper'         => '</div>'     ,
-                'link_before'           => '', 
-                'link_after'            => '',                                                                    
-                'theme_location'        => 'dmsp-left' ,
-                'menu_li_actived'       => 'current-menu-item',
-                'menu_item_has_children'=> 'menu-item-has-children',
-                'alias'                 => $seo_alias,
-            );    
-            switch ($component) {
-                case 'articles':
-                case 'category-article':
-                case 'article':
-                case 'page':                
-                wp_nav_menu($argsTinTucSuKien);  
-                $module=getBanner("advertising-article-widget");                        
-                if(count($module) > 0){                    
-                    $banners=$module["items"];    
-                    ?>
-                    <div class="margin-top-20">
-                        <ul class="advertising">
-                            <?php 
-                            foreach ($banners as $key => $value) {
-                                $alt=$value["alt"];
-                                $featuredImg=asset('upload/'.$value["image"]);
-                                $permalink='';
-                                if(!empty($value['page_url'])){
-                                    $permalink=$value['page_url'];                                    
-                                }else{
-                                    $permalink='javascript:void(0);';
-                                }                                
-                                ?>
-                                <li><center><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>" alt="<?php echo $alt; ?>" /></a></center></li>
-                                <?php
-                            }
-                            ?>
-                        </ul>                        
-                    </div>
-                    <?php
-                }
-                break;
-                case 'products':        
-                case 'category-product':
-                case 'product':
-                case 'search-product':                
-                wp_nav_menu($argsDanhMucSanPham);       
-                $data=getModuleItem("san-pham-noi-bat");
-                if(count($data) > 0){
-                    $fullname=$data["fullname"];
-                    $items1=$data["items"];
-                    if(count($items1) > 0){
-                        ?>
-                        <script language="javascript" type="text/javascript">
-                            $(document).ready(function(){
-                                $('.bxSlider').bxSlider({
-    mode: 'vertical', speed: 500, slideMargin:15, infiniteLoop: true, pager: false, controls: false, minSlides: 5, maxSlides:20, moveSlides: 5, adaptiveHeight: false,auto:true
-    });
-                            });
-                      </script>
-                        <h2 class="menu-right-title margin-top-20"><?php echo $fullname; ?></h2>
-                        <div class="bxSlider">
-                            <?php 
-                            foreach($items1 as $key => $value){
-                                $featuredImg=get_product_thumbnail($value['image']) ;
-                                $permalink=route('frontend.index.index',[$value['alias']]);
-                                $title1=$value['fullname'];
-                                ?>
-                                <div >
-                                    <div><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>"></a></figure></center></div>
-                                    <div class="margin-top-5 box-product-intro-title"><a href="<?php echo $permalink; ?>"><b><?php echo $title1; ?></b></a></div>
-                                </div>
-                                <?php
-                            }
-                            ?>
-                        </div>
-                        <?php                        
-                    }
-                }                                                        
-                break;                            
-            }                                       
-            ?>                            
-        </div>
-        <div class="col-lg-9">
-            <?php
-            switch ($component) {                                                                      
-                case "category-article":    
-                case "articles":                                                                          
-                ?>@include("frontend.category-article")<?php
-                break;                                         
-                case "article":                                                            
-                ?>@include("frontend.article")<?php
-                break;                
-                case "page":                                                            
-                ?>@include("frontend.page")<?php
-                break;            
-                case "search-product":             
-                case "category-product":
-                case "products":                                                
-                ?>@include("frontend.category-product")<?php
-                break; 
-                case "product":                                                
-                ?>@include("frontend.product")<?php
-                break;
-                case "gio-hang":                                                
-                ?>@include("frontend.cart")<?php
-                break; 
-                case "register":                                                
-                ?>@include("frontend.register")<?php
-                break;
-                case "account":                                                
-                ?>@include("frontend.account")<?php
-                break;
-                case "login":                                                
-                ?>@include("frontend.login")<?php
-                break;
-                case "login-join-project":                                                
-                ?>@include("frontend.login-join-project")<?php
-                break;
-                case "security":                                                
-                ?>@include("frontend.security")<?php
-                break;
-                case "xac-nhan-thanh-toan":                                                
-                ?>@include("frontend.confirm-checkout")<?php
-                break;
-                case "dang-nhap-thanh-toan":                                                
-                ?>@include("frontend.login-checkout")<?php
-                break;
-                case "hoan-tat-thanh-toan":                                                
-                ?>@include("frontend.finished-checkout")<?php
-                break;
-                case "hoa-don":                                                
-                ?>@include("frontend.invoice")<?php
-                break;                                                                        
-            }
+<div class="box-inner-content">
+    <div class="container">    
+        <?php             
+        switch ($layout){
+            case 'two-column':  
             ?>
-        </div>
-        <div class="clr"></div>
-        <?php          
-        break;
-        case 'full-width':        
-        ?>
-        <div class="col-lg-12">
-            <?php
+            <div class="col-lg-3">
+                <?php                                      
+                $argsTinTucSuKien = array(                         
+                    'menu_class'            => 'categoryarticle',                            
+                    'before_wrapper'        => '<div class="box-category margin-top-15">',
+                    'before_title'          => '<h2 class="menu-right-title">',
+                    'after_title'           => '</h2>',
+                    'before_wrapper_ul'     =>  '<div>',
+                    'after_wrapper_ul'      =>  '</div>',
+                    'after_wrapper'         => '</div>'     ,
+                    'link_before'           => '', 
+                    'link_after'            => '',                                                                    
+                    'theme_location'        => 'ttsk' ,
+                    'menu_li_actived'       => 'current-menu-item',
+                    'menu_item_has_children'=> 'menu-item-has-children',
+                    'alias'                 => $seo_alias,
+                );    
+                $argsDanhMucSanPham = array(                         
+                    'menu_class'            => 'categoryproduct',                            
+                    'before_wrapper'        => '<div class="box-category margin-top-15">',
+                    'before_title'          => '<h2 class="menu-right-title">',
+                    'after_title'           => '</h2>',
+                    'before_wrapper_ul'     =>  '<div class="category-product-wrapper">',
+                    'after_wrapper_ul'      =>  '</div>',
+                    'after_wrapper'         => '</div>'     ,
+                    'link_before'           => '', 
+                    'link_after'            => '',                                                                    
+                    'theme_location'        => 'dmsp-left' ,
+                    'menu_li_actived'       => 'current-menu-item',
+                    'menu_item_has_children'=> 'menu-item-has-children',
+                    'alias'                 => $seo_alias,
+                );    
+                switch ($component) {
+                    case 'articles':
+                    case 'category-article':
+                    case 'article':
+                    case 'page':                
+                    wp_nav_menu($argsTinTucSuKien);  
+                    $module=getBanner("advertising-article-widget");                        
+                    if(count($module) > 0){                    
+                        $banners=$module["items"];    
+                        ?>
+                        <div class="margin-top-20">
+                            <ul class="advertising">
+                                <?php 
+                                foreach ($banners as $key => $value) {
+                                    $alt=$value["alt"];
+                                    $featuredImg=asset('upload/'.$value["image"]);
+                                    $permalink='';
+                                    if(!empty($value['page_url'])){
+                                        $permalink=$value['page_url'];                                    
+                                    }else{
+                                        $permalink='javascript:void(0);';
+                                    }                                
+                                    ?>
+                                    <li><center><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>" alt="<?php echo $alt; ?>" /></a></center></li>
+                                    <?php
+                                }
+                                ?>
+                            </ul>                        
+                        </div>
+                        <?php
+                    }
+                    break;
+                    case 'products':        
+                    case 'category-product':
+                    case 'product':
+                    case 'search-product':                
+                    wp_nav_menu($argsDanhMucSanPham);       
+                    $data=getModuleItem("san-pham-noi-bat");
+                    if(count($data) > 0){
+                        $fullname=$data["fullname"];
+                        $items1=$data["items"];
+                        if(count($items1) > 0){
+                            ?>
+                            <script language="javascript" type="text/javascript">
+                                $(document).ready(function(){
+                                    $('.bxSlider').bxSlider({
+                                        mode: 'vertical', speed: 500, slideMargin:15, infiniteLoop: true, pager: false, controls: false, minSlides: 5, maxSlides:20, moveSlides: 5, adaptiveHeight: false,auto:true
+                                    });
+                                });
+                            </script>
+                            <h2 class="menu-right-title margin-top-20"><?php echo $fullname; ?></h2>
+                            <div class="bxSlider">
+                                <?php 
+                                foreach($items1 as $key => $value){
+                                    $featuredImg=get_product_thumbnail($value['image']) ;
+                                    $permalink=route('frontend.index.index',[$value['alias']]);
+                                    $title1=$value['fullname'];
+                                    ?>
+                                    <div >
+                                        <div><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>"></a></figure></center></div>
+                                        <div class="margin-top-5 box-product-intro-title"><a href="<?php echo $permalink; ?>"><b><?php echo $title1; ?></b></a></div>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                            <?php                        
+                        }
+                    }                                                        
+                    break;                            
+                }                                       
+                ?>                            
+            </div>
+            <div class="col-lg-9">
+                <?php
+                switch ($component) {                                                                      
+                    case "category-article":    
+                    case "articles":                                                                          
+                    ?>@include("frontend.category-article")<?php
+                    break;                                         
+                    case "article":                                                            
+                    ?>@include("frontend.article")<?php
+                    break;                
+                    case "page":                                                            
+                    ?>@include("frontend.page")<?php
+                    break;            
+                    case "search-product":             
+                    case "category-product":
+                    case "products":                                                
+                    ?>@include("frontend.category-product")<?php
+                    break; 
+                    case "product":                                                
+                    ?>@include("frontend.product")<?php
+                    break;
+                    case "gio-hang":                                                
+                    ?>@include("frontend.cart")<?php
+                    break; 
+                    case "register":                                                
+                    ?>@include("frontend.register")<?php
+                    break;
+                    case "account":                                                
+                    ?>@include("frontend.account")<?php
+                    break;
+                    case "login":                                                
+                    ?>@include("frontend.login")<?php
+                    break;
+                    case "login-join-project":                                                
+                    ?>@include("frontend.login-join-project")<?php
+                    break;
+                    case "security":                                                
+                    ?>@include("frontend.security")<?php
+                    break;
+                    case "xac-nhan-thanh-toan":                                                
+                    ?>@include("frontend.confirm-checkout")<?php
+                    break;
+                    case "dang-nhap-thanh-toan":                                                
+                    ?>@include("frontend.login-checkout")<?php
+                    break;
+                    case "hoan-tat-thanh-toan":                                                
+                    ?>@include("frontend.finished-checkout")<?php
+                    break;
+                    case "hoa-don":                                                
+                    ?>@include("frontend.invoice")<?php
+                    break;                                                                        
+                }
+                ?>
+            </div>
+            <div class="clr"></div>
+            <?php          
+            break;
+            case 'full-width':        
+            ?>
+            <div class="col-lg-12">
+                <?php
                 switch ($component) {                          
                     case "contact": 
                     ?>@include("frontend.contact")<?php   
@@ -192,12 +193,13 @@ if(isset($alias)){
                     break;                                                                                     
                 }  
                 ?>
-             
-        </div> 
-        <div class="clr"></div>           
-        <?php
-        break;
-    }
-    ?>    
+                
+            </div> 
+            <div class="clr"></div>           
+            <?php
+            break;
+        }
+        ?>    
+    </div>
 </div>
 @endsection()               

@@ -197,6 +197,61 @@ function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$alias,$menu_class
     $menu_str .='</ul>'; 
   }
 }
+
+function getRecursiveCategoryProduct($parent_id,&$arrCategory){  
+  $data=CategoryProductModel::find((int)@$parent_id);  
+  if(count($data)>0){
+    $data=$data->toArray();
+    $arrCategory[]=$data;  
+    getRecursiveCategoryProduct((int)@$data['parent_id'],$arrCategory);
+  }  
+}
+function getBreadCrumbCategoryProduct($dataCategory){
+  $data=array();
+  $breadcrumb='<a href="'.url('/').'">Trang chủ</a>';
+  getRecursiveCategoryProduct((int)@$dataCategory['parent_id'],$data);
+  $data[]=$dataCategory;
+  $data=get_field_data_array($data,'id');
+  ksort($data);
+  if(count($data) > 0){
+    foreach ($data as $key => $value) {
+      $id=$value['id'];
+      $fullname=$value['fullname'];
+      $alias=$value['alias'];
+      $parent_id=$value['parent_id'];      
+      $permalink=route('frontend.index.index',[$alias]);      
+      $breadcrumb .='<a href="'.$permalink.'">'.$fullname.'</a>';
+    }
+  }
+  return $breadcrumb;
+}
+function getRecursiveCategoryArticle($parent_id,&$arrCategory){  
+  $data=CategoryArticleModel::find((int)@$parent_id);  
+  if(count($data)>0){
+    $data=$data->toArray();
+    $arrCategory[]=$data;  
+    getRecursiveCategoryArticle((int)@$data['parent_id'],$arrCategory);
+  }  
+}
+function getBreadCrumbCategoryArticle($dataCategory){
+  $data=array();
+  $breadcrumb='<a href="'.url('/').'">Trang chủ</a>';
+  getRecursiveCategoryArticle((int)@$dataCategory['parent_id'],$data);
+  $data[]=$dataCategory;
+  $data=get_field_data_array($data,'id');
+  ksort($data);
+  if(count($data) > 0){
+    foreach ($data as $key => $value) {
+      $id=$value['id'];
+      $fullname=$value['fullname'];
+      $alias=$value['alias'];
+      $parent_id=$value['parent_id'];      
+      $permalink=route('frontend.index.index',[$alias]);      
+      $breadcrumb .='<a href="'.$permalink.'">'.$fullname.'</a>';
+    }
+  }
+  return $breadcrumb;
+}
 function getRecursiveMenu($alias,&$arrMenu){
   $query=DB::table('menu')
   ->join('menu_type','menu.menu_type_id', '=' ,'menu_type.id');
@@ -228,55 +283,11 @@ function getRecursiveMenu($alias,&$arrMenu){
     }    
   }      
 }
-function getRecursiveCategoryProduct($parent_id,&$arrCategory){  
-  $data=CategoryProductModel::find((int)@$parent_id);  
-  if(count($data)>0){
-    $data=$data->toArray();
-    $arrCategory[]=$data;  
-    getRecursiveCategoryProduct((int)@$data['parent_id'],$arrCategory);
-  }  
-}
-function getBreadCrumbCategoryProduct($dataCategory){
-  $data=array();
-  $breadcrumb='';
-  getRecursiveCategoryProduct((int)@$dataCategory['parent_id'],$data);
-
-  $data[]=$dataCategory;
-  $data=get_field_data_array($data,'id');
-  ksort($data);
-  if(count($data) > 0){
-    foreach ($data as $key => $value) {
-      $id=$value['id'];
-      $fullname=$value['fullname'];
-      $alias=$value['alias'];
-      $parent_id=$value['parent_id'];
-      $permalink='';
-      switch ($alias) {
-        case 'trang-chu':
-          $permalink=url('/');
-          break;        
-        default:
-          $permalink=route('frontend.index.index',[$alias]);
-          break;
-      }      
-      $breadcrumb .='<a href="'.$permalink.'">'.$fullname.'</a>';
-    }
-  }
-  return $breadcrumb;
-}
 function getBreadCrumb($alias){
   $arrMenu=array();
   $strBreadcrumb='';
   getRecursiveMenu($alias,$arrMenu);  
-  if(count($arrMenu) > 0){    
-    $menuHome=DB::table('menu')
-                  ->join('menu_type','menu.menu_type_id','=','menu_type.id')
-                  ->where('menu_type.theme_location','main-menu')
-                  ->where('alias','trang-chu')
-                  ->select('menu.id','menu.fullname','menu.alias','menu.parent_id')
-                  ->groupBy('menu.id','menu.fullname','menu.alias','menu.parent_id')
-                  ->get()
-                  ->toArray();              
+  if(count($arrMenu) > 0){          
     $menuAlias=DB::table('menu')
                   ->join('menu_type','menu.menu_type_id','=','menu_type.id')
                   ->where('menu_type.theme_location','main-menu')
@@ -285,18 +296,16 @@ function getBreadCrumb($alias){
                   ->groupBy('menu.id','menu.fullname','menu.alias','menu.parent_id')
                   ->get()
                   ->toArray();                  
-    $menuHome=convertToArray($menuHome);
     $menuAlias=convertToArray($menuAlias);
-    $menuHome=$menuHome[0];
     $menuAlias=$menuAlias[0];
-    $rowHome=array(
-        'id'        =>  $menuHome['id'],
-        'fullname'  =>  $menuHome['fullname'],
-        'alias'     =>  $menuHome['alias'],
-        'parent_id' =>  $menuHome['parent_id']
+    $rowHome=array( 
+        'id'        =>  -1,
+        'fullname'  =>  'Trang chủ',
+        'alias'     =>  'trang-chu',
+        'parent_id' =>  0
       );
-    $rowAlias=array(
-        'id'        =>  $menuAlias['id'],
+    $rowAlias=array(      
+        'id'        =>  $menuAlias['id'],  
         'fullname'  =>  $menuAlias['fullname'],
         'alias'     =>  $menuAlias['alias'],
         'parent_id' =>  $menuAlias['parent_id']
@@ -305,8 +314,7 @@ function getBreadCrumb($alias){
     $arrMenu[]=$rowAlias;
     $data= get_field_data_array($arrMenu,'id');
     ksort($data);  
-    foreach ($data as $key => $value) {
-      $id=$value['id'];
+    foreach ($data as $key => $value) {      
       $fullname=$value['fullname'];
       $alias=$value['alias'];
       $parent_id=$value['parent_id'];
