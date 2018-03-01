@@ -66,7 +66,7 @@ $company=$setting['contacted_person']['field_value'];
 		'loa-am-thanh',
 		
 	);
-	foreach ($arr_alias as $key => $value_alias) {
+	foreach ($arr_alias as $key1 => $value_alias) {
 		$alias1=$value_alias;
 		$category_fullname='';
 		$id1=0;
@@ -129,7 +129,7 @@ $company=$setting['contacted_person']['field_value'];
 								<div class="owl-carousel <?php echo $alias1; ?> owl-theme">
 									<?php 
 									$data_product=convertToArray($data_product);
-									foreach($data_product as $key => $value){
+									foreach($data_product as $key2 => $value){
 										$featuredImg1=get_product_thumbnail($value['image']) ;
 										$permalink1=route('frontend.index.index',[$value['alias']]);
 										$title1=$value['fullname'];
