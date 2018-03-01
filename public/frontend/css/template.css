@@ -1928,7 +1928,35 @@ form[name='frm-search'] input[name='q']{
     border-left: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
-
+.tell-price{
+    display: flex;
+    align-items: center;
+}
+.ttkh{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+}
+.ttkh-text{
+    display: block;
+    width: 100%;
+    height: 35px;
+    min-height: 35px;
+    padding: 0 10px;
+    margin: 0;
+    line-height: 22px;
+    border: 1px solid #cccccc;
+    outline: none;
+    background: #fff;
+    color: #5f6a7d;
+    font-size: 13px ;
+    
+    -webkit-appearance: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+}
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;

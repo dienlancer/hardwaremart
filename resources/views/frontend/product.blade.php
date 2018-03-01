@@ -107,7 +107,7 @@ if(count($item) > 0){
                     <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
                 </div>
                 <hr class="product-ngang" />
-                <div class="margin-top-5">
+                <div class="margin-top-5 tell-price">
                 	<?php 
                 	$price=$item['price'];
                 	$sale_price=$item['sale_price'];
@@ -184,15 +184,7 @@ if(count($item) > 0){
                         if(count($arrCart)){    
                             ?>
                             <table  class="com_product16" cellpadding="0" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>    
-                                        <th width="50%">Sản phẩm</th>
-
-                                        <th><center>SL</center></th>
-                                        <th width="20%"><center>Tổng giá</center></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
+                                
                                 <tbody>
                                     <?php 
                                     foreach ($arrCart as $cart_key => $cart_value) {
@@ -208,12 +200,16 @@ if(count($item) > 0){
                                         $cart_img=get_product_thumbnail($cart_product_image);                                        
                                         ?>      
                                         <tr>            
-                                            <td class="com_product20"><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></td>
+                                            <td class="com_product20" ><img src="<?php echo $cart_img; ?>" ></td>
 
-                                            <td align="center" class="com_product22"><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">        
+                                            <td align="left" class="com_product22">
+                                                <div><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></div>
+                                                <div><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
                                             </td>
-                                            <td align="right" class="com_product23"><?php echo $cart_product_total_price_text; ?></td>
-                                            <td align="center" class="com_product24"><a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td align="right" class="com_product23" >
+                                                <div><?php echo $cart_product_total_price_text; ?></div>
+                                                <div><a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
+                                            </td>                                            
                                         </tr>                          
                                         <?php
                                     }         
@@ -224,7 +220,22 @@ if(count($item) > 0){
                         }
                     }                     
                     ?>                
-                </div>                                                   
+                </div>    
+                <div class="margin-top-15">
+                    <div class="ttkh">Thông tin khách hàng</div>
+                    <div class="margin-top-15">
+                        <input type="text" class="ttkh-text" name="customer_name" value="" placeholder="Tên người nhận">
+                    </div>
+                    <div class="margin-top-15">
+                        <input type="text" class="ttkh-text" name="customer_telephone" value="" placeholder="Số điện thoại">
+                    </div>
+                    <div class="margin-top-15">
+                        <input type="text" class="ttkh-text" name="customer_address" value="" placeholder="Địa chỉ">
+                    </div>
+                    <div class="margin-top-15">
+                        <input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
+                    </div>
+                </div>                                               
     </div>
     <div class="clr"></div>
 </form>        
@@ -425,35 +436,29 @@ if(count($item) > 0){
             async: false,
             success: function (data) {
                 var data_cart=data.cart;
-                var xtable = document.createElement("TABLE");
-                var xheader = xtable.createTHead();
-                var xrow=xheader.insertRow(0);
-                var xcell_product_name=xrow.insertCell(0);
-                var xcell_product_quantity=xrow.insertCell(1);
-                var xcell_product_total_price=xrow.insertCell(2);
-                var xcell_product_delete=xrow.insertCell(3);
-                xcell_product_name.innerHTML='Sản phẩm';
-                xcell_product_quantity.innerHTML='<center>SL</center>';
-                xcell_product_total_price.innerHTML='<center>Tổng giá</center';
+                var xtable = document.createElement("TABLE");                
                 var xtbody=xtable.createTBody();                
                 var i=0;
                 $.each( data_cart, function( key, value ) {
                     var cart_product_id=value.product_id;
                     var cart_product_code=value.product_code;
                     var cart_product_name=value.product_name;
+                    var cart_product_image=value.product_image;                    
                     var cart_product_quantity=value.product_quantity;
                     var cart_product_total_price=value.product_total_price;  
                     var cart_product_total_price_text=    accounting.formatMoney(cart_product_total_price, "", 0, ".",",") + ' đ';
                     var xNewRow   = xtbody.insertRow(i);    
-                    var cell_product_name=xNewRow.insertCell(0);
-                    var cell_product_quantity=xNewRow.insertCell(1);
+                    var cell_product_image=xNewRow.insertCell(0);
+                    var cell_product_name=xNewRow.insertCell(1);
                     var cell_product_total_price=xNewRow.insertCell(2);
+                    $(cell_product_image).addClass('com_product20');
+                    $(cell_product_name).addClass('com_product22');                    
+                    $(cell_product_total_price).addClass('com_product23');
+                    $(cell_product_name).attr('align','left');
                     $(cell_product_total_price).attr('align','right');
-                    var cell_product_delete=xNewRow.insertCell(3);
-                    cell_product_name.innerHTML=cart_product_name;
-                    cell_product_quantity.innerHTML='<input type="text" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">' ;
-                    cell_product_total_price.innerHTML= cart_product_total_price_text;
-                    cell_product_delete.innerHTML='<a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                    cell_product_image.innerHTML='<img src="/upload/'+cart_product_image+'" />';
+                    cell_product_name.innerHTML='<div>'+cart_product_name+'</div><div><input  type="text" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">      </div>' ;                    
+                    cell_product_total_price.innerHTML= '<div>'+cart_product_total_price_text+'</div><div><a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>' ;                    
                     i++;
                 });
                 $(xtable).addClass('com_product16');
@@ -462,7 +467,7 @@ if(count($item) > 0){
                 $(xtable).attr("width","100%");
                 $('.x-table-cart').empty();
                 $('.x-table-cart').append(xtable);
-                var thong_bao='Sản phẩm đã được thêm vào trong <a href="'+data.permalink+'" class="comproduct49" >giỏ hàng</a> ';                       
+                var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
                 $(".modal-body").empty();              
                 $(".modal-body").append(thong_bao);
             },
