@@ -9,10 +9,10 @@ $linkCreateAlias        =   route('adminsystem.'.$controller.'.createAlias');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"    onblur="createAlias()"     value="'.@$arrRowData['fullname'].'">';
 $inputAlias             =   '<input type="text" class="form-control" name="alias"     disabled      value="'.@$arrRowData['alias'].'">'; 
  
-$inputMetakeyword             =   '<textarea id="meta_keyword" name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
-$inputMetadescription             =   '<textarea id="meta_description" name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
-$inputPrice             =   '<input type="text" class="form-control" name="price" onkeyup="PhanCachSoTien(this);"  id="price"       value="'.convertToTextPrice(@$arrRowData['price']).'">';
-$inputSalePrice             =   '<input type="text" class="form-control" name="sale_price" onkeyup="PhanCachSoTien(this);"  id="sale_price"       value="'.convertToTextPrice(@$arrRowData['sale_price']).'">';
+$inputMetakeyword             =   '<textarea  name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
+$inputMetadescription             =   '<textarea  name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
+$inputPrice             =   '<input type="text" class="form-control" name="price" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['price']).'">';
+$inputSalePrice             =   '<input type="text" class="form-control" name="sale_price" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['sale_price']).'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
@@ -20,13 +20,13 @@ $inputIntro            =   '<textarea  name="intro" rows="5" cols="100" class="f
 $inputDetail            =   '<textarea name="detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['detail'].'</textarea>'; 
 $inputTechnicalDetail            =   '<textarea name="technical_detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['technical_detail'].'</textarea>'; 
 $inputVideoId          =   '<input type="text" class="form-control" name="video_id"       value="'.@$arrRowData['video_id'].'">';
-$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
+$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
 
 $ddlCategoryProduct      =   cmsSelectboxCategory("category_id","category_id","form-control",$arrCategoryProductRecursive,@$arrRowData['category_id'],"");
 $ddlCategoryParam        =cmsSelectboxCategoryParamMultiple("category_param_id","category_param_id[]", 'form-control', @$arrCategoryParamRecursive, @$arrProductParam,"");
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" value="'.@$id.'" />'; 
-$inputAliasMenu       =   '<input type="hidden" name="alias_menu" id=value="'.@$arrRowData['alias'].'" />'; 
+$inputAliasMenu       =   '<input type="hidden" name="alias_menu" value="'.@$arrRowData['alias'].'" />'; 
 $picture                =   "";
 $strImage               =   "";
 $setting= getSettingSystem();
@@ -38,7 +38,7 @@ if(count(@$arrRowData)>0){
         $strImage       =   @$arrRowData["image"];
     }        
 }   
-$inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_hidden" value="'.@$strImage.'" />';
+$inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'.@$strImage.'" />';
 $str_child_image="";
 if(count($arrRowData) > 0){
     $arrProductChildImage=json_decode(@$arrRowData['child_image']);    
@@ -132,7 +132,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Hình</b></label>
                         <div class="col-md-4">
-                            <input type="file" id="image" name="image"  />   
+                            <input type="file"  name="image"  />   
                             <div class="picture-area"><?php echo $picture; ?>                      </div>
                             <div class="clr"></div>
                                                 
@@ -386,7 +386,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             data: dataItem,
             async: false,
             success: function (data) {
-                if(data.checked==true){
+                if(data.checked==1){
                     uploadFileImport($('input[name="image"]'));    
                     var child_image_ctrl=$("table.table-image > tbody").find("input[type='file']");                
                     if(child_image_ctrl.length > 0){
@@ -474,7 +474,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             data: dataItem,            
             async: false,
             success: function (data) {                
-                if(data.checked==true){
+                if(data.checked==1){
                     $('input[name="alias"]').val(data.alias); 
                 }else{                    
                     var data_error=data.error;

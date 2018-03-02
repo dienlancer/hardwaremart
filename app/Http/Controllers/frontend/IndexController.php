@@ -523,7 +523,7 @@ class IndexController extends Controller {
         $meta_description=$category['meta_description'];
       }
     }    
-    \Artisan::call('sitemap:auto');    
+    \Artisan::call('sitemap:auto');        
     return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","category"));   
                                
   }
@@ -1538,10 +1538,106 @@ class IndexController extends Controller {
           if(count($arrCart) > 0){
             unset($arrCart[$id]);              
           }             
-          Session::put($this->_ssNameCart,$arrCart);             
-          $dataReturn=array();
+          Session::put($this->_ssNameCart,$arrCart);     
+          $arrCart=array();
+          if(Session::has($this->_ssNameCart)){
+            $arrCart=Session::get($this->_ssNameCart);
+          }         
+          $dataReturn=array('product_count'=>(int)count($arrCart));
           return $dataReturn;
       } 
+      public function checkoutQuickly(Request $request){
+        $flag=1;
+        $error=array();
+        $success=array();  
+        $data=array();       
+        $info=array();
+        if($request->isMethod('post')){
+          $data             =   @$request->all();                    
+          $fullname=trim($request->customer_name);
+          $phone=trim($request->customer_phone);
+          $address=trim($request->customer_address);
+          $email=trim($request->customer_email);
+          $note=trim($request->customer_note);      
+          if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
+            $error["email"] = 'Email không hợp lệ';            
+            $flag = 0;
+          }
+          if(mb_strlen($fullname) < 6){
+            $error["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';            
+            $flag = 0;
+          }  
+          if(mb_strlen($address) < 6){
+            $error["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';            
+            $flag = 0;
+          }  
+          if(mb_strlen($phone) < 10){
+            $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';            
+            $flag = 0;
+          }      
+          if($flag==1){   
+            $arrCart=array();
+            $total_quantity=0;
+            $total_price=0;
+            if(Session::has($this->_ssNameCart)){
+              $arrCart=Session::get($this->_ssNameCart);
+            }         
+            if(count($arrCart) > 0){
+              foreach ($arrCart as $key => $value){
+                $total_quantity+=(int)@$value['product_quantity'];              
+                $total_price+=(float)@$value['product_total_price'];
+              }
+            }                
+            $item               =   new InvoiceModel;
+            $order_code         =   randomCodeNumber();       
+            $item->code         =   @$order_code;            
+            $item->email        =   @$email;
+            $item->fullname     =   @$fullname;
+            $item->address      =   @$address;
+            $item->phone        =   @$phone;                             
+            $item->quantity     =   @$total_quantity;
+            $item->total_price  =   @$total_price;
+            $item->status       =   0;  
+            $item->sort_order   =   1;
+            $item->created_at   =   date("Y-m-d H:i:s",time());
+            $item->updated_at   =   date("Y-m-d H:i:s",time());
+            $item->save();                   
+            if(count($arrCart) > 0){
+              foreach ($arrCart as $key => $value) {
+                $invoice_id=$item->id;
+                $product_id=$value["product_id"];    
+                $product_code=$value["product_code"];  
+                $product_name=$value["product_name"];                                                    
+                $product_image=   $value["product_image"] ;        
+                $product_price=$value["product_price"];                                  
+                $product_quantity=$value["product_quantity"];                         
+                $product_total_price=$value["product_total_price"];
+                $itemInvoiceDetail=new InvoiceDetailModel;                          
+                $itemInvoiceDetail->invoice_id=$invoice_id;
+                $itemInvoiceDetail->product_id=$product_id;
+                $itemInvoiceDetail->product_code=$product_code;
+                $itemInvoiceDetail->product_name=$product_name;
+                $itemInvoiceDetail->product_image=$product_image;
+                $itemInvoiceDetail->product_price=$product_price;
+                $itemInvoiceDetail->product_quantity=$product_quantity;
+                $itemInvoiceDetail->product_total_price=$product_total_price;
+                $itemInvoiceDetail->created_at=date("Y-m-d H:i:s",time());
+                $itemInvoiceDetail->updated_at=date("Y-m-d H:i:s",time());
+                $itemInvoiceDetail->save();
+              }
+            }  
+            if(Session::has($this->_ssNameCart)){
+              Session::forget($this->_ssNameCart);
+            }            
+          }
+        }
+        $info = array(                            
+          "checked"   => $flag,
+          "error"     => $error, 
+          "link_redirect"=>url('/')             
+        );
+        return $info;       
+      }
       public function getPaymentmethod(Request $request){
          $id=$request->id;
          $data=array();

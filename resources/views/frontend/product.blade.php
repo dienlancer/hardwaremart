@@ -180,72 +180,111 @@ if(count($item) > 0){
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
                     </a>                    
                 </div>                  
-                <form name="frm-product-detail" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                <div class="margin-top-5 x-table-cart">
-                    <?php 
-                    $ssName="vmart";
-                    $arrCart=array();
-                    if(Session::has($ssName)){
-                        $arrCart=Session::get($ssName);    
-                        if(count($arrCart)){    
-                            ?>
-                            <table  class="com_product16" cellpadding="0" cellspacing="0" width="100%">
-                                
-                                <tbody>
-                                    <?php 
-                                    foreach ($arrCart as $cart_key => $cart_value) {
-                                        $cart_product_id=$cart_value['product_id'];
-                                        $cart_product_code=$cart_value['product_code'];
-                                        $cart_product_name=$cart_value['product_name'];
-                                        $cart_product_alias=$cart_value['product_alias'];
-                                        $cart_product_link               =   route('frontend.index.index',[$cart_product_alias]);    
-                                        $cart_product_image=$cart_value['product_image'];
-                                        $cart_product_price_text         =   fnPrice($cart_value["product_price"]);
-                                        $cart_product_total_price_text   =   fnPrice($cart_value["product_total_price"]);
-                                        $cart_product_quantity           =   $cart_value["product_quantity"];
-                                        $cart_img=get_product_thumbnail($cart_product_image);                                        
-                                        ?>      
-                                        <tr pro_id=<?php echo $cart_product_id; ?>>            
-                                            <td class="com_product20" ><img src="<?php echo $cart_img; ?>" ></td>
+                <form name="frm-product-detail"  method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}                                        
+                    <div class="margin-top-5 x-table-cart">
+                        <?php 
+                        $ssName="vmart";
+                        $arrCart=array();
+                        if(Session::has($ssName)){
+                            $arrCart=Session::get($ssName);    
+                            if(count($arrCart)){    
+                                ?>
+                                <table  class="com_product16" cellpadding="0" cellspacing="0" width="100%">
 
-                                            <td align="left" class="com_product22">
-                                                <div><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></div>
-                                                <div><input  type="text" onkeypress="return isNumberKey(event)" onblur='changeTotalPrice(this);' value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
-                                            </td>
-                                            <td align="right" class="com_product23" >
-                                                <div class="tt-pri"><?php echo $cart_product_total_price_text; ?></div>
-                                                <div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
-                                            </td>                                            
-                                        </tr>                          
+                                    <tbody>
+                                        <?php 
+                                        foreach ($arrCart as $cart_key => $cart_value) {
+                                            $cart_product_id=$cart_value['product_id'];
+                                            $cart_product_code=$cart_value['product_code'];
+                                            $cart_product_name=$cart_value['product_name'];
+                                            $cart_product_alias=$cart_value['product_alias'];
+                                            $cart_product_link               =   route('frontend.index.index',[$cart_product_alias]);    
+                                            $cart_product_image=$cart_value['product_image'];
+                                            $cart_product_price_text         =   fnPrice($cart_value["product_price"]);
+                                            $cart_product_total_price_text   =   fnPrice($cart_value["product_total_price"]);
+                                            $cart_product_quantity           =   $cart_value["product_quantity"];
+                                            $cart_img=get_product_thumbnail($cart_product_image);                                        
+                                            ?>      
+                                            <tr pro_id=<?php echo $cart_product_id; ?> >            
+                                                <td class="com_product20" ><img src="<?php echo $cart_img; ?>" ></td>
+
+                                                <td align="left" class="com_product22">
+                                                    <div><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></div>
+                                                    <div><input  type="text" onkeypress="return isNumberKey(event)" onblur='changeTotalPrice(this);' value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
+                                                </td>
+                                                <td align="right" class="com_product23" >
+                                                    <div class="tt-pri"><?php echo $cart_product_total_price_text; ?></div>
+                                                    <div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
+                                                </td>                                            
+                                            </tr>                          
+                                            <?php
+                                        }         
+                                        ?>
+                                    </tbody>
+                                </table>           
+                                <?php                                                                   
+                            }
+                        }                     
+                        ?>                
+                    </div>    
+                    <?php                           
+                    if(count(@$error) > 0 || count(@$success) > 0){
+                        ?>
+                        <div class="alert-system padding-top-5">
+                            <?php                                           
+                            if(count(@$error) > 0){
+                                ?>
+                                <ul class="alert-error">
+                                    <?php 
+                                    foreach (@$error as $key => $value) {
+                                        ?>
+                                        <li><?php echo $value; ?></li>
                                         <?php
-                                    }         
-                                    ?>
-                                </tbody>
-                            </table>           
-                            <?php                                                                   
-                        }
-                    }                     
-                    ?>                
-                </div>    
-                <?php 
-                $class_ttkh='';
-                if(count($arrCart) > 0){
-                    $class_ttkh='block';
-                }else{
-                    $class_ttkh='none';
-                }                
-                ?>
-                <div class="margin-top-15" style="display: <?php echo $class_ttkh; ?>">
+                                    }
+                                    ?>                              
+                                </ul>
+                                <?php
+                            }
+                            if(count(@$success) > 0){
+                                ?>
+                                <ul class="alert-success">
+                                    <?php 
+                                    foreach (@$success as $key => $value) {
+                                        ?>
+                                        <li><?php echo $value; ?></li>
+                                        <?php
+                                    }
+                                    ?>                              
+                                </ul>
+                                <?php
+                            }
+                            ?>  
+                            <div class="clr"></div>                                            
+                        </div>              
+                        <?php
+                    }                
+                    $style_ttkh='';
+                    if(count($arrCart) > 0){
+                        $style_ttkh='block';
+                    }else{
+                        $style_ttkh='none';
+                    }                
+                    ?>            
+                    <div class="alert-system padding-top-5" style="display: none;"></div>    
+                    <div class="margin-top-15 tbl-ttkh" style="display: <?php echo $style_ttkh; ?>">
                         <div class="ttkh">Thông tin khách hàng</div>
                         <div class="margin-top-15">
                             <input type="text" class="ttkh-text" name="customer_name" value="" placeholder="Tên người nhận">
                         </div>
                         <div class="margin-top-15">
-                            <input type="text" class="ttkh-text" name="customer_telephone" value="" placeholder="Số điện thoại">
+                            <input type="text" class="ttkh-text" name="customer_phone" value="" placeholder="Số điện thoại">
                         </div>
                         <div class="margin-top-15">
                             <input type="text" class="ttkh-text" name="customer_address" value="" placeholder="Địa chỉ">
+                        </div>
+                        <div class="margin-top-15">
+                            <input type="text" class="ttkh-text" name="customer_email" value="" placeholder="Email">
                         </div>
                         <div class="margin-top-15">
                             <input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
@@ -449,6 +488,7 @@ if(count($item) > 0){
                     var cart_product_name=value.product_name;
                     var cart_product_image=value.product_image;                    
                     var cart_product_quantity=value.product_quantity;
+                    var cart_product_price=value.product_price;
                     var cart_product_total_price=value.product_total_price;  
                     var cart_product_total_price_text=    accounting.formatMoney(cart_product_total_price, "", 0, ".",",") + ' đ';
                     var xNewRow   = xtbody.insertRow(i);    
@@ -460,7 +500,7 @@ if(count($item) > 0){
                     $(cell_product_total_price).addClass('com_product23');
                     $(cell_product_name).attr('align','left');
                     $(cell_product_total_price).attr('align','right');
-                    $(xNewRow).attr('pro_id',cart_product_id);
+                    $(xNewRow).attr('pro_id',cart_product_id);                    
                     cell_product_image.innerHTML='<img src="/upload/'+cart_product_image+'" />';
                     cell_product_name.innerHTML='<div>'+cart_product_name+'</div><div><input  type="text" onblur="changeTotalPrice(this);" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">      </div>' ;                    
                     cell_product_total_price.innerHTML= '<div class="tt-pri">'+cart_product_total_price_text+'</div><div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>' ;                    
@@ -545,6 +585,10 @@ if(count($item) > 0){
             success: function (data) {                       
                 var index=xRow.rowIndex;
                 xTBody.deleteRow(index);
+                console.log(data.product_count);
+                if(parseInt(data.product_count)  < 1 ){
+                    $('.tbl-ttkh').hide();
+                }                
             },
             error : function (data){
                 
@@ -553,14 +597,55 @@ if(count($item) > 0){
                 
             },
         }); 
-    }
+    }     
+    function hideMsgPdetail() {
+        $('.alert-system').fadeOut();
+    }     
     function checkout(){
         var customer_name = $('form[name="frm-product-detail"] input[name="customer_name"]').val();
-        var customer_telephone = $('form[name="frm-product-detail"] input[name="customer_telephone"]').val();
+        var customer_phone = $('form[name="frm-product-detail"] input[name="customer_phone"]').val();
         var customer_address = $('form[name="frm-product-detail"] input[name="customer_address"]').val();
+        var customer_email = $('form[name="frm-product-detail"] input[name="customer_email"]').val();
         var customer_note = $('form[name="frm-product-detail"] input[name="customer_note"]').val();
-        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();        
+        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();
         
+        var dataItem={
+            'customer_name':customer_name,
+            'customer_phone':customer_phone,
+            'customer_address':customer_address,
+            'customer_email':customer_email,
+            'customer_note':customer_note,        
+            '_token': token
+        };
+        $.ajax({
+            url: '<?php echo route("frontend.index.checkoutQuickly"); ?>',
+            type: 'POST',
+            data: dataItem,
+            async: false,
+            success: function (data) {                                      
+                if(data.checked==1){
+                    alert('Đặt hàng thành công');
+                    window.location.assign(data.link_redirect);
+                }else{   
+                    var data_error=data.error;                                  
+                    var ul='<ul class="alert-error">';
+                    $.each(data_error,function(index,value){
+                        ul+='<li>'+value+'</li>';
+                    });                    
+                    ul+='</ul>';
+                    $('.alert-system').show();
+                    $('.alert-system').empty();
+                    $('.alert-system').append(ul);
+                    setTimeout(hideMsgPdetail,10000);    
+                }
+            },
+            error : function (data){
+                
+            },
+            beforeSend  : function(jqXHR,setting){
+                
+            },
+        }); 
     }
     /*$( document ).ready(function() {
         $('.input-group-btn .btn-number').click(function(e){

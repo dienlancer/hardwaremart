@@ -387,8 +387,6 @@ Route::match(["get","post"],"dang-nhap-thanh-toan",["as"=>"frontend.index.loginC
 Route::get("hoa-don",["as"=>"frontend.index.getInvoice","uses"=>"frontend\IndexController@getInvoice"]);
 Route::get("lgout",["as"=>"frontend.index.getLgout","uses"=>"frontend\IndexController@getLgout"]);
 Route::post("add-to-cart",["as"=>"frontend.index.addToCart","uses"=>"frontend\IndexController@addToCart"]);
-Route::post("change-total-price",["as"=>"frontend.index.changeTotalPrice","uses"=>"frontend\IndexController@changeTotalPrice"]);
-Route::post("delete-row-cart",["as"=>"frontend.index.deleteRowCart","uses"=>"frontend\IndexController@deleteRowCart"]);
 Route::post("get-paymentmethod",["as"=>"frontend.index.getPaymentmethod","uses"=>"frontend\IndexController@getPaymentmethod"]);
 Route::post("tim-kiem",["as"=>"frontend.index.search","uses"=>"frontend\IndexController@search"]);
 Route::post("load-data-member",["as"=>"frontend.index.loadDataMember","uses"=>"frontend\IndexController@loadDataMember"]);	
@@ -396,6 +394,11 @@ Route::post("load-data-supporter",["as"=>"frontend.index.loadDataSupporter","use
 Route::post("tim-kiem-san-pham",["as"=>"frontend.index.searchProduct","uses"=>"frontend\IndexController@searchProduct"]);
 Route::match(["get","post"],"lien-he-voi-chung-toi",["as"=>"frontend.index.contactUs","uses"=>"frontend\IndexController@contactUs"]);
 
+/* begin tính riêng cho website hardwaremart */
+Route::post("change-total-price",["as"=>"frontend.index.changeTotalPrice","uses"=>"frontend\IndexController@changeTotalPrice"]);
+Route::post("delete-row-cart",["as"=>"frontend.index.deleteRowCart","uses"=>"frontend\IndexController@deleteRowCart"]);
+Route::post("thanh-toan-truc-tiep",["as"=>"frontend.index.checkoutQuickly","uses"=>"frontend\IndexController@checkoutQuickly"]);
+/* end tính riêng cho website hardwaremart */
 Route::group(["prefix"=>"product"],function(){
 	Route::match(["get","post"],"list",["as"=>"frontend.product.getList","uses"=>"frontend\ProductController@getList"]);		
 	Route::post("load-data",["as"=>"frontend.product.loadData","uses"=>"frontend\ProductController@loadData"]);	
