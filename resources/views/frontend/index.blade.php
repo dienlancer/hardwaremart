@@ -80,12 +80,16 @@ if(isset($alias)){
                     case 'category-product':
                     case 'product':
                     case 'search-product':                
-                    wp_nav_menu($argsDanhMucSanPham);       
-                    $data=getModuleItem("san-pham-noi-bat");
-                    if(count($data) > 0){
-                        $fullname=$data["fullname"];
-                        $items1=$data["items"];
-                        if(count($items1) > 0){
+                    wp_nav_menu($argsDanhMucSanPham);    
+                    ?>
+                    <hr class="cara" />
+                    <div class="bo-loc margin-top-10">Xuất xứ</div>
+                    <?php   
+                    $featured_module=getModuleItem("san-pham-noi-bat");
+                    if(count($featured_module) > 0){
+                        $featured_module_name=$featured_module["fullname"];
+                        $featured_products=$featured_module["items"];
+                        if(count($featured_products) > 0){
                             ?>
                             <script language="javascript" type="text/javascript">
                                 $(document).ready(function(){
@@ -93,18 +97,37 @@ if(isset($alias)){
                                         mode: 'vertical', speed: 500, slideMargin:15, infiniteLoop: true, pager: false, controls: false, minSlides: 5, maxSlides:20, moveSlides: 5, adaptiveHeight: false,auto:true
                                     });
                                 });
-                            </script>
-                            <h2 class="menu-right-title margin-top-20"><?php echo $fullname; ?></h2>
+                            </script>                            
+                            <div class="menu-right-title margin-top-20"><?php echo $featured_module_name; ?></div>
                             <div class="bxSlider">
                                 <?php 
-                                foreach($items1 as $key => $value){
-                                    $featuredImg=get_product_thumbnail($value['image']) ;
-                                    $permalink=route('frontend.index.index',[$value['alias']]);
-                                    $title1=$value['fullname'];
+                                foreach($featured_products as $key => $value){
+                                    $featured_product_id=$value['id'];
+                                    $featured_product_alias=$value['alias'];
+                                    $featured_product_name=$value['fullname'];
+                                    $featured_product_link=route('frontend.index.index',[$featured_product_alias]) ;
+                                    $featured_product_img =get_product_thumbnail($value['image']) ;      
+                                    $featured_product_price=$value['price'];
+                                    $featured_product_sale_price=$value['sale_price'];
+                                    $html_price='';                     
+                                    if((int)@$featured_product_sale_price > 0){              
+                                        $price_on_html ='<span class="price-on">'.fnPrice($featured_product_sale_price).'</span>';
+                                        $price_off_html='<span class="price-off">'.fnPrice($featured_product_price).'</span>' ;                 
+                                        $html_price='<div class="sale-price">'.$price_on_html.'</div><div class="old-price">'.$price_off_html.'</div><div class="clr"></div>' ;              
+                                    }else{
+                                        $html_price='<span class="price-on">'.fnPrice($featured_product_price).'</span>' ;                  
+                                    }           
                                     ?>
                                     <div >
-                                        <div><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featuredImg; ?>"></a></figure></center></div>
-                                        <div class="margin-top-5 box-product-intro-title"><a href="<?php echo $permalink; ?>"><b><?php echo $title1; ?></b></a></div>
+                                        <div class="box-product box-product-rian">
+                                            <div class="box-product-img">
+                                                <center><figure><a href="<?php echo $featured_product_link; ?>"><img src="<?php echo $featured_product_img; ?>"></a></figure></center>
+                                            </div>
+                                            <div class="box-product-intro-title"><a href="<?php echo $featured_product_link; ?>"><b><?php echo $featured_product_name; ?></b></a></div>
+                                            <div class="box-product-price">
+                                                <div><center><?php echo $html_price; ?></center></div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <?php
                                 }

@@ -230,33 +230,7 @@ if(count($arrCart) > 0){
 			$('.x-table-cart').append(xtable);                
 			$('.tbl-ttkh').show();
 		}
-		function addToCart(xForm){
-			var token =$(xForm).find('input[name="_token"]').val();			
-			var quantity = 1;
-			var dataItem={
-				"id":<?php echo @$item['id']; ?>,            
-				"quantity":quantity,
-				"_token": token
-			};
-			$.ajax({
-				url: '<?php echo route("frontend.index.addToCart"); ?>',
-				type: 'POST',
-				data: dataItem,
-				async: false,
-				success: function (data) {
-					restartCart(data);
-					var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
-					$(".modal-body").empty();              
-					$(".modal-body").append(thong_bao);
-				},
-				error : function (data){
-
-				},
-				beforeSend  : function(jqXHR,setting){
-
-				},
-			});
-		}
+		
 		function changeTotalPrice(ctrl){
 			var xRow=$(ctrl).closest('tr')[0];    
 			var xForm=$(ctrl).closest('form')[0];        
@@ -485,11 +459,11 @@ if(count($arrCart) > 0){
 
                                                 <td align="left" class="com_product22">
                                                     <div><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></div>
-                                                    <div><input  type="text" onkeypress="return isNumberKey(event)" onblur='changeTotalPriceTop(this);' value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
+                                                    <div><input  type="text" onkeypress="return isNumberKey(event)" onblur='changeTotalPrice(this);' value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
                                                 </td>
                                                 <td align="right" class="com_product23" >
                                                     <div class="tt-pri"><?php echo $cart_product_total_price_text; ?></div>
-                                                    <div><a href="javascript:void(0);" onclick="deleteRowCartTop(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
+                                                    <div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
                                                 </td>                                            
                                             </tr>                          
                                             <?php

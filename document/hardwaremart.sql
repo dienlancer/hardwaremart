@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 02, 2018 lúc 03:43 PM
+-- Thời gian đã tạo: Th3 02, 2018 lúc 08:10 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -378,7 +378,8 @@ INSERT INTO `category_param` (`id`, `fullname`, `alias`, `parent_id`, `param_val
 (59, '4 tháng', '4-thang', 55, '', 4, 1, '2018-03-01 03:23:38', '2018-03-01 03:23:38'),
 (60, '5 tháng', '5-thang', 55, '', 5, 1, '2018-03-01 03:23:50', '2018-03-01 03:23:50'),
 (61, '6 tháng', '6-thang', 55, '', 6, 1, '2018-03-01 03:24:00', '2018-03-01 03:24:00'),
-(62, '7 tháng', '7-thang', 55, '', 7, 1, '2018-03-01 03:24:09', '2018-03-01 03:24:09');
+(62, '7 tháng', '7-thang', 55, '', 7, 1, '2018-03-01 03:24:09', '2018-03-01 03:24:09'),
+(63, 'Việt Nam', 'viet-nam', 1, '', 5, 1, '2018-03-02 18:28:20', '2018-03-02 18:28:20');
 
 -- --------------------------------------------------------
 
@@ -909,10 +910,7 @@ CREATE TABLE `module_item` (
 --
 
 INSERT INTO `module_item` (`id`, `fullname`, `item_id`, `position`, `component`, `setting`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(9, 'Sản phẩm mới', '[{\"id\":1,\"sort_order\":\"1\"},{\"id\":2,\"sort_order\":\"2\"},{\"id\":3,\"sort_order\":\"3\"},{\"id\":4,\"sort_order\":\"4\"},{\"id\":5,\"sort_order\":\"5\"},{\"id\":6,\"sort_order\":\"6\"},{\"id\":7,\"sort_order\":\"7\"},{\"id\":8,\"sort_order\":\"8\"},{\"id\":9,\"sort_order\":\"9\"},{\"id\":10,\"sort_order\":\"10\"},{\"id\":11,\"sort_order\":\"11\"},{\"id\":12,\"sort_order\":\"12\"},{\"id\":13,\"sort_order\":\"13\"},{\"id\":14,\"sort_order\":\"14\"},{\"id\":15,\"sort_order\":\"15\"},{\"id\":16,\"sort_order\":\"16\"},{\"id\":17,\"sort_order\":\"17\"},{\"id\":18,\"sort_order\":\"18\"},{\"id\":19,\"sort_order\":\"19\"},{\"id\":20,\"sort_order\":\"20\"}]', 'san-pham-moi', 'product', NULL, 1, 4, '2018-01-10 15:43:11', '2018-01-14 05:38:37'),
-(10, 'Tư vấn giải pháp', '[{\"id\":20,\"sort_order\":\"1\"},{\"id\":19,\"sort_order\":\"2\"},{\"id\":18,\"sort_order\":\"3\"},{\"id\":17,\"sort_order\":\"4\"},{\"id\":16,\"sort_order\":\"5\"},{\"id\":15,\"sort_order\":\"6\"}]', 'tu-van-giai-phap-widget', 'article', NULL, 1, 5, '2018-01-10 17:40:07', '2018-01-14 06:13:38'),
-(12, 'Tin tức', '[{\"id\":7,\"sort_order\":\"1\"},{\"id\":11,\"sort_order\":\"2\"},{\"id\":12,\"sort_order\":\"3\"},{\"id\":13,\"sort_order\":\"4\"},{\"id\":14,\"sort_order\":\"5\"},{\"id\":15,\"sort_order\":\"6\"},{\"id\":16,\"sort_order\":\"7\"},{\"id\":17,\"sort_order\":\"8\"},{\"id\":18,\"sort_order\":\"9\"},{\"id\":19,\"sort_order\":\"10\"},{\"id\":20,\"sort_order\":\"11\"},{\"id\":21,\"sort_order\":\"12\"}]', 'news-between', 'article', NULL, 1, 1, '2018-01-10 19:16:28', '2018-01-19 18:21:17'),
-(13, 'Các tin khác', '[{\"id\":15,\"sort_order\":1},{\"id\":17,\"sort_order\":3},{\"id\":18,\"sort_order\":4}]', 'other-news', 'article', NULL, 1, 2, '2018-01-10 19:30:14', '2018-02-22 01:32:55');
+(1, 'Sản phẩm nổi bật', '[{\"id\":23,\"sort_order\":23},{\"id\":24,\"sort_order\":24},{\"id\":25,\"sort_order\":25},{\"id\":26,\"sort_order\":26},{\"id\":27,\"sort_order\":27},{\"id\":28,\"sort_order\":28}]', 'san-pham-noi-bat', 'product', NULL, 1, 1, '2018-03-02 18:37:45', '2018-03-02 18:37:45');
 
 -- --------------------------------------------------------
 
@@ -1437,7 +1435,9 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (663, 1, 'fYpXZppwD1leYB1S9D3O2DKE0rZqMVil', '2018-03-02 03:27:22', '2018-03-02 03:27:22'),
 (664, 1, 'C5bfu1teMTdMwuwKXc9DsSSr65V4prxu', '2018-03-02 03:27:22', '2018-03-02 03:27:22'),
 (665, 1, '18FtXw4eCoEk9aYC4KKeSujj3Skeeg1j', '2018-03-02 07:41:14', '2018-03-02 07:41:14'),
-(666, 1, 'gd6maf8zgzzu2O0mHXqHBn9IY1Ovvl0F', '2018-03-02 07:41:14', '2018-03-02 07:41:14');
+(666, 1, 'gd6maf8zgzzu2O0mHXqHBn9IY1Ovvl0F', '2018-03-02 07:41:14', '2018-03-02 07:41:14'),
+(667, 1, 'K3emBbgwwtLt5ojXcvk8Q0tP3VqLefsd', '2018-03-02 11:23:06', '2018-03-02 11:23:06'),
+(668, 1, 'P6tdNZSePBmSorun8ODixsb0VDybzRdU', '2018-03-02 11:23:06', '2018-03-02 11:23:06');
 
 -- --------------------------------------------------------
 
@@ -1615,12 +1615,12 @@ INSERT INTO `product` (`id`, `code`, `fullname`, `meta_keyword`, `meta_descripti
 (20, '361459872', 'Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'metakeyword  Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'metadescription Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'samsung-galaxy-tab-a-2016-101-kem-but-spen', 'tablet-4.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-3.png\"]', '7990000.00', '0.00', 'giới thiệu Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', '<p>chi tiết&nbsp;Samsung Galaxy Tab A 2016 10.1 k&egrave;m b&uacute;t Spen</p>', NULL, NULL, NULL, 13, 20, '2018-02-28 01:29:15', '2018-02-28 01:29:15'),
 (21, '786354129', 'Ipad WI-FI 32GB Gold 2017', 'metakeyword Ipad WI-FI 32GB Gold 2017', 'metadescription Ipad WI-FI 32GB Gold 2017', 'ipad-wi-fi-32gb-gold-2017', 'tablet-5.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-4.png\"]', '8490000.00', '0.00', 'giới thiệu Ipad WI-FI 32GB Gold 2017', '<p>chi tiết&nbsp;Ipad WI-FI 32GB Gold 2017</p>', NULL, NULL, NULL, 13, 21, '2018-02-28 01:30:58', '2018-02-28 01:30:58'),
 (22, '971642538', 'Ipad WI-FI CELLULAR 32GB SILVER 2017', 'metakeyword Ipad WI-FI CELLULAR 32GB SILVER 2017', 'metadescription Ipad WI-FI CELLULAR 32GB SILVER 2017', 'ipad-wi-fi-cellular-32gb-silver-2017', 'tablet-6.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-5.png\"]', '12490000.00', '0.00', 'giới thiệu Ipad WI-FI CELLULAR 32GB SILVER 2017', '<p>chi tiết&nbsp;Ipad WI-FI CELLULAR 32GB SILVER 2017</p>', NULL, NULL, NULL, 13, 22, '2018-02-28 01:33:06', '2018-02-28 01:33:06'),
-(23, '129845673', 'Samsung Galaxy A8 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-a8-2018-vang', 'dien-thoai-1.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '9280000.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<h2 style=\"text-align:justify\">GIỚI THIỆU TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Trong dịp giới thiệu h&agrave;ng loạt c&aacute;c mẫu sản phẩm mới của Fiio tại Quảng Ch&acirc;u v&agrave; Tokyo, một sản phẩm mới xuất hiện thu h&uacute;t kh&aacute; nhiều sự ch&uacute; &yacute; l&agrave; phi&ecirc;n bản n&acirc;ng cấp của chiếc flagship của h&atilde;ng F9 mới mang t&ecirc;n F9 PRO.</p>\n\n<p style=\"text-align:justify\">Về h&igrave;nh d&aacute;ng b&ecirc;n ngo&agrave;i c&oacute; thay đổi lớn nhất l&agrave; m&agrave;u bạc thay v&igrave; 2 m&agrave;u trước đ&acirc;y l&agrave; đen v&agrave; đỏ, v&agrave; thiết kế c&oacute; thay đổi nhỏ như batch mới nhất của những mẫu mẫu F9 v&agrave; F9 SE gi&uacute;p người d&ugrave;ng tiện lợi thay đổi d&acirc;y connect hơn.</p>\n\n<p style=\"text-align:justify\">Khung housing được l&agrave;m bằng kim loại được tiện CNC nguy&ecirc;n khối, sau đ&oacute; mạ c&ocirc;ng nghiệp anodize v&agrave; sound blasting tạo n&ecirc;n 2 khối kim loại với m&agrave;u sắc cực kỳ ch&iacute;nh x&aacute;c v&agrave; sang trọng. Thiết kế trong housing vẫn sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường, dựa tr&ecirc;n thiết kế từ sinh vật gi&uacute;p triệt ti&ecirc;u s&oacute;ng đứng trong housing.</p>\n\n<p style=\"text-align:justify\">B&ecirc;n trong của Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module). C&aacute;c driver đều xử l&yacute; crossover để tạo n&ecirc;n chất &acirc;m ch&iacute;nh x&aacute;c nhất ở cả 3 dải.</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất. Fiio F9 Pro c&oacute; mức trở kh&aacute;ng l&agrave; 28 Ohm v&agrave; độ nhạy l&agrave; 106 dB/mW đảm bảo khả năng chơi nhạc từ cả c&aacute;c thiết bị di động hay từ c&aacute;c ampli v&agrave; DAP với mức c&ocirc;ng suất tối đa chịu được l&agrave; 100mW.</p>\n\n<p style=\"text-align:justify\">M&agrave;ng Diaphragm của dynamic driver được l&agrave;m bằng chất liệu mới PEK Polymeric Nano Composite, đ&atilde; được so s&aacute;nh với c&aacute;c chất liệu kh&aacute;c nhằm mang đến một chất bass khỏe hơn với tốc độ cao v&agrave; giảm được độ m&eacute;o tiếng mang đến &acirc;m thanh trung thực. Buồng &acirc;m của Fiio F9 Pro được thiết kế đồng trục truyền thống như c&aacute;c chiếc tai nghe hybrid đầu bảng đảm bảo thiết kế nhỏ gọn v&agrave; giữ được chất &acirc;m mong muốn.</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm.</p>\n\n<p style=\"text-align:justify\">Phụ kiện đi k&egrave;m cũng kh&aacute; giống với F9 bao gồm 1 hộp cứng chống nước HB1 v&agrave; đến 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển v&agrave; một t&uacute;i nỉ bằng Neoprene.</p>', '<h2 style=\"text-align:justify\">TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module)</p>\n\n<p style=\"text-align:justify\">Fiio F9 PRO sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường l&agrave;m giảm hiện tượng s&oacute;ng đứng</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất</p>\n\n<p style=\"text-align:justify\">Phần vỏ tai được l&agrave;m bằng nh&ocirc;m tiện CNC chứng c&aacute;p, m&agrave;u sắc sang trọng</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm</p>\n\n<p style=\"text-align:justify\">K&egrave;m tai nghe c&ograve;n c&oacute; 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển</p>', 'mZ-fKiUb1Ns', 290, 186, 23, '2018-02-28 01:47:16', '2018-03-02 14:12:27'),
-(24, '615342798', 'Samsung Galaxy A8 2018 Tím', 'metakeyword SAMSUNG GALAXY A8 2018 TÍM', 'metadescription SAMSUNG GALAXY A8 2018 TÍM', 'samsung-galaxy-a8-2018-tim', 'dien-thoai-2.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8 2018 TÍM', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8 2018 T&Iacute;M</p>', NULL, NULL, 91, 186, 24, '2018-02-28 02:09:35', '2018-03-02 14:12:19'),
-(25, '932546187', 'Samsung Galaxy A8 2018 Đen', 'metakeyword SAMSUNG GALAXY A8+ 2018 ĐEN', 'metadescription SAMSUNG GALAXY A8+ 2018 ĐEN', 'samsung-galaxy-a8-2018-den', 'dien-thoai-3.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '13490000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8+ 2018 ĐEN', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8+ 2018 ĐEN</p>', NULL, NULL, 44, 186, 25, '2018-02-28 02:11:23', '2018-03-02 14:25:17'),
-(26, '792483615', 'Samsung Galaxy S8 PLUS 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-s8-plus-2018-vang', 'dien-thoai-4.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-3.png\"]', '13490000.00', '0.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<p>chi tiết&nbsp;Samsung Galaxy A8 2018 V&agrave;ng</p>', NULL, NULL, 37, 186, 26, '2018-02-28 02:13:36', '2018-03-02 14:28:58'),
-(27, '673518942', 'Samsung Galaxy S8 Đen', 'metakeyword Samsung Galaxy S8 Đen', 'metadescription Samsung Galaxy S8 Đen', 'samsung-galaxy-s8-den', 'dien-thoai-5.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '16490000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Đen', '<p>chi tiết&nbsp;Samsung Galaxy S8 Đen</p>', NULL, NULL, 128, 186, 27, '2018-02-28 02:15:11', '2018-03-02 14:28:52'),
-(28, '532497168', 'Samsung Galaxy S8 Tím', 'metakeyword Samsung Galaxy S8 Tím', 'metadescription Samsung Galaxy S8 Tím', 'samsung-galaxy-s8-tim', 'dien-thoai-6.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '17990000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Tím', '<p>chi tiết&nbsp;Samsung Galaxy S8 T&iacute;m</p>', NULL, NULL, 44, 186, 28, '2018-02-28 02:16:27', '2018-03-02 14:40:05'),
+(23, '129845673', 'Samsung Galaxy A8 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-a8-2018-vang', 'dien-thoai-1.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '9280000.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<h2 style=\"text-align:justify\">GIỚI THIỆU TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Trong dịp giới thiệu h&agrave;ng loạt c&aacute;c mẫu sản phẩm mới của Fiio tại Quảng Ch&acirc;u v&agrave; Tokyo, một sản phẩm mới xuất hiện thu h&uacute;t kh&aacute; nhiều sự ch&uacute; &yacute; l&agrave; phi&ecirc;n bản n&acirc;ng cấp của chiếc flagship của h&atilde;ng F9 mới mang t&ecirc;n F9 PRO.</p>\n\n<p style=\"text-align:justify\">Về h&igrave;nh d&aacute;ng b&ecirc;n ngo&agrave;i c&oacute; thay đổi lớn nhất l&agrave; m&agrave;u bạc thay v&igrave; 2 m&agrave;u trước đ&acirc;y l&agrave; đen v&agrave; đỏ, v&agrave; thiết kế c&oacute; thay đổi nhỏ như batch mới nhất của những mẫu mẫu F9 v&agrave; F9 SE gi&uacute;p người d&ugrave;ng tiện lợi thay đổi d&acirc;y connect hơn.</p>\n\n<p style=\"text-align:justify\">Khung housing được l&agrave;m bằng kim loại được tiện CNC nguy&ecirc;n khối, sau đ&oacute; mạ c&ocirc;ng nghiệp anodize v&agrave; sound blasting tạo n&ecirc;n 2 khối kim loại với m&agrave;u sắc cực kỳ ch&iacute;nh x&aacute;c v&agrave; sang trọng. Thiết kế trong housing vẫn sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường, dựa tr&ecirc;n thiết kế từ sinh vật gi&uacute;p triệt ti&ecirc;u s&oacute;ng đứng trong housing.</p>\n\n<p style=\"text-align:justify\">B&ecirc;n trong của Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module). C&aacute;c driver đều xử l&yacute; crossover để tạo n&ecirc;n chất &acirc;m ch&iacute;nh x&aacute;c nhất ở cả 3 dải.</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất. Fiio F9 Pro c&oacute; mức trở kh&aacute;ng l&agrave; 28 Ohm v&agrave; độ nhạy l&agrave; 106 dB/mW đảm bảo khả năng chơi nhạc từ cả c&aacute;c thiết bị di động hay từ c&aacute;c ampli v&agrave; DAP với mức c&ocirc;ng suất tối đa chịu được l&agrave; 100mW.</p>\n\n<p style=\"text-align:justify\">M&agrave;ng Diaphragm của dynamic driver được l&agrave;m bằng chất liệu mới PEK Polymeric Nano Composite, đ&atilde; được so s&aacute;nh với c&aacute;c chất liệu kh&aacute;c nhằm mang đến một chất bass khỏe hơn với tốc độ cao v&agrave; giảm được độ m&eacute;o tiếng mang đến &acirc;m thanh trung thực. Buồng &acirc;m của Fiio F9 Pro được thiết kế đồng trục truyền thống như c&aacute;c chiếc tai nghe hybrid đầu bảng đảm bảo thiết kế nhỏ gọn v&agrave; giữ được chất &acirc;m mong muốn.</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm.</p>\n\n<p style=\"text-align:justify\">Phụ kiện đi k&egrave;m cũng kh&aacute; giống với F9 bao gồm 1 hộp cứng chống nước HB1 v&agrave; đến 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển v&agrave; một t&uacute;i nỉ bằng Neoprene.</p>', '<h2 style=\"text-align:justify\">TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module)</p>\n\n<p style=\"text-align:justify\">Fiio F9 PRO sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường l&agrave;m giảm hiện tượng s&oacute;ng đứng</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất</p>\n\n<p style=\"text-align:justify\">Phần vỏ tai được l&agrave;m bằng nh&ocirc;m tiện CNC chứng c&aacute;p, m&agrave;u sắc sang trọng</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm</p>\n\n<p style=\"text-align:justify\">K&egrave;m tai nghe c&ograve;n c&oacute; 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển</p>', 'mZ-fKiUb1Ns', 303, 186, 23, '2018-02-28 01:47:16', '2018-03-02 19:04:37'),
+(24, '615342798', 'Samsung Galaxy A8 2018 Tím', 'metakeyword SAMSUNG GALAXY A8 2018 TÍM', 'metadescription SAMSUNG GALAXY A8 2018 TÍM', 'samsung-galaxy-a8-2018-tim', 'dien-thoai-2.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8 2018 TÍM', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8 2018 T&Iacute;M</p>', NULL, NULL, 92, 186, 24, '2018-02-28 02:09:35', '2018-03-02 18:09:29'),
+(25, '932546187', 'Samsung Galaxy A8 2018 Đen', 'metakeyword SAMSUNG GALAXY A8+ 2018 ĐEN', 'metadescription SAMSUNG GALAXY A8+ 2018 ĐEN', 'samsung-galaxy-a8-2018-den', 'dien-thoai-3.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '13490000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8+ 2018 ĐEN', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8+ 2018 ĐEN</p>', NULL, NULL, 46, 186, 25, '2018-02-28 02:11:23', '2018-03-02 18:09:22'),
+(26, '792483615', 'Samsung Galaxy S8 PLUS 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-s8-plus-2018-vang', 'dien-thoai-4.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-3.png\"]', '13490000.00', '0.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<p>chi tiết&nbsp;Samsung Galaxy A8 2018 V&agrave;ng</p>', NULL, NULL, 40, 186, 26, '2018-02-28 02:13:36', '2018-03-02 18:09:14'),
+(27, '673518942', 'Samsung Galaxy S8 Đen', 'metakeyword Samsung Galaxy S8 Đen', 'metadescription Samsung Galaxy S8 Đen', 'samsung-galaxy-s8-den', 'dien-thoai-5.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '16490000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Đen', '<p>chi tiết&nbsp;Samsung Galaxy S8 Đen</p>', NULL, NULL, 133, 186, 27, '2018-02-28 02:15:11', '2018-03-02 18:16:54'),
+(28, '532497168', 'Samsung Galaxy S8 Tím', 'metakeyword Samsung Galaxy S8 Tím', 'metadescription Samsung Galaxy S8 Tím', 'samsung-galaxy-s8-tim', 'dien-thoai-6.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '17990000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Tím', '<p>chi tiết&nbsp;Samsung Galaxy S8 T&iacute;m</p>', NULL, NULL, 62, 186, 28, '2018-02-28 02:16:27', '2018-03-02 18:41:55'),
 (29, '814275639', 'Loa BLUETOOTH ROMAN Y15', 'metakeyword Loa BLUETOOTH ROMAN Y15', 'metadescription Loa BLUETOOTH ROMAN Y15', 'loa-bluetooth-roman-y15', 'phu-kien-1.png', 1, '[\"phu-kien-2.png\",\"phu-kien-3.png\",\"phu-kien-4.png\"]', '100000.00', '0.00', 'giới thiệu Loa BLUETOOTH ROMAN Y15', '<p>chi tiết&nbsp;Loa BLUETOOTH ROMAN Y15</p>', NULL, NULL, NULL, 15, 29, '2018-02-28 02:31:08', '2018-02-28 02:31:23'),
 (30, '742396185', 'Gậy Chụp Hình MONOPOD MINI', 'metakeyword Gậy Chụp Hình MONOPOD MINI', 'metadescription Gậy Chụp Hình MONOPOD MINI', 'gay-chup-hinh-monopod-mini', 'phu-kien-2.png', 1, '[\"phu-kien-1.png\",\"phu-kien-2.png\",\"phu-kien-3.png\"]', '20000.00', '0.00', 'giới thiệu Gậy Chụp Hình MONOPOD MINI', '<p>Chi tiết&nbsp;Gậy Chụp H&igrave;nh MONOPOD MINI</p>', NULL, NULL, NULL, 15, 30, '2018-02-28 02:33:36', '2018-02-28 02:33:36'),
 (31, '643592718', 'Pin Sạc Dự Phòng MICROTEK MT -502', 'metakeyword PIN SẠC DỰ PHÒNG MICROTEK MT -502', 'metadescription PIN SẠC DỰ PHÒNG MICROTEK MT -502', 'pin-sac-du-phong-microtek-mt-502', 'phu-kien-3.png', 1, '[\"phu-kien-1.png\",\"phu-kien-2.png\",\"phu-kien-4.png\"]', '100000.00', '0.00', 'giới thiệu PIN SẠC DỰ PHÒNG MICROTEK MT -502', '<p>chi tiết&nbsp;PIN SẠC DỰ PH&Ograve;NG MICROTEK MT -502</p>', NULL, NULL, NULL, 15, 31, '2018-02-28 02:35:42', '2018-02-28 02:35:58'),
@@ -1748,9 +1748,18 @@ INSERT INTO `product_param` (`id`, `product_id`, `param_id`, `created_at`, `upda
 (103, 46, 53, '2018-02-28 04:45:43', '2018-02-28 04:45:43'),
 (104, 1, 10, '2018-02-28 18:31:27', '2018-02-28 18:31:27'),
 (105, 1, 54, '2018-02-28 18:31:27', '2018-02-28 18:31:27'),
-(106, 23, 11, '2018-03-01 03:24:32', '2018-03-01 03:24:32'),
-(107, 23, 53, '2018-03-01 03:24:32', '2018-03-01 03:24:32'),
-(108, 23, 58, '2018-03-01 03:24:32', '2018-03-01 03:24:32');
+(109, 23, 11, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(110, 23, 23, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(111, 23, 29, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(112, 23, 31, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(113, 23, 33, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(114, 23, 36, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(115, 23, 38, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(116, 23, 43, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(117, 23, 48, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(118, 23, 51, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(119, 23, 53, '2018-03-02 19:04:05', '2018-03-02 19:04:05'),
+(120, 23, 58, '2018-03-02 19:04:05', '2018-03-02 19:04:05');
 
 -- --------------------------------------------------------
 
@@ -2601,7 +2610,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `address`, `phone`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-03-02 07:41:14', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-03-02 07:41:14'),
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-03-02 11:23:06', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-03-02 11:23:06'),
 (6, 'helenangochong', 'helenangoc@dienkim.com', '$2y$10$/cSr2zKOI5RUAo9XD2K5DuVwB554IWn3k16RwF37pFSxYFouMOmbi', NULL, '2018-01-26 04:32:49', 'Hồ Thị Ngọc Hồng', '12 Tân Canh', '0988162755', NULL, 3, 0, '2018-01-26 01:57:35', '2018-02-04 08:08:20'),
 (7, 'langong', 'thaithuonglangong@dienkim.com', '$2y$10$W38P0cEq8qVYSiXYAKQVCOKb7ZkN4t7uN1trgm38V2wSKjtacybxe', NULL, '2018-01-28 09:54:51', 'Thái Thượng Lãng Ông', '13 Tân Canh', '0988162774', NULL, 4, 0, '2018-01-28 09:40:59', '2018-02-04 08:08:20'),
 (8, 'tiennv', 'tiennv@dienkim.com', '$2y$10$9sq3u.mDu/Bk1vvpv4sU7.Ior67wjHR5n1slgsv/sz63zBQxAfZ4K', NULL, '2018-02-23 01:16:10', 'Nguyễn Văn Tiến', '14 Tân Canh', '0988152782', NULL, 5, 0, '2018-02-05 20:06:26', '2018-02-23 01:16:10'),
@@ -2969,7 +2978,7 @@ ALTER TABLE `category_banner`
 -- AUTO_INCREMENT cho bảng `category_param`
 --
 ALTER TABLE `category_param`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT cho bảng `category_product`
@@ -3035,7 +3044,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `module_item`
 --
 ALTER TABLE `module_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `page`
@@ -3053,7 +3062,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=667;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=669;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`
@@ -3077,7 +3086,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT cho bảng `product_param`
 --
 ALTER TABLE `product_param`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT cho bảng `project`

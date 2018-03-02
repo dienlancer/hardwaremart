@@ -9,6 +9,9 @@ $setting=getSettingSystem();
 if(count($item) > 0){        
 	$id=$item["id"];
 	$fullname = $item["fullname"];
+    $alias=$item["alias"];
+    $permalink=route('frontend.index.index',[$alias]);
+
 	$intro=$item["intro"];
 	$detail=$item['detail'];
     $technical_detail=$item['technical_detail'];  
@@ -174,7 +177,87 @@ if(count($item) > 0){
                         }                        
                     }   
                     ?>                
-                    <!-- end xuất xứ -->                    	
+                    <!-- end xuất xứ -->   
+                    <!-- begin màu -->
+                    <?php 
+                    $dataParamFather=CategoryParamModel::whereRaw('alias = ?',['mau'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+                    if(count($dataParamFather) > 0){
+                        $dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                        $arr_id=array();
+                        if(count($dataParamChildren) > 0){
+                            foreach ($dataParamChildren as $key => $value){
+                                $arr_id[]=(int)@$value['id'];
+                            }
+                            $dataParam=DB::table('product_param')
+                            ->whereIn('product_param.param_id',$arr_id)
+                            ->where('product_param.product_id',(int)@$id)
+                            ->select('id')
+                            ->get()
+                            ->toArray();
+                            if(count($dataParam) > 0){
+                                ?>
+                                <div class="margin-top-10">
+                                    <div class="col-lg-3 no-padding-left"><b>Màu</b></div>
+                                    <div class="col-lg-9">
+                                        <?php 
+                                        foreach ($dataParamChildren as $key => $value) {
+                                            $dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
+                                            if(count($dataParam) > 0){
+                                                ?><div class="block-color" style="background: <?php echo $value['param_value']; ?>"></div><?php
+                                            }
+                                        }
+                                        ?>
+                                    </div> 
+                                    <div class="clr"></div>                 
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>                  
+                        <?php
+                    }
+                    ?>                
+                    <!-- end màu -->  
+                    <!-- begin kích thước -->
+                    <?php 
+                    $dataParamFather=CategoryParamModel::whereRaw('alias = ?',['kich-thuoc'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+                    if(count($dataParamFather) > 0){
+                        $dataParamChildren=CategoryParamModel::whereRaw('parent_id = ?',[(int)@$dataParamFather[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                        $arr_id=array();
+                        if(count($dataParamChildren) > 0){
+                            foreach ($dataParamChildren as $key => $value){
+                                $arr_id[]=(int)@$value['id'];
+                            }
+                            $dataParam=DB::table('product_param')
+                            ->whereIn('product_param.param_id',$arr_id)
+                            ->where('product_param.product_id',(int)@$id)
+                            ->select('id')
+                            ->get()
+                            ->toArray();
+                            if(count($dataParam) > 0){
+                                ?>
+                                <div class="margin-top-10">
+                                    <div class="col-lg-3 no-padding-left"><b>Kích thước</b></div>
+                                    <div class="col-lg-9">
+                                        <?php 
+                                        foreach ($dataParamChildren as $key => $value) {
+                                            $dataParam=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$value['id']])->select('id')->get()->toArray();
+                                            if(count($dataParam) > 0){
+                                                ?><div class="block-size"><?php echo $value['fullname']; ?></div><?php
+                                            }
+                                        }
+                                        ?>
+                                    </div> 
+                                    <div class="clr"></div>                 
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>                  
+                        <?php
+                    }
+                    ?>                
+                    <!-- end kích thước -->                 	
                 </div>   
                 <div class="margin-top-15">
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart(document.forms['frm-product-detail']);" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
@@ -359,7 +442,9 @@ if(count($item) > 0){
                 </div> 
             </div>                
             <div id="comments" class="tabcontent">
-                <div class="margin-top-15">Bình luận</div>
+                <div class="margin-top-15">
+                    <div class="fb-comments" data-href="<?php echo $permalink; ?>" data-numposts="10"></div>
+                </div>
             </div>           
         </div>        
         <?php              
@@ -465,7 +550,33 @@ if(count($item) > 0){
             zoomWindowFadeOut: 750
         });
     }    
-    
+    function addToCart(xForm){
+            var token =$(xForm).find('input[name="_token"]').val();         
+            var quantity = 1;
+            var dataItem={
+                "id":<?php echo @$item['id']; ?>,            
+                "quantity":quantity,
+                "_token": token
+            };
+            $.ajax({
+                url: '<?php echo route("frontend.index.addToCart"); ?>',
+                type: 'POST',
+                data: dataItem,
+                async: false,
+                success: function (data) {
+                    restartCart(data);
+                    var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
+                    $(".modal-body").empty();              
+                    $(".modal-body").append(thong_bao);
+                },
+                error : function (data){
+
+                },
+                beforeSend  : function(jqXHR,setting){
+
+                },
+            });
+        }
     /*$( document ).ready(function() {
         $('.input-group-btn .btn-number').click(function(e){
             e.preventDefault();
