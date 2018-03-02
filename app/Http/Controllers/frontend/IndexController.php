@@ -452,7 +452,7 @@ class IndexController extends Controller {
                 ->whereIn('product.category_id', $arr_category_id)
                 ->where('product.status',1)       
                 ->groupBy('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')
-                ->orderBy('product.sort_order', 'asc')
+                ->orderBy('product.created_at', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()->toArray();   
@@ -527,43 +527,8 @@ class IndexController extends Controller {
     return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","pagination","layout","category"));   
                                
   }
-      function addCart(){          
-          $product_id=(int)($_POST["product_id"]);
-          $product_code=$_POST["product_code"];
-          $product_name=$_POST["product_name"];
-          $product_alias=$_POST["product_alias"];
-          $product_image=$_POST["product_image"];
-          $product_price=(float)($_POST["product_price"]);
-          $product_quantity=(int)($_POST["product_quantity"]);          
-          $ssCart=array();
-          $arrCart=array();
-          if(Session::has($this->_ssNameCart)){
-            $arrCart=Session::get($this->_ssNameCart);
-          }                                   
-          if($product_id > 0){            
-              if(count($arrCart) == 0){
-                $arrCart[$product_id]["product_quantity"] = $product_quantity;
-              }
-              else{
-                    if(!isset($arrCart[$product_id])){
-                      $arrCart[$product_id]["product_quantity"] = $product_quantity;                 
-                    }                        
-                    else{
-                      $arrCart[$product_id]["product_quantity"] = $arrCart[$product_id]["product_quantity"] + $product_quantity;                  
-                    }                               
-              }
-              $arrCart[$product_id]["product_id"]=$product_id;  
-              $arrCart[$product_id]["product_code"]=$product_code;
-              $arrCart[$product_id]["product_name"]=$product_name;
-              $arrCart[$product_id]["product_alias"]=$product_alias;      
-              $arrCart[$product_id]["product_image"]=$product_image;          
-              $arrCart[$product_id]["product_price"]=$product_price;                      
-              $product_quantity=(int)$arrCart[$product_id]["product_quantity"];
-              $product_total_price=$product_price * $product_quantity;
-              $arrCart[$product_id]["product_total_price"]=($product_total_price);                            
-              Session::put($this->_ssNameCart,$arrCart);                                        
-          }    
-      }
+
+      
       public function viewCart(Request $request){   
           $layout="two-column";     
           $component='cart';                 
@@ -1532,7 +1497,51 @@ class IndexController extends Controller {
                             'cart'=>$arrCart
                           );
         return $dataReturn;
-      }       
+      }   
+      function changeTotalPrice(Request $request){
+        $id=$request->id;
+        $quantity=$request->quantity;   
+        $data=ProductModel::find((int)$id);          
+        $product_id=(int)(@$data['id']);
+        $product_price=0;      
+        $product_quantity=0;        
+        $product_total_price=0;                            
+        $arrCart=array();
+        if(Session::has($this->_ssNameCart)){
+          $arrCart=Session::get($this->_ssNameCart);
+        }                         
+        if(count($arrCart) > 0){
+          if((int)@$quantity > 0){
+            $product_quantity=(int)@$quantity;   
+            $arrCart[$product_id]["product_quantity"] = $product_quantity;
+            $product_price=$arrCart[$product_id]["product_price"];
+            $product_total_price=$product_price * $product_quantity;
+            $arrCart[$product_id]["product_total_price"]=$product_total_price;
+            Session::put($this->_ssNameCart,$arrCart);    
+          }else{
+            $product_quantity=$arrCart[$product_id]["product_quantity"];
+            $product_total_price=$arrCart[$product_id]["product_total_price"];            
+          }
+        }
+        $dataReturn=array(
+                            'product_quantity'=>$product_quantity,
+                            'product_total_price'=>$product_total_price,                            
+                          );
+        return $dataReturn;
+      }   
+      public function deleteRowCart(Request $request){      
+          $id=$request->id;              
+          $arrCart=array();
+          if(Session::has($this->_ssNameCart)){
+            $arrCart=Session::get($this->_ssNameCart);
+          }                
+          if(count($arrCart) > 0){
+            unset($arrCart[$id]);              
+          }             
+          Session::put($this->_ssNameCart,$arrCart);             
+          $dataReturn=array();
+          return $dataReturn;
+      } 
       public function getPaymentmethod(Request $request){
          $id=$request->id;
          $data=array();

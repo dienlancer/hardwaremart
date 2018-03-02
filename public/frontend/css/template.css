@@ -370,13 +370,13 @@ ul.list-style-none{
 .rex .owl-prev{
   position: absolute;
   right: 35px;
-  top: -42px;
+  top: -43px;
 
 }
 .rex .owl-next{
     position: absolute;
     right: 0;
-    top: -42px;
+    top: -43px;
 }
 .tariff{
     border:1px solid #ad1115;
@@ -414,13 +414,13 @@ ul.list-style-none{
 .laptop .owl-prev{
   position: absolute;
   right: 35px;
-  top:-42px;
+  top:-43px;
 
 }
 .laptop .owl-next{
     position: absolute;
     right: 0;
-    top:-42px;
+    top:-43px;
 }
 
 
@@ -433,13 +433,13 @@ ul.list-style-none{
 .may-tinh .owl-prev{
   position: absolute;
   right: 35px;
-  top:-42px;
+  top:-43px;
 
 }
 .may-tinh .owl-next{
     position: absolute;
     right: 0;
-    top:-42px;
+    top:-43px;
 }
 .tablet .owl-prev, .tablet .owl-next{
  background:#0c62ad;
@@ -449,13 +449,13 @@ ul.list-style-none{
 .tablet .owl-prev{
   position: absolute;
   right: 35px;
-  top:-42px;
+  top:-43px;
 
 }
 .tablet .owl-next{
     position: absolute;
     right: 0;
-    top:-42px;
+    top:-43px;
 }
 .prodetail .owl-prev, .prodetail .owl-next{
  background:#0c62ad;
@@ -481,13 +481,13 @@ ul.list-style-none{
 .dien-thoai .owl-prev{
   position: absolute;
   right: 35px;
-  top:-42px;
+  top:-43px;
 
 }
 .dien-thoai .owl-next{
     position: absolute;
     right: 0;
-    top:-42px;
+    top:-43px;
 }
 .phu-kien-dien-thoai .owl-prev, .phu-kien-dien-thoai .owl-next{
  background:#0c62ad;
@@ -497,13 +497,13 @@ ul.list-style-none{
 .phu-kien-dien-thoai .owl-prev{
   position: absolute;
   right: 35px;
-  top:-42px;
+  top:-43px;
 
 }
 .phu-kien-dien-thoai .owl-next{
     position: absolute;
     right: 0;
-    top:-42px;
+    top:-43px;
 }
 .phu-kien-may-tinh .owl-prev, .phu-kien-may-tinh .owl-next{
  background:#0c62ad;
@@ -513,13 +513,13 @@ ul.list-style-none{
 .phu-kien-may-tinh .owl-prev{
   position: absolute;
   right: 35px;
-  top:-42px;
+  top:-43px;
 
 }
 .phu-kien-may-tinh .owl-next{
     position: absolute;
     right: 0;
-    top:-42px;
+    top:-43px;
 }
 .loa-am-thanh .owl-prev, .loa-am-thanh .owl-next{
  background:#0c62ad;
@@ -529,13 +529,13 @@ ul.list-style-none{
 .loa-am-thanh .owl-prev{
   position: absolute;
   right: 35px;
-  top:-42px;
+  top:-43px;
 
 }
 .loa-am-thanh .owl-next{
     position: absolute;
     right: 0;
-    top:-42px;
+    top:-43px;
 }
 
 .related-products .owl-prev, .related-products .owl-next{
@@ -1986,6 +1986,7 @@ form[name='frm-search'] input[name='q']{
     font-weight: bold;
     font-size: 25px;
 }
+
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;

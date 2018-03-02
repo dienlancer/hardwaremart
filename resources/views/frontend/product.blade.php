@@ -40,9 +40,7 @@ if(count($item) > 0){
     
         <div class="breadcrumb-title margin-top-15">
             <?php echo $breadcrumb; ?>
-        </div>
-        
-        	{{ csrf_field() }}            
+        </div>        	           
             <div class="col-lg-4 no-padding-left">
                 <div class="margin-top-15">
                     <div class="pdetail-chipu">
@@ -125,7 +123,14 @@ if(count($item) > 0){
                 <div class="box-product-param">
                 	<!-- begin xuất xứ -->
                 	<?php 
-                    $data_pram=CategoryParamModel::whereRaw('parent_id = 0')->select('id','fullname','alias')->orderBy('sort_order','asc')->get()->toArray();
+                    $query=\DB::table('category_param');
+                    $query->where('alias','<>','mau')->where('alias','<>','kich-thuoc')->where('parent_id','=',0);
+                    $data_pram=$query->select('category_param.id','category_param.fullname','category_param.alias')
+                  ->groupBy('category_param.id','category_param.fullname','category_param.alias')
+                  ->orderBy('category_param.sort_order', 'asc')
+                  ->get()
+                  ->toArray();    
+                  $data_pram=convertToArray($data_pram);                  
                     if(count($data_pram) > 0){
                         foreach ($data_pram as $prm_key => $parm_value) {
                             $parm_alias=$parm_value['alias'];
@@ -174,7 +179,9 @@ if(count($item) > 0){
                 <div class="margin-top-15">
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
                     </a>                    
-                </div>  
+                </div>                  
+                <form name="frm-product-detail" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
                 <div class="margin-top-5 x-table-cart">
                     <?php 
                     $ssName="vmart";
@@ -199,16 +206,16 @@ if(count($item) > 0){
                                         $cart_product_quantity           =   $cart_value["product_quantity"];
                                         $cart_img=get_product_thumbnail($cart_product_image);                                        
                                         ?>      
-                                        <tr>            
+                                        <tr pro_id=<?php echo $cart_product_id; ?>>            
                                             <td class="com_product20" ><img src="<?php echo $cart_img; ?>" ></td>
 
                                             <td align="left" class="com_product22">
                                                 <div><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></div>
-                                                <div><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
+                                                <div><input  type="text" onkeypress="return isNumberKey(event)" onblur='changeTotalPrice(this);' value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
                                             </td>
                                             <td align="right" class="com_product23" >
-                                                <div><?php echo $cart_product_total_price_text; ?></div>
-                                                <div><a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
+                                                <div class="tt-pri"><?php echo $cart_product_total_price_text; ?></div>
+                                                <div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
                                             </td>                                            
                                         </tr>                          
                                         <?php
@@ -221,8 +228,15 @@ if(count($item) > 0){
                     }                     
                     ?>                
                 </div>    
-                <form name="frm-product-detail" method="POST" enctype="multipart/form-data">
-                    <div class="margin-top-15">
+                <?php 
+                $class_ttkh='';
+                if(count($arrCart) > 0){
+                    $class_ttkh='block';
+                }else{
+                    $class_ttkh='none';
+                }                
+                ?>
+                <div class="margin-top-15" style="display: <?php echo $class_ttkh; ?>">
                         <div class="ttkh">Thông tin khách hàng</div>
                         <div class="margin-top-15">
                             <input type="text" class="ttkh-text" name="customer_name" value="" placeholder="Tên người nhận">
@@ -237,10 +251,10 @@ if(count($item) > 0){
                             <input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
                         </div>
                         <div class="margin-top-15">
-                            <a href="javascript:void(0);" class="kh-checkout">Thanh toán</a>
-                            <a href="javascript:void(0);" class="kh-mua-them">Mua thêm</a>
+                            <a href="javascript:void(0);" onclick="checkout();" class="kh-checkout">Thanh toán</a>
+                            <a href="<?php echo url('/'); ?>" class="kh-mua-them">Mua thêm</a>
                         </div>
-                    </div>                                               
+                    </div>                                                                   
                 </form>                
     </div>
     <div class="clr"></div>
@@ -410,25 +424,9 @@ if(count($item) > 0){
             zoomWindowFadeIn: 500,
             zoomWindowFadeOut: 750
         });
-    }
-    function eventQty(evt){
-    	var quantity=$('input[name="qty"]').val();
-    	var qty=parseInt(quantity);
-    	switch(evt){
-    		case 'add':
-    			qty = qty + 1;
-    		break;
-    		case 'sub':
-    			qty = qty - 1;
-    		break;
-    	}    	
-    	if(qty == 0){
-    		return false;
-    	}
-    	$('input[name="qty"]').val(qty);
     }    
     function addToCart(){
-        var token = $('input[name="_token"]').val();
+        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();
         var quantity = 1;
         var dataItem={
             "id":<?php echo @$item['id']; ?>,            
@@ -462,9 +460,10 @@ if(count($item) > 0){
                     $(cell_product_total_price).addClass('com_product23');
                     $(cell_product_name).attr('align','left');
                     $(cell_product_total_price).attr('align','right');
+                    $(xNewRow).attr('pro_id',cart_product_id);
                     cell_product_image.innerHTML='<img src="/upload/'+cart_product_image+'" />';
-                    cell_product_name.innerHTML='<div>'+cart_product_name+'</div><div><input  type="text" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">      </div>' ;                    
-                    cell_product_total_price.innerHTML= '<div>'+cart_product_total_price_text+'</div><div><a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>' ;                    
+                    cell_product_name.innerHTML='<div>'+cart_product_name+'</div><div><input  type="text" onblur="changeTotalPrice(this);" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">      </div>' ;                    
+                    cell_product_total_price.innerHTML= '<div class="tt-pri">'+cart_product_total_price_text+'</div><div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>' ;                    
                     i++;
                 });
                 $(xtable).addClass('com_product16');
@@ -476,6 +475,7 @@ if(count($item) > 0){
                 var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
                 $(".modal-body").empty();              
                 $(".modal-body").append(thong_bao);
+                $('.tbl-ttkh').show();
             },
             error : function (data){
                 
@@ -484,6 +484,83 @@ if(count($item) > 0){
                 
             },
         });
+    }
+    function changeTotalPrice(ctrl){
+        var xRow=$(ctrl).closest('tr')[0];        
+        var product_id=$(xRow).attr('pro_id');        
+        var quantity=$(ctrl).val(); 
+        if(parseInt(quantity) < 1){
+            alert('Số lượng phải lớn hơn 0');                        
+        }
+        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();        
+        var dataItem={
+            "id":product_id,            
+            "quantity":quantity,
+            "_token": token
+        };      
+        $.ajax({
+            url: '<?php echo route("frontend.index.changeTotalPrice"); ?>',
+            type: 'POST',
+            data: dataItem,
+            async: false,
+            success: function (data) {                       
+                var product_total_price_text = accounting.formatMoney(data.product_total_price, "", 0, ".",",") + ' đ';
+                var product_quantity=data.product_quantity;
+                var xCellProductName=xRow.cells[1];
+                var xCellTotalPrice=xRow.cells[2];
+                $(xCellTotalPrice).find('div.tt-pri').empty();
+                $(xCellTotalPrice).find('div.tt-pri').append(product_total_price_text);
+                $(xCellProductName).find('input[name="quantity['+product_id+']"]').val(product_quantity);
+            },
+            error : function (data){
+                
+            },
+            beforeSend  : function(jqXHR,setting){
+                
+            },
+        }); 
+    }
+    function deleteRowCart(ctrl){
+        var xac_nhan = 0;
+        var msg="Bạn có muốn xóa ?";
+        if(window.confirm(msg)){ 
+            xac_nhan = 1;
+        }
+        if(xac_nhan  == 0){
+            return 0;
+        }
+        var xRow=$(ctrl).closest('tr')[0];              
+        var xTBody=$(ctrl).closest('tbody')[0];      
+        var product_id=$(xRow).attr('pro_id');                
+        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();        
+        var dataItem={
+            "id":product_id,                        
+            "_token": token
+        };      
+        $.ajax({
+            url: '<?php echo route("frontend.index.deleteRowCart"); ?>',
+            type: 'POST',
+            data: dataItem,
+            async: false,
+            success: function (data) {                       
+                var index=xRow.rowIndex;
+                xTBody.deleteRow(index);
+            },
+            error : function (data){
+                
+            },
+            beforeSend  : function(jqXHR,setting){
+                
+            },
+        }); 
+    }
+    function checkout(){
+        var customer_name = $('form[name="frm-product-detail"] input[name="customer_name"]').val();
+        var customer_telephone = $('form[name="frm-product-detail"] input[name="customer_telephone"]').val();
+        var customer_address = $('form[name="frm-product-detail"] input[name="customer_address"]').val();
+        var customer_note = $('form[name="frm-product-detail"] input[name="customer_note"]').val();
+        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();        
+        
     }
     /*$( document ).ready(function() {
         $('.input-group-btn .btn-number').click(function(e){
