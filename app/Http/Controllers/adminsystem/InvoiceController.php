@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\InvoiceModel;
 use App\InvoiceDetailModel;
-use App\PaymentMethodModel;
 use DB;
 class InvoiceController extends Controller {
     	var $_controller="invoice";	
@@ -29,9 +28,9 @@ class InvoiceController extends Controller {
         if(!empty(@$request->filter_search)){
           $query->where('invoice.fullname','like','%'.trim(@$request->filter_search).'%');
         }
-        $data=$query->select('invoice.id','invoice.code','invoice.username','invoice.email','invoice.fullname','invoice.address','invoice.phone','invoice.quantity','invoice.total_price','invoice.status','invoice.sort_order','invoice.created_at','invoice.updated_at')
-        ->groupBy('invoice.id','invoice.code','invoice.username','invoice.email','invoice.fullname','invoice.address','invoice.phone','invoice.quantity','invoice.total_price','invoice.status','invoice.sort_order','invoice.created_at','invoice.updated_at')
-        ->orderBy('invoice.sort_order', 'asc')->get()->toArray()     ;              
+        $data=$query->select('invoice.id','invoice.code','invoice.email','invoice.fullname','invoice.address','invoice.phone','invoice.quantity','invoice.total_price','invoice.status','invoice.created_at','invoice.updated_at')
+        ->groupBy('invoice.id','invoice.code','invoice.email','invoice.fullname','invoice.address','invoice.phone','invoice.quantity','invoice.total_price','invoice.status','invoice.created_at','invoice.updated_at')
+        ->orderBy('invoice.created_at', 'desc')->get()->toArray()     ;              
         $data=convertToArray($data);    
         $data=invoiceConverter($data,$this->_controller);            
         return $data;
@@ -42,7 +41,7 @@ class InvoiceController extends Controller {
           $icon=$this->_icon; 
           $arrRowData=array();    
           $arrInvoiceDetail=array();  
-          $dataPaymentMethod=array();
+          
           $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-form";  
         if(in_array($requestControllerAction, $arrPrivilege)){
@@ -51,13 +50,13 @@ class InvoiceController extends Controller {
                 $title=$this->_title . " : Update";
                 $arrRowData=InvoiceModel::find((int)@$id)->toArray();           
                 $arrInvoiceDetail=InvoiceDetailModel::whereRaw("invoice_id = ?",[(int)@$id])->select()->get()->toArray();
-                $dataPaymentMethod=PaymentMethodModel::whereRaw('status = 1')->get()->toArray();
+                
             break;
             case 'add':
                 $title=$this->_title . " : Add new";
             break;      
          }             
-         return view("adminsystem.".$this->_controller.".form",compact("arrRowData","arrInvoiceDetail","controller","task","title","icon","dataPaymentMethod"));
+         return view("adminsystem.".$this->_controller.".form",compact("arrRowData","arrInvoiceDetail","controller","task","title","icon"));
         }else{
           return view("adminsystem.no-access");
         }
@@ -68,18 +67,13 @@ class InvoiceController extends Controller {
         $fullname 				       =	trim($request->fullname)	;
         $address 					       = 	trim($request->address);
         $phone	                 =	trim($request->phone);                
-        $sort_order 			       =	trim($request->sort_order);
+        
         $status 				         =  trim($request->status);        
         $data 		               =  array();
         $info 		               =  array();
         $error 		               =  array();
         $item		                 =  null;
-        $checked 	= 1;                      
-        if(empty($sort_order)){
-             $checked = 0;
-             $error["sort_order"]["type_msg"] 	= "has-error";
-             $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
-        }
+        $checked 	= 1;                              
         if((int)$status==-1){
              $checked = 0;
              $error["status"]["type_msg"] 		= "has-error";
@@ -97,7 +91,7 @@ class InvoiceController extends Controller {
         $item->phone 		    =	$phone;            
         
                    
-        $item->sort_order 	=	(int)@$sort_order;
+        
         $item->status 			=	(int)@$status;    
         $item->updated_at 	=	date("Y-m-d H:i:s",time());    	        	
         $item->save();  	
@@ -211,30 +205,6 @@ class InvoiceController extends Controller {
               'data'              => $data
             );
             return $info;
-    }
-    public function sortOrder(Request $request){
-          $sort_json              =   $request->sort_json;           
-          $data_order             =   json_decode($sort_json);       
-          $checked                =   1;
-          $type_msg               =   "alert-success";
-          $msg                    =   "Cập nhật thành công";      
-          if(count($data_order) > 0){              
-            foreach($data_order as $key => $value){         
-              if(!empty($value)){
-                $item=InvoiceModel::find((int)@$value->id);                
-              $item->sort_order=(int)$value->sort_order;                         
-              $item->save();                      
-              }                                             
-            }           
-          }        
-          $data                   =   $this->loadData($request);
-          $info = array(
-            'checked'           => $checked,
-            'type_msg'          => $type_msg,                
-            'msg'               => $msg,                
-            'data'              => $data
-          );
-          return $info;
     }
     
 }

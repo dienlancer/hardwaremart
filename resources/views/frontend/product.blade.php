@@ -177,7 +177,7 @@ if(count($item) > 0){
                     <!-- end xuất xứ -->                    	
                 </div>   
                 <div class="margin-top-15">
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart(document.forms['frm-product-detail']);" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
                     </a>                    
                 </div>                  
                 <form name="frm-product-detail"  method="POST" enctype="multipart/form-data">
@@ -187,7 +187,8 @@ if(count($item) > 0){
                         $ssName="vmart";
                         $arrCart=array();
                         if(Session::has($ssName)){
-                            $arrCart=Session::get($ssName);    
+                            $arrCart=Session::get($ssName);                                
+                            ksort($arrCart);                            
                             if(count($arrCart)){    
                                 ?>
                                 <table  class="com_product16" cellpadding="0" cellspacing="0" width="100%">
@@ -290,7 +291,7 @@ if(count($item) > 0){
                             <input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
                         </div>
                         <div class="margin-top-15">
-                            <a href="javascript:void(0);" onclick="checkout();" class="kh-checkout">Thanh toán</a>
+                            <a href="javascript:void(0);" onclick="checkout(this);" class="kh-checkout">Thanh toán</a>
                             <a href="<?php echo url('/'); ?>" class="kh-mua-them">Mua thêm</a>
                         </div>
                     </div>                                                                   
@@ -464,189 +465,7 @@ if(count($item) > 0){
             zoomWindowFadeOut: 750
         });
     }    
-    function addToCart(){
-        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();
-        var quantity = 1;
-        var dataItem={
-            "id":<?php echo @$item['id']; ?>,            
-            "quantity":quantity,
-            "_token": token
-        };
-        $.ajax({
-            url: '<?php echo route("frontend.index.addToCart"); ?>',
-            type: 'POST',
-            data: dataItem,
-            async: false,
-            success: function (data) {
-                var data_cart=data.cart;
-                var xtable = document.createElement("TABLE");                
-                var xtbody=xtable.createTBody();                
-                var i=0;
-                $.each( data_cart, function( key, value ) {
-                    var cart_product_id=value.product_id;
-                    var cart_product_code=value.product_code;
-                    var cart_product_name=value.product_name;
-                    var cart_product_image=value.product_image;                    
-                    var cart_product_quantity=value.product_quantity;
-                    var cart_product_price=value.product_price;
-                    var cart_product_total_price=value.product_total_price;  
-                    var cart_product_total_price_text=    accounting.formatMoney(cart_product_total_price, "", 0, ".",",") + ' đ';
-                    var xNewRow   = xtbody.insertRow(i);    
-                    var cell_product_image=xNewRow.insertCell(0);
-                    var cell_product_name=xNewRow.insertCell(1);
-                    var cell_product_total_price=xNewRow.insertCell(2);
-                    $(cell_product_image).addClass('com_product20');
-                    $(cell_product_name).addClass('com_product22');                    
-                    $(cell_product_total_price).addClass('com_product23');
-                    $(cell_product_name).attr('align','left');
-                    $(cell_product_total_price).attr('align','right');
-                    $(xNewRow).attr('pro_id',cart_product_id);                    
-                    cell_product_image.innerHTML='<img src="/upload/'+cart_product_image+'" />';
-                    cell_product_name.innerHTML='<div>'+cart_product_name+'</div><div><input  type="text" onblur="changeTotalPrice(this);" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">      </div>' ;                    
-                    cell_product_total_price.innerHTML= '<div class="tt-pri">'+cart_product_total_price_text+'</div><div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>' ;                    
-                    i++;
-                });
-                $(xtable).addClass('com_product16');
-                $(xtable).attr('cellpadding','0');
-                $(xtable).attr('cellspacing','0');
-                $(xtable).attr("width","100%");
-                $('.x-table-cart').empty();
-                $('.x-table-cart').append(xtable);
-                var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
-                $(".modal-body").empty();              
-                $(".modal-body").append(thong_bao);
-                $('.tbl-ttkh').show();
-            },
-            error : function (data){
-                
-            },
-            beforeSend  : function(jqXHR,setting){
-                
-            },
-        });
-    }
-    function changeTotalPrice(ctrl){
-        var xRow=$(ctrl).closest('tr')[0];        
-        var product_id=$(xRow).attr('pro_id');        
-        var quantity=$(ctrl).val(); 
-        if(parseInt(quantity) < 1){
-            alert('Số lượng phải lớn hơn 0');                        
-        }
-        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();        
-        var dataItem={
-            "id":product_id,            
-            "quantity":quantity,
-            "_token": token
-        };      
-        $.ajax({
-            url: '<?php echo route("frontend.index.changeTotalPrice"); ?>',
-            type: 'POST',
-            data: dataItem,
-            async: false,
-            success: function (data) {                       
-                var product_total_price_text = accounting.formatMoney(data.product_total_price, "", 0, ".",",") + ' đ';
-                var product_quantity=data.product_quantity;
-                var xCellProductName=xRow.cells[1];
-                var xCellTotalPrice=xRow.cells[2];
-                $(xCellTotalPrice).find('div.tt-pri').empty();
-                $(xCellTotalPrice).find('div.tt-pri').append(product_total_price_text);
-                $(xCellProductName).find('input[name="quantity['+product_id+']"]').val(product_quantity);
-            },
-            error : function (data){
-                
-            },
-            beforeSend  : function(jqXHR,setting){
-                
-            },
-        }); 
-    }
-    function deleteRowCart(ctrl){
-        var xac_nhan = 0;
-        var msg="Bạn có muốn xóa ?";
-        if(window.confirm(msg)){ 
-            xac_nhan = 1;
-        }
-        if(xac_nhan  == 0){
-            return 0;
-        }
-        var xRow=$(ctrl).closest('tr')[0];              
-        var xTBody=$(ctrl).closest('tbody')[0];      
-        var product_id=$(xRow).attr('pro_id');                
-        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();        
-        var dataItem={
-            "id":product_id,                        
-            "_token": token
-        };      
-        $.ajax({
-            url: '<?php echo route("frontend.index.deleteRowCart"); ?>',
-            type: 'POST',
-            data: dataItem,
-            async: false,
-            success: function (data) {                       
-                var index=xRow.rowIndex;
-                xTBody.deleteRow(index);
-                console.log(data.product_count);
-                if(parseInt(data.product_count)  < 1 ){
-                    $('.tbl-ttkh').hide();
-                }                
-            },
-            error : function (data){
-                
-            },
-            beforeSend  : function(jqXHR,setting){
-                
-            },
-        }); 
-    }     
-    function hideMsgPdetail() {
-        $('.alert-system').fadeOut();
-    }     
-    function checkout(){
-        var customer_name = $('form[name="frm-product-detail"] input[name="customer_name"]').val();
-        var customer_phone = $('form[name="frm-product-detail"] input[name="customer_phone"]').val();
-        var customer_address = $('form[name="frm-product-detail"] input[name="customer_address"]').val();
-        var customer_email = $('form[name="frm-product-detail"] input[name="customer_email"]').val();
-        var customer_note = $('form[name="frm-product-detail"] input[name="customer_note"]').val();
-        var token = $('form[name="frm-product-detail"] input[name="_token"]').val();
-        
-        var dataItem={
-            'customer_name':customer_name,
-            'customer_phone':customer_phone,
-            'customer_address':customer_address,
-            'customer_email':customer_email,
-            'customer_note':customer_note,        
-            '_token': token
-        };
-        $.ajax({
-            url: '<?php echo route("frontend.index.checkoutQuickly"); ?>',
-            type: 'POST',
-            data: dataItem,
-            async: false,
-            success: function (data) {                                      
-                if(data.checked==1){
-                    alert('Đặt hàng thành công');
-                    window.location.assign(data.link_redirect);
-                }else{   
-                    var data_error=data.error;                                  
-                    var ul='<ul class="alert-error">';
-                    $.each(data_error,function(index,value){
-                        ul+='<li>'+value+'</li>';
-                    });                    
-                    ul+='</ul>';
-                    $('.alert-system').show();
-                    $('.alert-system').empty();
-                    $('.alert-system').append(ul);
-                    setTimeout(hideMsgPdetail,10000);    
-                }
-            },
-            error : function (data){
-                
-            },
-            beforeSend  : function(jqXHR,setting){
-                
-            },
-        }); 
-    }
+    
     /*$( document ).ready(function() {
         $('.input-group-btn .btn-number').click(function(e){
             e.preventDefault();

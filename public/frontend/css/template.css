@@ -1889,8 +1889,20 @@ form[name='frm-search'] input[name='q']{
     border-radius: 20px;
 }
 .rimex{
-    display: flex;
-  flex-direction: row;
+       display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.tem-cart{
+        display: block;
+    text-align: center;
+    color: #ffffff;
+    transition: all 0.5s ease-in-out;
+    padding: 10px 0px;
+    font-size: 20px;
+}
+.tem-cart:hover{
+    background: #d54d4d;
 }
 .nimme{
         margin-top: 10px;
@@ -1977,7 +1989,27 @@ form[name='frm-search'] input[name='q']{
     text-transform: uppercase;
     transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;
 }
-.kh-checkout:hover,.kh-mua-them:hover{
+.kh-checkout_2{
+   display: inline-block;
+    background: #d54d4d;
+    text-align: center;
+    color: #ffffff;
+    padding:7px 78px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;
+}
+.kh-mua-them_2{
+        display: inline-block;
+    background: #03a9c0;
+    text-align: center;
+    color: #ffffff;
+    padding: 7px 77px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;
+}
+.kh-checkout:hover,.kh-mua-them:hover,.kh-checkout_2:hover,.kh-mua-them_2:hover{
     background: #333;
     color: #ffffff;
 }
@@ -1986,7 +2018,33 @@ form[name='frm-search'] input[name='q']{
     font-weight: bold;
     font-size: 25px;
 }
-
+.timex .nadoo{
+        width: 500px;
+    background: #ffffff;
+    position: absolute;
+    top: 49px;
+    right: -1px;
+    z-index: 2;
+    border: 1px solid #bbb;
+    padding: 10px;
+    
+    display: none;
+    
+}
+.timex:hover .nadoo{
+    display: block;
+    
+    -webkit-animation: slide-down .3s ease-out;
+    -moz-animation: slide-down .3s ease-out;
+}
+@-webkit-keyframes slide-down {
+      0% { opacity: 0;  }   
+    100% { opacity: 1;  }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0;  }   
+    100% { opacity: 1;  }
+}
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;

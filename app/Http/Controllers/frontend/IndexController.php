@@ -255,7 +255,7 @@ class IndexController extends Controller {
     ->take($totalItemsPerPage)
     ->get()->toArray();   
     $items=convertToArray($data);      
-    return view("frontend.search",compact("component","title","items","pagination","layout"));
+    return view("frontend.index",compact("component","title","items","pagination","layout"));
   }
   public function index(Request $request,$alias)
   {                     
@@ -1492,8 +1492,8 @@ class IndexController extends Controller {
                 }
               }                                                        
           }    
-          $dataReturn=array(
-                            'quantity'=>$total_quantity,
+          ksort($arrCart);
+          $dataReturn=array(                            
                             'cart'=>$arrCart
                           );
         return $dataReturn;
@@ -1523,28 +1523,36 @@ class IndexController extends Controller {
             $product_total_price=$arrCart[$product_id]["product_total_price"];            
           }
         }
-        $dataReturn=array(
-                            'product_quantity'=>$product_quantity,
-                            'product_total_price'=>$product_total_price,                            
-                          );
+        $arrCart=array();
+        if(Session::has($this->_ssNameCart)){    
+          $arrCart = @Session::get($this->_ssNameCart);    
+        }  
+        ksort($arrCart);
+        $dataReturn=array(                            
+          'cart'=>$arrCart
+        );
         return $dataReturn;
       }   
       public function deleteRowCart(Request $request){      
-          $id=$request->id;              
-          $arrCart=array();
-          if(Session::has($this->_ssNameCart)){
-            $arrCart=Session::get($this->_ssNameCart);
-          }                
-          if(count($arrCart) > 0){
-            unset($arrCart[$id]);              
-          }             
-          Session::put($this->_ssNameCart,$arrCart);     
-          $arrCart=array();
-          if(Session::has($this->_ssNameCart)){
-            $arrCart=Session::get($this->_ssNameCart);
-          }         
-          $dataReturn=array('product_count'=>(int)count($arrCart));
-          return $dataReturn;
+        $id=$request->id;              
+        $arrCart=array();
+        if(Session::has($this->_ssNameCart)){
+          $arrCart=Session::get($this->_ssNameCart);
+        }                
+        if(count($arrCart) > 0){
+          unset($arrCart[$id]);              
+        }             
+        Session::put($this->_ssNameCart,$arrCart);     
+        $arrCart=array();
+        if(Session::has($this->_ssNameCart)){    
+          $arrCart = @Session::get($this->_ssNameCart);    
+        }  
+        ksort($arrCart);
+        $dataReturn=array(                            
+          'cart'=>$arrCart,
+          'product_count'=>(int)count($arrCart)
+        );
+        return $dataReturn;
       } 
       public function checkoutQuickly(Request $request){
         $flag=1;
