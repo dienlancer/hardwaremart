@@ -410,7 +410,7 @@ if(count($arrCart) > 0){
 				<div class="col-lg-3">
 					<form action="<?php echo route('frontend.index.searchProduct'); ?>" method="post" name="frm-search">
 							{{ csrf_field() }}
-							<input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm" value="">
+							<input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm" value="<?php echo @$q; ?>">
 							<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>
 					</form>
 				</div>	

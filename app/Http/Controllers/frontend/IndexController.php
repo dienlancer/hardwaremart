@@ -149,61 +149,7 @@ class IndexController extends Controller {
         \Artisan::call('sitemap:auto');   
         return view("frontend.home",compact("component","error","data","success","alias","layout"));        
   }  
-  public function search(Request $request){
-    /* begin standard */    
-    $layout="two-column";                                                           
-    $totalItems=0;
-    $totalItemsPerPage=0;
-    $pageRange=0;      
-    $currentPage=1;  
-    $pagination ;                                              
-    $setting= getSettingSystem();     
-
-    /* end standard */     
-    $items=array();                            
-    $component='search';              
-    $title="Tìm kiếm"; 
-    $query=DB::table('article')
-    ->join('article_category','article.id','=','article_category.article_id')
-    ->join('category_article','category_article.id','=','article_category.category_id')
-    ->where('article.status',1);
-    if(!empty(@$request->q)){
-      $query->where('article.fullname','like', '%'.@$request->q.'%');
-    }                     
-    $data=$query->select('article.id')
-    ->groupBy('article.id')                
-    ->get()->toArray();
-    $data=convertToArray($data);
-    $totalItems=count($data);
-    $totalItemsPerPage=(int)@$setting['article_perpage']['field_value']; 
-    $pageRange=$this->_pageRange;
-    if(!empty(@$request->filter_page)){
-      $currentPage=@$request->filter_page;
-    }       
-    $arrPagination=array(
-      "totalItems"=>$totalItems,
-      "totalItemsPerPage"=>$totalItemsPerPage,
-      "pageRange"=>$pageRange,
-      "currentPage"=>$currentPage   
-    );           
-    $pagination=new PaginationModel($arrPagination);
-    $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-    $query=DB::table('article')
-    ->join('article_category','article.id','=','article_category.article_id')
-    ->join('category_article','category_article.id','=','article_category.category_id')
-    ->where('article.status',1);
-    if(!empty(@$request->q)){
-      $query->where('article.fullname','like', '%'.@$request->q.'%');
-    }                     
-    $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-    ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-    ->orderBy('article.created_at', 'desc')
-    ->skip($position)
-    ->take($totalItemsPerPage)
-    ->get()->toArray();   
-    $items=convertToArray($data);      
-    return view("frontend.index",compact("component","title","items","pagination","layout"));
-  }
+  
   public function searchProduct(Request $request){
     /* begin standard */    
     $layout="two-column";                                                           
@@ -218,15 +164,35 @@ class IndexController extends Controller {
     $items=array();                            
     $component='search-product';              
     $title="Tìm kiếm"; 
-    $query=DB::table('product')    
-    ->join('category_product','product.category_id','=','category_product.id')
-    ->where('product.status',1);
+    $q='';
+    $prod_param=array();    
+
+    $query=DB::table('product')   ;     
+    if($request->prod_param != null){
+      if(count(@$request->prod_param)>0){   
+        $query->join('product_param','product.id','=','product_param.product_id');    
+        $prod_param=@$request->prod_param;          
+        $query->whereIn('product_param.param_id', @$prod_param);    
+      }      
+    }                                       
+    $category=array();
+    $arr_category_id=array();
+    if(!empty(@$request->category_id)){      
+      $category_id    = $request->category_id;              
+      $arr_category_id[]=$category_id;      
+      getStringCategoryID($category_id,$arr_category_id,'category_product');      
+      $query->whereIn('product.category_id', $arr_category_id);        
+      $category=CategoryProductModel::find($category_id);       
+    }
     if(!empty(@$request->q)){
-      $query->where('product.fullname','like', '%'.@$request->q.'%');
-    }                     
+      $q=@$request->q;
+      $query->where('product.fullname','like', '%'.@$q.'%');
+    }
+    $query->where('product.status',1);    
     $data=$query->select('product.id')
     ->groupBy('product.id')                
     ->get()->toArray();
+    
     $data=convertToArray($data);
     $totalItems=count($data);
     $totalItemsPerPage=(int)@$setting['product_perpage']['field_value']; 
@@ -242,12 +208,7 @@ class IndexController extends Controller {
     );           
     $pagination=new PaginationModel($arrPagination);
     $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-    $query=DB::table('product')
-    ->join('category_product','product.category_id','=','category_product.id')
-    ->where('product.status',1);
-    if(!empty(@$request->q)){
-      $query->where('product.fullname','like', '%'.@$request->q.'%');
-    }                     
+                    
     $data=$query->select('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.intro','product.count_view')
     ->groupBy('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.intro','product.count_view')
     ->orderBy('product.created_at', 'desc')
@@ -255,8 +216,8 @@ class IndexController extends Controller {
     ->take($totalItemsPerPage)
     ->get()->toArray();   
     $items=convertToArray($data);      
-    return view("frontend.index",compact("component","title","items","pagination","layout"));
-  }
+    return view("frontend.index",compact("component","title","items","pagination","layout","prod_param",'q','category'));
+  }  
   public function index(Request $request,$alias)
   {                     
     /* begin standard */
@@ -328,15 +289,13 @@ class IndexController extends Controller {
         $category     = $category[0];
         $category_id    = $category['id'];        
         $arr_category_id[]=$category_id;
-        getStringCategoryID($category_id,$arr_category_id,'category_article');                 
-        $data=DB::table('article')
+        getStringCategoryID($category_id,$arr_category_id,'category_article');   
+        $query=DB::table('article')
                 ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_id')                              
-                ->select('article.id')
+                ->join('category_article','category_article.id','=','article_category.category_id')
                 ->whereIn('article_category.category_id', $arr_category_id)
-                ->where('article.status',1)    
-                ->groupBy('article.id')                
-                ->get()->toArray();
+                ->where('article.status',1);
+        $data=$query->select('article.id')->groupBy('article.id')->get()->toArray();
         $data=convertToArray($data);
         $totalItems=count($data);
         $totalItemsPerPage=(int)@$setting['article_perpage']['field_value']; 
@@ -352,18 +311,13 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('article')
-                ->join('article_category','article.id','=','article_category.article_id')
-                ->join('category_article','category_article.id','=','article_category.category_id')                     
-                ->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->whereIn('article_category.category_id', $arr_category_id)
-                ->where('article.status',1)     
-                ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->orderBy('article.created_at', 'desc')
-                ->skip($position)
-                ->take($totalItemsPerPage)
-                ->get()
-                ->toArray();        
+        $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')                
+                    ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
+                    ->orderBy('article.created_at', 'desc')
+                    ->skip($position)
+                    ->take($totalItemsPerPage)
+                    ->get()
+                    ->toArray();        
         $items=convertToArray($data);                            
       }              
       $layout="two-column";  
@@ -374,40 +328,7 @@ class IndexController extends Controller {
         $item=$row[0];
       }            
       $layout="two-column";       
-      break;  
-      case 'articles':                    
-      $data=DB::table('article')                                  
-                ->select('article.id')                
-                ->where('article.status',1)    
-                ->groupBy('article.id')                
-                ->get()->toArray();
-        $data=convertToArray($data);
-        $totalItems=count($data);
-
-        $totalItemsPerPage=(int)@$setting['article_perpage']['field_value']; 
-        $pageRange=$this->_pageRange;
-        if(!empty(@$request->filter_page)){
-          $currentPage=@$request->filter_page;
-        }       
-        $arrPagination=array(
-          "totalItems"=>$totalItems,
-          "totalItemsPerPage"=>$totalItemsPerPage,
-          "pageRange"=>$pageRange,
-          "currentPage"=>$currentPage   
-        );           
-        $pagination=new PaginationModel($arrPagination);
-        $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('article')                
-                ->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')                
-                ->where('article.status',1)     
-                ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
-                ->orderBy('article.created_at', 'desc')
-                ->skip($position)
-                ->take($totalItemsPerPage)
-                ->get()->toArray();            
-        $items=convertToArray($data);           
-      $layout="two-column";     
-      break;
+      break;        
       case 'page':
       $row=PageModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();              
       if(count($row) > 0){
@@ -424,13 +345,10 @@ class IndexController extends Controller {
         $arr_category_id[]=(int)@$category_id;        
 
         getStringCategoryID($category_id,$arr_category_id,'category_product');    
-
-        $data=DB::table('product')                      
-                ->select('product.id')
+        $query=DB::table('product')                      
                 ->whereIn('product.category_id', $arr_category_id)
-                ->where('product.status',1)  
-                ->groupBy('product.id')                
-                ->get()->toArray();
+                ->where('product.status',1)  ;
+        $data=$query->select('product.id')->groupBy('product.id')->get()->toArray();
         $data=convertToArray($data);
 
         $totalItems=count($data);
@@ -447,10 +365,7 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('product')                
-                ->select('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')
-                ->whereIn('product.category_id', $arr_category_id)
-                ->where('product.status',1)       
+        $data=$query->select('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')                
                 ->groupBy('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')
                 ->orderBy('product.created_at', 'desc')
                 ->skip($position)
@@ -469,11 +384,8 @@ class IndexController extends Controller {
       $layout="two-column";       
       break;     
       case 'products':              
-      $data=DB::table('product')                                  
-                ->select('product.id')                
-                ->where('product.status',1)    
-                ->groupBy('product.id')                
-                ->get()->toArray();
+      $query=DB::table('product')->where('product.status',1);
+      $data= $query->select('product.id')->groupBy('product.id')->get()->toArray();
         $data=convertToArray($data);
         $totalItems=count($data);
         $totalItemsPerPage=(int)@$setting['product_perpage']['field_value']; 
@@ -489,14 +401,13 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=DB::table('product')                
-                ->select('product.id','product.alias','product.fullname','product.image')                
-                ->where('product.status',1)     
-                ->groupBy('product.id','product.alias','product.fullname','product.image')
-                ->orderBy('product.created_at', 'desc')
-                ->skip($position)
-                ->take($totalItemsPerPage)
-                ->get()->toArray();            
+        $data=$query->select('product.id','product.alias','product.fullname','product.image')                                
+                    ->groupBy('product.id','product.alias','product.fullname','product.image')
+                    ->orderBy('product.created_at', 'desc')
+                    ->skip($position)
+                    ->take($totalItemsPerPage)
+                    ->get()
+                    ->toArray();            
         $items=convertToArray($data);           
       $layout="two-column";        
       break;            

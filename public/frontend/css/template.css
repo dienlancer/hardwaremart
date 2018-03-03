@@ -2046,11 +2046,17 @@ form[name='frm-search'] input[name='q']{
     100% { opacity: 1;  }
 }
 .bo-loc{
-        font-size: 14px;
-    color: #212121;
+        font-size: 18px;
+    color: #212121;    
 }
 .cara{
     margin-bottom: 0;
+}
+.tich-tac{
+    list-style: none;
+}
+.tich-tac li{
+    margin-left: 0;
 }
 @media (max-width: 767px){    
     div.mobilemenu{
