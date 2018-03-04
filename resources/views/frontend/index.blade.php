@@ -12,7 +12,7 @@ if(isset($alias)){
         switch ($layout){
             case 'two-column':  
             ?>
-            <div class="col-lg-3">
+            <div class="col-sm-3">
                 <?php                                      
                 $argsTinTucSuKien = array(                         
                     'menu_class'            => 'categoryarticle',                            
@@ -79,7 +79,7 @@ if(isset($alias)){
                     						</figure>
                     					</center>      
                     				</div> 
-                    				<div class="margin-top-5"><a href="<?php echo $featured_news_link ?>"><?php echo $featured_news_name; ?></a></div>                  			
+                    				<div class="margin-top-5 box-title"><a href="<?php echo $featured_news_link ?>"><?php echo $featured_news_name; ?></a></div>                  			
                     			</div>
                     			<?php
                     		}
@@ -210,7 +210,7 @@ if(isset($alias)){
                 }                                       
                 ?>                            
             </div>
-            <div class="col-lg-9">
+            <div class="col-sm-9">
                 <?php
                 switch ($component) {                                                                      
                     case "category-article":    

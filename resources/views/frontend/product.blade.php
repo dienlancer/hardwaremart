@@ -154,8 +154,8 @@ if(count($item) > 0){
                                 if(count($data_product_param) > 0){
                                     ?>
                                     <div class="padding-top-10">
-                                        <div class="col-lg-3 no-padding-left"><b><?php echo $father_fullname; ?></b></div>
-                                        <div class="col-lg-9">
+                                        <div class="col-sm-3"><b><?php echo $father_fullname; ?></b></div>
+                                        <div class="col-sm-9">
                                             <?php 
                                             foreach ($children_data as $child_key => $child_value) {
                                                 $data_product_param_2=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
@@ -193,8 +193,8 @@ if(count($item) > 0){
                             if(count($data_product_param) > 0){
                                 ?>
                                 <div class="margin-top-10">
-                                    <div class="col-lg-3 no-padding-left"><b>Màu</b></div>
-                                    <div class="col-lg-9">
+                                    <div class="col-sm-3"><b>Màu</b></div>
+                                    <div class="col-sm-9">
                                         <?php 
                                         foreach ($children_data as $child_key => $child_value) {
                                             $data_product_param_2=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
@@ -233,8 +233,8 @@ if(count($item) > 0){
                             if(count($data_product_param) > 0){
                                 ?>
                                 <div class="margin-top-10">
-                                    <div class="col-lg-3 no-padding-left"><b>Kích thước</b></div>
-                                    <div class="col-lg-9">
+                                    <div class="col-sm-3"><b>Kích thước</b></div>
+                                    <div class="col-sm-9">
                                         <?php 
                                         foreach ($children_data as $child_key => $child_value) {
                                             $data_product_param_2=ProductParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();

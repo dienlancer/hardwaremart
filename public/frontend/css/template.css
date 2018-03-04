@@ -1678,7 +1678,7 @@ form[name='frm-search']{
 }
 .box-product-param{
     background: #f5f5f5;
-    padding:0px 10px 10px 10px;
+    padding:0px 10px 10px 0px;
     font-size: 12px;
     margin-top: 5px;
 }
@@ -1848,7 +1848,9 @@ ul.bankList {
     width: 253px;
 }
 .himlam{
-    margin-left: 253px;
+   float: left;
+   
+    width: 780px;
 }
 .edra .cate-product-horizontal-right{
         display: none;
@@ -1973,24 +1975,28 @@ form[name='frm-search'] input[name='q']{
     
 }
 .kh-checkout{
-   display: inline-block;
+       display: inline-block;
     background: #d54d4d;
     text-align: center;
     color: #ffffff;
-    padding: 7px 96px;
+    padding: 7px 10px;
     font-weight: bold;
     text-transform: uppercase;
-    transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    width: 49%;
 }
 .kh-mua-them{
         display: inline-block;
     background: #03a9c0;
     text-align: center;
     color: #ffffff;
-    padding: 7px 95px;
+    padding: 7px 10px;
     font-weight: bold;
     text-transform: uppercase;
-    transition: all 0.5s ease-in-out;-webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    width: 49%;
 }
 .kh-checkout_2{
    display: inline-block;
@@ -2064,6 +2070,10 @@ form[name='frm-search'] input[name='q']{
 .tich-tac li{
     margin-left: 0;
 }
+.timex{
+	float: right;
+    width: 50px;
+}
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;
@@ -2108,7 +2118,15 @@ form[name='frm-search'] input[name='q']{
     	float: none;
     	text-align: center;
     }
-
+    .covu{
+    	display: none;
+    }
+    .himlam{
+    	width: 100%;
+    }
+    .timex{
+    	display: none;
+    }
 }
 @media (max-width: 543px){
 
@@ -2124,6 +2142,15 @@ form[name='frm-search'] input[name='q']{
     }
     .searching{
         padding: 40px 0px 0px 0px;
+    }
+    .cot-1{
+    	width: auto;
+    	background:none;
+    	
+    }
+    .cot-1 a {color: #004A8F;font-size: 15px}
+    .pdetail-price-detail-on{
+    	font-size: 13px;
     }
 }
 

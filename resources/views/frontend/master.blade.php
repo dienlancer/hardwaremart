@@ -369,80 +369,82 @@ if(count($arrCart) > 0){
 			<div class="container vienchan">
 				<div class="col-lg-12">
 					<div class="covu">
-					<div class="edra">
-						<div class="hera">
-							<div class="line">
-								<span></span>
-								<span></span>
-								<span></span>
+						<div class="edra">
+							<div class="hera">
+								<div class="line">
+									<span></span>
+									<span></span>
+									<span></span>
+								</div>
+								<span class="dmsanpham">Danh mục sản phẩm</span>
+								<span><font color="#ffffff"><i class="fa fa-caret-down pull-right" aria-hidden="true"></i></font></span>
+								<div class="clr"></div>
 							</div>
-							<span class="dmsanpham">Danh mục sản phẩm</span>
-							<span><font color="#ffffff"><i class="fa fa-caret-down pull-right" aria-hidden="true"></i></font></span>
-							<div class="clr"></div>
-						</div>
-						<div class="cate-product-horizontal-right" >
-							<?php     
-							$args = array(                         
-								'menu_class'            => 'cateprodhorizontalright', 					                     
-								'before_wrapper'        => '',
-								'before_title'          => '',
-								'after_title'           => '',
-								'before_wrapper_ul'     =>  '',
-								'after_wrapper_ul'      =>  '',
-								'after_wrapper'         => ''     ,
-								'link_before'       	=> '<i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;', 
-								'link_after'        	=> '<i class="fa fa-caret-down pull-right" aria-hidden="true"></i>',                                        
-								'theme_location'        => 'main-menu' ,
-								'menu_li_actived'       => 'current-menu-item',
-								'menu_item_has_children'=> 'menu-item-has-children',
-								'alias'                 => $seo_alias
-							);                    
-							wp_nav_menu($args);
-							?>                 
-							<div class="clr"></div>
-						</div>
-					</div>					
-				</div>
-				<div class="himlam">
-					<div class="col-lg-3">
-					<div class="nippet">
-						<center>
-						<a href="<?php echo url('/'); ?>">                
-							<img src="<?php echo $seo_logo_frontend;?>" />
-						</a>
-						</center>	
-					</div>					
-				</div>
-				<div class="col-lg-4">
-					<form action="<?php echo route('frontend.index.searchProduct'); ?>" method="post" name="frm-search">
-							{{ csrf_field() }}
-							<input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm" value="<?php echo @$q; ?>">
-							<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>
-					</form>
-				</div>	
-				<div class="col-lg-3">
-					<div class="rimex">
-						<div><div class="nimme"><font color="#ffffff"><i class="fas fa-phone"></i></font></div></div>
-						<div>
-							<div><font color="#ffffff"><?php echo $telephone; ?></font></div>
-							<div><font color="#ffffff"><?php echo $opened_time; ?></font></div>
-						</div>
-					</div>					
-				</div>
-				<div class="col-lg-2">
+							<div class="cate-product-horizontal-right" >
+								<?php     
+								$args = array(                         
+									'menu_class'            => 'cateprodhorizontalright', 					                     
+									'before_wrapper'        => '',
+									'before_title'          => '',
+									'after_title'           => '',
+									'before_wrapper_ul'     =>  '',
+									'after_wrapper_ul'      =>  '',
+									'after_wrapper'         => ''     ,
+									'link_before'       	=> '<i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;', 
+									'link_after'        	=> '<i class="fa fa-caret-down pull-right" aria-hidden="true"></i>',                                        
+									'theme_location'        => 'main-menu' ,
+									'menu_li_actived'       => 'current-menu-item',
+									'menu_item_has_children'=> 'menu-item-has-children',
+									'alias'                 => $seo_alias
+								);                    
+								wp_nav_menu($args);
+								?>                 
+								<div class="clr"></div>
+							</div>
+						</div>					
+					</div>
+					<div class="himlam">
+						
+							<div class="col-lg-3">
+								<div class="nippet">
+									<center>
+										<a href="<?php echo url('/'); ?>">                
+											<img src="<?php echo $seo_logo_frontend;?>" />
+										</a>
+									</center>	
+								</div>					
+							</div>
+							<div class="col-lg-6">
+								<form action="<?php echo route('frontend.index.searchProduct'); ?>" method="post" name="frm-search" class="margin-top-5">
+									{{ csrf_field() }}
+									<input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm" value="<?php echo @$q; ?>">
+									<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>
+								</form>
+							</div>	
+							<div class="col-lg-3">
+								<div class="rimex">
+									<div><div class="nimme"><font color="#ffffff"><i class="fas fa-phone"></i></font></div></div>
+									<div>
+										<div><font color="#ffffff"><?php echo $telephone; ?></font></div>
+										<div><font color="#ffffff"><?php echo $opened_time; ?></font></div>
+									</div>
+								</div>					
+							</div>				
+																		
+					</div>	
 					<div class="timex relative">
 						<a href="javascript:void(0);" class="tem-cart"><i class="fab fa-accessible-icon"></i></a>
 						<?php
 						$class_cart_box='ridoo'; 
 						$ssName="vmart";
-                        $arrCart=array();
-                        if(Session::has($ssName)){
-                        	$arrCart=Session::get($ssName);  
-                            ksort($arrCart);  
-                        }
-                        if(count($arrCart) > 0){
-                        	$class_cart_box='nadoo';
-                        }                       
+						$arrCart=array();
+						if(Session::has($ssName)){
+							$arrCart=Session::get($ssName);  
+							ksort($arrCart);  
+						}
+						if(count($arrCart) > 0){
+							$class_cart_box='nadoo';
+						}                       
 						?>
 						<div class="leem <?php echo $class_cart_box; ?>">
 							<form name="frm-product-top"  method="POST" enctype="multipart/form-data">
@@ -560,9 +562,7 @@ if(count($arrCart) > 0){
 								</div>                                                                   
 							</form>           
 						</div>
-					</div>	
-				</div>
-				</div>				
+					</div>						
 				</div>				
 			</div>				
 		</div>						

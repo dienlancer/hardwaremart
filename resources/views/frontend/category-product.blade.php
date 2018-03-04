@@ -48,6 +48,7 @@
 				if($k%4==0 || $k==count($items)){
 					echo '<div class="clr"></div>';
 				}
+				$k++;
 			}
 		}else{
 			echo '<div class="margin-top-15"><center>Đang cập nhật...</center></div>';
