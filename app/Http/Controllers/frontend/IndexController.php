@@ -186,7 +186,7 @@ class IndexController extends Controller {
     }
     if(!empty(@$request->q)){
       $q=@$request->q;
-      $query->where('product.fullname','like', '%'.@$q.'%');
+      $query->where('product.fullname','like', '%'.trim(@$q).'%');
     }
     $query->where('product.status',1);    
     $data=$query->select('product.id')

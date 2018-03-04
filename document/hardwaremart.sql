@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 03, 2018 lúc 10:55 AM
+-- Thời gian đã tạo: Th3 04, 2018 lúc 02:04 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `activations`
 --
 
-DROP TABLE IF EXISTS `activations`;
 CREATE TABLE `activations` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -63,7 +62,6 @@ INSERT INTO `activations` (`id`, `user_id`, `code`, `completed`, `completed_at`,
 -- Cấu trúc bảng cho bảng `album`
 --
 
-DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -83,7 +81,6 @@ CREATE TABLE `album` (
 -- Cấu trúc bảng cho bảng `article`
 --
 
-DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -129,7 +126,6 @@ INSERT INTO `article` (`id`, `fullname`, `alias`, `image`, `intro`, `content`, `
 -- Cấu trúc bảng cho bảng `article_category`
 --
 
-DROP TABLE IF EXISTS `article_category`;
 CREATE TABLE `article_category` (
   `id` bigint(20) NOT NULL,
   `article_id` int(11) DEFAULT NULL,
@@ -165,7 +161,6 @@ INSERT INTO `article_category` (`id`, `article_id`, `category_id`, `created_at`,
 -- Cấu trúc bảng cho bảng `banner`
 --
 
-DROP TABLE IF EXISTS `banner`;
 CREATE TABLE `banner` (
   `id` bigint(20) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
@@ -236,7 +231,6 @@ INSERT INTO `banner` (`id`, `category_id`, `caption`, `alt`, `image`, `page_url`
 -- Cấu trúc bảng cho bảng `category_article`
 --
 
-DROP TABLE IF EXISTS `category_article`;
 CREATE TABLE `category_article` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -269,7 +263,6 @@ INSERT INTO `category_article` (`id`, `fullname`, `meta_keyword`, `meta_descript
 -- Cấu trúc bảng cho bảng `category_banner`
 --
 
-DROP TABLE IF EXISTS `category_banner`;
 CREATE TABLE `category_banner` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -305,7 +298,6 @@ INSERT INTO `category_banner` (`id`, `fullname`, `theme_location`, `status`, `so
 -- Cấu trúc bảng cho bảng `category_param`
 --
 
-DROP TABLE IF EXISTS `category_param`;
 CREATE TABLE `category_param` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -395,7 +387,6 @@ INSERT INTO `category_param` (`id`, `fullname`, `alias`, `parent_id`, `param_val
 -- Cấu trúc bảng cho bảng `category_product`
 --
 
-DROP TABLE IF EXISTS `category_product`;
 CREATE TABLE `category_product` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -440,7 +431,6 @@ INSERT INTO `category_product` (`id`, `fullname`, `meta_keyword`, `meta_descript
 -- Cấu trúc bảng cho bảng `category_video`
 --
 
-DROP TABLE IF EXISTS `category_video`;
 CREATE TABLE `category_video` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -468,7 +458,6 @@ INSERT INTO `category_video` (`id`, `fullname`, `meta_keyword`, `meta_descriptio
 -- Cấu trúc bảng cho bảng `district`
 --
 
-DROP TABLE IF EXISTS `district`;
 CREATE TABLE `district` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -500,7 +489,6 @@ INSERT INTO `district` (`id`, `fullname`, `alias`, `province_id`, `sort_order`, 
 -- Cấu trúc bảng cho bảng `group_member`
 --
 
-DROP TABLE IF EXISTS `group_member`;
 CREATE TABLE `group_member` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -526,7 +514,6 @@ INSERT INTO `group_member` (`id`, `fullname`, `alias`, `sort_order`, `created_at
 -- Cấu trúc bảng cho bảng `group_privilege`
 --
 
-DROP TABLE IF EXISTS `group_privilege`;
 CREATE TABLE `group_privilege` (
   `id` int(11) NOT NULL,
   `group_member_id` int(11) NOT NULL,
@@ -694,7 +681,6 @@ INSERT INTO `group_privilege` (`id`, `group_member_id`, `privilege_id`, `created
 -- Cấu trúc bảng cho bảng `invoice`
 --
 
-DROP TABLE IF EXISTS `invoice`;
 CREATE TABLE `invoice` (
   `id` int(11) NOT NULL,
   `code` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -723,7 +709,6 @@ INSERT INTO `invoice` (`id`, `code`, `email`, `fullname`, `address`, `phone`, `q
 -- Cấu trúc bảng cho bảng `invoice_detail`
 --
 
-DROP TABLE IF EXISTS `invoice_detail`;
 CREATE TABLE `invoice_detail` (
   `id` int(11) NOT NULL,
   `invoice_id` int(11) DEFAULT NULL,
@@ -751,7 +736,6 @@ INSERT INTO `invoice_detail` (`id`, `invoice_id`, `product_id`, `product_code`, 
 -- Cấu trúc bảng cho bảng `menu`
 --
 
-DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -772,22 +756,7 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `level`, `menu_class`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (57, 'Trang chủ', 'trang-chu', 0, 5, 0, NULL, 1, 1, '2018-01-10 07:14:21', '2018-01-10 07:14:21'),
-(58, 'Giới thiệu', 'gioi-thieu', 0, 5, 0, NULL, 2, 1, '2018-01-10 07:14:39', '2018-01-23 02:05:46'),
-(59, 'Tin tức', 'tin-tuc', 0, 5, 0, NULL, 5, 1, '2018-01-10 07:14:57', '2018-01-23 02:10:38'),
-(61, 'Liên hệ', 'lien-he', 0, 5, 0, NULL, 6, 1, '2018-01-10 07:15:34', '2018-01-23 02:11:11'),
-(88, 'Tin dự án', 'ho-tro-khach-hang', 59, 5, 1, NULL, 1, 1, '2018-01-10 17:26:01', '2018-01-21 04:24:20'),
-(89, 'Tin bất động sản', 'doi-song-so', 59, 5, 1, NULL, 2, 1, '2018-01-10 17:26:18', '2018-01-21 04:24:38'),
-(137, 'Tầm nhìn', 'tam-nhin', 58, 5, 1, NULL, 1, 1, '2018-01-23 02:06:04', '2018-01-23 02:06:04'),
-(138, 'Sứ mệnh', 'su-menh', 58, 5, 1, NULL, 2, 1, '2018-01-23 02:06:17', '2018-01-23 02:06:17'),
-(139, 'Giá trị cốt lõi', 'gia-tri-cot-loi', 58, 5, 1, NULL, 3, 1, '2018-01-23 02:06:30', '2018-01-23 02:06:30'),
-(140, 'Triết lý kinh doanh', 'triet-ly-kinh-doanh', 58, 5, 1, NULL, 4, 1, '2018-01-23 02:06:44', '2018-01-23 02:06:44'),
-(141, 'Dự án', 'du-an', 0, 5, 0, NULL, 3, 1, '2018-01-23 02:07:24', '2018-01-23 02:07:24'),
-(142, 'Dịch vụ', 'dich-vu', 0, 5, 0, NULL, 4, 1, '2018-01-23 02:07:51', '2018-01-23 02:10:38'),
-(143, 'Quản lý bất động sản', 'quan-ly-bat-dong-san', 142, 5, 1, NULL, 1, 1, '2018-01-23 02:08:11', '2018-01-23 02:08:11'),
-(144, 'Cho thuê căn hộ', 'cho-thue-can-ho', 142, 5, 1, NULL, 2, 1, '2018-01-23 02:08:26', '2018-01-23 02:08:26'),
-(145, 'Bán bất động sản', 'ban-bat-dong-san', 142, 5, 1, NULL, 3, 1, '2018-01-23 02:08:40', '2018-01-23 02:08:40'),
-(146, 'Thị trường', 'thi-truong', 59, 5, 1, NULL, 3, 1, '2018-01-23 02:09:43', '2018-01-23 02:09:43'),
-(147, 'Tư vấn', 'tu-van', 59, 5, 1, NULL, 4, 1, '2018-01-23 02:09:56', '2018-01-23 02:09:56'),
+(61, 'Liên hệ', 'lien-he', 0, 5, 0, NULL, 3, 1, '2018-01-10 07:15:34', '2018-03-04 12:48:59'),
 (340, 'Laptop', 'laptop', 0, 1, 0, '', 1, 1, '2018-02-26 07:47:48', '2018-02-28 02:00:27'),
 (341, 'Máy tính', 'may-tinh', 0, 1, 0, '', 2, 1, '2018-02-26 07:47:58', '2018-02-28 02:00:31'),
 (342, 'Tablet', 'tablet', 0, 1, 0, '', 3, 1, '2018-02-26 07:48:06', '2018-02-28 02:00:39'),
@@ -841,7 +810,15 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (402, 'HTC', 'htc', 391, 10, 1, '', 8, 1, '2018-02-28 16:56:11', '2018-02-28 16:56:11'),
 (403, 'Blackberry', 'blackberry', 0, 10, 0, '', 9, 1, '2018-02-28 16:56:21', '2018-02-28 16:56:21'),
 (404, 'Ginonee', 'ginonee', 391, 10, 1, '', 10, 1, '2018-02-28 16:56:34', '2018-02-28 16:56:34'),
-(405, 'Q-mobile', 'q-mobile', 391, 10, 1, '', 11, 1, '2018-02-28 16:56:49', '2018-02-28 16:56:49');
+(405, 'Q-mobile', 'q-mobile', 391, 10, 1, '', 11, 1, '2018-02-28 16:56:49', '2018-02-28 16:56:49'),
+(406, 'Sản phẩm', 'san-pham', 0, 5, 0, '', 2, 1, '2018-03-04 12:48:56', '2018-03-04 12:48:56'),
+(407, 'Laptop', 'laptop', 406, 5, 1, '', 1, 1, '2018-03-04 12:49:11', '2018-03-04 12:49:11'),
+(408, 'Máy tính', 'may-tinh', 406, 5, 1, '', 2, 1, '2018-03-04 12:49:22', '2018-03-04 12:49:22'),
+(409, 'Tablet', 'tablet', 406, 5, 1, '', 3, 1, '2018-03-04 12:49:32', '2018-03-04 12:49:32'),
+(410, 'Điện thoại', 'dien-thoai', 406, 5, 1, '', 4, 1, '2018-03-04 12:49:42', '2018-03-04 12:49:42'),
+(411, 'Phụ kiện điện thoại', 'phu-kien-dien-thoai', 406, 5, 1, '', 5, 1, '2018-03-04 12:49:54', '2018-03-04 12:49:54'),
+(412, 'Phụ kiện máy tính', 'phu-kien-may-tinh', 406, 5, 1, '', 6, 1, '2018-03-04 12:50:11', '2018-03-04 12:50:11'),
+(413, 'Loa âm thanh', 'loa-am-thanh', 406, 5, 1, '', 7, 1, '2018-03-04 12:50:22', '2018-03-04 12:50:22');
 
 -- --------------------------------------------------------
 
@@ -849,7 +826,6 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 -- Cấu trúc bảng cho bảng `menu_type`
 --
 
-DROP TABLE IF EXISTS `menu_type`;
 CREATE TABLE `menu_type` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -878,7 +854,6 @@ INSERT INTO `menu_type` (`id`, `fullname`, `theme_location`, `status`, `sort_ord
 -- Cấu trúc bảng cho bảng `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -899,7 +874,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Cấu trúc bảng cho bảng `module_item`
 --
 
-DROP TABLE IF EXISTS `module_item`;
 CREATE TABLE `module_item` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -926,7 +900,6 @@ INSERT INTO `module_item` (`id`, `fullname`, `item_id`, `position`, `component`,
 -- Cấu trúc bảng cho bảng `organization`
 --
 
-DROP TABLE IF EXISTS `organization`;
 CREATE TABLE `organization` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -953,7 +926,6 @@ CREATE TABLE `organization` (
 -- Cấu trúc bảng cho bảng `page`
 --
 
-DROP TABLE IF EXISTS `page`;
 CREATE TABLE `page` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -997,7 +969,6 @@ INSERT INTO `page` (`id`, `fullname`, `alias`, `theme_location`, `image`, `intro
 -- Cấu trúc bảng cho bảng `password_resets`
 --
 
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1010,7 +981,6 @@ CREATE TABLE `password_resets` (
 -- Cấu trúc bảng cho bảng `payment_method`
 --
 
-DROP TABLE IF EXISTS `payment_method`;
 CREATE TABLE `payment_method` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) DEFAULT NULL,
@@ -1041,7 +1011,6 @@ INSERT INTO `payment_method` (`id`, `fullname`, `alias`, `content`, `sort_order`
 -- Cấu trúc bảng cho bảng `persistences`
 --
 
-DROP TABLE IF EXISTS `persistences`;
 CREATE TABLE `persistences` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -1449,7 +1418,9 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (669, 1, 'dsnZFyjdEunjpPlzdUWupZUThhoLRUhj', '2018-03-02 18:49:24', '2018-03-02 18:49:24'),
 (670, 1, 'R1KiyE1oFR7SaY9COquFyViCysmD7GeT', '2018-03-02 18:49:24', '2018-03-02 18:49:24'),
 (671, 1, 'iJo0kENKMWSbmbhpqurfsGt1fxhOq8rb', '2018-03-02 20:42:13', '2018-03-02 20:42:13'),
-(672, 1, 'ciIiJWF6jOPdWQvcRU0AkOugGLYgOMvC', '2018-03-02 20:42:13', '2018-03-02 20:42:13');
+(672, 1, 'ciIiJWF6jOPdWQvcRU0AkOugGLYgOMvC', '2018-03-02 20:42:13', '2018-03-02 20:42:13'),
+(673, 1, 'HLvUMZxuVNmkyFrisdoWuDDA801m5sm3', '2018-03-04 05:44:09', '2018-03-04 05:44:09'),
+(674, 1, 'HeTLfvd9zkuaeXwksD615gyq72TLtHNs', '2018-03-04 05:44:09', '2018-03-04 05:44:09');
 
 -- --------------------------------------------------------
 
@@ -1457,7 +1428,6 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 -- Cấu trúc bảng cho bảng `photo`
 --
 
-DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
   `id` int(11) NOT NULL,
   `album_id` int(11) DEFAULT NULL,
@@ -1474,7 +1444,6 @@ CREATE TABLE `photo` (
 -- Cấu trúc bảng cho bảng `privilege`
 --
 
-DROP TABLE IF EXISTS `privilege`;
 CREATE TABLE `privilege` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) DEFAULT NULL,
@@ -1576,7 +1545,6 @@ INSERT INTO `privilege` (`id`, `fullname`, `controller`, `action`, `sort_order`,
 -- Cấu trúc bảng cho bảng `product`
 --
 
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `code` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -1627,12 +1595,12 @@ INSERT INTO `product` (`id`, `code`, `fullname`, `meta_keyword`, `meta_descripti
 (20, '361459872', 'Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'metakeyword  Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'metadescription Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', 'samsung-galaxy-tab-a-2016-101-kem-but-spen', 'tablet-4.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-3.png\"]', '7990000.00', '0.00', 'giới thiệu Samsung Galaxy Tab A 2016 10.1 kèm bút Spen', '<p>chi tiết&nbsp;Samsung Galaxy Tab A 2016 10.1 k&egrave;m b&uacute;t Spen</p>', NULL, NULL, NULL, 13, 20, '2018-02-28 01:29:15', '2018-02-28 01:29:15'),
 (21, '786354129', 'Ipad WI-FI 32GB Gold 2017', 'metakeyword Ipad WI-FI 32GB Gold 2017', 'metadescription Ipad WI-FI 32GB Gold 2017', 'ipad-wi-fi-32gb-gold-2017', 'tablet-5.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-4.png\"]', '8490000.00', '0.00', 'giới thiệu Ipad WI-FI 32GB Gold 2017', '<p>chi tiết&nbsp;Ipad WI-FI 32GB Gold 2017</p>', NULL, NULL, NULL, 13, 21, '2018-02-28 01:30:58', '2018-02-28 01:30:58'),
 (22, '971642538', 'Ipad WI-FI CELLULAR 32GB SILVER 2017', 'metakeyword Ipad WI-FI CELLULAR 32GB SILVER 2017', 'metadescription Ipad WI-FI CELLULAR 32GB SILVER 2017', 'ipad-wi-fi-cellular-32gb-silver-2017', 'tablet-6.png', 1, '[\"tablet-1.png\",\"tablet-2.png\",\"tablet-5.png\"]', '12490000.00', '0.00', 'giới thiệu Ipad WI-FI CELLULAR 32GB SILVER 2017', '<p>chi tiết&nbsp;Ipad WI-FI CELLULAR 32GB SILVER 2017</p>', NULL, NULL, NULL, 13, 22, '2018-02-28 01:33:06', '2018-02-28 01:33:06'),
-(23, '129845673', 'Samsung Galaxy A8 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-a8-2018-vang', 'dien-thoai-1.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '9280000.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<h2 style=\"text-align:justify\">GIỚI THIỆU TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Trong dịp giới thiệu h&agrave;ng loạt c&aacute;c mẫu sản phẩm mới của Fiio tại Quảng Ch&acirc;u v&agrave; Tokyo, một sản phẩm mới xuất hiện thu h&uacute;t kh&aacute; nhiều sự ch&uacute; &yacute; l&agrave; phi&ecirc;n bản n&acirc;ng cấp của chiếc flagship của h&atilde;ng F9 mới mang t&ecirc;n F9 PRO.</p>\n\n<p style=\"text-align:justify\">Về h&igrave;nh d&aacute;ng b&ecirc;n ngo&agrave;i c&oacute; thay đổi lớn nhất l&agrave; m&agrave;u bạc thay v&igrave; 2 m&agrave;u trước đ&acirc;y l&agrave; đen v&agrave; đỏ, v&agrave; thiết kế c&oacute; thay đổi nhỏ như batch mới nhất của những mẫu mẫu F9 v&agrave; F9 SE gi&uacute;p người d&ugrave;ng tiện lợi thay đổi d&acirc;y connect hơn.</p>\n\n<p style=\"text-align:justify\">Khung housing được l&agrave;m bằng kim loại được tiện CNC nguy&ecirc;n khối, sau đ&oacute; mạ c&ocirc;ng nghiệp anodize v&agrave; sound blasting tạo n&ecirc;n 2 khối kim loại với m&agrave;u sắc cực kỳ ch&iacute;nh x&aacute;c v&agrave; sang trọng. Thiết kế trong housing vẫn sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường, dựa tr&ecirc;n thiết kế từ sinh vật gi&uacute;p triệt ti&ecirc;u s&oacute;ng đứng trong housing.</p>\n\n<p style=\"text-align:justify\">B&ecirc;n trong của Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module). C&aacute;c driver đều xử l&yacute; crossover để tạo n&ecirc;n chất &acirc;m ch&iacute;nh x&aacute;c nhất ở cả 3 dải.</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất. Fiio F9 Pro c&oacute; mức trở kh&aacute;ng l&agrave; 28 Ohm v&agrave; độ nhạy l&agrave; 106 dB/mW đảm bảo khả năng chơi nhạc từ cả c&aacute;c thiết bị di động hay từ c&aacute;c ampli v&agrave; DAP với mức c&ocirc;ng suất tối đa chịu được l&agrave; 100mW.</p>\n\n<p style=\"text-align:justify\">M&agrave;ng Diaphragm của dynamic driver được l&agrave;m bằng chất liệu mới PEK Polymeric Nano Composite, đ&atilde; được so s&aacute;nh với c&aacute;c chất liệu kh&aacute;c nhằm mang đến một chất bass khỏe hơn với tốc độ cao v&agrave; giảm được độ m&eacute;o tiếng mang đến &acirc;m thanh trung thực. Buồng &acirc;m của Fiio F9 Pro được thiết kế đồng trục truyền thống như c&aacute;c chiếc tai nghe hybrid đầu bảng đảm bảo thiết kế nhỏ gọn v&agrave; giữ được chất &acirc;m mong muốn.</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm.</p>\n\n<p style=\"text-align:justify\">Phụ kiện đi k&egrave;m cũng kh&aacute; giống với F9 bao gồm 1 hộp cứng chống nước HB1 v&agrave; đến 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển v&agrave; một t&uacute;i nỉ bằng Neoprene.</p>', '<h2 style=\"text-align:justify\">TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module)</p>\n\n<p style=\"text-align:justify\">Fiio F9 PRO sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường l&agrave;m giảm hiện tượng s&oacute;ng đứng</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất</p>\n\n<p style=\"text-align:justify\">Phần vỏ tai được l&agrave;m bằng nh&ocirc;m tiện CNC chứng c&aacute;p, m&agrave;u sắc sang trọng</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm</p>\n\n<p style=\"text-align:justify\">K&egrave;m tai nghe c&ograve;n c&oacute; 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển</p>', 'mZ-fKiUb1Ns', 332, 186, 23, '2018-02-28 01:47:16', '2018-03-03 02:42:18'),
+(23, '129845673', 'Samsung Galaxy A8 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-a8-2018-vang', 'dien-thoai-1.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '9280000.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<h2 style=\"text-align:justify\">GIỚI THIỆU TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Trong dịp giới thiệu h&agrave;ng loạt c&aacute;c mẫu sản phẩm mới của Fiio tại Quảng Ch&acirc;u v&agrave; Tokyo, một sản phẩm mới xuất hiện thu h&uacute;t kh&aacute; nhiều sự ch&uacute; &yacute; l&agrave; phi&ecirc;n bản n&acirc;ng cấp của chiếc flagship của h&atilde;ng F9 mới mang t&ecirc;n F9 PRO.</p>\n\n<p style=\"text-align:justify\">Về h&igrave;nh d&aacute;ng b&ecirc;n ngo&agrave;i c&oacute; thay đổi lớn nhất l&agrave; m&agrave;u bạc thay v&igrave; 2 m&agrave;u trước đ&acirc;y l&agrave; đen v&agrave; đỏ, v&agrave; thiết kế c&oacute; thay đổi nhỏ như batch mới nhất của những mẫu mẫu F9 v&agrave; F9 SE gi&uacute;p người d&ugrave;ng tiện lợi thay đổi d&acirc;y connect hơn.</p>\n\n<p style=\"text-align:justify\">Khung housing được l&agrave;m bằng kim loại được tiện CNC nguy&ecirc;n khối, sau đ&oacute; mạ c&ocirc;ng nghiệp anodize v&agrave; sound blasting tạo n&ecirc;n 2 khối kim loại với m&agrave;u sắc cực kỳ ch&iacute;nh x&aacute;c v&agrave; sang trọng. Thiết kế trong housing vẫn sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường, dựa tr&ecirc;n thiết kế từ sinh vật gi&uacute;p triệt ti&ecirc;u s&oacute;ng đứng trong housing.</p>\n\n<p style=\"text-align:justify\">B&ecirc;n trong của Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module). C&aacute;c driver đều xử l&yacute; crossover để tạo n&ecirc;n chất &acirc;m ch&iacute;nh x&aacute;c nhất ở cả 3 dải.</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất. Fiio F9 Pro c&oacute; mức trở kh&aacute;ng l&agrave; 28 Ohm v&agrave; độ nhạy l&agrave; 106 dB/mW đảm bảo khả năng chơi nhạc từ cả c&aacute;c thiết bị di động hay từ c&aacute;c ampli v&agrave; DAP với mức c&ocirc;ng suất tối đa chịu được l&agrave; 100mW.</p>\n\n<p style=\"text-align:justify\">M&agrave;ng Diaphragm của dynamic driver được l&agrave;m bằng chất liệu mới PEK Polymeric Nano Composite, đ&atilde; được so s&aacute;nh với c&aacute;c chất liệu kh&aacute;c nhằm mang đến một chất bass khỏe hơn với tốc độ cao v&agrave; giảm được độ m&eacute;o tiếng mang đến &acirc;m thanh trung thực. Buồng &acirc;m của Fiio F9 Pro được thiết kế đồng trục truyền thống như c&aacute;c chiếc tai nghe hybrid đầu bảng đảm bảo thiết kế nhỏ gọn v&agrave; giữ được chất &acirc;m mong muốn.</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm.</p>\n\n<p style=\"text-align:justify\">Phụ kiện đi k&egrave;m cũng kh&aacute; giống với F9 bao gồm 1 hộp cứng chống nước HB1 v&agrave; đến 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển v&agrave; một t&uacute;i nỉ bằng Neoprene.</p>', '<h2 style=\"text-align:justify\">TAI NGHE FIIO F9 PRO</h2>\n\n<p style=\"text-align:justify\">Fiio F9 PRO vẫn l&agrave; thiết kế Hybrid, với 1 driver dynamic 9,2mm được trang bị m&agrave;ng loa PEK v&agrave; 2 BA mới của Knowles (model: TWFK-30017-000 dual-BA module)</p>\n\n<p style=\"text-align:justify\">Fiio F9 PRO sử dụng c&ocirc;ng nghệ xử l&yacute; buồng &acirc;m đặc biệt của Fiio như F9 thường l&agrave;m giảm hiện tượng s&oacute;ng đứng</p>\n\n<p style=\"text-align:justify\">Tai nghe c&oacute; tần số kh&aacute; rộng từ 15Hz tới 40kHz được chứng nhận Hi-Resolution Audio t&aacute;i tạo &acirc;m thanh tự nhi&ecirc;n v&agrave; sống động nhất</p>\n\n<p style=\"text-align:justify\">Phần vỏ tai được l&agrave;m bằng nh&ocirc;m tiện CNC chứng c&aacute;p, m&agrave;u sắc sang trọng</p>\n\n<p style=\"text-align:justify\">Tai nghe F9 Pro vẫn được trang bị 2 d&acirc;y đi k&egrave;m d&ugrave;ng cổng kết nối MMCX, bao gồm 1 d&acirc;y single-ended 3,5mm c&oacute; n&uacute;t điều khiển, mic t&iacute;ch hợp v&agrave; 1 d&acirc;y balance 2,5mm</p>\n\n<p style=\"text-align:justify\">K&egrave;m tai nghe c&ograve;n c&oacute; 9 cặp t&iacute;p, trong đ&oacute; 3 cặp l&agrave; để điều chỉnh Bass v&agrave; 3 cặp d&ugrave;ng cho EQ, 3 cặp foam bọt biển</p>', 'mZ-fKiUb1Ns', 334, 186, 23, '2018-02-28 01:47:16', '2018-03-03 14:44:22'),
 (24, '615342798', 'Samsung Galaxy A8 2018 Tím', 'metakeyword SAMSUNG GALAXY A8 2018 TÍM', 'metadescription SAMSUNG GALAXY A8 2018 TÍM', 'samsung-galaxy-a8-2018-tim', 'dien-thoai-2.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '10990000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8 2018 TÍM', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8 2018 T&Iacute;M</p>', '', '', 92, 186, 24, '2018-02-28 02:09:35', '2018-03-03 03:57:34'),
 (25, '932546187', 'Samsung Galaxy A8 2018 Đen', 'metakeyword SAMSUNG GALAXY A8+ 2018 ĐEN', 'metadescription SAMSUNG GALAXY A8+ 2018 ĐEN', 'samsung-galaxy-a8-2018-den', 'dien-thoai-3.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '13490000.00', '0.00', 'giới thiệu SAMSUNG GALAXY A8+ 2018 ĐEN', '<p>chi tiết&nbsp;SAMSUNG GALAXY A8+ 2018 ĐEN</p>', NULL, NULL, 46, 186, 25, '2018-02-28 02:11:23', '2018-03-02 18:09:22'),
 (26, '792483615', 'Samsung Galaxy S8 PLUS 2018 Vàng', 'metakeyword Samsung Galaxy A8 2018 Vàng', 'metadescription Samsung Galaxy A8 2018 Vàng', 'samsung-galaxy-s8-plus-2018-vang', 'dien-thoai-4.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-3.png\"]', '13490000.00', '0.00', 'giới thiệu Samsung Galaxy A8 2018 Vàng', '<p>chi tiết&nbsp;Samsung Galaxy A8 2018 V&agrave;ng</p>', NULL, NULL, 41, 186, 26, '2018-02-28 02:13:36', '2018-03-03 03:32:39'),
 (27, '673518942', 'Samsung Galaxy S8 Đen', 'metakeyword Samsung Galaxy S8 Đen', 'metadescription Samsung Galaxy S8 Đen', 'samsung-galaxy-s8-den', 'dien-thoai-5.png', 1, '[\"dien-thoai-1.png\",\"dien-thoai-2.png\",\"dien-thoai-4.png\"]', '16490000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Đen', '<p>chi tiết&nbsp;Samsung Galaxy S8 Đen</p>', NULL, NULL, 134, 186, 27, '2018-02-28 02:15:11', '2018-03-03 02:16:20'),
-(28, '532497168', 'Samsung Galaxy S8 Tím', 'metakeyword Samsung Galaxy S8 Tím', 'metadescription Samsung Galaxy S8 Tím', 'samsung-galaxy-s8-tim', 'dien-thoai-6.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '17990000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Tím', '<p>chi tiết&nbsp;Samsung Galaxy S8 T&iacute;m</p>', NULL, NULL, 67, 186, 28, '2018-02-28 02:16:27', '2018-03-03 03:40:08'),
+(28, '532497168', 'Samsung Galaxy S8 Tím', 'metakeyword Samsung Galaxy S8 Tím', 'metadescription Samsung Galaxy S8 Tím', 'samsung-galaxy-s8-tim', 'dien-thoai-6.png', 1, '[\"dien-thoai-2.png\",\"dien-thoai-3.png\",\"dien-thoai-4.png\"]', '17990000.00', '0.00', 'giới thiệu Samsung Galaxy S8 Tím', '<p>chi tiết&nbsp;Samsung Galaxy S8 T&iacute;m</p>', NULL, NULL, 72, 186, 28, '2018-02-28 02:16:27', '2018-03-04 12:42:30'),
 (29, '814275639', 'Loa BLUETOOTH ROMAN Y15', 'metakeyword Loa BLUETOOTH ROMAN Y15', 'metadescription Loa BLUETOOTH ROMAN Y15', 'loa-bluetooth-roman-y15', 'phu-kien-1.png', 1, '[\"phu-kien-2.png\",\"phu-kien-3.png\",\"phu-kien-4.png\"]', '100000.00', '0.00', 'giới thiệu Loa BLUETOOTH ROMAN Y15', '<p>chi tiết&nbsp;Loa BLUETOOTH ROMAN Y15</p>', NULL, NULL, NULL, 15, 29, '2018-02-28 02:31:08', '2018-02-28 02:31:23'),
 (30, '742396185', 'Gậy Chụp Hình MONOPOD MINI', 'metakeyword Gậy Chụp Hình MONOPOD MINI', 'metadescription Gậy Chụp Hình MONOPOD MINI', 'gay-chup-hinh-monopod-mini', 'phu-kien-2.png', 1, '[\"phu-kien-1.png\",\"phu-kien-2.png\",\"phu-kien-3.png\"]', '20000.00', '0.00', 'giới thiệu Gậy Chụp Hình MONOPOD MINI', '<p>Chi tiết&nbsp;Gậy Chụp H&igrave;nh MONOPOD MINI</p>', NULL, NULL, NULL, 15, 30, '2018-02-28 02:33:36', '2018-02-28 02:33:36'),
 (31, '643592718', 'Pin Sạc Dự Phòng MICROTEK MT -502', 'metakeyword PIN SẠC DỰ PHÒNG MICROTEK MT -502', 'metadescription PIN SẠC DỰ PHÒNG MICROTEK MT -502', 'pin-sac-du-phong-microtek-mt-502', 'phu-kien-3.png', 1, '[\"phu-kien-1.png\",\"phu-kien-2.png\",\"phu-kien-4.png\"]', '100000.00', '0.00', 'giới thiệu PIN SẠC DỰ PHÒNG MICROTEK MT -502', '<p>chi tiết&nbsp;PIN SẠC DỰ PH&Ograve;NG MICROTEK MT -502</p>', NULL, NULL, NULL, 15, 31, '2018-02-28 02:35:42', '2018-02-28 02:35:58'),
@@ -1658,7 +1626,6 @@ INSERT INTO `product` (`id`, `code`, `fullname`, `meta_keyword`, `meta_descripti
 -- Cấu trúc bảng cho bảng `product_param`
 --
 
-DROP TABLE IF EXISTS `product_param`;
 CREATE TABLE `product_param` (
   `id` bigint(20) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
@@ -1803,7 +1770,6 @@ INSERT INTO `product_param` (`id`, `product_id`, `param_id`, `created_at`, `upda
 -- Cấu trúc bảng cho bảng `project`
 --
 
-DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `id` bigint(11) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1834,7 +1800,6 @@ CREATE TABLE `project` (
 -- Cấu trúc bảng cho bảng `project_article`
 --
 
-DROP TABLE IF EXISTS `project_article`;
 CREATE TABLE `project_article` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1859,7 +1824,6 @@ CREATE TABLE `project_article` (
 -- Cấu trúc bảng cho bảng `project_member`
 --
 
-DROP TABLE IF EXISTS `project_member`;
 CREATE TABLE `project_member` (
   `id` bigint(20) NOT NULL,
   `project_id` int(11) DEFAULT NULL,
@@ -1881,7 +1845,6 @@ INSERT INTO `project_member` (`id`, `project_id`, `member_id`, `created_at`, `up
 -- Cấu trúc bảng cho bảng `province`
 --
 
-DROP TABLE IF EXISTS `province`;
 CREATE TABLE `province` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1967,7 +1930,6 @@ INSERT INTO `province` (`id`, `fullname`, `alias`, `sort_order`, `status`, `crea
 -- Cấu trúc bảng cho bảng `reminders`
 --
 
-DROP TABLE IF EXISTS `reminders`;
 CREATE TABLE `reminders` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -1984,7 +1946,6 @@ CREATE TABLE `reminders` (
 -- Cấu trúc bảng cho bảng `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -2000,7 +1961,6 @@ CREATE TABLE `roles` (
 -- Cấu trúc bảng cho bảng `role_users`
 --
 
-DROP TABLE IF EXISTS `role_users`;
 CREATE TABLE `role_users` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL,
@@ -2014,7 +1974,6 @@ CREATE TABLE `role_users` (
 -- Cấu trúc bảng cho bảng `setting_system`
 --
 
-DROP TABLE IF EXISTS `setting_system`;
 CREATE TABLE `setting_system` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) DEFAULT NULL,
@@ -2048,7 +2007,6 @@ INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `title`, `meta_keyword`
 -- Cấu trúc bảng cho bảng `supporter`
 --
 
-DROP TABLE IF EXISTS `supporter`;
 CREATE TABLE `supporter` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -2077,7 +2035,6 @@ INSERT INTO `supporter` (`id`, `fullname`, `number_money`, `payment_method_id`, 
 -- Cấu trúc bảng cho bảng `throttle`
 --
 
-DROP TABLE IF EXISTS `throttle`;
 CREATE TABLE `throttle` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
@@ -2623,7 +2580,6 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 -- Cấu trúc bảng cho bảng `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `username` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -2646,7 +2602,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `address`, `phone`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-03-02 20:42:13', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-03-02 20:42:13'),
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$U.H6.rf5/X4JpVnA/WyQwOD9a.dWtbQFWtp3wqxjJBu8w9BJg3Q9K', NULL, '2018-03-04 05:44:09', 'Nguyễn Kim Điền', NULL, NULL, 'nguyen-kim-dien.png', 6, 1, '2017-11-12 07:23:56', '2018-03-04 05:44:09'),
 (6, 'helenangochong', 'helenangoc@dienkim.com', '$2y$10$/cSr2zKOI5RUAo9XD2K5DuVwB554IWn3k16RwF37pFSxYFouMOmbi', NULL, '2018-01-26 04:32:49', 'Hồ Thị Ngọc Hồng', '12 Tân Canh', '0988162755', NULL, 3, 0, '2018-01-26 01:57:35', '2018-02-04 08:08:20'),
 (7, 'langong', 'thaithuonglangong@dienkim.com', '$2y$10$W38P0cEq8qVYSiXYAKQVCOKb7ZkN4t7uN1trgm38V2wSKjtacybxe', NULL, '2018-01-28 09:54:51', 'Thái Thượng Lãng Ông', '13 Tân Canh', '0988162774', NULL, 4, 0, '2018-01-28 09:40:59', '2018-02-04 08:08:20'),
 (8, 'tiennv', 'tiennv@dienkim.com', '$2y$10$9sq3u.mDu/Bk1vvpv4sU7.Ior67wjHR5n1slgsv/sz63zBQxAfZ4K', NULL, '2018-02-23 01:16:10', 'Nguyễn Văn Tiến', '14 Tân Canh', '0988152782', NULL, 5, 0, '2018-02-05 20:06:26', '2018-02-23 01:16:10'),
@@ -2660,7 +2616,6 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last
 -- Cấu trúc bảng cho bảng `user_group_member`
 --
 
-DROP TABLE IF EXISTS `user_group_member`;
 CREATE TABLE `user_group_member` (
   `id` bigint(20) NOT NULL,
   `group_member_id` int(11) DEFAULT NULL,
@@ -2688,7 +2643,6 @@ INSERT INTO `user_group_member` (`id`, `group_member_id`, `user_id`, `created_at
 -- Cấu trúc bảng cho bảng `video`
 --
 
-DROP TABLE IF EXISTS `video`;
 CREATE TABLE `video` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -3062,7 +3016,7 @@ ALTER TABLE `invoice_detail`
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=406;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=414;
 
 --
 -- AUTO_INCREMENT cho bảng `menu_type`
@@ -3098,7 +3052,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=673;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=675;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`

@@ -351,7 +351,7 @@ if(count($item) > 0){
                         $style_ttkh='none';
                     }                
                     ?>            
-                    <div class="alert-system padding-top-5" style="display: none;"></div>    
+                    <div class="alert-system padding-top-5"></div>    
                     <div class="margin-top-15 tbl-ttkh" style="display: <?php echo $style_ttkh; ?>">
                         <div class="ttkh">Thông tin khách hàng</div>
                         <div class="margin-top-15">

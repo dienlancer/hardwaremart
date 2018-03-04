@@ -120,10 +120,9 @@ function wp_nav_menu($args){
             case 'hoa-don':                       
             $site_link=url('/'.$data_menu[$i]["alias"]) ;
             break;          
-            case 'thu-vien':   
-           
-           
-            
+            case 'san-pham':
+            $site_link='javascript:void(0);' ;
+            break;               
             case 'trang-chu':
             $site_link=url('/');
             break;

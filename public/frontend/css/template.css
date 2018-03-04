@@ -1821,7 +1821,7 @@ ul.bankList {
     width: 100%;
 }
 .cate-product-horizontal-right ul ul{
-    margin-left: -10px;
+    margin-left: -21px;
 }
 .line{
     float: left;
@@ -1843,12 +1843,19 @@ ul.bankList {
     margin: 0px 30px;
   
 }
+.covu{
+    float: left;
+    width: 253px;
+}
+.himlam{
+    margin-left: 253px;
+}
 .edra .cate-product-horizontal-right{
         display: none;
     position: absolute;
     top: 48px;
     left: 14px;
-    width: 264px;
+    width: 253px;
     z-index: 1;
     border-top: 2px solid #f14976;
     border-left:1px solid #dedede;
@@ -1868,10 +1875,6 @@ ul.bankList {
 }
 .nippet{
     height: 100%;
-}
-.vienchan{
-    display: flex;
-    align-items: center;
 }
 form[name='frm-search'] a{
     padding: 6px 10px 6px 0px;
@@ -2017,6 +2020,9 @@ form[name='frm-search'] input[name='q']{
         color: #F00;
     font-weight: bold;
     font-size: 25px;
+}
+.ridoo{
+    display: none;
 }
 .timex .nadoo{
         width: 500px;
