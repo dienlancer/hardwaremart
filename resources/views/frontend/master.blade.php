@@ -171,6 +171,7 @@ if(count($arrCart) > 0){
     <!-- end ckeditor-->
 	<!-- begin custom -->
 	<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right.css') }}" />
+	<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right-dmsp.css') }}" />
 	<script language="javascript" type="text/javascript" src="{{asset('public/frontend/js/spinner.js')}}"                 ></script>
 	<script src="{{ asset('public/frontend/js/custom.js') }}"></script>    
 	<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />

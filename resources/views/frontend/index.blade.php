@@ -91,8 +91,23 @@ if(isset($alias)){
                     case 'products':        
                     case 'category-product':
                     case 'product':
-                    case 'search-product':                
-                    wp_nav_menu($argsDanhMucSanPham);    
+                    case 'search-product':                                                    
+                    $argsDanhMucSanPham2 = array(                         
+                        'menu_class'            => 'dmspleft',                                        
+                        'before_wrapper'        => '<div class="dmsp-left">',
+                        'before_title'          => '<div class="menu-right-title margin-top-20">',
+                        'after_title'           => '</div>',
+                        'before_wrapper_ul'     =>  '<div class="category-product-wrapper">',
+                        'after_wrapper_ul'      =>  '</div>',
+                        'after_wrapper'         => '</div>'     ,
+                        'link_before'           => '', 
+                        'link_after'            => '<i class="fa fa-caret-down pull-right" aria-hidden="true"></i>',                                        
+                        'theme_location'        => 'dmsp-left' ,
+                        'menu_li_actived'       => 'current-menu-item',
+                        'menu_item_has_children'=> 'menu-item-has-children',
+                        'alias'                 => $seo_alias
+                    );                    
+                    wp_nav_menu($argsDanhMucSanPham2);                    
                     /* begin tìm kiếm sản phẩm theo thuộc tính */
                     ?>
                     <form name="frm-search-product-param" action='<?php echo route('frontend.index.searchProduct') ?>'  method="POST" enctype="multipart/form-data">

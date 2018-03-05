@@ -1821,7 +1821,7 @@ ul.bankList {
     width: 100%;
 }
 .cate-product-horizontal-right ul ul{
-    margin-left: -21px;
+    margin-left:-11px;
 }
 .line{
     float: left;
@@ -1845,7 +1845,7 @@ ul.bankList {
 }
 .covu{
     float: left;
-    width: 253px;
+    width: 262px;
 }
 .himlam{
    float: left;
@@ -1857,7 +1857,7 @@ ul.bankList {
     position: absolute;
     top: 48px;
     left: 14px;
-    width: 253px;
+    width:263px;
     z-index: 1;
     border-top: 2px solid #f14976;
     border-left:1px solid #dedede;
@@ -2074,6 +2074,7 @@ form[name='frm-search'] input[name='q']{
 	float: right;
     width: 50px;
 }
+
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;

@@ -1,16 +1,16 @@
-div.cate-product-horizontal-right ul {
+.cate-product-horizontal-right ul {
 		width: 100%;
 		list-style: none;
 	}
 	
-	div.cate-product-horizontal-right ul li {
+	.cate-product-horizontal-right ul li {
 
 		position: relative;
 		margin-left: 0;
 		
 	}
 	
-	div.cate-product-horizontal-right ul li a{
+	.cate-product-horizontal-right ul li a{
 		    text-decoration: none;
     color: #000;
     line-height: 25px;
@@ -23,25 +23,25 @@ div.cate-product-horizontal-right ul {
     font-weight: bold;
 	}
 	
-	div.cate-product-horizontal-right ul li a span{
+	.cate-product-horizontal-right ul li a span{
 		display: block; 
     	/*background: url(images/blue-arrow.png) left center no-repeat;*/
 		padding-left: 20px;
 		margin-left: 10px;
 	}
 	
-	div.cate-product-horizontal-right ul li a:hover{
+	.cate-product-horizontal-right ul li a:hover{
 		background-color:#ffffff;
 		color:#114a82;
 	}
 	
-	div.cate-product-horizontal-right ul ul {
+	.cate-product-horizontal-right ul ul {
 		display: none;
 		    background: #ffffff;
 		    
 	}
 	
-	div.cate-product-horizontal-right ul li:hover > ul{
+	.cate-product-horizontal-right ul li:hover > ul{
 		display: block;
 		position: absolute;
 		top: -1px;
@@ -49,18 +49,18 @@ div.cate-product-horizontal-right ul {
 		z-index: 999999;
 		border:1px solid #e1e1e1;
 	}
-	div.cate-product-horizontal-right i.fa-caret-down {
+	.cate-product-horizontal-right i.fa-caret-down {
 		display: none;
 	}
-	div.cate-product-horizontal-right > ul > li.menu-item-has-children > a{
+	.cate-product-horizontal-right > ul > li.menu-item-has-children > a{
 		position: relative;
 	}
-	div.cate-product-horizontal-right > ul > li.menu-item-has-children > a > i.fa-caret-down{
+	.cate-product-horizontal-right > ul > li.menu-item-has-children > a > i.fa-caret-down{
 		display: block;
 	    position: absolute;
 	    top: 10px;
 	    right: 15px;
 	}
-	div.cate-product-horizontal-right  ul li ul li a > i{
+	.cate-product-horizontal-right  ul li ul li a > i{
 		display: none;
 	}
