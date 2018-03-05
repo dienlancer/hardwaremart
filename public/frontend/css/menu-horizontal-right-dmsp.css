@@ -34,7 +34,7 @@
 	color:#114a82;
 }
 
-.dmsp-left ul ul {
+.dmspleft ul {
 	display: none;
 	background: #ffffff;
 
@@ -48,7 +48,7 @@
 	z-index: 999999;
 	border:1px solid #e1e1e1;
 }
-.dmsp-left i.fa-caret-down {
+.dmspleft i.fa-caret-down {
 	display: none;
 }
 .dmspleft > li.menu-item-has-children > a{
@@ -60,6 +60,6 @@
 	top: 10px;
 	right: 15px;
 }
-.dmsp-left  ul li ul li a > i{
+.dmspleft li ul li a > i{
 	display: none;
 }
