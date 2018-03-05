@@ -10,7 +10,7 @@
 @font-face{font-family:"Anton";src:url("../fonts/Anton.ttf") format('truetype');}
 @font-face{font-family:"OpenSans";src:url("../fonts/OpenSans.ttf") format('truetype');}
 @font-face{font-family:"OpenSans-Bold";src:url("../fonts/OpenSans-Bold.ttf") format('truetype');}
-@font-face{font-family:"FontAwesome5Brand";src:url("../fonts/FontAwesome5BrandsRegular400.otf") format('truetype');}
+@font-face{font-family:"FontAwesome";src:url("../web-fonts-with-css/webfonts/fa-brands-400.ttf") format('truetype');}
 body{
     font-size:14px;
     color:#585858;
@@ -2060,7 +2060,10 @@ form[name='frm-search'] input[name='q']{
 	float: right;
     width: 50px;
 }
-
+.tem-cart::before{
+    font-family: 'FontAwesome';
+    content: '\f07a';
+}
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;

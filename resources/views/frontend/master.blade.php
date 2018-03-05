@@ -434,7 +434,7 @@ if(count($arrCart) > 0){
 																		
 					</div>	
 					<div class="timex relative">
-						<a href="javascript:void(0);" class="tem-cart"><i class="fab fa-accessible-icon"></i></a>
+						<a href="javascript:void(0);" class="tem-cart"></a>
 						<?php
 						$class_cart_box='ridoo'; 
 						$ssName="vmart";

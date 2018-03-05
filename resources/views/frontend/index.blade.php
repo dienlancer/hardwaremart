@@ -169,13 +169,10 @@ if(isset($alias)){
                     	?>
                     </form>
                     <?php
-                    /* end tìm kiếm sản phẩm theo thuộc tính */                    
-                    $featured_module=getModuleItem("san-pham-noi-bat");
-                    if(count($featured_module) > 0){
-                        $featured_module_name=$featured_module["fullname"];
-                        $featured_products=$featured_module["items"];
-                        if(count($featured_products) > 0){
-                            ?>
+                    /* end tìm kiếm sản phẩm theo thuộc tính */        
+                    $data_featured_products=\App\ProductModel::whereRaw('status = 1')->select('id','fullname','alias','intro','image','price','sale_price')->orderBy('created_at','desc')->take(10)->get()->toArray();                                
+                    if(count($data_featured_products) > 0){                        
+                        ?>
                             <script language="javascript" type="text/javascript">
                                 $(document).ready(function(){
                                     $('.bxSlider').bxSlider({
@@ -183,10 +180,10 @@ if(isset($alias)){
                                     });
                                 });
                             </script>                            
-                            <div class="menu-right-title margin-top-20"><?php echo $featured_module_name; ?></div>
+                            <div class="menu-right-title margin-top-20">Sản phẩm mới</div>
                             <div class="bxSlider">
                                 <?php 
-                                foreach($featured_products as $key => $value){
+                                foreach($data_featured_products as $key => $value){
                                     $featured_product_id=$value['id'];
                                     $featured_product_alias=$value['alias'];
                                     $featured_product_name=$value['fullname'];
@@ -218,8 +215,7 @@ if(isset($alias)){
                                 }
                                 ?>
                             </div>
-                            <?php                        
-                        }
+                            <?php          
                     }                                                        
                     break;                            
                 }                                       

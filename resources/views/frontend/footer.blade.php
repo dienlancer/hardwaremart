@@ -69,23 +69,6 @@
 			wp_nav_menu($args);
 			?>         
 		</div>
-		<div class="col-lg-3">
-			<?php 
-			$module=getPage("fanpage-footer");			
-			if(count($module) > 0){		
-				$fullname=$module['fullname'];		
-				$intro=$module["intro"];					
-				?>		
-				<div class="margin-top-40">
-					<div class="brabel"><?php echo $fullname; ?></div>
-					<div class="tialia margin-top-15">
-						<?php echo $intro; ?>
-					</div>		
-				</div>										
-				<?php				
-			}
-			?>							
-		</div>
 		<div class="col-lg-2">
 			<div class="margin-top-40">
 				<div class="brabel">Kết nối mạng xã hội</div>
@@ -108,7 +91,25 @@
 					</ul>
 					<div class="clr"></div>  
 				</div>
-			</div>								
+			</div>		
+								
+		</div>
+		<div class="col-lg-3">
+				<?php 
+			$module=getPage("fanpage-footer");			
+			if(count($module) > 0){		
+				$fullname=$module['fullname'];		
+				$intro=$module["intro"];					
+				?>		
+				<div class="margin-top-40">
+					<div class="brabel"><?php echo $fullname; ?></div>
+					<div class="tialia margin-top-15">
+						<?php echo $intro; ?>
+					</div>		
+				</div>										
+				<?php				
+			}
+			?>							
 		</div>
 	</div>
 </footer>
