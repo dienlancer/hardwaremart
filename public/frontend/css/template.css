@@ -2060,10 +2060,7 @@ form[name='frm-search'] input[name='q']{
 	float: right;
     width: 50px;
 }
-.tem-cart::before{
-    font-family: 'FontAwesome';
-    content: '\f07a';
-}
+
 @media (max-width: 767px){    
     div.mobilemenu{
         display: block;
