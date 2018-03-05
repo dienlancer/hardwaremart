@@ -1705,19 +1705,7 @@ form[name='frm-search']{
 .actions{
     float: right;
 }
-.cateprodhorizontalright li{
-    margin-left: 0;
-}
-.cateprodhorizontalright {
-    width: 100%;
-    list-style: none;
 
-}
-.cateprodhorizontalright li a{
-    display: block;
-    border-bottom:1px solid #dedede;
-    padding: 5px 5px
-}
 
 .breadcrumb-bg{
         background-color: #f3f1f2;
@@ -1820,9 +1808,7 @@ ul.bankList {
     left: 0;
     width: 100%;
 }
-.cate-product-horizontal-right ul ul{
-    margin-left:-11px;
-}
+
 .line{
     float: left;
     border: 1px solid #ffffff;

@@ -1,6 +1,7 @@
 .cate-product-horizontal-right ul {
 		width: 100%;
 		list-style: none;
+		
 	}
 	
 	.cate-product-horizontal-right ul li {
@@ -64,3 +65,19 @@
 	.cate-product-horizontal-right  ul li ul li a > i{
 		display: none;
 	}
+	.cateprodhorizontalright li{
+    margin-left: 0;
+}
+.cateprodhorizontalright {
+    width: 100%;
+    list-style: none;
+
+}
+.cateprodhorizontalright li a{
+    display: block;
+    border-bottom:1px solid #dedede;
+    padding: 5px 5px
+}
+.cate-product-horizontal-right ul ul{
+    margin-left:-11px;
+}
