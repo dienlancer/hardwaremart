@@ -113,8 +113,7 @@ if(count($arrCart) > 0){
 	<link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
 	<!-- end jquery-ui -->
 	<!-- begin font-awesome -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/web-fonts-with-css/css/fontawesome-all.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/font-awesome.css') }}" />
+	<link rel="stylesheet" href="{{ asset('public/frontend/web-fonts-with-css/css/fontawesome-all.css') }}" />	
 	<!-- end font-awesome -->	
 	<!-- begin ddsmoothmenu -->
 	<script src="{{ asset('public/frontend/js/ddsmoothmenu.js') }}"></script>
@@ -435,7 +434,7 @@ if(count($arrCart) > 0){
 																		
 					</div>	
 					<div class="timex relative">
-						<a href="javascript:void(0);" class="tem-cart"><i class="far fa-shopping-cart"></i></a>
+						<a href="javascript:void(0);" class="tem-cart"><i class="fas fa-cart-arrow-down"></i></a>
 						<?php
 						$class_cart_box='ridoo'; 
 						$ssName="vmart";
