@@ -102,7 +102,7 @@ class IndexController extends Controller {
           if((int)@$flag==1){
             $mail = new PHPMailer(true);
             try{
-              $mail->SMTPDebug = 2;                           
+              $mail->SMTPDebug = 0;                           
               $mail->isSMTP();     
               $mail->CharSet = "UTF-8";                           
               $mail->Host = $smtp_host; 
@@ -534,7 +534,7 @@ class IndexController extends Controller {
           if((int)@$flag==1){
             $mail = new PHPMailer(true);
             try{
-              $mail->SMTPDebug = 2;                           
+              $mail->SMTPDebug = 0;                           
               $mail->isSMTP();     
               $mail->CharSet = "UTF-8";          
               $mail->Host = $smtp_host; 
@@ -1477,8 +1477,7 @@ class IndexController extends Controller {
           $phone=trim(@$request->customer_phone);
           $address=trim(@$request->customer_address);
           $email=trim(@$request->customer_email);
-          $note=trim(@$request->customer_note);      
-          $order_code         =   randomCodeNumber();  
+          $note=trim(@$request->customer_note);                
           if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
             $error["email"] = 'Email không hợp lệ';            
             $flag = 0;
@@ -1494,121 +1493,28 @@ class IndexController extends Controller {
           if(mb_strlen($phone) < 10){
             $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';            
             $flag = 0;
-          }      
-          /* begin load config contact */
-          $setting=getSettingSystem();    
-          $smtp_host      = @$setting['smtp_host']['field_value'];
-          $smtp_port      = @$setting['smtp_port']['field_value'];
-          $smtp_auth      = @$setting['authentication']['field_value'];
-          $encription     = @$setting['encription']['field_value'];
-          $smtp_username  = @$setting['smtp_username']['field_value'];
-          $smtp_password  = @$setting['smtp_password']['field_value'];
-          $product_width=$setting['product_width']['field_value'];
-          $product_height=$setting['product_height']['field_value'];
-          $email_from     = @$email;
-          $email_to       = @$setting['email_to']['field_value'];
-          $contacted_person = @$setting['contacted_person']['field_value'];          
-          /* end load config contact */       
-
-          $arrCart=array();
-          $total_quantity=0;
-          $total_price=0;
-          if(Session::has($this->_ssNameCart)){
-            $arrCart=Session::get($this->_ssNameCart);
-          }         
-          if(count($arrCart) > 0){
-            foreach ($arrCart as $key => $value){
-              $total_quantity+=(int)@$value['product_quantity'];              
-              $total_price+=(float)@$value['product_total_price'];
-            }
-          }       
-
-          $mail = new PHPMailer(true);
-          $mail->SMTPDebug = 2;                           
-          $mail->isSMTP();     
-          $mail->CharSet = "UTF-8";          
-          $mail->Host = $smtp_host; 
-          $mail->SMTPAuth = $smtp_auth;                         
-          $mail->Username = $smtp_username;             
-          $mail->Password = $smtp_password;             
-          $mail->SMTPSecure = $encription;                       
-          $mail->Port = $smtp_port;                            
-          $mail->setFrom($email_from, $fullname);
-          $mail->addAddress($email_to, $contacted_person);   
-          $mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
-          $html_content='';     
-          $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
-          $html_content .='<thead>';
-          $html_content .='<tr>';
-          $html_content .='<th colspan="2"><h3>Thông tin từ khách hàng</h3></th>';
-          $html_content .='</tr>';
-          $html_content .='</thead>';
-          $html_content .='<tbody>';
-
-          $html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$order_code.'</td></tr>';
-          $html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
-          $html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
-          $html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';              
-          $html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
-          $html_content .='<tr><td>Nội dung</td><td>'.$note.'</td></tr>';   
-          $html_content .='<tr><td>Số lượng</td><td>'.$total_quantity.'</td></tr>';   
-          $html_content .='<tr><td>Thành tiền</td><td>'.fnPrice($total_price).'</td></tr>';          
-
-          $html_content .='</tbody>';
-          $html_content .='</table>';   
-
-          $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
-          $html_content .='<thead>';
-          $html_content .='<tr>';
-          $html_content .='<th>Mã sản phẩm</th>';
-          $html_content .='<th>Tên sản phẩm</th>';
-          $html_content .='<th>Hình ảnh</th>';
-          $html_content .='<th>Đơn giá</th>';
-          $html_content .='<th>Số lượng đặt mua</th>';
-          $html_content .='<th>Tổng giá</th>';
-          $html_content .='</tr>';
-          $html_content .='</thead>';
-          $html_content .='<tbody>';
-
-          if(count($arrCart) > 0){
-            foreach ($arrCart as $key => $value) {
-              
-                $product_id=$value["product_id"];    
-                $product_code=$value["product_code"];  
-                $product_name=$value["product_name"];                                                    
-                $product_image=   $value["product_image"] ;        
-                $product_price=$value["product_price"];                                  
-                $product_quantity=$value["product_quantity"];                         
-                $product_total_price=$value["product_total_price"];
-                $html_content .='<tr>';
-                $html_content .='<td>'.$product_code.'</td>';
-                $html_content .='<td>'.$product_name.'</td>';  
-                $html_content .='<td><center><img width="'.(float)($product_width/4).'" height="'.(float)($product_height/4).'" src="'.get_product_thumbnail($product_image).'" /></center></td>';                
-                $html_content .='<td align="right">'.fnPrice($product_price).'</td>';
-                $html_content .='<td align="right">'.$product_quantity.'</td>';
-                $html_content .='<td align="right">'.fnPrice($product_total_price).'</td>';
-                $html_content .='</tr>';  
-            }
-            
-          }
-          
-          $html_content .='</tbody>';
-          $html_content .='</table>';   
-
-          $mail->msgHTML($html_content);
-          if (!$mail->Send()) {                
-            $error["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
-            $flag=0;
-          }                        
+          }                
           if($flag==1){   
-                     
-            $item               =   new InvoiceModel;                 
+            $item               =   new InvoiceModel; 
+            $order_code         =   randomCodeNumber();                  
             $item->code         =   @$order_code;            
             $item->email        =   @$email;
             $item->fullname     =   @$fullname;
             $item->address      =   @$address;
             $item->phone        =   @$phone;       
-            $item->note         =   @$note;                      
+            $item->note         =   @$note; 
+            $arrCart=array();
+            $total_quantity=0;
+            $total_price=0;
+            if(Session::has($this->_ssNameCart)){
+              $arrCart=Session::get($this->_ssNameCart);
+            }         
+            if(count($arrCart) > 0){
+              foreach ($arrCart as $key => $value){
+                $total_quantity+=(int)@$value['product_quantity'];              
+                $total_price+=(float)@$value['product_total_price'];
+              }
+            }                         
             $item->quantity     =   @$total_quantity;
             $item->total_price  =   @$total_price;
             $item->status       =   0;  
@@ -1638,7 +1544,90 @@ class IndexController extends Controller {
                 $itemInvoiceDetail->created_at=date("Y-m-d H:i:s",time());
                 $itemInvoiceDetail->updated_at=date("Y-m-d H:i:s",time());
                 $itemInvoiceDetail->save();
-              }              
+              }      
+              /* begin load config contact */
+              $setting=getSettingSystem();    
+              $smtp_host      = @$setting['smtp_host']['field_value'];
+              $smtp_port      = @$setting['smtp_port']['field_value'];
+              $smtp_auth      = @$setting['authentication']['field_value'];
+              $encription     = @$setting['encription']['field_value'];
+              $smtp_username  = @$setting['smtp_username']['field_value'];
+              $smtp_password  = @$setting['smtp_password']['field_value'];
+              $product_width=$setting['product_width']['field_value'];
+              $product_height=$setting['product_height']['field_value'];
+              $email_from     = @$email;
+              $email_to       = @$setting['email_to']['field_value'];
+              $contacted_person = @$setting['contacted_person']['field_value'];          
+              /* end load config contact */       
+              $mail = new PHPMailer(true);
+              $mail->SMTPDebug = 0;                           
+              $mail->isSMTP();     
+              $mail->CharSet = "UTF-8";          
+              $mail->Host = $smtp_host; 
+              $mail->SMTPAuth = $smtp_auth;                         
+              $mail->Username = $smtp_username;             
+              $mail->Password = $smtp_password;             
+              $mail->SMTPSecure = $encription;                       
+              $mail->Port = $smtp_port;                            
+              $mail->setFrom($email_from, $fullname);
+              $mail->addAddress($email_to, $contacted_person);   
+              $mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
+              $html_content='';     
+              $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
+              $html_content .='<thead>';
+              $html_content .='<tr>';
+              $html_content .='<th colspan="2"><h3>Thông tin từ khách hàng</h3></th>';
+              $html_content .='</tr>';
+              $html_content .='</thead>';
+              $html_content .='<tbody>';
+              $html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$order_code.'</td></tr>';
+              $html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
+              $html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
+              $html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';              
+              $html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
+              $html_content .='<tr><td>Nội dung</td><td>'.$note.'</td></tr>';   
+              $html_content .='<tr><td>Số lượng</td><td>'.$total_quantity.'</td></tr>';   
+              $html_content .='<tr><td>Thành tiền</td><td>'.fnPrice($total_price).'</td></tr>';          
+              $html_content .='</tbody>';
+              $html_content .='</table>';   
+              $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
+              $html_content .='<thead>';
+              $html_content .='<tr>';
+              $html_content .='<th>Mã sản phẩm</th>';
+              $html_content .='<th>Tên sản phẩm</th>';
+              $html_content .='<th>Hình ảnh</th>';
+              $html_content .='<th>Đơn giá</th>';
+              $html_content .='<th>Số lượng đặt mua</th>';
+              $html_content .='<th>Tổng giá</th>';
+              $html_content .='</tr>';
+              $html_content .='</thead>';
+              $html_content .='<tbody>';
+              if(count($arrCart) > 0){
+                foreach ($arrCart as $key => $value) {
+                  $product_id=$value["product_id"];    
+                  $product_code=$value["product_code"];  
+                  $product_name=$value["product_name"];                                                    
+                  $product_image=   $value["product_image"] ;        
+                  $product_price=$value["product_price"];                                  
+                  $product_quantity=$value["product_quantity"];                         
+                  $product_total_price=$value["product_total_price"];
+                  $html_content .='<tr>';
+                  $html_content .='<td>'.$product_code.'</td>';
+                  $html_content .='<td>'.$product_name.'</td>';  
+                  $html_content .='<td><center><img width="'.(float)($product_width/4).'" height="'.(float)($product_height/4).'" src="'.get_product_thumbnail($product_image).'" /></center></td>';                
+                  $html_content .='<td align="right">'.fnPrice($product_price).'</td>';
+                  $html_content .='<td align="right">'.$product_quantity.'</td>';
+                  $html_content .='<td align="right">'.fnPrice($product_total_price).'</td>';
+                  $html_content .='</tr>';  
+                }                
+              }          
+              $html_content .='</tbody>';
+              $html_content .='</table>';                                 
+              $mail->msgHTML($html_content);
+              if (!$mail->Send()) {                
+                $error["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+                $flag=0;
+              }           
             }  
             if(Session::has($this->_ssNameCart)){
               Session::forget($this->_ssNameCart);
