@@ -121,7 +121,7 @@ function wp_nav_menu($args){
             $site_link=url('/'.$data_menu[$i]["alias"]) ;
             break;          
             case 'san-pham':
-            $site_link='javascript:void(0);' ;
+            $site_link='' ;
             break;               
             case 'trang-chu':
             $site_link=url('/');

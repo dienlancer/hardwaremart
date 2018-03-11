@@ -739,9 +739,10 @@ footer{
     background: linear-gradient(to bottom,#F5F5F5  , #ffffff);
 }
 .box-readmore a::before{
-    font-family: "FontAwesome";
-    content: "\f0a9";
+    font-family: "Font Awesome\ 5 Free";
+    content: "\f35a";
     margin-right: 5px;
+    font-weight: bold;
 }
 
 .menu-right-title{
@@ -2059,14 +2060,7 @@ form[name='frm-search'] input[name='q']{
 	float: right;
     width: 50px;
 }
-/*.tem-cart i{
-        font-family: 'Font Awesome 5 Free';
-    font-weight: 400;
-}
-.tem-cart i::before {
-    content: "\f218";
-}*/
-@media (max-width: 767px){    
+@media (max-width: 768px){    
     div.mobilemenu{
         display: block;
         background: #ffffff;
@@ -2119,10 +2113,8 @@ form[name='frm-search'] input[name='q']{
     .timex{
     	display: none;
     }
-}
-@media (max-width: 543px){
 
-    .searching{
+	.searching{
         width: 100%;
     }
     .slogan{
@@ -2144,5 +2136,6 @@ form[name='frm-search'] input[name='q']{
     .pdetail-price-detail-on{
     	font-size: 13px;
     }
+
 }
 

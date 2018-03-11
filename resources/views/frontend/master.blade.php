@@ -146,7 +146,7 @@ if(count($arrCart) > 0){
 	<script src="{{ asset('public/frontend/js/accounting.min.js') }}"></script>  
 	<!-- end accounting -->
 	<!-- begin pagination -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/pagination.css') }}" />
+	<!--<link rel="stylesheet" href="{{ asset('public/frontend/css/pagination.css') }}" />-->
 	<!-- end pagination-->
 	<!-- begin product -->
 	<link rel="stylesheet" href="{{ asset('public/frontend/css/product.css') }}" />

@@ -2,7 +2,7 @@
 ?>
 <footer class="footer margin-top-15">
 	<div class="container azweb">
-		<div class="col-lg-3">				
+		<div class="col-sm-3">				
 			<?php 
 			$module=getPage("intro-footer");
 			if(count($module) > 0){
@@ -29,7 +29,7 @@
 			}
 			?>			
 		</div>
-		<div class="col-lg-2">
+		<div class="col-sm-2">
 			<?php     
 			$args = array(                         
 				'menu_class'            => 'danhmucspfooter', 					                     
@@ -49,7 +49,7 @@
 			wp_nav_menu($args);
 			?>         
 		</div>
-		<div class="col-lg-2">
+		<div class="col-sm-2">
 			<?php     
 			$args = array(                         
 				'menu_class'            => 'danhmucspfooter', 					                     
@@ -69,7 +69,7 @@
 			wp_nav_menu($args);
 			?>         
 		</div>
-		<div class="col-lg-2">
+		<div class="col-sm-2">
 			<div class="margin-top-40">
 				<div class="brabel">Kết nối mạng xã hội</div>
 				<div class="tialia margin-top-15">
@@ -94,7 +94,7 @@
 			</div>		
 								
 		</div>
-		<div class="col-lg-3">
+		<div class="col-sm-3">
 				<?php 
 			$module=getPage("fanpage-footer");			
 			if(count($module) > 0){		
