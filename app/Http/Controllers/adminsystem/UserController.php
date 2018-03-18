@@ -128,8 +128,7 @@ class UserController extends Controller {
                   $error["email"]["type_msg"] = "has-error";
                   $error["email"]["msg"] = "Email đã tồn tại";
               }       
-          }
-          
+          }          
           if(empty($id)){
               if(mb_strlen($password) < 6 ){
                   $checked = 0;
