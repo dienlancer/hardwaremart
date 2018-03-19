@@ -19,7 +19,7 @@ $lblTotalPrice          =   number_format((int)@$arrRowData['total_price'],0,"."
 
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
-$ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
+$ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");
 
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" value="'.@$id.'" />'; 

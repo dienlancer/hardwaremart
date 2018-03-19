@@ -91,7 +91,7 @@
                                         ->get()->
                                         toArray();
                     $dataGroupMember=convertToArray($dataGroupMember);
-                    $ddlGroupMember=cmsSelectboxCategory('group_member_id','group_member_id', 'form-control', $dataGroupMember,  0,'');
+                    $ddlGroupMember=cmsSelectboxCategory('group_member_id', 'form-control', $dataGroupMember,  0,'');
                     echo $ddlGroupMember;
                     ?>
                 </td>            
