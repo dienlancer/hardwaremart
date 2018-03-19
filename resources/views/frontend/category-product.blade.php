@@ -3,12 +3,15 @@
 	{{ csrf_field() }}	
 	<?php 			
 	if(@$category != null){
-		$breadcrumb= getBreadCrumbCategoryProduct(@$category);			
+		$breadcrumb= getBreadCrumbCategoryProduct(@$category);		
+		?><h1 style="display: none;"><?php echo @$category['fullname']; ?></h1><?php	
 	}
 	else{
 		$breadcrumb='<a href="'.url('/').'">Trang chủ</a><a href="javascript:void(0);">Tìm kiếm</a>';
+		?><h1 style="display: none;">Tìm kiếm</h1><?php
 	}	
 	?>
+	<h2 style="display: none;"><?php echo @$meta_description; ?></h2>
 	<div class="breadcrumb-title">
 		<?php echo $breadcrumb; ?>
 	</div>
@@ -38,7 +41,7 @@
 						<div class="box-product-img">
 							<center><figure><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>"></a></figure></center>
 						</div>
-						<div class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_fullname; ?></b></a></div>
+						<h3 class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_fullname; ?></b></a></h3>
 						<div class="box-product-price">
 							<div><center><?php echo $html_price; ?></center></div>
 						</div>
