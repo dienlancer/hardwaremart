@@ -170,9 +170,9 @@ class IndexController extends Controller {
     $query=DB::table('product')   ;     
     if($request->prod_param != null){
       if(count(@$request->prod_param)>0){   
-        $query->join('product_param','product.id','=','product_param.product_id');    
-        $prod_param=@$request->prod_param;          
-        $query->whereIn('product_param.param_id', @$prod_param);    
+        $prod_param=@$request->prod_param;
+        $query->join('post_param','product.id','=','post_param.post_id');               
+        $query->whereIn('post_param.param_id',@$request->prod_param);    
       }      
     }                                       
     $category=array();
@@ -184,10 +184,12 @@ class IndexController extends Controller {
       $query->whereIn('product.category_id', $arr_category_id);        
       $category=CategoryProductModel::find($category_id);       
     }
-    if(!empty(@$request->q)){
-      $q=@$request->q;
-      $query->where('product.fullname','like', '%'.trim(@$q).'%');
-    }
+    
+      if(!empty(@$request->q)){
+        $q=@$request->q;
+        $query->where('product.fullname','like', '%'.trim(@$q).'%');
+      }      
+ 
     $query->where('product.status',1);    
     $data=$query->select('product.id')
     ->groupBy('product.id')                

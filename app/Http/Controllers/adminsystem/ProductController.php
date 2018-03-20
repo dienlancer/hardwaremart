@@ -9,7 +9,7 @@ use App\ProductModel;
 use App\PageModel;
 use App\MenuModel;
 use App\ProductCategoryModel;
-use App\ProductParamModel;
+use App\PostParamModel;
 use App\CategoryParamModel;
 use App\InvoiceDetailModel;
 use DB;
@@ -62,7 +62,7 @@ class ProductController extends Controller {
         $title="";
         $icon=$this->_icon; 
         $arrRowData=array();        
-        $arrProductParam=array();
+        $arrPostParam=array();
         $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-form";  
         if(in_array($requestControllerAction, $arrPrivilege)){
@@ -70,7 +70,7 @@ class ProductController extends Controller {
            case 'edit':
               $title=$this->_title . " : Update";
               $arrRowData=ProductModel::find((int)@$id)->toArray();       
-              $arrProductParam=ProductParamModel::whereRaw("product_id = ?",[(int)@$id])->get()->toArray();                  
+              $arrPostParam=PostParamModel::whereRaw("post_id = ?",[(int)@$id])->get()->toArray();                  
            break;
            case 'add':
               $title=$this->_title . " : Add new";
@@ -82,7 +82,7 @@ class ProductController extends Controller {
         $arrCategoryParamRecursive=array();
         categoryRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)   ; 
         categoryRecursiveForm($arrCategoryParam ,0,"",$arrCategoryParamRecursive)   ; 
-        return view("adminsystem.".$this->_controller.".form",compact("arrCategoryProductRecursive","arrCategoryParamRecursive","arrProductParam","arrRowData","controller","task","title","icon"));
+        return view("adminsystem.".$this->_controller.".form",compact("arrCategoryProductRecursive","arrCategoryParamRecursive","arrPostParam","arrRowData","controller","task","title","icon"));
         }else{
             return view("adminsystem.no-access");
         }
@@ -229,33 +229,33 @@ class ProductController extends Controller {
                 DB::statement($sql);    
             }          
           }    
-          /* begin category param */          
-          if(count(@$category_param_id)>0){                            
-            $arrProductParam=ProductParamModel::whereRaw("product_id = ?",[(int)@$item->id])->select("param_id")->get()->toArray();
-            $arrCategoryParamID=array();
-            foreach ($arrProductParam as $key => $value) {
-              $arrCategoryParamID[]=$value["param_id"];
-            }
-            $selected=@$category_param_id;
-            sort($selected);
-            sort($arrCategoryParamID);         
-            $resultCompare=0;
-            if($selected == $arrCategoryParamID){
-              $resultCompare=1;       
-            }
-            if($resultCompare==0){
-              ProductParamModel::whereRaw("product_id = ?",[(int)@$item->id])->delete();  
-              foreach ($selected as $key => $value) {
-                $param_id=$value;
-                $productParam=new ProductParamModel;
-                $productParam->product_id=(int)@$item->id;
-                $productParam->param_id=(int)@$param_id;            
-                $productParam->save();
-              }
-            }       
-          }  
-          ProductParamModel::whereRaw("param_id = ?",[0])->delete();    
-          /* end category param */          
+          /* begin category param */
+                if(count(@$category_param_id)>0){  
+                  $arrPostParam=PostParamModel::whereRaw("post_id = ?",[(int)@$item->id])->select("param_id")->get()->toArray();
+                  $arrCategoryParamID=array();
+                  foreach ($arrPostParam as $key => $value) {
+                    $arrCategoryParamID[]=$value["param_id"];
+                  }                  
+                  $selected=@$category_param_id;
+                  sort($selected);
+                  sort($arrCategoryParamID);                           
+                  $resultCompare=0;
+                  if($selected == $arrCategoryParamID){
+                    $resultCompare=1;       
+                  }
+                  if($resultCompare==0){
+                    PostParamModel::whereRaw("post_id = ?",[(int)@$item->id])->delete();  
+                    foreach ($selected as $key => $value) {
+                      $param_id=$value;
+                      $postParam=new PostParamModel;
+                      $postParam->post_id=(int)@$item->id;
+                      $postParam->param_id=(int)@$param_id;            
+                      $postParam->save();
+                    }
+                  }       
+                }  
+                PostParamModel::whereRaw("param_id = ?",[0])->delete();
+                /* end category param */                         
           $info = array(
             'type_msg' 			=> "has-success",
             'msg' 				=> 'Save data successfully',
@@ -307,7 +307,7 @@ class ProductController extends Controller {
             if($checked == 1){
               $item = ProductModel::find((int)@$id);
                 $item->delete();     
-                ProductParamModel::whereRaw("product_id = ?",[(int)@$id])->delete();           
+                PostParamModel::whereRaw("post_id = ?",[(int)@$id])->delete();           
             }        
             $data                   =   $this->loadData($request);
             $info = array(
@@ -372,7 +372,7 @@ class ProductController extends Controller {
             }  
             if($checked == 1){                
                   DB::table('product')->whereIn('id',@$arrID)->delete(); 
-                  DB::table('product_param')->whereIn('product_id',@$arrID)->delete();                                              
+                  DB::table('post_param')->whereIn('post_id',@$arrID)->delete();                                              
             }
             $data                   =   $this->loadData($request);
             $info = array(
