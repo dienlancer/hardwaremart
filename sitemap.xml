@@ -2,15 +2,9 @@
 <?xml-stylesheet href="http://hardwaremart.dienkim/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 	<url>
-	<loc>http://hardwaremart.dienkim/kinh-nghiem.html</loc>
+	<loc>http://hardwaremart.dienkim/kinh-nghiem-laptop.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T08:10:00+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/lang-game.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T08:09:39+00:00</lastmod>
+		<lastmod>2018-03-13T05:15:41+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
@@ -38,72 +32,6 @@
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://hardwaremart.dienkim/q-mobile.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/ginonee.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/blackberry.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/htc.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/lg.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/nokia.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/philips.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/oppo.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/sony.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/iphone.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:52:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
 	<loc>http://hardwaremart.dienkim/loa-am-thanh.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-28T04:01:59+00:00</lastmod>
@@ -113,24 +41,6 @@
 	<loc>http://hardwaremart.dienkim/phu-kien-may-tinh.html</loc>
 		<priority>0.9</priority>
 		<lastmod>2018-02-26T07:36:09+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/phu-kien-dien-thoai.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-26T07:36:09+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/dien-thoai.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:58:36+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/tablet.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:58:31+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
@@ -146,369 +56,219 @@
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://hardwaremart.dienkim/bo-doi-smartphone-nokia-chuyen-chup-anh.html</loc>
+	<loc>http://hardwaremart.dienkim/cach-ket-noi-laptop-voi-tivi-qua-cong-hdmi.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-19T06:54:30+00:00</lastmod>
+		<lastmod>2018-03-19T13:30:11+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://hardwaremart.dienkim/anh-chup-thu-tu-camera-kep-cua-galaxy-s9-plus.html</loc>
+	<loc>http://hardwaremart.dienkim/cua-hang-laptop-uy-tin-o-thanh-pho-ho-chi-minh.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-01T01:19:51+00:00</lastmod>
+		<lastmod>2018-03-17T15:06:59+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://hardwaremart.dienkim/samsung-va-nokia-hai-diem-nhan-tai-mwc-2018.html</loc>
+	<loc>http://hardwaremart.dienkim/tai-sao-laptop-khong-nhan-usb.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T11:10:07+00:00</lastmod>
+		<lastmod>2018-03-18T13:24:01+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://hardwaremart.dienkim/sony-alpha-a7-iii-phien-ban-gia-mem-cua-alpha-a9.html</loc>
+	<loc>http://hardwaremart.dienkim/dich-vu-ban-laptop-tphcm.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T11:10:19+00:00</lastmod>
+		<lastmod>2018-03-19T11:42:12+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://hardwaremart.dienkim/apple-sap-ra-iphone-man-hinh-khong-lo.html</loc>
+	<loc>http://hardwaremart.dienkim/noi-ban-laptop-gia-tot-nhat.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T13:30:57+00:00</lastmod>
+		<lastmod>2018-03-18T14:13:30+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
-	<loc>http://hardwaremart.dienkim/galaxy-s9-va-s9-so-do-thon-gon-voi-cac-doi-thu.html</loc>
+	<loc>http://hardwaremart.dienkim/laptop-hp-co-tot-khong.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T10:54:18+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/gia-galaxy-s9-tai-viet-nam-se-khoang-20-trieu-dong.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-03-04T18:37:29+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-mua-lai-iphone-x-voi-gia-350-usd.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T10:49:31+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/nokia-nhin-ve-qua-khu-de-huong-toi-tuong-lai.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T10:47:48+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/xiaomi-redmi-5-plus-cho-dat-truoc-tai-fpt-shop-tu-13.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T10:47:34+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/gioi-thieu.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T08:05:34+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/quy-che-hoat-dong.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T07:23:29+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/huong-dan-mua-hang.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T08:05:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/doi-tra-bao-hanh.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T16:16:18+00:00</lastmod>
+		<lastmod>2018-03-15T04:39:45+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/chinh-sach-giao-hang.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-19T06:54:14+00:00</lastmod>
+		<lastmod>2018-03-19T11:10:01+00:00</lastmod>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+	<loc>http://hardwaremart.dienkim/dell-latitude-e6530-core-i7-3620m.html</loc>
+		<priority>0.9</priority>
+		<lastmod>2018-03-19T13:52:18+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/loa-bose-acoustimass-6-series-v.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:34:45+00:00</lastmod>
+		<lastmod>2018-03-18T02:04:05+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/loa-keo-rinton-pl-1.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T04:43:07+00:00</lastmod>
+		<lastmod>2018-03-19T04:30:31+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tang-am-arirang-spa-203-iii.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T04:37:28+00:00</lastmod>
+		<lastmod>2018-03-19T01:47:13+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tang-am-rinton-pa-7600.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T04:36:24+00:00</lastmod>
+		<lastmod>2018-03-18T03:16:41+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/loa-rinton-rt-705.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T04:32:49+00:00</lastmod>
+		<lastmod>2018-03-19T01:21:20+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/loa-arirang-jant-i.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T04:30:37+00:00</lastmod>
+		<lastmod>2018-03-19T11:07:10+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/headphone-a4-tech-hs-12.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T04:00:40+00:00</lastmod>
+		<lastmod>2018-03-19T04:17:01+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/mieng-dan-man-hinh-laptop-155.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T03:50:58+00:00</lastmod>
+		<lastmod>2018-03-17T23:43:11+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/o-cung-di-dong-8gb-cz50-cruzer-blade-usb-20-sandisk.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T03:47:57+00:00</lastmod>
+		<lastmod>2018-03-19T14:26:25+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/usb-sandisk-8gb-cz50-cruzer-glide.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T03:45:27+00:00</lastmod>
+		<lastmod>2018-03-18T00:53:13+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/chuot-kd-konig-kn915.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T03:44:03+00:00</lastmod>
+		<lastmod>2018-03-18T01:17:11+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/tai-nghe-philips-she1350.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-28T03:48:55+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/pin-sac-suzumi-s-511.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T02:42:59+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/gay-chup-hinh-macaron-m2.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T02:39:16+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/cap-mau-micro-remax.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T02:37:54+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/pin-sac-du-phong-microtek-mt-502.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T02:35:58+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/gay-chup-hinh-monopod-mini.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T02:33:36+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/loa-bluetooth-roman-y15.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T02:31:23+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-s8-tim.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-03-10T01:19:00+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-s8-den.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-03-07T19:30:52+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-s8-plus-2018-vang.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-03-07T10:04:44+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-a8-2018-den.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-03-02T18:09:22+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-a8-2018-tim.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-03-07T09:56:45+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-a8-2018-vang.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-03-19T06:55:43+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/ipad-wi-fi-cellular-32gb-silver-2017.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:33:06+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/ipad-wi-fi-32gb-gold-2017.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:30:58+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-tab-a-2016-101-kem-but-spen.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:29:15+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-tab-a-80-2017-sm-t385.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:27:23+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-tab-e.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:27:14+00:00</lastmod>
-		<changefreq>monthly</changefreq>
-	</url>
-	<url>
-	<loc>http://hardwaremart.dienkim/samsung-galaxy-tab-a-sm-t285.html</loc>
-		<priority>0.9</priority>
-		<lastmod>2018-02-28T01:27:07+00:00</lastmod>
+		<lastmod>2018-03-18T01:40:34+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tinh-de-ban-fpt-elead-nk930-6811.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-27T18:08:03+00:00</lastmod>
+		<lastmod>2018-03-18T22:47:06+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tinh-de-ban-acer-aspire-tc-780-dtb89sv005.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-27T18:06:27+00:00</lastmod>
+		<lastmod>2018-03-18T01:17:26+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tinh-de-ban-acer-aspire-tc-780.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-27T18:08:32+00:00</lastmod>
+		<lastmod>2018-03-19T02:52:52+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tinh-de-ban-dell-vostro-3268-core-i5.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-27T17:56:39+00:00</lastmod>
+		<lastmod>2018-03-17T14:16:27+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tinh-de-ban-acer-aspire-tc-780-dtb89sv008.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-27T17:52:23+00:00</lastmod>
+		<lastmod>2018-03-19T02:07:41+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/may-tinh-de-ban-acer-aspire-atc-780-dtb59sv002.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-27T17:53:55+00:00</lastmod>
+		<lastmod>2018-03-19T10:30:16+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/hp-15-bs571tu-i3-6006u-2jq68pa.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-01T05:33:24+00:00</lastmod>
+		<lastmod>2018-03-19T08:28:34+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/asus-tp203nah-n4200-bp052t.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-02-27T10:20:34+00:00</lastmod>
+		<lastmod>2018-03-19T04:59:12+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/lenovo-ideapad-110-15isk-i3-6006u-80ud018kvn.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:50:07+00:00</lastmod>
+		<lastmod>2018-03-19T16:06:36+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/lenovo-ideapad-320-14isk-i3-6006-80xg0083vn.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:49:41+00:00</lastmod>
+		<lastmod>2018-03-19T09:53:03+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/hp-15-bs578tu-n3710-2lr89pa.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:49:11+00:00</lastmod>
+		<lastmod>2018-03-19T07:52:34+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/acer-es1-533-p6l2-n4200-nxgftsv008.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:48:40+00:00</lastmod>
+		<lastmod>2018-03-18T22:13:47+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/acer-es1-533-n4200-nxgftsv003.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:48:01+00:00</lastmod>
+		<lastmod>2018-03-18T04:22:36+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/asus-x441na-n4200-ga070t.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:47:23+00:00</lastmod>
+		<lastmod>2018-03-17T11:52:35+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/acer-aspire-es1-432-n3350.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:46:22+00:00</lastmod>
+		<lastmod>2018-03-18T03:39:40+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 	<url>
 	<loc>http://hardwaremart.dienkim/lenovo-ideapad-120s-11iap-n3350-81a40072vn.html</loc>
 		<priority>0.9</priority>
-		<lastmod>2018-03-03T03:46:00+00:00</lastmod>
+		<lastmod>2018-03-18T18:09:48+00:00</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 </urlset>

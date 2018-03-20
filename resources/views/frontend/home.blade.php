@@ -58,10 +58,7 @@ $company=$setting['contacted_person']['field_value'];
 	<?php 
 	$arr_alias=array(
 		'laptop',
-		'may-tinh',
-		'tablet',
-		'dien-thoai',
-		'phu-kien-dien-thoai',
+		'may-tinh',		
 		'phu-kien-may-tinh',
 		'loa-am-thanh',
 		
@@ -103,7 +100,7 @@ $company=$setting['contacted_person']['field_value'];
 										$(".<?php echo $alias1; ?>").owlCarousel({
 											autoplay:false,                    
 											loop:true,
-											margin:2,                        
+											margin:10,                        
 											nav:true,            
 											mouseDrag: false,
 											touchDrag: false,                                

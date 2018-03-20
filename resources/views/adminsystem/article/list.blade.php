@@ -17,7 +17,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 	<input type="hidden" name="sort_json" id="sort_json" value="" />	
 	<div class="portlet light bordered">
 		<div class="portlet-title">
-			<div class="alert alert-success" style="display: none">
+			<div class="alert alert-success" id="alert" style="display: none">
 				<strong>Success!</strong> 
 			</div>
 			<div class="caption font-dark">
