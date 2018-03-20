@@ -228,7 +228,8 @@ class ProductController extends Controller {
               $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id;           
                 DB::statement($sql);    
             }          
-          }              
+          }    
+          /* begin category param */          
           if(count(@$category_param_id)>0){                            
             $arrProductParam=ProductParamModel::whereRaw("product_id = ?",[(int)@$item->id])->select("param_id")->get()->toArray();
             $arrCategoryParamID=array();
@@ -254,6 +255,7 @@ class ProductController extends Controller {
             }       
           }  
           ProductParamModel::whereRaw("param_id = ?",[0])->delete();    
+          /* end category param */          
           $info = array(
             'type_msg' 			=> "has-success",
             'msg' 				=> 'Save data successfully',
