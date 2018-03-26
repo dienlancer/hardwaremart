@@ -19,12 +19,14 @@ function uploadImage($image_file,$width,$height){
   $image_name=$image_slug.'.'.$ext;      
   $image_path=base_path("upload".DS.$image_name);
   @copy($image_tmp_name, $image_path);  
-  require_once base_path("app".DS."scripts".DS."PhpThumb".DS."ThumbLib.inc.php") ;       
-  $thumb = PhpThumbFactory::create($image_path);        
-  $thumb->adaptiveResize($width, $height);
-  $prefix = $width . 'x' . $height ;
-  $veston =base_path('upload' . DS . $prefix . '-' . $image_name);       
-  $thumb->save($veston);
+  if((int)@$width > 0 && (int)@$height > 0){
+    require_once base_path("app".DS."scripts".DS."PhpThumb".DS."ThumbLib.inc.php") ;       
+    $thumb = PhpThumbFactory::create($image_path);        
+    $thumb->adaptiveResize($width, $height);
+    $prefix = $width . 'x' . $height ;
+    $veston =base_path('upload' . DS . $prefix . '-' . $image_name);       
+    $thumb->save($veston);
+  }  
   return $image_name;
 }
 

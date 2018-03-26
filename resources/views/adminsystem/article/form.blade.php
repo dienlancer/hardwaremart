@@ -193,18 +193,6 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         $(sort_order).closest('.form-group').find('span').empty().hide();
         $(status).closest('.form-group').find('span').empty().hide();        
     }
-
-    function uploadFileImport(){    
-        var token = $('input[name="_token"]').val();       
-        var image=$('input[name="image"]'); 
-        var file_upload=$(image).get(0);
-        var files = file_upload.files;
-        var file  = files[0];    
-        var frmdata = new FormData();        
-        frmdata.append("image", file);
-        frmdata.append("_token", token);
-        $.ajax({ url: '<?php echo $linkUploadFile; ?>', method: 'post', data: frmdata, contentType: false, processData: false })
-    }
     function deleteImage(){
         var xac_nhan = 0;
         var msg="Bạn có muốn xóa ?";
@@ -241,25 +229,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
-        resetErrorStatus();
-        /*var dataItem={
-            "id":id,
-            "fullname":fullname,
-            
-            "alias":alias,
-            "alias_menu":alias_menu,
-            "image":file,            
-            "intro":intro,
-            "content":content,
-            "description":description,
-            "meta_keyword":meta_keyword,
-            "meta_description":meta_description,
-            "category_id":category_id,            
-            "image_hidden":image_hidden,
-            "sort_order":sort_order,
-            "status":status,
-            "_token": token
-        };*/
+        resetErrorStatus();        
         var dataItem = new FormData();
         dataItem.append('id',id);
         dataItem.append('fullname',fullname);
@@ -329,7 +299,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
     function createAlias(){
         var id=$('input[name="id"]').val();   
         var fullname    = $('input[name="fullname"]').val();
-        var token       = $('form[name="frm"] > input[name="_token"]').val();     
+        var token       = $('input[name="_token"]').val();     
         var dataItem={      
             "id":id,      
             "fullname":fullname,            
