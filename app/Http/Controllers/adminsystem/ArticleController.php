@@ -84,11 +84,13 @@ class ArticleController extends Controller {
     }
      public function save(Request $request){
           $id 					        =		trim($request->id);        
-          $fullname 				    =		trim($request->fullname);
-          
+          $fullname 				    =		trim($request->fullname);          
           $alias 					      = 	trim($request->alias);
-          $alias_menu           =   trim($request->alias_menu);
-          $image                =   trim($request->image);
+          $alias_menu           =   trim($request->alias_menu); 
+          $image_file           =   null;
+          if(isset($_FILES["image"])){
+            $image_file         =   $_FILES["image"];
+          }                   
           $image_hidden         =   trim($request->image_hidden);
           $intro                =   trim($request->intro);
           $content              =   trim($request->content);          
@@ -144,11 +146,18 @@ class ArticleController extends Controller {
              $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
           if ($checked == 1) {    
+                $image_name='';
+                if($image_file != null){     
+                  $setting= getSettingSystem();
+                  $width=$setting['article_width']['field_value'];
+                  $height=$setting['article_height']['field_value'];                            
+                  $image_name=uploadImage($image_file,$width,$height);
+                }
                 if(empty($id)){
                     $item 				= 	new ArticleModel;       
                     $item->created_at 	=	date("Y-m-d H:i:s",time());        
-                    if(!empty($image)){
-                      $item->image    =   trim($image) ;  
+                    if(!empty($image_name)){
+                      $item->image    =   trim($image_name) ;  
                     }				
                 } else{
                     $item				=	ArticleModel::find((int)@$id);   
@@ -156,8 +165,8 @@ class ArticleController extends Controller {
                     if(!empty($image_hidden)){
                       $item->image =$image_hidden;          
                     }
-                    if(!empty($image))  {
-                      $item->image=$image;                                                
+                    if(!empty($image_name))  {
+                      $item->image=$image_name;                                                
                     }                    
                 }  
                 $item->fullname 		    =	$fullname;

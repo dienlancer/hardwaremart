@@ -224,10 +224,14 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var alias=$('input[name="alias"]').val();
         var alias_menu=$('input[name="alias_menu"]').val();
         var category_id=$('select[name="category_id[]"]').val();
-        var image = $('input[name="image"]').val();
-        if (image != ''){
-            image = image.substr(image.lastIndexOf('\\') + 1);       
-        }
+        /* begin xử lý image */
+        var file=null;
+        var image=$('input[name="image"]');         
+        var files = $(image).get(0).files;        
+        if(files.length > 0){            
+            file  = files[0];  
+        }        
+        /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val(); 
         var intro=$('textarea[name="intro"]').val();        
         var content=CKEDITOR.instances['content'].getData();
@@ -238,13 +242,13 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
         resetErrorStatus();
-        var dataItem={
+        /*var dataItem={
             "id":id,
             "fullname":fullname,
             
             "alias":alias,
             "alias_menu":alias_menu,
-            "image":image,            
+            "image":file,            
             "intro":intro,
             "content":content,
             "description":description,
@@ -255,15 +259,30 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             "sort_order":sort_order,
             "status":status,
             "_token": token
-        };
+        };*/
+        var dataItem = new FormData();
+        dataItem.append('id',id);
+        dataItem.append('fullname',fullname);
+        dataItem.append('alias',alias);
+        dataItem.append('alias_menu',alias_menu);
+        dataItem.append('image',file);
+        dataItem.append('intro',intro);
+        dataItem.append('content',content);
+        dataItem.append('description',description);
+        dataItem.append('meta_keyword',meta_keyword);
+        dataItem.append('meta_description',meta_description);
+        dataItem.append('category_id',category_id);
+        dataItem.append('image_hidden',image_hidden);
+        dataItem.append('sort_order',sort_order); 
+        dataItem.append('status',status); 
+        dataItem.append('_token',token);
         $.ajax({
             url: '<?php echo $linkSave; ?>',
             type: 'POST',
             data: dataItem,
             async: false,
             success: function (data) {
-                if(data.checked==1){
-                    uploadFileImport();
+               if(data.checked==1){                    
                     window.location.href = "<?php echo $linkCancel; ?>";
                 }else{
                     var data_error=data.error;
@@ -302,6 +321,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             beforeSend  : function(jqXHR,setting){
                 spinner.show();
             },
+            cache: false,
+            contentType: false,
+            processData: false
         });
     }
     function createAlias(){
