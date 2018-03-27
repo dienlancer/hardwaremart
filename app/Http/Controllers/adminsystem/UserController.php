@@ -75,7 +75,10 @@ class UserController extends Controller {
           $confirm_password     =   (@$request->confirm_password);
           $status               =   trim(@$request->status);          
           $fullname 					  = 	trim(@$request->fullname);    
-          $image                =   trim(@$request->image);
+          $image_file           =   null;
+                if(isset($_FILES["image"])){
+                  $image_file         =   $_FILES["image"];
+                }
           $image_hidden         =   trim(@$request->image_hidden);
           $group_member_id      =   @$request->group_member_id;                      
           $sort_order           =   trim(@$request->sort_order);                          
@@ -166,7 +169,13 @@ class UserController extends Controller {
              $error["status"]["type_msg"] 		= "has-error";
              $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
-          if ($checked == 1) {   
+          if ($checked == 1) {  
+                $image_name='';
+          if($image_file != null){                     
+            $width=0;
+            $height=0;                            
+            $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);        
+          }    
                 $item=array();
                 if(empty($id)){
                   $item=Sentinel::registerAndActivate($request->all());                  
@@ -181,23 +190,24 @@ class UserController extends Controller {
                     $item->fullname         = $fullname;   
                     
                     $item->image=null;                       
-                    if(!empty($image_hidden)){
-                      $item->image =$image_hidden;          
-                    }
-                    if(!empty($image))  {
-                      $item->image=$image;                                                
-                    }                       
+            if(!empty($image_hidden)){
+              $item->image =$image_hidden;          
+            }
+            if(!empty($image_name))  {
+                  $item->image=$image_name;                                                
+                }                    
                     $item->sort_order       = (int)@$sort_order;                
                     $item->updated_at       = date("Y-m-d H:i:s",time());               
                     $item->save();                                                       		  		 
                 }  
-                if(count(@$group_member_id)>0){                            
+                if(count(@$group_member_id)>0){         
+                      $source_group_member=explode(',', $group_member_id);                   
                       $arrUserGroupMember=UserGroupMemberModel::whereRaw("user_id = ?",[(int)@$item->id])->select("group_member_id")->get()->toArray();                      
                       $arrGroupMemberID=array();
                       foreach ($arrUserGroupMember as $key => $value) {
                         $arrGroupMemberID[]=$value["group_member_id"];
                       }
-                      $selected=@$group_member_id;
+                      $selected=@$source_group_member;
                       sort($selected);
                       sort($arrGroupMemberID);         
                       $resultCompare=0;

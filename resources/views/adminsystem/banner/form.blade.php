@@ -170,7 +170,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         dataItem.append('alt',alt);
         dataItem.append('page_url',page_url);        
         dataItem.append('category_id',category_id);        
-        dataItem.append('image',file);
+        if(files.length > 0){
+            dataItem.append('image',file);
+        }
         dataItem.append('image_hidden',image_hidden);
         dataItem.append('sort_order',sort_order); 
         dataItem.append('status',status); 

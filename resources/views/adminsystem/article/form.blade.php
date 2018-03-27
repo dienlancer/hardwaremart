@@ -235,7 +235,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         dataItem.append('fullname',fullname);
         dataItem.append('alias',alias);
         dataItem.append('alias_menu',alias_menu);
-        dataItem.append('image',file);
+        if(files.length > 0){
+            dataItem.append('image',file);
+        }
         dataItem.append('intro',intro);
         dataItem.append('content',content);
         dataItem.append('description',description);

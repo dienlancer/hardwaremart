@@ -353,7 +353,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         dataItem.append('alias_menu',alias_menu);              
         dataItem.append('meta_keyword',meta_keyword);
         dataItem.append('meta_description',meta_description);
-        dataItem.append('image',file);        
+        if(files.length > 0){
+            dataItem.append('image',file);
+        }  
         dataItem.append('image_hidden',image_hidden);
         dataItem.append('status',status); 
         dataItem.append('price',price);
