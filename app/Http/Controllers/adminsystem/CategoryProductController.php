@@ -151,7 +151,7 @@ class CategoryProductController extends Controller {
           if($image_file != null){                     
             $width=0;
             $height=0;                            
-            $image_name=uploadImage($image_file,$width,$height);                                  
+            $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);            
           }   
              if(empty($id)){
               $item 				= 	new CategoryProductModel;       

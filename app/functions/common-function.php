@@ -7,9 +7,9 @@ use App\ProductModel;
 use App\ArticleModel;
 use App\CategoryProductModel;
 use App\CategoryArticleModel;
-function uploadImage($image_file,$width,$height){        
-  $image_name=$image_file['name'];                  
-  $image_tmp_name=$image_file['tmp_name'];
+function uploadImage($name,$tmp_name,$width,$height){        
+  $image_name=$name;                  
+  $image_tmp_name=$tmp_name;
   $ext = pathinfo($image_name, PATHINFO_EXTENSION);                  
   $image_slug=str_slug($image_name,'.');
   $pattern_ext='#.png|.jpg|.gif#';

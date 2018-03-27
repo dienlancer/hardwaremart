@@ -98,10 +98,17 @@ class ProductController extends Controller {
             $meta_keyword         =   trim($request->meta_keyword);
             $meta_description     =   trim($request->meta_description);
             $image_file           =   null;
-                if(isset($_FILES["image"])){
-                  $image_file         =   $_FILES["image"];
-                }  
-                echo "<pre>".print_r($request->source_image_child[0],true)."</pre>";die();
+            $source_image_child=array();
+            $source_image_child_hidden=array();
+            if(isset($_FILES["image"])){
+              $image_file         =   $_FILES["image"];
+            }                        
+            if(isset($_FILES['source_image_child'])){
+              $source_image_child=$_FILES['source_image_child'];
+            }                            
+            if(isset($request->source_image_child_hidden)){
+              $source_image_child_hidden=$request->source_image_child_hidden;                        
+            }            
             $status               =   trim($request->status);
             $price                =   trim($request->price);   
             $sale_price           =   trim($request->sale_price);                    
@@ -118,7 +125,10 @@ class ProductController extends Controller {
             $info 		            =   array();
             $error 		            =   array();
             $item		              =   null;
-            $checked 	            =   1;        
+            $checked 	            =   1;   
+            $setting= getSettingSystem();
+                $width=$setting['product_width']['field_value'];
+                $height=$setting['product_height']['field_value'];           
             if(empty($code)){
                  $checked = 0;
                  $error["code"]["type_msg"] = "has-error";
@@ -171,11 +181,8 @@ class ProductController extends Controller {
        }
       if ($checked == 1) {  
           $image_name='';
-              if($image_file != null){     
-                $setting= getSettingSystem();
-                $width=$setting['product_width']['field_value'];
-                $height=$setting['product_height']['field_value'];                            
-                $image_name=uploadImage($image_file,$width,$height);                                  
+              if($image_file != null){                                           
+                $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);                                  
               }  
           if(empty($id)){
                 $item 				= 	new ProductModel; 
@@ -209,22 +216,23 @@ class ProductController extends Controller {
           $item->category_id      = (int)@$category_id;                                      
           $item->sort_order 	    =	(int)@$sort_order;                
           $item->updated_at 	    =	date("Y-m-d H:i:s",time());  
-          // begin upload product child image  
-          /*$arrImage=array();                       
-          if(!empty($child_image)){
-            $arrChildImage=explode(',', $child_image);
-            if(count($arrChildImage) > 0){
-              for($i=0;$i<count($arrChildImage);$i++){
-                $arrImage[]=$arrChildImage[$i];
-              }
+          // begin upload product child image 
+          $data_image_child=array();
+          if(count($source_image_child_hidden) > 0){
+            $data_image_child=$source_image_child_hidden;
+          }
+          if(count($source_image_child) > 0){
+            foreach ($source_image_child['name'] as $key => $value) {
+              $item_name=uploadImage($value,$source_image_child['tmp_name'][$key],$width,$height);
+              $data_image_child[]=$item_name;
             }
-          }          
+          }
           $item->child_image=null;
-          if(count($arrImage) > 0){
-            $item->child_image=json_encode($arrImage);  
-          }*/
+          if(count($data_image_child) > 0){
+            $item->child_image=json_encode($data_image_child);  
+          }          
           // end upload product child image  	        	
-          //$item->save();  	
+          $item->save();  	
           $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
           if(count($dataMenu) > 0){
             foreach ($dataMenu as $key => $value) {                   

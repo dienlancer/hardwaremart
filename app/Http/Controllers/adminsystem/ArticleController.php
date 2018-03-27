@@ -144,7 +144,7 @@ class ArticleController extends Controller {
                 $setting= getSettingSystem();
                 $width=$setting['article_width']['field_value'];
                 $height=$setting['article_height']['field_value'];                            
-                $image_name=uploadImage($image_file,$width,$height);                                  
+                $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);
               }
               if(empty($id)){
                 $item 				= 	new ArticleModel;       

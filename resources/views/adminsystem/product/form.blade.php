@@ -39,14 +39,6 @@ if(count(@$arrRowData)>0){
     }        
 }   
 $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'.@$strImage.'" />';
-$str_child_image="";
-if(count($arrRowData) > 0){
-    $arrProductChildImage=json_decode(@$arrRowData['child_image']);    
-    if(count($arrProductChildImage) > 0){        
-        $str_child_image=implode(',',$arrProductChildImage);
-    }    
-}   
-$inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden" id="image_child_hidden" value="'.@$str_child_image.'" />';
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -68,8 +60,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         <form class="form-horizontal" name="frm" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}          
             <?php 
-            echo $inputPictureHidden; 
-            echo $inputChildPictureHidden;
+            echo $inputPictureHidden;             
             echo $inputID;
             echo $inputAliasMenu;
             ?>                
@@ -288,18 +279,6 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         $(sort_order).closest('.form-group').find('span').empty().hide();
         $(status).closest('.form-group').find('span').empty().hide();        
     }
-
-    /*function uploadFileImport(ctrl_image){    
-        var token = $('input[name="_token"]').val();       
-        var image=ctrl_image;        
-        var file_upload=$(image).get(0);
-        var files = file_upload.files;
-        var file  = files[0];    
-        var frmdata = new FormData();        
-        frmdata.append("image", file);
-        frmdata.append("_token", token);
-        $.ajax({ url: '<?php echo $linkUploadFile; ?>', method: 'post', data: frmdata, contentType: false, processData: false })
-    }*/
     function deleteImage(){
         var xac_nhan = 0;
         var msg="Bạn có muốn xóa ?";
@@ -333,19 +312,31 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         }        
         /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val();
-        var tbody=$("table.table-image > tbody")[0];        
-        for(var i=0;i<tbody.rows.length;i++){
-            var row=tbody.rows[i];
-            var product_child_image_file=$(row.cells[0]).find('input[type="file"][name="product_child_image_file"]');
+        /* begin source child image */
+        var tbody=$("table.table-image > tbody")[0]; 
+        if(tbody.rows.length > 0){
+            for(var i=0;i<tbody.rows.length;i++){
+                var row=tbody.rows[i];
+                var product_child_image_hidden=$(row.cells[0]).find('input[type="hidden"][name="product_child_image_hidden"]');
+                var product_child_image_file=$(row.cells[0]).find('input[type="file"][name="product_child_image_file"]');            
 
-            var file_child=null;            
-            var files_child = $(product_child_image_file).get(0).files;        
-            if(files_child.length > 0){            
-                file_child  = files_child[0];  
-                dataItem.append("source_image_child[]", files_child);
-            }                 
-        }
-
+                if($(product_child_image_hidden).length > 0){
+                    var thumbnail_val=$(product_child_image_hidden).val();
+                    if(thumbnail_val.length > 0){
+                        dataItem.append("source_image_child_hidden[]", thumbnail_val);
+                    }  
+                }                            
+                var file_child=null;                  
+                if($(product_child_image_file).length > 0){
+                    var files_child = $(product_child_image_file).get(0).files;        
+                    if(files_child.length > 0){            
+                        file_child  = files_child[0];  
+                        dataItem.append("source_image_child[]", file_child);
+                    }
+                }                            
+            }
+        }       
+        /* end source child image */
         var status=$('select[name="status"]').val();             
         var price=$('input[name="price"]').val();
         var sale_price=$('input[name="sale_price"]').val();       
@@ -382,13 +373,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             data: dataItem,
             async: false,
             success: function (data) {
-                if(data.checked==1){                    
-                    /*var child_image_ctrl=$("table.table-image > tbody").find("input[type='file']");                
-                    if(child_image_ctrl.length > 0){
-                        for(var i=0;i<child_image_ctrl.length;i++){
-                            uploadFileImport(child_image_ctrl[i]);
-                        }
-                    } */                   
+                if(data.checked==1){                                                    
                     window.location.href = "<?php echo $linkCancel; ?>";
                 }else{
                     var data_error=data.error;                    
@@ -443,15 +428,6 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
     function removeRow(control) {
         var tbody=$(control).closest("tbody")[0];
         var tr=$(control).closest("tr")[0];
-        var image=$(tr).find("input[type='hidden']").val();            
-        var image_child_hidden=$('input[name="image_child_hidden"]').val()            
-        var arrImageChild=image_child_hidden.split(',');
-        var index=arrImageChild.indexOf(image);
-        if (index > -1) {
-            arrImageChild.splice(index, 1);
-        }
-        var str=arrImageChild.toString();
-        $('input[name="image_child_hidden"]').val(str);
         var index = $(tr).index();         
         tbody.deleteRow(index); 
     }
