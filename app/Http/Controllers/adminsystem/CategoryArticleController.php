@@ -119,7 +119,7 @@ class CategoryArticleController extends Controller {
         $info 		               =  array();
         $error 		               =  array();
         $item		                 =  null;
-        $checked 	= 1;              
+        $checked 	= 1;                      
         if(empty($fullname)){
            $checked = 0;
            $error["fullname"]["type_msg"] = "has-error";

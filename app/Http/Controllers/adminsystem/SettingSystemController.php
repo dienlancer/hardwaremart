@@ -100,14 +100,12 @@ class SettingSystemController extends Controller {
           if ($checked == 1) {    
                 $logo_frontend_name='';
                 $favicon_name='';
-                if($logo_frontend_file != null){                     
-                  $width=0;
-                  $height=0;                            
+                $width=0;
+                  $height=0;
+                if($logo_frontend_file != null){                                                                   
                   $logo_frontend_name=uploadImage($logo_frontend_file['name'],$logo_frontend_file['tmp_name'],$width,$height);        
                 }                    
-                if($favicon_file != null){                     
-                  $width=0;
-                  $height=0;                            
+                if($favicon_file != null){                                                                
                   $favicon_name=uploadImage($favicon_file['name'],$favicon_file['tmp_name'],$width,$height);        
                 }   
                 if(empty($id)){

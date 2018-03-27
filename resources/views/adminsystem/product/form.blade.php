@@ -304,11 +304,11 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         var category_param_id=$('select[name="category_param_id[]"]').val();      
         
         /* begin xử lý image */
-        var file=null;
-        var image=$('input[name="image"]');         
-        var files = $(image).get(0).files;        
-        if(files.length > 0){            
-            file  = files[0];  
+        var image_file=null;
+        var image_ctrl=$('input[name="image"]');         
+        var image_files = $(image_ctrl).get(0).files;        
+        if(image_files.length > 0){            
+            image_file  = image_files[0];  
         }        
         /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val();
@@ -353,9 +353,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         dataItem.append('alias_menu',alias_menu);              
         dataItem.append('meta_keyword',meta_keyword);
         dataItem.append('meta_description',meta_description);
-        if(files.length > 0){
-            dataItem.append('image',file);
-        }  
+        if(image_files.length > 0){
+            dataItem.append('image',image_file);
+        } 
         dataItem.append('image_hidden',image_hidden);
         dataItem.append('status',status); 
         dataItem.append('price',price);

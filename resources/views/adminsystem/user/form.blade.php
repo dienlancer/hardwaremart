@@ -184,11 +184,11 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var status=$('select[name="status"]').val();
         var fullname=$('input[name="fullname"]').val();
         /* begin xử lý image */
-        var file=null;
-        var image=$('input[name="image"]');         
-        var files = $(image).get(0).files;        
-        if(files.length > 0){            
-            file  = files[0];  
+        var image_file=null;
+        var image_ctrl=$('input[name="image"]');         
+        var image_files = $(image_ctrl).get(0).files;        
+        if(image_files.length > 0){            
+            image_file  = image_files[0];  
         }        
         /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val(); 
@@ -204,8 +204,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         dataItem.append('confirm_password',confirm_password);
         dataItem.append('status',status); 
         dataItem.append('fullname',fullname);         
-        if(files.length > 0){
-            dataItem.append('image',file);
+        if(image_files.length > 0){
+            dataItem.append('image',image_file);
         }        
         dataItem.append('image_hidden',image_hidden);
         dataItem.append('group_member_id',group_member_id);

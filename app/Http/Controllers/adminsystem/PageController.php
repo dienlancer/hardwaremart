@@ -88,7 +88,9 @@ class PageController extends Controller {
           $error 		            =   array();
           $item		              =   null;
           $checked 	            =   1;   
-
+          $setting= getSettingSystem();
+                $width=$setting['article_width']['field_value'];
+                $height=$setting['article_height']['field_value'];         
           if(empty($fullname)){
                  $checked = 0;
                  $error["fullname"]["type_msg"] = "has-error";
@@ -121,9 +123,7 @@ class PageController extends Controller {
           if ($checked == 1) {    
                 $image_name='';
               if($image_file != null){     
-                $setting= getSettingSystem();
-                $width=$setting['article_width']['field_value'];
-                $height=$setting['article_height']['field_value'];                            
+                                   
                 $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);      
               }
                 if(empty($id)){
