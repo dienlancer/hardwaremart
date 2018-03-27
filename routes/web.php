@@ -352,8 +352,7 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::get("form/{task}/{id?}",["as"=>"adminsystem.media.getForm","uses"=>"adminsystem\MediaController@getForm"]);
 		Route::post("save",["as"=>"adminsystem.media.save","uses"=>"adminsystem\MediaController@save"]);
 		Route::post("delete-item",["as"=>"adminsystem.media.deleteItem","uses"=>"adminsystem\MediaController@deleteItem"]);				
-		Route::post("trash",["as"=>"adminsystem.media.trash","uses"=>"adminsystem\MediaController@trash"]);		
-		Route::post("upload-file",["as"=>"adminsystem.media.uploadFile","uses"=>"adminsystem\MediaController@uploadFile"]);	
+		Route::post("trash",["as"=>"adminsystem.media.trash","uses"=>"adminsystem\MediaController@trash"]);				
 	});		
 	Route::group(["prefix"=>"group-member"],function(){		
 		Route::get("list",["as"=>"adminsystem.group-member.getList","uses"=>"adminsystem\GroupMemberController@getList"]);

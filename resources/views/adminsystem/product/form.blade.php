@@ -317,21 +317,21 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         if(tbody.rows.length > 0){
             for(var i=0;i<tbody.rows.length;i++){
                 var row=tbody.rows[i];
-                var product_child_image_hidden=$(row.cells[0]).find('input[type="hidden"][name="product_child_image_hidden"]');
-                var product_child_image_file=$(row.cells[0]).find('input[type="file"][name="product_child_image_file"]');            
+                var child_image_hidden_ctrl=$(row.cells[0]).find('input[type="hidden"][name="product_child_image_hidden"]');
+                var child_image_ctrl=$(row.cells[0]).find('input[type="file"][name="product_child_image_file"]');            
 
-                if($(product_child_image_hidden).length > 0){
-                    var thumbnail_val=$(product_child_image_hidden).val();
-                    if(thumbnail_val.length > 0){
-                        dataItem.append("source_image_child_hidden[]", thumbnail_val);
+                if($(child_image_hidden_ctrl).length > 0){
+                    var child_image_thumb=$(child_image_hidden_ctrl).val();
+                    if(child_image_thumb.length > 0){
+                        dataItem.append("source_image_child_hidden[]", child_image_thumb);
                     }  
                 }                            
-                var file_child=null;                  
-                if($(product_child_image_file).length > 0){
-                    var files_child = $(product_child_image_file).get(0).files;        
-                    if(files_child.length > 0){            
-                        file_child  = files_child[0];  
-                        dataItem.append("source_image_child[]", file_child);
+                var child_image_file=null;                  
+                if($(child_image_ctrl).length > 0){
+                    var child_image_files = $(child_image_ctrl).get(0).files;        
+                    if(child_image_files.length > 0){            
+                        child_image_file  = child_image_files[0];  
+                        dataItem.append("source_image_child[]", child_image_file);
                     }
                 }                            
             }
@@ -346,8 +346,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         var video_id=$('input[name="video_id"]').val();
         var sort_order=$('input[name="sort_order"]').val();        
         var token = $('input[name="_token"]').val();   
-        resetErrorStatus();        
-        
+        resetErrorStatus();                
         dataItem.append('id',id);
         dataItem.append('fullname',fullname);
         dataItem.append('alias',alias);
