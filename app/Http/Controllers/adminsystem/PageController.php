@@ -70,7 +70,10 @@ class PageController extends Controller {
           $alias 					      = 	trim($request->alias);
           $theme_location                =   trim($request->theme_location);
           $alias_menu              =  trim($request->alias_menu);
-          $image                =   trim($request->image);
+          $image_file           =   null;
+                if(isset($_FILES["image"])){
+                  $image_file         =   $_FILES["image"];
+                }
           $image_hidden         =   trim($request->image_hidden);
           $intro                =   trim($request->intro);
           $content              =   trim($request->content);
@@ -116,21 +119,28 @@ class PageController extends Controller {
              $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
           if ($checked == 1) {    
+                $image_name='';
+              if($image_file != null){     
+                $setting= getSettingSystem();
+                $width=$setting['article_width']['field_value'];
+                $height=$setting['article_height']['field_value'];                            
+                $image_name=uploadImage($image_file,$width,$height);                                  
+              }
                 if(empty($id)){
                     $item 				= 	new PageModel;       
                     $item->created_at 	=	date("Y-m-d H:i:s",time());        
-                    if(!empty($image)){
-                      $item->image    =   trim($image) ;  
-                    }				
+                    if(!empty($image_name)){
+                  $item->image    =   trim($image_name) ;  
+                } 			
                 } else{
                     $item				=	PageModel::find((int)@$id);   
                     $item->image=null;                       
                     if(!empty($image_hidden)){
                       $item->image =$image_hidden;          
                     }
-                    if(!empty($image))  {
-                      $item->image=$image;                                                
-                    }                    
+                    if(!empty($image_name))  {
+                  $item->image=$image_name;                                                
+                }                   
                 }  
                 $item->fullname 		    =	$fullname;
                 

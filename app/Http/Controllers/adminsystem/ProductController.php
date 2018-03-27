@@ -97,7 +97,10 @@ class ProductController extends Controller {
             
             $meta_keyword         =   trim($request->meta_keyword);
             $meta_description     =   trim($request->meta_description);
-            $image                =   trim($request->image);
+            $image_file           =   null;
+                if(isset($_FILES["image"])){
+                  $image_file         =   $_FILES["image"];
+                }  
             $status               =   trim($request->status);
             $price                =   trim($request->price);   
             $sale_price           =   trim($request->sale_price);                    
@@ -106,9 +109,9 @@ class ProductController extends Controller {
             $video_id = trim($request->video_id);
             $intro                =   trim($request->intro);
             $image_hidden         =   trim($request->image_hidden);  
-            $child_image          =   trim($request->child_image);                    
+            //$child_image          =   trim($request->child_image);                    
             $sort_order           =   trim($request->sort_order);          
-            $category_id	        =		trim($request->category_id); 
+            $category_id	        =		trim($request->category_id);             
             $category_param_id    =   ($request->category_param_id);            
             $data 		            =   array();
             $info 		            =   array();
@@ -150,18 +153,11 @@ class ProductController extends Controller {
                 }      	
             }          
       
-      if(count($category_id) == 0){
+      if(empty($category_id)){
         $checked = 0;
         $error["category_id"]["type_msg"]   = "has-error";
         $error["category_id"]["msg"]      = "Thiếu danh mục";
-      }
-      else{
-        if(empty($category_id[0])){
-          $checked = 0;
-          $error["category_id"]["type_msg"]   = "has-error";
-          $error["category_id"]["msg"]      = "Thiếu danh mục";
-        }
-      }
+      }      
       if(empty($sort_order)){
            $checked = 0;
            $error["sort_order"]["type_msg"] 	= "has-error";
@@ -172,13 +168,20 @@ class ProductController extends Controller {
            $error["status"]["type_msg"] 		= "has-error";
            $error["status"]["msg"] 			= "Status is required";
        }
-      if ($checked == 1) {    
+      if ($checked == 1) {  
+          $image_name='';
+              if($image_file != null){     
+                $setting= getSettingSystem();
+                $width=$setting['product_width']['field_value'];
+                $height=$setting['product_height']['field_value'];                            
+                $image_name=uploadImage($image_file,$width,$height);                                  
+              }  
           if(empty($id)){
                 $item 				= 	new ProductModel; 
                 $item->code             = $code;
-                if(!empty($image)){
-                  $item->image    =   trim($image) ;  
-                }   
+                if(!empty($image_name)){
+                  $item->image    =   trim($image_name) ;  
+                }  
                 
                 $item->created_at 	=	date("Y-m-d H:i:s",time());                        		
           } else{
@@ -187,9 +190,9 @@ class ProductController extends Controller {
                     if(!empty($image_hidden)){
                       $item->image =$image_hidden;          
                     }
-                    if(!empty($image))  {
-                      $item->image=$image;                                                
-                    }               		  		 	
+                    if(!empty($image_name))  {
+                  $item->image=$image_name;                                                
+                }               		  		 	
           }            
           $item->fullname 		    =	$fullname;                
           $item->alias 			      =	$alias;            
@@ -201,12 +204,12 @@ class ProductController extends Controller {
           $item->detail           = $detail;  
           $item->technical_detail           = $technical_detail;    
           $item->video_id = $video_id;   
-          $item->intro            = $intro;  
+          $item->intro            = $intro;            
           $item->category_id      = (int)@$category_id;                                      
           $item->sort_order 	    =	(int)@$sort_order;                
           $item->updated_at 	    =	date("Y-m-d H:i:s",time());  
           // begin upload product child image  
-          $arrImage=array();                       
+          /*$arrImage=array();                       
           if(!empty($child_image)){
             $arrChildImage=explode(',', $child_image);
             if(count($arrChildImage) > 0){
@@ -218,7 +221,7 @@ class ProductController extends Controller {
           $item->child_image=null;
           if(count($arrImage) > 0){
             $item->child_image=json_encode($arrImage);  
-          }
+          }*/
           // end upload product child image  	        	
           $item->save();  	
           $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
@@ -230,13 +233,14 @@ class ProductController extends Controller {
             }          
           }    
           /* begin category param */
-                if(count(@$category_param_id)>0){  
+                if(!empty(@$category_param_id)){
+                  $source_category_param_id=explode(',', $category_param_id) ; 
                   $arrPostParam=PostParamModel::whereRaw("post_id = ?",[(int)@$item->id])->select("param_id")->get()->toArray();
                   $arrCategoryParamID=array();
                   foreach ($arrPostParam as $key => $value) {
                     $arrCategoryParamID[]=$value["param_id"];
                   }                  
-                  $selected=@$category_param_id;
+                  $selected=@$source_category_param_id;
                   sort($selected);
                   sort($arrCategoryParamID);                           
                   $resultCompare=0;

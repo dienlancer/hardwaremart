@@ -289,7 +289,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         $(status).closest('.form-group').find('span').empty().hide();        
     }
 
-    function uploadFileImport(ctrl_image){    
+    /*function uploadFileImport(ctrl_image){    
         var token = $('input[name="_token"]').val();       
         var image=ctrl_image;        
         var file_upload=$(image).get(0);
@@ -299,7 +299,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         frmdata.append("image", file);
         frmdata.append("_token", token);
         $.ajax({ url: '<?php echo $linkUploadFile; ?>', method: 'post', data: frmdata, contentType: false, processData: false })
-    }
+    }*/
     function deleteImage(){
         var xac_nhan = 0;
         var msg="Bạn có muốn xóa ?";
@@ -322,10 +322,16 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         var meta_description=$('textarea[name="meta_description"]').val();
         var category_id=$('select[name="category_id"]').val();  
         var category_param_id=$('select[name="category_param_id[]"]').val();      
-        var image = $('input[name="image"]').val();
-        if (image != ''){
-            image = image.substr(image.lastIndexOf('\\') + 1);       
-        }
+        
+        /* begin xử lý image */
+        var file=null;
+        var image=$('input[name="image"]');         
+        var files = $(image).get(0).files;        
+        if(files.length > 0){            
+            file  = files[0];  
+        }        
+        /* end xử lý image */
+
         var image_hidden=$('input[name="image_hidden"]').val();             
         var child_image='';
         var tbody=$("table.table-image > tbody")[0];
@@ -357,7 +363,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         var sort_order=$('input[name="sort_order"]').val();        
         var token = $('input[name="_token"]').val();   
         resetErrorStatus();
-        var dataItem={
+        /*var dataItem={
             "id":id,            
             "fullname":fullname,            
             "alias":alias,
@@ -379,21 +385,40 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             "sort_order":sort_order,
             "status":status,
             "_token": token
-        };
+        };*/
+        var dataItem = new FormData();
+        dataItem.append('id',id);
+        dataItem.append('fullname',fullname);
+        dataItem.append('alias',alias);
+        dataItem.append('alias_menu',alias_menu);              
+        dataItem.append('meta_keyword',meta_keyword);
+        dataItem.append('meta_description',meta_description);
+        dataItem.append('image',file);
+        dataItem.append('image_hidden',image_hidden);
+        dataItem.append('status',status); 
+        dataItem.append('price',price);
+        dataItem.append('sale_price',sale_price);
+        dataItem.append('intro',intro);
+        dataItem.append('detail',detail);
+        dataItem.append('technical_detail',technical_detail);     
+        dataItem.append('video_id',video_id);
+        dataItem.append('category_id',category_id);        
+        dataItem.append('category_param_id',category_param_id);        
+        dataItem.append('sort_order',sort_order);         
+        dataItem.append('_token',token);       
         $.ajax({
             url: '<?php echo $linkSave; ?>',
             type: 'POST',
             data: dataItem,
             async: false,
             success: function (data) {
-                if(data.checked==1){
-                    uploadFileImport($('input[name="image"]'));    
-                    var child_image_ctrl=$("table.table-image > tbody").find("input[type='file']");                
+                if(data.checked==1){                    
+                    /*var child_image_ctrl=$("table.table-image > tbody").find("input[type='file']");                
                     if(child_image_ctrl.length > 0){
                         for(var i=0;i<child_image_ctrl.length;i++){
                             uploadFileImport(child_image_ctrl[i]);
                         }
-                    }                    
+                    } */                   
                     window.location.href = "<?php echo $linkCancel; ?>";
                 }else{
                     var data_error=data.error;                    
@@ -432,6 +457,9 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             beforeSend  : function(jqXHR,setting){
                 spinner.show();
             },
+            cache: false,
+            contentType: false,
+            processData: false
         });
     }
     function addRow() {

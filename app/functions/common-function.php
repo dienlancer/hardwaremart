@@ -15,8 +15,9 @@ function uploadImage($image_file,$width,$height){
   $pattern_ext='#.png|.jpg|.gif#';
   $pattern_dot='#\.#';
   $image_slug=preg_replace($pattern_ext, '', $image_slug);                      
-  $image_slug=preg_replace($pattern_dot, '-', $image_slug);                    
-  $image_name=$image_slug.'.'.$ext;      
+  $image_slug=preg_replace($pattern_dot, '-', $image_slug);   
+  $code_alias=rand(1,9999);                 
+  $image_name=$image_slug. '-' . $code_alias .'.'.$ext;   
   $image_path=base_path("upload".DS.$image_name);
   @copy($image_tmp_name, $image_path);  
   if((int)@$width > 0 && (int)@$height > 0){
