@@ -101,6 +101,7 @@ class ProductController extends Controller {
                 if(isset($_FILES["image"])){
                   $image_file         =   $_FILES["image"];
                 }  
+                echo "<pre>".print_r($request->source_image_child[0],true)."</pre>";die();
             $status               =   trim($request->status);
             $price                =   trim($request->price);   
             $sale_price           =   trim($request->sale_price);                    
@@ -223,7 +224,7 @@ class ProductController extends Controller {
             $item->child_image=json_encode($arrImage);  
           }*/
           // end upload product child image  	        	
-          $item->save();  	
+          //$item->save();  	
           $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
           if(count($dataMenu) > 0){
             foreach ($dataMenu as $key => $value) {                   

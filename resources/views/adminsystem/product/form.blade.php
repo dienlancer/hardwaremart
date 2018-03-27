@@ -313,6 +313,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         $("input[name='image_hidden']").val("");        
     }
     function save(){
+        var dataItem = new FormData();
         var id=$('input[name="id"]').val();                
         var fullname=$('input[name="fullname"]').val();        
         var alias=$('input[name="alias"]').val();
@@ -331,28 +332,20 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             file  = files[0];  
         }        
         /* end xử lý image */
-
-        var image_hidden=$('input[name="image_hidden"]').val();             
-        var child_image='';
-        var tbody=$("table.table-image > tbody")[0];
-        var arr_child_image=new Array(tbody.rows.length);
+        var image_hidden=$('input[name="image_hidden"]').val();
+        var tbody=$("table.table-image > tbody")[0];        
         for(var i=0;i<tbody.rows.length;i++){
             var row=tbody.rows[i];
-            var imageChild='';
-            var product_child_image_hidden=$(row.cells[0]).find('input[type="hidden"][name="product_child_image_hidden"]');
             var product_child_image_file=$(row.cells[0]).find('input[type="file"][name="product_child_image_file"]');
-            if(product_child_image_hidden.length > 0){
-                imageChild=$(product_child_image_hidden).val();
-            }
-            if(product_child_image_file.length > 0){
-                imageChild = $(product_child_image_file).val();
-                imageChild = imageChild.substr(imageChild.lastIndexOf('\\') + 1);       
-            }
-            arr_child_image[i]=imageChild;
+
+            var file_child=null;            
+            var files_child = $(product_child_image_file).get(0).files;        
+            if(files_child.length > 0){            
+                file_child  = files_child[0];  
+                dataItem.append("source_image_child[]", files_child);
+            }                 
         }
-        if(arr_child_image.length > 0){
-                child_image=arr_child_image.toString();          
-        }        
+
         var status=$('select[name="status"]').val();             
         var price=$('input[name="price"]').val();
         var sale_price=$('input[name="sale_price"]').val();       
@@ -362,38 +355,15 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         var video_id=$('input[name="video_id"]').val();
         var sort_order=$('input[name="sort_order"]').val();        
         var token = $('input[name="_token"]').val();   
-        resetErrorStatus();
-        /*var dataItem={
-            "id":id,            
-            "fullname":fullname,            
-            "alias":alias,
-            "alias_menu":alias_menu,            
-            "meta_keyword":meta_keyword,
-            "meta_description":meta_description,
-            "image":image,
-            "image_hidden":image_hidden,
-            "status":status,                     
-            "price":price,
-            "sale_price":sale_price,            
-            "intro":intro,
-            "detail":detail,
-            "technical_detail":technical_detail,
-            "video_id":video_id,
-            "category_id":category_id,    
-            "category_param_id":category_param_id,                      
-            "child_image":child_image,            
-            "sort_order":sort_order,
-            "status":status,
-            "_token": token
-        };*/
-        var dataItem = new FormData();
+        resetErrorStatus();        
+        
         dataItem.append('id',id);
         dataItem.append('fullname',fullname);
         dataItem.append('alias',alias);
         dataItem.append('alias_menu',alias_menu);              
         dataItem.append('meta_keyword',meta_keyword);
         dataItem.append('meta_description',meta_description);
-        dataItem.append('image',file);
+        dataItem.append('image',file);        
         dataItem.append('image_hidden',image_hidden);
         dataItem.append('status',status); 
         dataItem.append('price',price);
