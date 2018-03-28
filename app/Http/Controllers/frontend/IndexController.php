@@ -158,8 +158,7 @@ class IndexController extends Controller {
     $pageRange=0;      
     $currentPage=1;  
     $pagination ;                                              
-    $setting= getSettingSystem();     
-    
+    $setting= getSettingSystem();         
     /* end standard */     
     $items=array();                            
     $component='search-product';              
@@ -185,11 +184,11 @@ class IndexController extends Controller {
       $category=CategoryProductModel::find($category_id);       
     }
     
-      if(!empty(@$request->q)){
-        $q=@$request->q;
-        $query->where('product.fullname','like', '%'.trim(@$q).'%');
-      }      
- 
+    if(!empty(@$request->q)){
+      $q=@$request->q;
+      $query->where('product.fullname','like', '%'.trim(@$q).'%');
+    }      
+
     $query->where('product.status',1);    
     $data=$query->select('product.id')
     ->groupBy('product.id')                
@@ -210,7 +209,7 @@ class IndexController extends Controller {
     );           
     $pagination=new PaginationModel($arrPagination);
     $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-                    
+
     $data=$query->select('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.intro','product.count_view')
     ->groupBy('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.intro','product.count_view')
     ->orderBy('product.created_at', 'desc')
