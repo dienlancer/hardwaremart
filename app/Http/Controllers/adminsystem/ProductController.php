@@ -116,8 +116,7 @@ class ProductController extends Controller {
             $technical_detail               =   trim($request->technical_detail);
             $video_id = trim($request->video_id);
             $intro                =   trim($request->intro);
-            $image_hidden         =   trim($request->image_hidden);  
-            //$child_image          =   trim($request->child_image);                    
+            $image_hidden         =   trim($request->image_hidden);                       
             $sort_order           =   trim($request->sort_order);          
             $category_id	        =		trim($request->category_id);             
             $category_param_id    =   ($request->category_param_id);            

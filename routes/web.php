@@ -8,8 +8,7 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::post("sort-order",["as"=>"adminsystem.category-product.sortOrder","uses"=>"adminsystem\CategoryProductController@sortOrder"]);
 		Route::post("update-status/{status}",["as"=>"adminsystem.category-product.updateStatus","uses"=>"adminsystem\CategoryProductController@updateStatus"]);
 		Route::post("change-status",["as"=>"adminsystem.category-product.changeStatus","uses"=>"adminsystem\CategoryProductController@changeStatus"]);
-		Route::post("trash",["as"=>"adminsystem.category-product.trash","uses"=>"adminsystem\CategoryProductController@trash"]);
-		
+		Route::post("trash",["as"=>"adminsystem.category-product.trash","uses"=>"adminsystem\CategoryProductController@trash"]);		
 		Route::post("create-alias",["as"=>"adminsystem.category-product.createAlias","uses"=>"adminsystem\CategoryProductController@createAlias"]);
 	});	
 	Route::group(["prefix"=>"banner"],function(){		
@@ -21,8 +20,7 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::post("sort-order",["as"=>"adminsystem.banner.sortOrder","uses"=>"adminsystem\BannerController@sortOrder"]);
 		Route::post("update-status",["as"=>"adminsystem.banner.updateStatus","uses"=>"adminsystem\BannerController@updateStatus"]);
 		Route::post("change-status",["as"=>"adminsystem.banner.changeStatus","uses"=>"adminsystem\BannerController@changeStatus"]);
-		Route::post("trash",["as"=>"adminsystem.banner.trash","uses"=>"adminsystem\BannerController@trash"]);		
-		
+		Route::post("trash",["as"=>"adminsystem.banner.trash","uses"=>"adminsystem\BannerController@trash"]);				
 	});	
 	Route::group(["prefix"=>"payment-method"],function(){		
 		Route::get("list",["as"=>"adminsystem.payment-method.getList","uses"=>"adminsystem\PaymentMethodController@getList"]);
@@ -163,6 +161,7 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::post("change-status",["as"=>"adminsystem.video.changeStatus","uses"=>"adminsystem\VideoController@changeStatus"]);
 		Route::post("trash",["as"=>"adminsystem.video.trash","uses"=>"adminsystem\VideoController@trash"]);
 		
+	});	
 	Route::group(["prefix"=>"article"],function(){		
 		Route::get("list",["as"=>"adminsystem.article.getList","uses"=>"adminsystem\ArticleController@getList"]);
 		Route::post("load-data",["as"=>"adminsystem.article.loadData","uses"=>"adminsystem\ArticleController@loadData"]);		
@@ -351,7 +350,8 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::get("form/{task}/{id?}",["as"=>"adminsystem.media.getForm","uses"=>"adminsystem\MediaController@getForm"]);
 		Route::post("save",["as"=>"adminsystem.media.save","uses"=>"adminsystem\MediaController@save"]);
 		Route::post("delete-item",["as"=>"adminsystem.media.deleteItem","uses"=>"adminsystem\MediaController@deleteItem"]);				
-		Route::post("trash",["as"=>"adminsystem.media.trash","uses"=>"adminsystem\MediaController@trash"]);				
+		Route::post("trash",["as"=>"adminsystem.media.trash","uses"=>"adminsystem\MediaController@trash"]);		
+		
 	});		
 	Route::group(["prefix"=>"group-member"],function(){		
 		Route::get("list",["as"=>"adminsystem.group-member.getList","uses"=>"adminsystem\GroupMemberController@getList"]);
