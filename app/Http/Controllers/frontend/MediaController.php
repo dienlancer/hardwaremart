@@ -50,25 +50,7 @@ class MediaController extends Controller {
   				
   		return view("frontend.index",compact("component","layout","controller","task"));
   	}
-  	public function uploadFile(Request $request){                     
-  		$fileObj=$_FILES["image"];          
-  		$fileName="";
-  		$arrUser=array();              
-	    $user = Sentinel::forceCheck(); 
-	    if(!empty($user)){                
-	      $arrUser = $user->toArray();    
-	    }      
-	    $folder_name='vip-'.(int)@$arrUser['id'];
-	    $directory='vip-member'.DS.$folder_name;
-	    if(!is_dir($directory)){    
-    		mkdir($directory, 0755);
-		}
-  		if($fileObj['tmp_name'] != null){                
-  			$fileName   = $fileObj['name'];
-  			$file_path=base_path($directory.DS.$fileName);
-  			@copy($fileObj['tmp_name'],$file_path);                   
-  		}   
-  	}
+  	
 	public function trash(Request $request){
 		$str_id                 =   $request->str_id;   
 		$checked                =   1;
