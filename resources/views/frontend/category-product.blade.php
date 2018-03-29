@@ -3,19 +3,26 @@
 	{{ csrf_field() }}	
 	<?php 	
 	$breadcrumb='';	
+	$seo=getSeo();
+	$seo_title=$seo["title"];
+	$seo_meta_keyword=$seo["meta_keyword"];
+	$seo_meta_description=$seo["meta_description"];	
 	if(count($category) > 0){
 		$breadcrumb= getBreadCrumbCategoryProduct(@$category);		
 		?>
 		<h1 style="display: none;"><?php echo @$category['fullname']; ?></h1>
+		<h2 style="display: none;"><?php echo @$category['meta_description']; ?></h2>
 		<input type="hidden" name="category_id" value="<?php echo @$category['id']; ?>">
 		<?php			
 	}	
 	else{
 		$breadcrumb='<a href="'.url('/').'">Trang chủ</a><a href="javascript:void(0);">Tìm kiếm</a>';
-		?><h1 style="display: none;">Tìm kiếm</h1><?php		
+		?>
+		<h1 style="display: none;"><?php echo $seo_title; ?></h1>
+		<h2 style="display: none;"><?php echo $seo_meta_description; ?></h2>
+		<?php		
 	}	
-	?>
-	<h2 style="display: none;"><?php echo @$meta_description; ?></h2>
+	?>	
 	<div class="breadcrumb-title">
 		<?php echo $breadcrumb; ?>
 	</div>
