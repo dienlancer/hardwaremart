@@ -1,14 +1,18 @@
 <form method="post" class="frm margin-top-15" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}	
-	<?php 			
-	if(@$category != null){
+	<?php 	
+	$breadcrumb='';	
+	if(count($category) > 0){
 		$breadcrumb= getBreadCrumbCategoryProduct(@$category);		
-		?><h1 style="display: none;"><?php echo @$category['fullname']; ?></h1><?php	
-	}
+		?>
+		<h1 style="display: none;"><?php echo @$category['fullname']; ?></h1>
+		<input type="hidden" name="category_id" value="<?php echo @$category['id']; ?>">
+		<?php			
+	}	
 	else{
 		$breadcrumb='<a href="'.url('/').'">Trang chủ</a><a href="javascript:void(0);">Tìm kiếm</a>';
-		?><h1 style="display: none;">Tìm kiếm</h1><?php
+		?><h1 style="display: none;">Tìm kiếm</h1><?php		
 	}	
 	?>
 	<h2 style="display: none;"><?php echo @$meta_description; ?></h2>

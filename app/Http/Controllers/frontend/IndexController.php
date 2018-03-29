@@ -161,32 +161,34 @@ class IndexController extends Controller {
     $setting= getSettingSystem();         
     /* end standard */     
     $items=array();                            
-    $component='search-product';              
-    $title="Tìm kiếm"; 
+    $component='search-product';                      
+    $prod_param=array();   
+    $category=array();
     $q='';
-    $prod_param=array();    
 
     $query=DB::table('product')   ;     
-    if($request->prod_param != null){
+    if(isset($request->prod_param)){
       if(count(@$request->prod_param)>0){   
         $prod_param=@$request->prod_param;
         $query->join('post_param','product.id','=','post_param.post_id');               
         $query->whereIn('post_param.param_id',@$request->prod_param);    
       }      
-    }                                       
-    $category=array();
+    }                 
     $arr_category_id=array();
-    if(!empty(@$request->category_id)){      
-      $category_id    = $request->category_id;              
-      $arr_category_id[]=$category_id;      
-      getStringCategoryID($category_id,$arr_category_id,'category_product');      
-      $query->whereIn('product.category_id', $arr_category_id);        
-      $category=CategoryProductModel::find($category_id);       
-    }
-    
-    if(!empty(@$request->q)){
-      $q=@$request->q;
-      $query->where('product.fullname','like', '%'.trim(@$q).'%');
+    if(isset($request->category_id)){   
+      if(!empty($request->category_id)){
+        $category_id    = $request->category_id;              
+        $arr_category_id[]=$category_id;      
+        getStringCategoryID($category_id,$arr_category_id,'category_product');      
+        $query->whereIn('product.category_id', $arr_category_id);        
+        $category=CategoryProductModel::find($category_id);       
+      }         
+    }    
+    if(isset($request->q)){
+      if(!empty($request->q)){
+        $q=@$request->q;
+        $query->where('product.fullname','like', '%'.trim(@$q).'%');
+      }      
     }      
 
     $query->where('product.status',1);    
@@ -198,9 +200,11 @@ class IndexController extends Controller {
     $totalItems=count($data);
     $totalItemsPerPage=(int)@$setting['product_perpage']['field_value']; 
     $pageRange=$this->_pageRange;
-    if(!empty(@$request->filter_page)){
-      $currentPage=@$request->filter_page;
-    }       
+    if(isset($request->filter_page)){
+      if(!empty(@$request->filter_page)){
+        $currentPage=@$request->filter_page;
+      }
+    }          
     $arrPagination=array(
       "totalItems"=>$totalItems,
       "totalItemsPerPage"=>$totalItemsPerPage,
@@ -217,7 +221,7 @@ class IndexController extends Controller {
     ->take($totalItemsPerPage)
     ->get()->toArray();   
     $items=convertToArray($data);      
-    return view("frontend.index",compact("component","title","items","pagination","layout","prod_param",'q','category'));
+    return view("frontend.index",compact("component","items","pagination","layout","prod_param",'q','category'));
   }  
   public function index(Request $request,$alias)
   {                     

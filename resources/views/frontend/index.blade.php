@@ -235,8 +235,7 @@ if(isset($alias)){
                     ?>@include("frontend.page")<?php
                     break;            
                     case "search-product":             
-                    case "category-product":
-                    case "products":                                                
+                    case "category-product":                                       
                     ?>@include("frontend.category-product")<?php
                     break; 
                     case "product":                                                
