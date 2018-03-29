@@ -91,7 +91,7 @@ if(isset($alias)){
                     case 'products':        
                     case 'category-product':
                     case 'product':
-                    case 'search-product':                                                    
+                                                                        
                     $argsDanhMucSanPham2 = array(                         
                         'menu_class'            => 'dmspleft',                                        
                         'before_wrapper'        => '<div class="dmsp-left">',
@@ -110,7 +110,7 @@ if(isset($alias)){
                     wp_nav_menu($argsDanhMucSanPham2);                    
                     /* begin tìm kiếm sản phẩm theo thuộc tính */
                     ?>
-                    <form name="frm-search-product-param" action='<?php echo route('frontend.index.searchProduct') ?>'  method="POST" enctype="multipart/form-data">
+                    <form name="frm-search-product-param" action='<?php echo route('frontend.index.search') ?>'  method="POST" enctype="multipart/form-data">
                     	{{ csrf_field() }}
                     	<input type="hidden" name="category_id" value="<?php echo @$category['id']; ?>">
                     	<?php 

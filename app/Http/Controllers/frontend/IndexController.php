@@ -150,7 +150,7 @@ class IndexController extends Controller {
         return view("frontend.home",compact("component","error","data","success","alias","layout"));        
   }  
   
-  public function searchProduct(Request $request){
+  public function search(Request $request){
     /* begin standard */    
     $layout="two-column";                                                           
     $totalItems=0;
@@ -161,7 +161,7 @@ class IndexController extends Controller {
     $setting= getSettingSystem();         
     /* end standard */     
     $items=array();                            
-    $component='search-product';                      
+    $component='category-product';                      
     $prod_param=array();   
     $category=array();
     $q='';

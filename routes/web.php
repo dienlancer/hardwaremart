@@ -389,7 +389,6 @@ Route::post("get-paymentmethod",["as"=>"frontend.index.getPaymentmethod","uses"=
 Route::post("tim-kiem",["as"=>"frontend.index.search","uses"=>"frontend\IndexController@search"]);
 Route::post("load-data-member",["as"=>"frontend.index.loadDataMember","uses"=>"frontend\IndexController@loadDataMember"]);	
 Route::post("load-data-supporter",["as"=>"frontend.index.loadDataSupporter","uses"=>"frontend\IndexController@loadDataSupporter"]);		
-Route::post("tim-kiem-san-pham",["as"=>"frontend.index.searchProduct","uses"=>"frontend\IndexController@searchProduct"]);
 Route::match(["get","post"],"lien-he-voi-chung-toi",["as"=>"frontend.index.contactUs","uses"=>"frontend\IndexController@contactUs"]);
 
 /* begin tính riêng cho website hardwaremart */
