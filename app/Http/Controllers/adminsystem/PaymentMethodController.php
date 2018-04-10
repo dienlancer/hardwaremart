@@ -67,19 +67,22 @@ public function save(Request $request){
   $status               =   trim($request->status);        
   $sort_order           =   trim($request->sort_order);                  
   $data                 =   array();
-  $info                 =   array();
-  $error                =   array();
+  
+
   $item                 =   null;
-  $checked              =   1;                      
+  
+  $info                 =   array();
+  $checked              =   1;                           
+  $msg                =   array();
   if(empty($sort_order)){
    $checked = 0;
-   $error["sort_order"]["type_msg"]   = "has-error";
-   $error["sort_order"]["msg"]    = "Thiếu sắp xếp";
+   
+   $msg["sort_order"]    = "Thiếu sắp xếp";
  }
  if((int)$status==-1){
    $checked = 0;
-   $error["status"]["type_msg"]     = "has-error";
-   $error["status"]["msg"]      = "Thiếu trạng thái";
+   
+   $msg["status"]      = "Thiếu trạng thái";
  }                    
  if ($checked == 1) {    
   if(empty($id)){
@@ -95,38 +98,30 @@ public function save(Request $request){
   $item->status           = (int)@$status;    
   $item->updated_at       = date("Y-m-d H:i:s",time());               
   $item->save();                    
-  $info = array(
-    'type_msg'      => "has-success",
-    'msg'         => 'Lưu dữ liệu thành công',
-    "checked"       => 1,
-    "error"       => $error,
-    "id"          => $id
-  );
-}else {
-  $info = array(
-    'type_msg'      => "has-error",
-    'msg'         => 'Dữ liệu nhập gặp sự cố',
-    "checked"       => 0,
-    "error"       => $error,
-    "id"        => ""
-  );
-}                        
-return $info;       
+  $msg['success']='Lưu thành công';  
+}
+$info = array(
+  "checked"       => $checked,          
+  'msg'       => $msg,                
+  "id"            => (int)@$id
+);                       
+
+return $info;
 }
 public function changeStatus(Request $request){
   $id             =       (int)$request->id;     
-  $checked                =   1;
-  $type_msg               =   "alert-success";
-  $msg                    =   "Cập nhật thành công";              
+  $info                 =   array();
+  $checked              =   1;                           
+  $msg                =   array();           
   $status         =       (int)$request->status;
   $item           =       PaymentMethodModel::find((int)@$id);        
   $item->status   =       $status;
   $item->save();
+  $msg['success']='Cập nhật thành công';      
   $data                   =   $this->loadData($request);
   $info = array(
-    'checked'           => $checked,
-    'type_msg'          => $type_msg,                
-    'msg'               => $msg,                
+    "checked"       => $checked,          
+    'msg'       => $msg,           
     'data'              => $data
   );
   return $info;
@@ -134,24 +129,24 @@ public function changeStatus(Request $request){
 
 public function deleteItem(Request $request){
   $id                     =   (int)@$request->id;              
-  $checked                =   1;
-  $type_msg               =   "alert-success";
-  $msg                    =   "Xóa thành công";    
+  
+  $info                 =   array();
+  $checked              =   1;                           
+  $msg                =   array();
   $data=InvoiceModel::whereRaw("payment_method_id = ?",[(int)@$id])->select('id')->get()->toArray();
   if(count($data) > 0){
-    $checked                =   0;
-    $type_msg               =   "alert-warning";            
-    $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+    $checked                =   0;              
+    $msg['cannotdelete']                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
   }                  
   if($checked == 1){
     $item = PaymentMethodModel::find((int)@$id);
-    $item->delete();                
+    $item->delete(); 
+    $msg['success']='Xóa thành công';                
   }        
   $data                   =   $this->loadData($request);
   $info = array(
-    'checked'           => $checked,
-    'type_msg'          => $type_msg,                
-    'msg'               => $msg,                
+    "checked"       => $checked,          
+    'msg'       => $msg,    
     'data'              => $data
   );
   return $info;
@@ -159,15 +154,15 @@ public function deleteItem(Request $request){
 public function updateStatus(Request $request){
   $strID                 =   $request->str_id;     
   $status                 =   $request->status;            
-  $checked                =   1;
-  $type_msg               =   "alert-success";
-  $msg                    =   "Cập nhật thành công";                  
+  $info                 =   array();
+  $checked              =   1;                           
+  $msg                =   array();           
   $strID=substr($strID, 0,strlen($strID) - 1);
   $arrID=explode(',',$strID);                 
   if(empty($strID)){
-    $checked                =   0;
-    $type_msg               =   "alert-warning";            
-    $msg                    =   "Please choose at least one item to delete";
+    $checked            =   0;
+    
+    $msg['chooseone']            =   "Vui lòng chọn ít nhất một phần tử";
   }
   if($checked==1){
     foreach ($arrID as $key => $value) {
@@ -177,43 +172,44 @@ public function updateStatus(Request $request){
         $item->save();    
       }                
     }
+    $msg['success']='Cập nhật thành công';
   }                 
   $data                   =   $this->loadData($request);
   $info = array(
-    'checked'           => $checked,
-    'type_msg'          => $type_msg,                
-    'msg'               => $msg,                
+    "checked"       => $checked,          
+    'msg'       => $msg,    
     'data'              => $data
   );
   return $info;
 }
 public function trash(Request $request){
   $strID                 =   $request->str_id;               
-  $checked                =   1;
-  $type_msg               =   "alert-success";
-  $msg                    =   "Xóa thành công";                  
+  
+  $info                 =   array();
+  $checked              =   1;                           
+  $msg                =   array();
+
   $strID=substr($strID, 0,strlen($strID) - 1);
   $arrID=explode(',',$strID);                 
   if(empty($strID)){
-    $checked     =   0;
-    $type_msg           =   "alert-warning";            
-    $msg                =   "Please choose at least one item to delete";
+    $checked            =   0;
+    
+    $msg['chooseone']            =   "Vui lòng chọn ít nhất một phần tử";
   }
   $data=DB::table('invoice')->whereIn('payment_method_id',@$arrID)->select('id')->get()->toArray();             
   if(count($data) > 0){
     $checked                =   0;
-    $type_msg               =   "alert-warning";            
-    $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+    
+    $msg['cannotdelete']                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
   }   
   if($checked == 1){    
-  DB::table('payment_method')->whereIn('id',@$arrID)->delete();                                 
-              
+    DB::table('payment_method')->whereIn('id',@$arrID)->delete();                                 
+    $msg['success']='Xóa thành công';               
   }
   $data                   =   $this->loadData($request);
   $info = array(
-    'checked'           => $checked,
-    'type_msg'          => $type_msg,                
-    'msg'               => $msg,                
+    "checked"       => $checked,          
+    'msg'       => $msg,         
     'data'              => $data
   );
   return $info;
@@ -221,9 +217,9 @@ public function trash(Request $request){
 public function sortOrder(Request $request){
   $sort_json              =   $request->sort_json;           
   $data_order             =   json_decode($sort_json);       
-  $checked                =   1;
-  $type_msg               =   "alert-success";
-  $msg                    =   "Cập nhật thành công";      
+  $info                 =   array();
+  $checked              =   1;                           
+  $msg                =   array(); 
   if(count($data_order) > 0){              
     foreach($data_order as $key => $value){       
       if(!empty($value)){
@@ -231,13 +227,14 @@ public function sortOrder(Request $request){
         $item->sort_order=(int)$value->sort_order;                         
         $item->save();                      
       }                                                 
-    }           
-  }        
+    } 
+
+  } 
+  $msg['success']='Cập nhật thành công';        
   $data                   =   $this->loadData($request);
   $info = array(
-    'checked'           => $checked,
-    'type_msg'          => $type_msg,                
-    'msg'               => $msg,                
+    "checked"       => $checked,          
+    'msg'       => $msg,          
     'data'              => $data
   );
   return $info;

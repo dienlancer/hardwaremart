@@ -121,17 +121,19 @@ class ProductController extends Controller {
             $category_id	        =		trim($request->category_id);             
             $category_param_id    =   ($request->category_param_id);            
             $data 		            =   array();
-            $info 		            =   array();
-            $error 		            =   array();
+            
             $item		              =   null;
-            $checked 	            =   1;   
+            
+            $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();
             $setting= getSettingSystem();
                 $width=$setting['product_width']['field_value'];
                 $height=$setting['product_height']['field_value'];           
             if(empty($code)){
                  $checked = 0;
-                 $error["code"]["type_msg"] = "has-error";
-                 $error["code"]["msg"] = "Thiếu mã sản phẩm";
+                 
+                 $msg["code"] = "Thiếu mã sản phẩm";
             }else{
                 $data=array();
                 if (empty($id)) {
@@ -141,14 +143,14 @@ class ProductController extends Controller {
                 }  
                 if (count($data) > 0) {
                   $checked = 0;
-                  $error["code"]["type_msg"] = "has-error";
-                  $error["code"]["msg"] = "Mã sản phẩm đã tồn tại";
+                  
+                  $msg["code"] = "Mã sản phẩm đã tồn tại";
                 }       
             }      
             if(empty($fullname)){
                $checked = 0;
-               $error["fullname"]["type_msg"] = "has-error";
-               $error["fullname"]["msg"] = "Thiếu tên sản phẩm";
+               $
+               $msg["fullname"] = "Thiếu tên sản phẩm";
            }else{
                 $data=array();
                 if (empty($id)) {
@@ -158,25 +160,25 @@ class ProductController extends Controller {
                 }  
                 if (count($data) > 0) {
                   $checked = 0;
-                  $error["fullname"]["type_msg"] = "has-error";
-                  $error["fullname"]["msg"] = "Tên sản phẩm đã tồn tại";
+                  
+                  $msg["fullname"] = "Tên sản phẩm đã tồn tại";
                 }      	
             }          
       
       if(empty($category_id)){
         $checked = 0;
-        $error["category_id"]["type_msg"]   = "has-error";
-        $error["category_id"]["msg"]      = "Thiếu danh mục";
+        
+        $msg["category_id"]      = "Thiếu danh mục";
       }      
       if(empty($sort_order)){
            $checked = 0;
-           $error["sort_order"]["type_msg"] 	= "has-error";
-           $error["sort_order"]["msg"] 		= "Sort order is required";
+           
+           $msg["sort_order"] 		= "Sort order is required";
       }
        if((int)$status==-1){
            $checked = 0;
-           $error["status"]["type_msg"] 		= "has-error";
-           $error["status"]["msg"] 			= "Status is required";
+           
+           $msg["status"] 			= "Status is required";
        }
       if ($checked == 1) {  
           $image_name='';
@@ -268,80 +270,73 @@ class ProductController extends Controller {
                 }  
                 PostParamModel::whereRaw("param_id = ?",[0])->delete();
                 /* end category param */                         
-          $info = array(
-            'type_msg' 			=> "has-success",
-            'msg' 				=> 'Save data successfully',
-            "checked" 			=> 1,
-            "error" 			=> $error,
-            "id"    			=> $id
-          );
-    }else {
-      $info = array(
-        'type_msg' 			=> "has-error",
-        'msg' 				=> 'Input data has some warning',
-        "checked" 			=> 0,
-        "error" 			=> $error,
-        "id"				=> ""
-      );
-    }        		 			       
+            $msg['success']='Lưu thành công';  
+    }
+    $info = array(
+        "checked"       => $checked,          
+        'msg'       => $msg,                
+        "id"            => (int)@$id
+      );                       
+         		 			       
     return $info;       
     }
           public function changeStatus(Request $request){
                   $id             =       (int)$request->id;     
-                  $checked                =   1;
-                  $type_msg               =   "alert-success";
-                  $msg                    =   "Cập nhật thành công";              
+                  
+                  $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();
+
                   $status         =       (int)$request->status;
                   $item           =       ProductModel::find((int)@$id);        
                   $item->status   =       $status;
                   $item->save();
+                  $msg['success']='Cập nhật thành công';         
                   $data                   =   $this->loadData($request);
                   $info = array(
-                    'checked'           => $checked,
-                    'type_msg'          => $type_msg,                
-                    'msg'               => $msg,                
-                    'data'              => $data
-                  );
-                  return $info;
-          }
-        
-      public function deleteItem(Request $request){
-            $id                     =   (int)$request->id;              
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";     
-            $data=InvoiceDetailModel::whereRaw("product_id = ?",[(int)@$id])->select('id')->get()->toArray();
-            if(count($data) > 0){
-              $checked                =   0;
-              $type_msg               =   "alert-warning";            
-              $msg                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
-            }                 
-            if($checked == 1){
-              $item = ProductModel::find((int)@$id);
-                $item->delete();     
-                PostParamModel::whereRaw("post_id = ?",[(int)@$id])->delete();           
-            }        
-            $data                   =   $this->loadData($request);
-            $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                
+              "checked"       => $checked,          
+        'msg'       => $msg,           
               'data'              => $data
             );
             return $info;
-      }
+          }
+        
+          public function deleteItem(Request $request){
+            $id                     =   (int)$request->id;              
+            $info                 =   array();
+            $checked              =   1;                           
+            $msg                =   array();
+            $data=InvoiceDetailModel::whereRaw("product_id = ?",[(int)@$id])->select('id')->get()->toArray();
+            if(count($data) > 0){
+              $checked                =   0;              
+              $msg['cannotdelete']                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
+            }                 
+            if($checked == 1){
+              $item = ProductModel::find((int)@$id);
+              $item->delete();     
+              PostParamModel::whereRaw("post_id = ?",[(int)@$id])->delete();       
+              $msg['success']='Xóa thành công';             
+            }        
+            $data                   =   $this->loadData($request);
+            $info = array(
+              "checked"       => $checked,          
+              'msg'       => $msg,    
+              'data'              => $data
+            );
+            return $info;
+          }
       public function updateStatus(Request $request){
         $strID                 =   $request->str_id;     
         $status                 =   $request->status;            
-        $checked                =   1;
-        $type_msg               =   "alert-success";
-        $msg                    =   "Cập nhật thành công";                  
+        $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();                 
         $strID=substr($strID, 0,strlen($strID) - 1);
         $arrID=explode(',',$strID);                 
         if(empty($strID)){
-          $checked     =   0;
-          $type_msg           =   "alert-warning";            
-          $msg                =   "Please choose at least one item";
+          $checked            =   0;
+         
+          $msg['chooseone']            =   "Vui lòng chọn ít nhất một phần tử";
         }
         if($checked==1){
           foreach ($arrID as $key => $value) {
@@ -351,12 +346,12 @@ class ProductController extends Controller {
               $item->save();      
             }            
           }
+          $msg['success']='Cập nhật thành công';
         }                 
         $data                   =   $this->loadData($request);
         $info = array(
-          'checked'           => $checked,
-          'type_msg'          => $type_msg,                
-          'msg'               => $msg,                
+          "checked"       => $checked,          
+        'msg'       => $msg,    
           'data'              => $data
         );
         return $info;
@@ -364,43 +359,43 @@ class ProductController extends Controller {
       public function trash(Request $request){
             $strID                 =   $request->str_id;     
             
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                  
+            $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();
             $strID=substr($strID, 0,strlen($strID) - 1);
             
             $arrID=explode(',',$strID);                 
 
             if(empty($strID)){
-              $checked     =   0;
-              $type_msg           =   "alert-warning";            
-              $msg                =   "Please choose at least one item";
+              $checked            =   0;
+          
+          $msg['chooseone']            =   "Vui lòng chọn ít nhất một phần tử";
             }
             $data=DB::table('invoice_detail')->whereIn('product_id',@$arrID)->select('id')->get()->toArray();             
             if(count($data) > 0){
               $checked                =   0;
-              $type_msg               =   "alert-warning";            
-              $msg                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
+              
+              $msg['cannotdelete']                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
             }  
             if($checked == 1){                
                   DB::table('product')->whereIn('id',@$arrID)->delete(); 
-                  DB::table('post_param')->whereIn('post_id',@$arrID)->delete();                                              
+                  DB::table('post_param')->whereIn('post_id',@$arrID)->delete();      
+                  $msg['success']='Xóa thành công';                                                        
             }
             $data                   =   $this->loadData($request);
             $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                
-              'data'              => $data
-            );
+          "checked"       => $checked,          
+        'msg'       => $msg,         
+          'data'              => $data
+        );
             return $info;
       }
       public function sortOrder(Request $request){
             $sort_json              =   $request->sort_json;           
             $data_order             =   json_decode($sort_json);       
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Cập nhật thành công";      
+            $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();   
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){       
                 if(!empty($value)){
@@ -410,29 +405,29 @@ class ProductController extends Controller {
                 }                                                 
               }           
             }        
-            $data                   =   $this->loadData($request);
-            $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                
-              'data'              => $data
-            );
-            return $info;
+            $msg['success']='Cập nhật thành công'; 
+        $data                   =   $this->loadData($request);
+        $info = array(
+          "checked"       => $checked,          
+        'msg'       => $msg,          
+          'data'              => $data
+        );
+        return $info;
       }
       
     public function createAlias(Request $request){
           $id                =  trim($request->id)  ; 
           $fullname                =  trim($request->fullname)  ;        
           $data                    =  array();
-          $info                    =  array();
-          $error                   =  array();
+          
           $item                    =  null;
-          $checked  = 1;   
+          $info                 =   array();
+      $checked              =   1;                           
+      $msg                =   array();
           $alias='';                     
           if(empty($fullname)){
-           $checked = 0;
-           $error["fullname"]["type_msg"] = "has-error";
-           $error["fullname"]["msg"] = "Thiếu tên bài viết";
+           $checked = 0;           
+         $msg["fullname"] = "Thiếu tên bài viết";
          }else{
           $alias=str_slug($fullname,'-');
           $dataCategoryArticle=array();
@@ -471,24 +466,14 @@ class ProductController extends Controller {
           }
         }
         if ($checked == 1){
-          $info = array(
-            'type_msg'      => "has-success",
-            'msg'         => 'Lưu dữ liệu thành công',
-            "checked"       => 1,
-            "error"       => $error,
-            
-            "alias"       =>$alias
-          );
-        }else {
-          $info = array(
-            'type_msg'      => "has-error",
-            'msg'         => 'Nhập dữ liệu có sự cố',
-            "checked"       => 0,
-            "error"       => $error,
-            "alias"        => $alias
-          );
-        }    
-        return $info;
+        $msg['success']='Lưu thành công';     
+      }  
+      $info = array(
+        "checked"       => $checked,          
+        'msg'       => $msg,      
+        "alias"            => $alias
+      );                       
+      return $info;
       }
 }
 ?>
