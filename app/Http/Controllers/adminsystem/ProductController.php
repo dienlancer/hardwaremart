@@ -148,8 +148,7 @@ class ProductController extends Controller {
                 }       
             }      
             if(empty($fullname)){
-               $checked = 0;
-               $
+               $checked = 0;               
                $msg["fullname"] = "Thiếu tên sản phẩm";
            }else{
                 $data=array();
