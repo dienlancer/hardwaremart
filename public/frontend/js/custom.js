@@ -82,25 +82,31 @@ function addToCart(product_id,ajaxurl){
 		}
 	});
 }
-function hideMsg() {
-	$('.alert-system').fadeOut();
-} 
-var timeout;
-var second_timeout=3000;
-function showMsg(ctrlID,msg,type_msg){		
-	$('#'+ctrlID).removeClass();	
-	$('#'+ctrlID).addClass("alert");			
-	$('#'+ctrlID).addClass(type_msg);
-	$('#'+ctrlID).find("strong").text(msg);		
-	$('#'+ctrlID).fadeIn();		
-	if (timeout != null){
-        clearTimeout(timeout);
+
+function showMsg(ctrl,data){		
+	var ul='<ul>';	
+	$.each(data.msg,function(index,value){
+		ul+='<li>'+value+'</li>';
+	});                    
+	ul+='</ul>';
+	var type_msg = '';
+	if(data.checked == 1){
+		type_msg='note-success';
+	}else{
+		type_msg='note-danger';
 	}
-	timeout = setTimeout(hideMsg2, second_timeout,ctrlID);			 
+	$('.'+ctrl).empty();
+	$('.'+ctrl).removeClass('note-success');
+	$('.'+ctrl).removeClass('note-danger');
+	$('.'+ctrl).append(ul);	
+	$('.'+ctrl).addClass(type_msg);                    
+	$('.'+ctrl).show();     
+	setTimeout(hideMsg,10000,ctrl);		 
 }
-function hideMsg2(ctrlID) {
-	$('#'+ctrlID).fadeOut();
-} 
+function hideMsg(ctrl){
+    $('.'+ctrl).fadeOut();
+}  
+
 function PhanCachSoTien(Ctrl) {
     var vMoney = Ctrl.value;
     vMoney = vMoney.replace(/[^\d]+/g, '');

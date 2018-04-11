@@ -538,6 +538,22 @@ div.modal-add-cart div.modal-header > button.close{
         padding: 15px 30px 15px 15px;
         border-left: 5px solid #f0868e;
 }
+.note.note-danger {
+    background-color: #fef7f8;
+    border-color: #f0868e;
+    color: #210406;
+}
+.note.note-success {
+    background-color: #c0edf1;
+    border-color: #58d0da;
+    color: #000;
+}
+.note {
+    margin: 0 0 20px;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+    border-radius: 0 4px 4px 0;
+}
 .jgrid span.publish                 { background-image: url(../images/active.png);background-repeat: no-repeat ;    padding: 0px 6px; }
 .jgrid span.unpublish               { background-image: url(../images/inactive.png);background-repeat: no-repeat ;    padding: 0px 6px; }
 @media (max-width: 1199px){

@@ -47,9 +47,9 @@ class IndexController extends Controller {
   var $_ssNameInvoice="vminvoice";
   public function getHome(Request $request){       
     $flag=1;
-        $error=array();
+        $msg=array();
         $data=array();
-        $success=array();           
+        $msg=array();           
         $layout="two-column";     
         $component='contact';
         $alias="lien-he-voi-chung-toi";   
@@ -74,28 +74,28 @@ class IndexController extends Controller {
           $contacted_person = @$setting['contacted_person']['field_value'];          
           /* end load config contact */       
           if(mb_strlen($fullname) < 6){
-            $error["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
+            $msg["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
             $data["fullname"] = "";          
             $flag=0;
           }
           if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-            $error["email"] = 'Email không hợp lệ';
+            $msg["email"] = 'Email không hợp lệ';
             $data["email"] = '';
             $flag=0;
           }
           if(mb_strlen($telephone) < 10){
-            $error["telephone"] = 'Số điện thoại không hợp lệ';
+            $msg["telephone"] = 'Số điện thoại không hợp lệ';
             $data["telephone"] = "";          
             $flag=0;
           }
           if(mb_strlen($title) < 10){
-            $error["title"] = 'Tiêu đề không hợp lệ';
+            $msg["title"] = 'Tiêu đề không hợp lệ';
             $data["title"] = "";         
             $flag=0;
           }   
           
           if(mb_strlen($content) < 10){
-            $error["content"] = 'Nội dung không hợp lệ';
+            $msg["content"] = 'Nội dung không hợp lệ';
             $data["content"] = "";         
             $flag=0;
           }     
@@ -133,21 +133,21 @@ class IndexController extends Controller {
               $html_content .='</table>';                            
               $mail->msgHTML($html_content);
               if ($mail->Send()) {                
-                $success['success']='Gửi thông tin hoàn tất'; 
+                $msg['success']='Gửi thông tin hoàn tất'; 
                 echo '<script language="javascript" type="text/javascript">alert("Gửi thông tin hoàn tất");</script>'; 
               }
               else{
-                $error["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+                $msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
                 echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
               }
             }catch (Exception $e){
-              $error["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+              $msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
               echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
             }            
           }        
         }     
         \Artisan::call('sitemap:auto');   
-        return view("frontend.home",compact("component","error","data","success","alias","layout"));        
+        return view("frontend.home",compact("component",'msg',"data","success","alias","layout"));        
   }  
   
   public function search(Request $request){
@@ -479,10 +479,10 @@ class IndexController extends Controller {
         return view("frontend.index",compact("component","layout"));
       }
       public function contact(Request $request){   
-        $flag=1;
-        $error=array();
-        $data=array();
-        $success=array();           
+        $info=array();
+        $flag=1;        
+        $msg=array();
+        $data=array();                
         $layout="full-width";     
         $component='contact';
         $alias="lien-he";   
@@ -507,32 +507,32 @@ class IndexController extends Controller {
           $contacted_person = @$setting['contacted_person']['field_value'];          
           /* end load config contact */       
           if(mb_strlen($fullname) < 6){
-            $error["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
+            $msg["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
             $data["fullname"] = "";          
             $flag=0;
           }
           if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-            $error["email"] = 'Email không hợp lệ';
+            $msg["email"] = 'Email không hợp lệ';
             $data["email"] = '';
             $flag=0;
           }
           if(mb_strlen($telephone) < 10){
-            $error["telephone"] = 'Số điện thoại không hợp lệ';
+            $msg["telephone"] = 'Số điện thoại không hợp lệ';
             $data["telephone"] = "";          
             $flag=0;
           }
           if(mb_strlen($title) < 10){
-            $error["title"] = 'Tiêu đề không hợp lệ';
+            $msg["title"] = 'Tiêu đề không hợp lệ';
             $data["title"] = "";         
             $flag=0;
           }   
           if(mb_strlen($address) < 10){
-            $error["address"] = 'Địa chỉ không hợp lệ';
+            $msg["address"] = 'Địa chỉ không hợp lệ';
             $data["address"] = "";         
             $flag=0;
           }   
           if(mb_strlen($content) < 10){
-            $error["content"] = 'Nội dung không hợp lệ';
+            $msg["content"] = 'Nội dung không hợp lệ';
             $data["content"] = "";         
             $flag=0;
           }     
@@ -571,20 +571,20 @@ class IndexController extends Controller {
               $html_content .='</table>';                            
               $mail->msgHTML($html_content);
               if ($mail->Send()) {                
-                $success['success']='Gửi thông tin hoàn tất'; 
+                $msg['success']='Gửi thông tin hoàn tất'; 
                 echo '<script language="javascript" type="text/javascript">alert("Gửi thông tin hoàn tất");</script>'; 
               }
               else{
-                $error["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+                $msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
                 echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
               }
             }catch (Exception $e){
-              $error["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+              $msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
               echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
             }            
           }        
         }        
-        return view("frontend.index",compact("component","error","data","success","alias","layout"));        
+        return view("frontend.index",compact("component",'msg',"data","success","alias","layout","flag"));        
       }
       
       public function loadDataMember(Request $request){
@@ -638,8 +638,8 @@ class IndexController extends Controller {
 
       public function register(Request $request){     
         $flag=1;
-        $error=array();
-        $success=array();  
+        $msg=array();
+        $msg=array();  
         $data=array();        
         $component="register";    
         $layout="two-column";      
@@ -654,58 +654,58 @@ class IndexController extends Controller {
           $phone            =   trim(@$request->phone);                    
           $group_member_id  =   trim(@$request->group_member_id);         
           if(mb_strlen($username) < 6){
-            $error["username"] = 'Username phải từ 6 ký tự trở lên';
+            $msg["username"] = 'Username phải từ 6 ký tự trở lên';
             $data["username"] = ""; 
             $flag = 0;
           }else{
             $customer=User::whereRaw("trim(lower(username)) = ?",[trim(mb_strtolower($username,'UTF-8'))])->get()->toArray();
             if(count($customer) > 0){
-              $error["username"] = 'Username đã tồn tại';
+              $msg["username"] = 'Username đã tồn tại';
               $data["username"] = ""; 
               $flag = 0;
             }  
           }
           if(mb_strlen($password) < 6){
-            $error["password"] = 'Mật khẩu phải có độ dài từ 6 ký tự trở lên';
+            $msg["password"] = 'Mật khẩu phải có độ dài từ 6 ký tự trở lên';
             $data["password"] = "";
             $data["password_confirm"] = ""; 
             $flag = 0;
           }else{
             if(strcmp($password , $password_confirm) != 0 ){
-              $error["password_confirm"] = 'Mật khẩu xác nhận phải trùng khớp';
+              $msg["password_confirm"] = 'Mật khẩu xác nhận phải trùng khớp';
               $data["password_confirm"] = "";   
               $flag = 0;
             }
           }              
           if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
-            $error["email"] = 'Email không hợp lệ';
+            $msg["email"] = 'Email không hợp lệ';
             $data["email"] = '';
             $flag = 0;
           }else{
             $customer=User::whereRaw("trim(lower(email)) = ?",[mb_strtolower($email,'UTF-8')])->get()->toArray();
             if(count($customer) > 0){
-              $error["email"] = 'Email đã tồn tại';
+              $msg["email"] = 'Email đã tồn tại';
               $data["email"] = ""; 
               $flag = 0;
             }
           }  
           if(mb_strlen($fullname) < 6){
-            $error["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
+            $msg["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
             $data["fullname"] = ""; 
             $flag = 0;
           }  
           if(mb_strlen($address) < 6){
-            $error["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
+            $msg["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
             $data["address"] = ""; 
             $flag = 0;
           }  
           if(mb_strlen($phone) < 10){
-              $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
+              $msg["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
               $data["phone"] = ""; 
               $flag = 0;
             }    
           if((int)@$group_member_id == 0){
-          	$error["group_member_id"] = 'Vui lòng chọn thành viên';
+          	$msg["group_member_id"] = 'Vui lòng chọn thành viên';
             $data["group_member_id"] = ""; 
             $flag = 0;
           }           
@@ -723,13 +723,13 @@ class IndexController extends Controller {
             return redirect()->route('frontend.index.viewAccount');                        
           }              
         }
-        return view("frontend.index",compact("component","error","data","success","layout"));         
+        return view("frontend.index",compact("component",'msg',"data","success","layout"));         
       }
       
       public function login(Request $request){   
         $flag=1;
-        $error=array();
-        $success=array();   
+        $msg=array();
+        $msg=array();   
         $data=array();        
         $component="login";                
         $layout="two-column";     
@@ -749,15 +749,15 @@ class IndexController extends Controller {
             echo '<script language="javascript" type="text/javascript">alert("Đăng nhập thành công")</script>';
             return redirect()->route('frontend.index.viewAccount'); 
           }else{
-            $error["dang-nhap"]="Đăng nhập sai username và password";
+            $msg["dang-nhap"]="Đăng nhập sai username và password";
           }          
         }                
-        return view("frontend.index",compact("component","error","data","success","layout"));        
+        return view("frontend.index",compact("component",'msg',"data","success","layout"));        
       }      
       public function viewSecurity(Request $request){
       	$flag=1;
-      	$error=array();
-      	$success=array();   
+      	$msg=array();
+      	$msg=array();   
       	$data=array();        
       	$component="security";   
       	$layout="two-column";        
@@ -776,13 +776,13 @@ class IndexController extends Controller {
       		$password=@$request->password ;
       		$password_confirm=@$request->password_confirm ;                
       		if(mb_strlen($password) < 6){
-      			$error["password"] = 'Độ dài mật khẩu phải lớn hơn hoặc bằng 6';
+      			$msg["password"] = 'Độ dài mật khẩu phải lớn hơn hoặc bằng 6';
       			$data["password"] = "";
       			$data["password_confirm"] = ""; 
       			$flag = 0;
       		}
       		if(strcmp($password,$password_confirm)!=0){
-      			$error["password_confirm"] = 'Mật khẩu xác nhận không khớp';
+      			$msg["password_confirm"] = 'Mật khẩu xác nhận không khớp';
       			$data["password_confirm"] = "";   
       			$flag = 0;
       		}    
@@ -790,10 +790,10 @@ class IndexController extends Controller {
       			$item=User::find($id);                         
       			$item->password         = Hash::make(@$request->password);
       			$item->save();  
-      			$success['update-password']="Cập nhật mật khẩu thành công";                                                           
+      			$msg['update-password']="Cập nhật mật khẩu thành công";                                                           
       		}              
       	}             
-      	return view("frontend.index",compact("component","error","data","success","layout"));                      
+      	return view("frontend.index",compact("component",'msg',"data","success","layout"));                      
       }
       public function getLgout(){               
       	Sentinel::logout();       
@@ -802,8 +802,8 @@ class IndexController extends Controller {
       }
       public function viewAccount(Request $request){        
       	$flag=1;
-      	$error=array();
-      	$success=array();   
+      	$msg=array();
+      	$msg=array();   
       	$data=array();        
       	$component="account";   
       	$layout="two-column";       
@@ -825,29 +825,29 @@ class IndexController extends Controller {
       		$address          =   trim(@$request->address);
       		$phone            =   trim(@$request->phone);                                           
       		if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
-      			$error["email"] = 'Email không hợp lệ';
+      			$msg["email"] = 'Email không hợp lệ';
       			$data["email"] = '';
       			$flag = 0;
       		}else{
       			$customer=User::whereRaw("trim(lower(email)) = ? and id != ? ",[mb_strtolower($email,'UTF-8'),(int)@$id])->get()->toArray();
       			if(count($customer) > 0){
-      				$error["email"] = 'Email đã tồn tại';
+      				$msg["email"] = 'Email đã tồn tại';
       				$data["email"] = ""; 
       				$flag = 0;
       			}
       		}  
       		if(mb_strlen($fullname) < 6){
-      			$error["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
+      			$msg["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
       			$data["fullname"] = ""; 
       			$flag = 0;
       		}  
       		if(mb_strlen($address) < 6){
-      			$error["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
+      			$msg["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
       			$data["address"] = ""; 
       			$flag = 0;
       		}  
       		if(mb_strlen($phone) < 10){
-              $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
+              $msg["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
               $data["phone"] = ""; 
               $flag = 0;
             }               
@@ -864,7 +864,7 @@ class IndexController extends Controller {
       			return redirect()->route("frontend.index.viewAccount");                    
       		}              
       	}
-      	return view("frontend.index",compact("component","error","data","success","layout"));         
+      	return view("frontend.index",compact("component",'msg',"data","success","layout"));         
       }
       
       public function checkout(){          
@@ -882,8 +882,8 @@ class IndexController extends Controller {
       }
       public function confirmCheckout(Request $request){
       	$flag=1;
-      	$error=array();
-      	$success=array();  
+      	$msg=array();
+      	$msg=array();  
       	$data=array();        
       	$component="xac-nhan-thanh-toan";    
       	$layout="two-column";   
@@ -914,34 +914,34 @@ class IndexController extends Controller {
       		$payment_method_id = trim(@$request->payment_method_id);    
       		$bank_code 			=trim(@$request->bankcode);      		                                 
       		if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
-      			$error["email"] = 'Email không hợp lệ';
+      			$msg["email"] = 'Email không hợp lệ';
       			$data["email"] = '';
       			$flag = 0;
       		}else{
       			$customer=User::whereRaw("trim(lower(email)) = ? and id != ?",[mb_strtolower($email,'UTF-8'),(int)@$id])->get()->toArray();
       			if(count($customer) > 0){
-      				$error["email"] = 'Email đã tồn tại';
+      				$msg["email"] = 'Email đã tồn tại';
       				$data["email"] = ""; 
       				$flag = 0;
       			}
       		}  
       		if(mb_strlen($fullname) < 6){
-      			$error["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
+      			$msg["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
       			$data["fullname"] = ""; 
       			$flag = 0;
       		}  
       		if(mb_strlen($address) < 6){
-      			$error["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
+      			$msg["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
       			$data["address"] = ""; 
       			$flag = 0;
       		}  
       		if(mb_strlen($phone) < 10){
-      			$error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
+      			$msg["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
       			$data["phone"] = ""; 
       			$flag = 0;
       		}        
       		if((int)@$payment_method_id==0){
-      			$error["payment_method"] = 'Xin vui lòng chọn 1 phương thức thanh toán';                      
+      			$msg["payment_method"] = 'Xin vui lòng chọn 1 phương thức thanh toán';                      
       			$flag = 0;
       		}             		  
       		/* begin test payment-method */
@@ -999,7 +999,7 @@ class IndexController extends Controller {
       				$fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
       				$buyer_address,$array_items,$bank_code);
       			if(empty($bank_code)){
-      				$error["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
+      				$msg["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
       				$flag = 0;
       			}
       			break; 
@@ -1013,28 +1013,28 @@ class IndexController extends Controller {
       				$fee_shipping,$discount_amount,$return_url,$cancel_url,$buyer_fullname,$buyer_email,$buyer_mobile, 
       				$buyer_address,$array_items) ;
       			if(empty($bank_code)){
-      				$error["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
+      				$msg["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
       				$flag = 0;
       			}
       			break;  
       			case 'NH_OFFLINE':
       			$nl_result= $nlcheckout->officeBankCheckout($order_code, $total_amount, $bank_code, $payment_type, $order_description, $tax_amount, $fee_shipping, $discount_amount, $return_url, $cancel_url, $buyer_fullname, $buyer_email, $buyer_mobile, $buyer_address, $array_items);
       			if(empty($bank_code)){
-      				$error["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
+      				$msg["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
       				$flag = 0;
       			}
       			break;
       			case 'ATM_OFFLINE':
       			$nl_result= $nlcheckout->BankOfflineCheckout($order_code, $total_amount, $bank_code, $payment_type, $order_description, $tax_amount, $fee_shipping, $discount_amount, $return_url, $cancel_url, $buyer_fullname, $buyer_email, $buyer_mobile, $buyer_address, $array_items);
       			if(empty($bank_code)){
-      				$error["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
+      				$msg["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
       				$flag = 0;
       			}
       			break;
       			case 'IB_ONLINE':      			
       			$nl_result= $nlcheckout->IBCheckout($order_code, $total_amount, $bank_code, $payment_type, $order_description, $tax_amount, $fee_shipping, $discount_amount, $return_url, $cancel_url, $buyer_fullname, $buyer_email, $buyer_mobile, $buyer_address, $array_items);
       			if(empty($bank_code)){
-      				$error["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
+      				$msg["bank_code"] = 'Vui lòng chọn mã ngân hàng';                      
       				$flag = 0;
       			}
       			break;
@@ -1043,7 +1043,7 @@ class IndexController extends Controller {
       			break;			
       		}
       		if (strcmp($nl_result->error_code, '00')  != 0){                
-      			$error["payment_method"] = $nl_result->error_message;                      
+      			$msg["payment_method"] = $nl_result->error_message;                      
       			$flag = 0;
       		}
       		/* end test payment-method */                           
@@ -1070,7 +1070,7 @@ class IndexController extends Controller {
       		'alias'=>null,
       		'content'=>null,          
       	);
-      	return view("frontend.index",compact("component","error","data","success","layout","data_paymentmethod"));                   
+      	return view("frontend.index",compact("component",'msg',"data","success","layout","data_paymentmethod"));                   
       }    
       public function saveInvoice(){
       	$arrUser=array();              
@@ -1205,8 +1205,8 @@ class IndexController extends Controller {
       }  
       public function loginCheckout(Request $request){          
         $flag=1;
-        $error=array();
-        $success=array();  
+        $msg=array();
+        $msg=array();  
         $data=array();        
         $component="dang-nhap-thanh-toan";    
         $layout="two-column";
@@ -1231,53 +1231,53 @@ class IndexController extends Controller {
             $address          =   trim(@$request->address);
             $phone            =   trim(@$request->phone);           
             if(mb_strlen($username) < 6){
-              $error["username"] = 'Username phải từ 6 ký tự trở lên';
+              $msg["username"] = 'Username phải từ 6 ký tự trở lên';
               $data["username"] = ""; 
               $flag = 0;
             }else{
               $customer=User::whereRaw("trim(lower(username)) = ?",[trim(mb_strtolower($username,'UTF-8'))])->get()->toArray();
               if(count($customer) > 0){
-                $error["username"] = 'Username đã tồn tại';
+                $msg["username"] = 'Username đã tồn tại';
                 $data["username"] = ""; 
                 $flag = 0;
               }  
             }
             if(mb_strlen($password) < 6){
-              $error["password"] = 'Mật khẩu phải có độ dài từ 6 ký tự trở lên';
+              $msg["password"] = 'Mật khẩu phải có độ dài từ 6 ký tự trở lên';
               $data["password"] = "";
               $data["password_confirm"] = ""; 
               $flag = 0;
             }else{
               if(strcmp($password , $password_confirm) != 0 ){
-                $error["password_confirm"] = 'Mật khẩu xác nhận phải trùng khớp';
+                $msg["password_confirm"] = 'Mật khẩu xác nhận phải trùng khớp';
                 $data["password_confirm"] = "";   
                 $flag = 0;
               }
             }              
             if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
-              $error["email"] = 'Email không hợp lệ';
+              $msg["email"] = 'Email không hợp lệ';
               $data["email"] = '';
               $flag = 0;
             }else{
               $customer=User::whereRaw("trim(lower(email)) = ?",[mb_strtolower($email,'UTF-8')])->get()->toArray();
               if(count($customer) > 0){
-                $error["email"] = 'Email đã tồn tại';
+                $msg["email"] = 'Email đã tồn tại';
                 $data["email"] = ""; 
                 $flag = 0;
               }
             }  
             if(mb_strlen($fullname) < 6){
-              $error["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
+              $msg["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';
               $data["fullname"] = ""; 
               $flag = 0;
             }  
             if(mb_strlen($address) < 6){
-              $error["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
+              $msg["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';
               $data["address"] = ""; 
               $flag = 0;
             }  
             if(mb_strlen($phone) < 10){
-              $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
+              $msg["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';
               $data["phone"] = ""; 
               $flag = 0;
             }        
@@ -1303,12 +1303,12 @@ class IndexController extends Controller {
                 echo '<script language="javascript" type="text/javascript">alert("Đăng nhập thành công")</script>';
                 return redirect()->route('frontend.index.confirmCheckout'); 
               }else{
-                $error["dang-nhap"]="Đăng nhập sai username và password";
+                $msg["dang-nhap"]="Đăng nhập sai username và password";
               }                   
             break;                
           }
         }                    
-        return view("frontend.index",compact("component","error","data","success","layout"));        
+        return view("frontend.index",compact("component",'msg',"data","success","layout"));        
       }
       public function getInvoice(){              
         $component="hoa-don";                
@@ -1471,11 +1471,10 @@ class IndexController extends Controller {
         return $dataReturn;
       } 
       public function checkoutQuickly(Request $request){
-        $flag=1;
-        $error=array();
-        $success=array();  
-        $data=array();       
         $info=array();
+        $flag=1;        
+        $msg=array();        
+        $data=array();               
         if($request->isMethod('post')){
           $data             =   @$request->all();                    
           $fullname=trim(@$request->customer_name);
@@ -1484,19 +1483,19 @@ class IndexController extends Controller {
           $email=trim(@$request->customer_email);
           $note=trim(@$request->customer_note);                
           if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
-            $error["email"] = 'Email không hợp lệ';            
+            $msg["email"] = 'Email không hợp lệ';            
             $flag = 0;
           }
           if(mb_strlen($fullname) < 6){
-            $error["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';            
+            $msg["fullname"] = 'Họ tên phải từ 6 ký tự trở lên';            
             $flag = 0;
           }  
           if(mb_strlen($address) < 6){
-            $error["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';            
+            $msg["address"] = 'Địa chỉ phải từ 6 ký tự trở lên';            
             $flag = 0;
           }  
           if(mb_strlen($phone) < 10){
-            $error["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';            
+            $msg["phone"] = 'Số điện thoại phải từ 10 ký tự trở lên';            
             $flag = 0;
           }                
           if($flag==1){   
@@ -1629,10 +1628,8 @@ class IndexController extends Controller {
               $html_content .='</tbody>';
               $html_content .='</table>';                                 
               $mail->msgHTML($html_content);
-              if (!$mail->Send()) {                
-                $error["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
-                $flag=0;
-              }           
+              $mail->Send();
+              $msg['success']='Đặt hàng thành công';           
             }  
             if(Session::has($this->_ssNameCart)){
               Session::forget($this->_ssNameCart);
@@ -1641,7 +1638,7 @@ class IndexController extends Controller {
         }
         $info = array(                            
           "checked"   => $flag,
-          "error"     => $error, 
+          'msg'     => $msg, 
           "link_redirect"=>url('/')             
         );
         return $info;       

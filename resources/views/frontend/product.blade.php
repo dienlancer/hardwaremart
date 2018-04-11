@@ -304,41 +304,7 @@ if(count($item) > 0){
                         ?>                
                     </div>    
                     <?php                           
-                    if(count(@$error) > 0 || count(@$success) > 0){
-                        ?>
-                        <div class="alert-system padding-top-5">
-                            <?php                                           
-                            if(count(@$error) > 0){
-                                ?>
-                                <ul class="alert-error">
-                                    <?php 
-                                    foreach (@$error as $key => $value) {
-                                        ?>
-                                        <li><?php echo $value; ?></li>
-                                        <?php
-                                    }
-                                    ?>                              
-                                </ul>
-                                <?php
-                            }
-                            if(count(@$success) > 0){
-                                ?>
-                                <ul class="alert-success">
-                                    <?php 
-                                    foreach (@$success as $key => $value) {
-                                        ?>
-                                        <li><?php echo $value; ?></li>
-                                        <?php
-                                    }
-                                    ?>                              
-                                </ul>
-                                <?php
-                            }
-                            ?>  
-                            <div class="clr"></div>                                            
-                        </div>              
-                        <?php
-                    }                
+                        
                     $style_ttkh='';
                     if(count($arrCart) > 0){
                         $style_ttkh='block';
@@ -346,7 +312,7 @@ if(count($item) > 0){
                         $style_ttkh='none';
                     }                
                     ?>            
-                    <div class="alert-system padding-top-5"></div>    
+                    <div class="note padding-top-5" style="display: none;"></div>    
                     <div class="margin-top-15 tbl-ttkh" style="display: <?php echo $style_ttkh; ?>">
                         <div class="ttkh">Thông tin khách hàng</div>
                         <div class="margin-top-15">

@@ -8,43 +8,31 @@ $map_url=$setting['map_url']['field_value'];
 <div class="box-article margin-top-10">
 	<div class="col-md-4 contact no-padding-left">
 		<form method="post" name="frm-contact" class="margin-top-15" enctype="multipart/form-data">							
-			{{ csrf_field() }}      
-			<?php                           
-			if(count($error) > 0 || count($success) > 0){
+			{{ csrf_field() }}      			
+			<?php 
+			if(count(@$msg) > 0){
+				$type_msg='';
+				$checked=(int)@$flag;
+				if((int)@$checked==1){
+					$type_msg='note-success';
+				}else{
+					$type_msg='note-danger';
+				}
 				?>
-				<div class="alert-system margin-top-15">
-					<?php                                           
-					if(count($error) > 0){
-						?>
-						<ul class="alert-error">
-							<?php 
-							foreach ($error as $key => $value) {
-								?>
-								<li><?php echo $value; ?></li>
-								<?php
-							}
-							?>                              
-						</ul>
-						<?php
-					}
-					if(count($success) > 0){
-						?>
-						<ul class="alert-success">
-							<?php 
-							foreach ($success as $key => $value) {
-								?>
-								<li><?php echo $value; ?></li>
-								<?php
-							}
-							?>                              
-						</ul>
-						<?php
-					}
-					?>                                              
-				</div>              
+				<div class="note <?php echo $type_msg; ?>" >
+					<ul>
+						<?php 
+						foreach (@$msg as $key => $value) {
+							?>
+							<li><?php echo $value; ?></li>
+							<?php
+						}
+						?>                              
+					</ul>	
+				</div>    
 				<?php
-			}
-			?>
+			}			
+			?>								
 			<div class="margin-top-5"><input type="input" class="contact-input" name="fullname" value="<?php echo @$data['fullname']; ?>" placeholder="Họ và tên"></div>
 			<div class="margin-top-5"><input type="input" class="contact-input" name="email" value="<?php echo @$data['email']; ?>" placeholder="Email"></div>
 			<div class="margin-top-5"><input type="input" class="contact-input" name="telephone" value="<?php echo @$data['telephone']; ?>" placeholder="Điện thoại"></div>

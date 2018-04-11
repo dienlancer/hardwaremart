@@ -304,10 +304,7 @@ if(count($arrCart) > 0){
 
 				},
 			}); 
-		}     
-		function hideMsgPdetail() {
-			$('.alert-system').fadeOut();
-		}     
+		}     		   
 		function checkout(ctrl){
 			var xForm=$(ctrl).closest('form')[0]; 
 			var customer_name =$(xForm).find('input[name="customer_name"]').val();
@@ -329,21 +326,13 @@ if(count($arrCart) > 0){
 				type: 'POST',
 				data: dataItem,
 				async: false,
-				success: function (data) {                                      
+				success: function (data) { 
+					console.log(data);                                     
 					if(data.checked==1){
 						alert('Đặt hàng thành công');
 						window.location.assign(data.link_redirect);
 					}else{   
-						var data_error=data.error;                                  
-						var ul='<ul class="alert-error">';
-						$.each(data_error,function(index,value){
-							ul+='<li>'+value+'</li>';
-						});                    
-						ul+='</ul>';
-						$('.alert-system').show();
-						$('.alert-system').empty();
-						$('.alert-system').append(ul);
-						setTimeout(hideMsgPdetail,10000);    
+						showMsg('note',data);  
 					}
 				},
 				error : function (data){
@@ -505,8 +494,8 @@ if(count($arrCart) > 0){
 								}else{
 									$style_ttkh='none';
 								}                
-								?>            
-								<div class="alert-system padding-top-5" style="display: none;"></div>    
+								?>            								
+								<div class="note"  style="display: none;"></div>
 								<div class="margin-top-15 tbl-ttkh" style="display: <?php echo $style_ttkh; ?>">
 									<div class="ttkh">Thông tin khách hàng</div>
 									<div class="margin-top-15">
