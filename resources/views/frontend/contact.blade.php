@@ -12,7 +12,7 @@ $map_url=$setting['map_url']['field_value'];
 			<?php 
 			if(count(@$msg) > 0){
 				$type_msg='';
-				$checked=(int)@$flag;
+				$checked=(int)@$checked;
 				if((int)@$checked==1){
 					$type_msg='note-success';
 				}else{
