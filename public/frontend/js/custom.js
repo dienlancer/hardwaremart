@@ -1,4 +1,3 @@
-
 function checkAllAgent(cid){
 	var tbl=$(cid).closest("table");	
 	var checkStatus = cid.checked;
@@ -83,30 +82,6 @@ function addToCart(product_id,ajaxurl){
 	});
 }
 
-function showMsg(ctrl,data){		
-	var ul='<ul>';	
-	$.each(data.msg,function(index,value){
-		ul+='<li>'+value+'</li>';
-	});                    
-	ul+='</ul>';
-	var type_msg = '';
-	if(data.checked == 1){
-		type_msg='note-success';
-	}else{
-		type_msg='note-danger';
-	}
-	$('.'+ctrl).empty();
-	$('.'+ctrl).removeClass('note-success');
-	$('.'+ctrl).removeClass('note-danger');
-	$('.'+ctrl).append(ul);	
-	$('.'+ctrl).addClass(type_msg);                    
-	$('.'+ctrl).show();     
-	setTimeout(hideMsg,10000,ctrl);		 
-}
-function hideMsg(ctrl){
-    $('.'+ctrl).fadeOut();
-}  
-
 function PhanCachSoTien(Ctrl) {
     var vMoney = Ctrl.value;
     vMoney = vMoney.replace(/[^\d]+/g, '');
@@ -133,7 +108,38 @@ function PhanCachSoTien(Ctrl) {
     }
     Ctrl.value = vNewMoney;
 }
+function xacnhanxoa(){
+	var msg="Bạn chắc chắn có muốn xóa ?";
+    var xac_nhan=false;
+	if(window.confirm(msg)){
+		xac_nhan=true;
+	}
+	return xac_nhan;
+}
+function showMsg(ctrl,data){		
+	var ul='<ul>';	
+	$.each(data.msg,function(index,value){
+		ul+='<li>'+value+'</li>';
+	});                    
+	ul+='</ul>';
+	var type_msg = '';
+	if(data.checked == 1){
+		type_msg='note-success';
+	}else{
+		type_msg='note-danger';
+	}
+	$('.'+ctrl).empty();
+	$('.'+ctrl).removeClass('note-success');
+	$('.'+ctrl).removeClass('note-danger');
+	$('.'+ctrl).append(ul);	
+	$('.'+ctrl).addClass(type_msg);                    
+	$('.'+ctrl).show();     
+	setTimeout(hideMsg,10000,ctrl);		 
+}
+function hideMsg(ctrl){
+    $('.'+ctrl).fadeOut();
+}       
 $(document).ready(function(){	
-	timeout = setTimeout(hideMsg,10000);	
 	basicTable.init();		
+	setTimeout(hideMsg,60000,'note');	
 });
