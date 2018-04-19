@@ -2059,6 +2059,28 @@ form[name='frm-search'] input[name='q']{
 	float: right;
     width: 50px;
 }
+.katalena{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2
+}
+.katalena a{
+    background:linear-gradient(#474747, #000000);
+    text-align: center;
+    border: 1px solid #000000;
+    padding: 8px 70px;
+    font-size: 16px;
+    display: block;
+    color: #ffffff !important;
+
+}
+.katalena a:hover{
+    color: #ffffff !important;
+}
+.nippet a img{
+    width:53px;
+}
 @media (max-width: 768px){    
     .mobilemenu{
         display: block;

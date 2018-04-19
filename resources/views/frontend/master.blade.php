@@ -327,8 +327,7 @@ if(count($arrCart) > 0){
 				type: 'POST',
 				data: dataItem,
 				async: false,
-				success: function (data) { 
-					console.log(data);                                     
+				success: function (data) { 					                                 
 					if(data.checked==1){
 						alert('Đặt hàng thành công');
 						window.location.assign(data.link_redirect);
@@ -566,6 +565,9 @@ if(count($arrCart) > 0){
 	</header>
 @yield("content")
 @include("frontend.footer")
+<div class="katalena">
+  <a href="https://www.facebook.com/messages/t/maysaybomnhiet" target="_blank">HỖ TRỢ TRỰC TUYẾN</a>
+</div>
 </body>
 </html>
 
