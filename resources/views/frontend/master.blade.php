@@ -565,10 +565,20 @@ if(count($arrCart) > 0){
 	</header>
 @yield("content")
 @include("frontend.footer")
-<div class="katalena">
-  <a href="https://www.facebook.com/messages/t/maysaybomnhiet" target="_blank">HỖ TRỢ TRỰC TUYẾN</a>
-</div>
-<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" style="right: 10px; top: 20%;">
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5ad8d8b4227d3d7edc241f50/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" style="left: 10px; top: 20%;">
   <a href="tel:0988162753" title="Liên hệ nhanh">
   <div class="quick-alo-ph-circle"></div>
   <div class="quick-alo-ph-circle-fill"></div>
