@@ -568,6 +568,13 @@ if(count($arrCart) > 0){
 <div class="katalena">
   <a href="https://www.facebook.com/messages/t/maysaybomnhiet" target="_blank">HỖ TRỢ TRỰC TUYẾN</a>
 </div>
+<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" style="right: 10px; top: 20%;">
+  <a href="tel:0988162753" title="Liên hệ nhanh">
+  <div class="quick-alo-ph-circle"></div>
+  <div class="quick-alo-ph-circle-fill"></div>
+  <div class="quick-alo-ph-img-circle"></div>
+  </a>
+</div>
 </body>
 </html>
 
