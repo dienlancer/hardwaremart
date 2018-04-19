@@ -1,6 +1,6 @@
 <?php 
 $seo_alias="";
-if(isset($alias)){
+if(!empty($alias)){
     $seo_alias=$alias;
 }
 ?>
@@ -8,7 +8,8 @@ if(isset($alias)){
 @section("content")
 <div class="box-inner-content">
     <div class="container">    
-        <?php             
+        <div class="row">
+            <?php             
         switch ($layout){
             case 'two-column':  
             ?>
@@ -53,39 +54,39 @@ if(isset($alias)){
                     $data_featured_news=\App\ArticleModel::whereRaw('status = 1')->select('id','fullname','alias','intro','image')->orderBy('created_at','desc')->take(10)->get()->toArray();
 
                     if(count($data_featured_news) > 0){
-                    	?>
-                    	<script language="javascript" type="text/javascript">
-                    		$(document).ready(function(){
-                    			$('.bx-slider-news').bxSlider({
-                    				mode: 'vertical', speed: 500, slideMargin:50, infiniteLoop: true, pager: false, controls: false, minSlides: 5, maxSlides:20, moveSlides: 5, adaptiveHeight: false,auto:true
-                    			});
-                    		});
-                    	</script>
-                    	<div class="menu-right-title margin-top-20">Tin nổi bật</div>
-                    	<div class="bx-slider-news">
-                    		<?php 
-                    		foreach($data_featured_news as $featured_news_key => $featured_news_value){
-                    			$featured_news_name=$featured_news_value['fullname'];
-                    			$featured_news_alias=$featured_news_value['alias'];
-                    			$featured_news_link=route('frontend.index.index',[$featured_news_alias]);
-                    			$featured_news_intro=$featured_news_value['intro'];                    			
-                    			$featured_news_image =get_article_thumbnail($featured_news_value['image']) ;                    			
-                    			?>
-                    			<div>
-                    				<div>
-                    					<center>
-                    						<figure>
-                    							<a href="<?php echo $featured_news_link; ?>"><img src="<?php echo $featured_news_image; ?>"></a>
-                    						</figure>
-                    					</center>      
-                    				</div> 
-                    				<div class="margin-top-5 box-title"><a href="<?php echo $featured_news_link ?>"><?php echo $featured_news_name; ?></a></div>                  			
-                    			</div>
-                    			<?php
-                    		}
-                    		?>
-                    	</div>
-                    	<?php
+                        ?>
+                        <script language="javascript" type="text/javascript">
+                            $(document).ready(function(){
+                                $('.bx-slider-news').bxSlider({
+                                    mode: 'vertical', speed: 500, slideMargin:50, infiniteLoop: true, pager: false, controls: false, minSlides: 5, maxSlides:20, moveSlides: 5, adaptiveHeight: false,auto:true
+                                });
+                            });
+                        </script>
+                        <div class="menu-right-title margin-top-20">Tin nổi bật</div>
+                        <div class="bx-slider-news">
+                            <?php 
+                            foreach($data_featured_news as $featured_news_key => $featured_news_value){
+                                $featured_news_name=$featured_news_value['fullname'];
+                                $featured_news_alias=$featured_news_value['alias'];
+                                $featured_news_link=route('frontend.index.index',[$featured_news_alias]);
+                                $featured_news_intro=$featured_news_value['intro'];                             
+                                $featured_news_image =get_article_thumbnail($featured_news_value['image']) ;                                
+                                ?>
+                                <div>
+                                    <div>
+                                        <center>
+                                            <figure>
+                                                <a href="<?php echo $featured_news_link; ?>"><img src="<?php echo $featured_news_image; ?>"></a>
+                                            </figure>
+                                        </center>      
+                                    </div> 
+                                    <div class="margin-top-5 box-title"><a href="<?php echo $featured_news_link ?>"><?php echo $featured_news_name; ?></a></div>                            
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
                     }
                     break;
                     case 'products':        
@@ -111,62 +112,62 @@ if(isset($alias)){
                     /* begin tìm kiếm sản phẩm theo thuộc tính */
                     ?>
                     <form name="frm-search-product-param" action='<?php echo route('frontend.index.search') ?>'  method="POST" enctype="multipart/form-data">
-                    	{{ csrf_field() }}
-                    	<input type="hidden" name="category_id" value="<?php echo @$category['id']; ?>">
-                    	<?php 
-                    	$query=\DB::table('category_param');
-                    	$query->where('alias','<>','mau')->where('alias','<>','kich-thuoc')->where('parent_id','=',0);
-                    	$data_father=$query->select('category_param.id','category_param.fullname','category_param.alias')
-                    	->groupBy('category_param.id','category_param.fullname','category_param.alias')
-                    	->orderBy('category_param.sort_order', 'asc')
-                    	->get()
-                    	->toArray(); 
-                    	$data_father=convertToArray($data_father);
-                    	if(count($data_father) > 0){
-                    		foreach ($data_father as $key_father => $value_father) {
-                    			$father_id=$value_father['id'];
-                    			$father_fullname=$value_father['fullname'];                            
-                    			$father_alias=$value_father['alias'];                            
-                    			?>
-                    			<hr class="cara" />                    
-                    			<div class="bo-loc margin-top-10"><?php echo $father_fullname; ?></div>
-                    			<?php 
-                    			$data_children=\App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_id])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                    			if(count($data_children) > 0){
-                    				?>
-                    				<div>
-                    					<ul class="tich-tac">
-                    						<?php 
-                    						foreach ($data_children as $child_key => $child_value) {
-                    							$child_id=$child_value['id'];
-                    							$child_fullname=$child_value['fullname'];
-                    							$child_alias=$child_value['alias'];
-                    							if(@$prod_param != null){
-                    								if(count(@$prod_param) > 0){
-                    									if(in_array($child_id, @$prod_param)){
-                    										?>
-                    										<li><input type="checkbox" checked name="prod_param[]" onclick='document.forms["frm-search-product-param"].submit();'  value="<?php echo $child_id; ?>"><span class="margin-left-5"><?php echo $child_fullname; ?></span></li>
-                    										<?php
-                    									}else{
-                    										?>
-                    											<li><input type="checkbox" name="prod_param[]" onclick='document.forms["frm-search-product-param"].submit();'  value="<?php echo $child_id; ?>"><span class="margin-left-5"><?php echo $child_fullname; ?></span></li>   
-                    											<?php
-                    									}                    									
-                    								}          
-                    							}else{
-                    								?>
-                    								<li><input type="checkbox" name="prod_param[]" onclick='document.forms["frm-search-product-param"].submit();'  value="<?php echo $child_id; ?>"><span class="margin-left-5"><?php echo $child_fullname; ?></span></li>   
-                    								<?php
-                    							}			
-                    						}
-                    						?>                  						        					
-                    					</ul>
-                    				</div>
-                    				<?php                  				                  			
-                    			}                  			
-                    		}
-                    	}             
-                    	?>
+                        {{ csrf_field() }}
+                        <input type="hidden" name="category_id" value="<?php echo @$category['id']; ?>">
+                        <?php 
+                        $query=\DB::table('category_param');
+                        $query->where('alias','<>','mau')->where('alias','<>','kich-thuoc')->where('parent_id','=',0);
+                        $data_father=$query->select('category_param.id','category_param.fullname','category_param.alias')
+                        ->groupBy('category_param.id','category_param.fullname','category_param.alias')
+                        ->orderBy('category_param.sort_order', 'asc')
+                        ->get()
+                        ->toArray(); 
+                        $data_father=convertToArray($data_father);
+                        if(count($data_father) > 0){
+                            foreach ($data_father as $key_father => $value_father) {
+                                $father_id=$value_father['id'];
+                                $father_fullname=$value_father['fullname'];                            
+                                $father_alias=$value_father['alias'];                            
+                                ?>
+                                <hr class="cara" />                    
+                                <div class="bo-loc margin-top-10"><?php echo $father_fullname; ?></div>
+                                <?php 
+                                $data_children=\App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_id])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                                if(count($data_children) > 0){
+                                    ?>
+                                    <div>
+                                        <ul class="tich-tac">
+                                            <?php 
+                                            foreach ($data_children as $child_key => $child_value) {
+                                                $child_id=$child_value['id'];
+                                                $child_fullname=$child_value['fullname'];
+                                                $child_alias=$child_value['alias'];
+                                                if(@$prod_param != null){
+                                                    if(count(@$prod_param) > 0){
+                                                        if(in_array($child_id, @$prod_param)){
+                                                            ?>
+                                                            <li><input type="checkbox" checked name="prod_param[]" onclick='document.forms["frm-search-product-param"].submit();'  value="<?php echo $child_id; ?>"><span class="margin-left-5"><?php echo $child_fullname; ?></span></li>
+                                                            <?php
+                                                        }else{
+                                                            ?>
+                                                                <li><input type="checkbox" name="prod_param[]" onclick='document.forms["frm-search-product-param"].submit();'  value="<?php echo $child_id; ?>"><span class="margin-left-5"><?php echo $child_fullname; ?></span></li>   
+                                                                <?php
+                                                        }                                                       
+                                                    }          
+                                                }else{
+                                                    ?>
+                                                    <li><input type="checkbox" name="prod_param[]" onclick='document.forms["frm-search-product-param"].submit();'  value="<?php echo $child_id; ?>"><span class="margin-left-5"><?php echo $child_fullname; ?></span></li>   
+                                                    <?php
+                                                }           
+                                            }
+                                            ?>                                                                      
+                                        </ul>
+                                    </div>
+                                    <?php                                                           
+                                }                           
+                            }
+                        }             
+                        ?>
                     </form>
                     <?php
                     /* end tìm kiếm sản phẩm theo thuộc tính */        
@@ -303,6 +304,7 @@ if(isset($alias)){
             break;
         }
         ?>    
+        </div>        
     </div>
 </div>
 @endsection()               
