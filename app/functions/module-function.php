@@ -177,7 +177,7 @@ function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$alias,$menu_class
         if((int)@$value["havechild"]==1){
           $class_li .=$menu_item_has_children;
         }
-        $fullname=$link_before . $value['fullname'] . $link_after;           
+        $fullname=$link_before . '<div>'. $value['fullname'] .'</div>' . $link_after;           
         $a='<a href="'.$link.'">'.$fullname.'</a>';
         if(!empty($class_li)){
           $li='<li class="'.$class_li.'"  >'.$a;                                        
