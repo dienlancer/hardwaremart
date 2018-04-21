@@ -24,10 +24,16 @@ if(count($item) > 0){
 			</span>
 		</div>		
 		<hr class="duong-ngang" />
-		<h2 class="margin-top-10 article-excerpt  justify">
-			<?php echo $intro; ?>
-		</h2>	
-		<hr class="duong-ngang" />	
+		<?php 
+		if(!empty(@$intro)){
+			?>
+			<h2 class="margin-top-10 article-excerpt  justify">
+				<?php echo $intro; ?>
+			</h2>	
+			<hr class="duong-ngang" />	
+			<?php
+		}
+		?>	
 		<div class="margin-top-15">
 			<?php echo $content; ?>
 		</div>	
