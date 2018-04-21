@@ -478,8 +478,7 @@ class IndexController extends Controller {
         }            
         return view("frontend.index",compact("component","layout"));
       }
-      public function contact(Request $request){   
-        $info=array();
+      public function contact(Request $request){           
         $checked=1;        
         $msg=array();
         $data=array();                
@@ -538,53 +537,44 @@ class IndexController extends Controller {
           }     
           if((int)@$checked==1){
             $mail = new PHPMailer(true);
-            try{
-              $mail->SMTPDebug = 0;                           
-              $mail->isSMTP();     
-              $mail->CharSet = "UTF-8";          
-              $mail->Host = $smtp_host; 
-              $mail->SMTPAuth = $smtp_auth;                         
-              $mail->Username = $smtp_username;             
-              $mail->Password = $smtp_password;             
-              $mail->SMTPSecure = $encription;                       
-              $mail->Port = $smtp_port;                            
-              $mail->setFrom($email_from, $fullname);
-              $mail->addAddress($email_to, $contacted_person);   
-              $mail->Subject = 'Thông tin liên hệ từ khách hàng '.$fullname.' - '.$telephone ;   
-              $html_content='';     
-              $html_content .='<table border="1" cellspacing="5" cellpadding="5">';
-              $html_content .='<thead>';
-              $html_content .='<tr>';
-              $html_content .='<th colspan="2"><h3>Thông tin liên lạc từ khách hàng '.$fullname.'</h3></th>';
-              $html_content .='</tr>';
-              $html_content .='</thead>';
-              $html_content .='<tbody>';
+            $mail->SMTPDebug = 0;                           
+            $mail->isSMTP();     
+            $mail->CharSet = "UTF-8";          
+            $mail->Host = $smtp_host; 
+            $mail->SMTPAuth = $smtp_auth;                         
+            $mail->Username = $smtp_username;             
+            $mail->Password = $smtp_password;             
+            $mail->SMTPSecure = $encription;                       
+            $mail->Port = $smtp_port;                            
+            $mail->setFrom($email_from, $fullname);
+            $mail->addAddress($email_to, $contacted_person);   
+            $mail->Subject = 'Thông tin liên hệ từ khách hàng '.$fullname.' - '.$telephone ;   
+            $html_content='';     
+            $html_content .='<table border="1" cellspacing="5" cellpadding="5">';
+            $html_content .='<thead>';
+            $html_content .='<tr>';
+            $html_content .='<th colspan="2"><h3>Thông tin liên lạc từ khách hàng '.$fullname.'</h3></th>';
+            $html_content .='</tr>';
+            $html_content .='</thead>';
+            $html_content .='<tbody>';
 
-              $html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
-              $html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
-              $html_content .='<tr><td>Telephone</td><td>'.$telephone.'</td></tr>';
-              $html_content .='<tr><td>Tiêu đề</td><td>'.$title.'</td></tr>';
-              $html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
-              $html_content .='<tr><td>Nội dung</td><td>'.$content.'</td></tr>';          
+            $html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
+            $html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
+            $html_content .='<tr><td>Phone</td><td>'.$telephone.'</td></tr>';
+            $html_content .='<tr><td>Tiêu đề</td><td>'.$title.'</td></tr>';
+            $html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
+            $html_content .='<tr><td>Nội dung</td><td>'.$content.'</td></tr>';          
 
-              $html_content .='</tbody>';
-              $html_content .='</table>';                            
-              $mail->msgHTML($html_content);
-              if ($mail->Send()) {                
-                $msg['success']='Gửi thông tin hoàn tất'; 
-                echo '<script language="javascript" type="text/javascript">alert("Gửi thông tin hoàn tất");</script>'; 
-              }
-              else{
-                $msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
-                echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
-              }
-            }catch (Exception $e){
-              $msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
-              echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
-            }            
+            $html_content .='</tbody>';
+            $html_content .='</table>';                            
+            $mail->msgHTML($html_content);
+            if ($mail->Send()) {                
+              $msg['success']='Gửi thông tin hoàn tất';               
+              $data=array();
+            }       
           }        
         }        
-        return view("frontend.index",compact("component",'msg',"data","success","alias","layout","checked"));        
+        return view("frontend.index",compact("component","layout","alias",'msg',"data","checked"));        
       }
       
       public function loadDataMember(Request $request){

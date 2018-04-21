@@ -164,6 +164,9 @@ if(count($arrCart) > 0){
   <script src="{{ asset('public/frontend/js/modal-video.min.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('public/frontend/css/modal-video.min.css') }}" />
   <!-- end youtube -->
+  <!-- begin quick alo phone -->
+	<link rel="stylesheet" href="{{ asset('public/frontend/css/alo-phone.css') }}" />
+	<!-- end quick alo phone -->
 	<!-- begin fancybox -->
 	<script language="javascript" type="text/javascript" src="{{asset('public/frontend/js/jquery.fancybox.min.js')}}"                 ></script>
 	<link href="{{asset('public/frontend/css/jquery.fancybox.min.css')}}" rel="stylesheet" type="text/css" />
@@ -579,7 +582,7 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 <div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" style="left: 10px; top: 20%;">
-  <a href="tel:0988162753" title="Liên hệ nhanh">
+  <a href="tel:<?php echo $telephone; ?>" title="Liên hệ nhanh">
   <div class="quick-alo-ph-circle"></div>
   <div class="quick-alo-ph-circle-fill"></div>
   <div class="quick-alo-ph-img-circle"></div>

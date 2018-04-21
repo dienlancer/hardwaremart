@@ -11,9 +11,8 @@ $map_url=$setting['map_url']['field_value'];
 			{{ csrf_field() }}      			
 			<?php 
 			if(count(@$msg) > 0){
-				$type_msg='';
-				$checked=(int)@$checked;
-				if((int)@$checked==1){
+				$type_msg='';					
+				if((int)@$checked == 1){															
 					$type_msg='note-success';
 				}else{
 					$type_msg='note-danger';
@@ -29,10 +28,10 @@ $map_url=$setting['map_url']['field_value'];
 						}
 						?>                              
 					</ul>	
-				</div>    
+				</div>      
 				<?php
-			}			
-			?>								
+			}
+			?>							
 			<div class="margin-top-5"><input type="input" class="contact-input" name="fullname" value="<?php echo @$data['fullname']; ?>" placeholder="Họ và tên"></div>
 			<div class="margin-top-5"><input type="input" class="contact-input" name="email" value="<?php echo @$data['email']; ?>" placeholder="Email"></div>
 			<div class="margin-top-5"><input type="input" class="contact-input" name="telephone" value="<?php echo @$data['telephone']; ?>" placeholder="Điện thoại"></div>
@@ -48,11 +47,7 @@ $map_url=$setting['map_url']['field_value'];
 		<div class="margin-top-15">
 			<?php 
 			$module=getPage("thong-tin-lien-he-widget");
-			if(count($module) > 0){
-				$fullname=substr($module["fullname"],0,50);
-				$featuredImg=asset('upload/'.$module['image']);
-				$permalink=route('frontend.index.index',[$module['alias']]);	
-				$intro=substr($module["intro"], 0,250) ;
+			if(count($module) > 0){				
 				$content=$module['content'];
 				echo $content;	
 			}
