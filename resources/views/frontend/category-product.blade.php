@@ -73,7 +73,7 @@
 		<?php 
 		if(count($items) > 0){
 			echo $pagination->showPagination();
-		}  
+		}  		
 		?>
 	</div>
 </form>
