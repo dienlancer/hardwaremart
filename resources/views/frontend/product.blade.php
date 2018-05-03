@@ -192,7 +192,7 @@ if(count($item) > 0){
                                     <div class="col-sm-9">
                                         <?php 
                                         foreach ($children_data as $child_key => $child_value) {
-                                            $data_post_param_2=App\PostParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
+                                            $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
                                             if(count($data_post_param_2) > 0){
                                                 ?><div class="block-color" style="background: <?php echo $child_value['param_value']; ?>"></div><?php
                                             }
@@ -232,7 +232,7 @@ if(count($item) > 0){
                                     <div class="col-sm-9">
                                         <?php 
                                         foreach ($children_data as $child_key => $child_value) {
-                                            $data_post_param_2=App\PostParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
+                                            $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
                                             if(count($data_post_param_2) > 0){
                                                 ?><div class="block-size"><?php echo $child_value['fullname']; ?></div><?php
                                             }
