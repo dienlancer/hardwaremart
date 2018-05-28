@@ -38,6 +38,7 @@ if(count(@$arrRowData)>0){
     }        
 }   
 $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'.@$strImage.'" />';
+$inputAltImage             =   '<input type="text" class="form-control" name="alt_image"    value="'.@$arrRowData['alt_image'].'">';
 $inputCallback='<input type="hidden" name="callback_url"  value="'.route('adminsystem.media.saveSummerFile').'" />';
 ?>
 <div class="portlet light bordered">
@@ -128,6 +129,8 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
                             <div><font color="red"><b>Kích thước ảnh không được vượt quá <?php echo (int)max_size_upload; ?>MB</b></font></div>
                             <div><input type="file"  name="image"  />   </div>                           
                             <div class="picture-area"><?php echo $picture; ?>                      </div>
+                            <div class="clr"></div>
+                            <div><b>SEO ALT</b><?php echo $inputAltImage; ?></div>                            
                             <div class="clr"></div>
                                                 
                         </div>
@@ -281,6 +284,7 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
             image_file  = image_files[0];  
         }        
         /* end xử lý image */
+        var alt_image=$('input[name="alt_image"]').val(); 
         var image_hidden=$('input[name="image_hidden"]').val();
         /* begin source child image */
         var tbody=$("table.table-image > tbody")[0]; 
@@ -327,6 +331,7 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
             dataItem.append('image',image_file);
         } 
         dataItem.append('image_hidden',image_hidden);
+        dataItem.append('alt_image',alt_image);
         dataItem.append('status',status); 
         dataItem.append('price',price);
         dataItem.append('sale_price',sale_price);

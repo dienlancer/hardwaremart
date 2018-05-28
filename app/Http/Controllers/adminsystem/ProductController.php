@@ -109,6 +109,7 @@ class ProductController extends Controller {
             if(isset($request->source_image_child_hidden)){
               $source_image_child_hidden=$request->source_image_child_hidden;                        
             }            
+            $alt_image                =   trim($request->alt_image);       
             $status               =   trim($request->status);
             $price                =   trim($request->price);   
             $sale_price           =   trim($request->sale_price);                    
@@ -222,6 +223,7 @@ class ProductController extends Controller {
           $item->detail           = $detail;  
           $item->technical_detail           = $technical_detail;    
           $item->video_id = $video_id;   
+          $item->alt_image          = $alt_image;  
           $item->intro            = $intro;            
           $item->category_id      = (int)@$category_id;                                      
           $item->sort_order 	    =	(int)@$sort_order;                
